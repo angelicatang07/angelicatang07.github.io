@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task App</title>
-  <script type="module" src="app.js"></script>
+    <title>Task Management</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Ensure you have your CSS file linked here -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
 </head>
-<body>
-  <input type="text" id="input_box" placeholder="Title">
-  <input type="text" id="input_book" placeholder="Review">
-  <button id="input_button">Add Task</button>
+<body onload="create_unfinished_task(); create_finished_task();">
+    <div id="content_container">
+        <div id="finish_task_header">
+            <p>Write Review</p>
+        </div>
+
+        <div id="task_input_container">
+            <input type="text" id="input_box" placeholder="Task Title">
+            <input type="date" id="input_date">
+            <button id="input_button">Submit</button>
+        </div>
+
+        <!-- Task To Do -->
+        <p class="header">Tasks</p>
+        <div class="container" id="unfinished_tasks_container">
+            <!-- Tasks will be dynamically added here -->
+        </div>
+
+        <!-- Task Finished Yay -->
+        <p class="header">Finished</p>
+        <div class="container" id="finished_tasks_container">
+            <!-- Finished tasks will be dynamically added here -->
+        </div>
+    </div>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
