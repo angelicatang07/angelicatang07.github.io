@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" >
         <link href="styles.css" rel="stylesheet" >
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' >
-        <title>Ledgit</title>
+        <title>Sign in</title>
     </head>
     <body>
         <header>
@@ -15,14 +15,22 @@
             </nav>
         </header>
         <main>
-            <form>
-                <input type="email" id="email" placeholder="email" required>
-                <input type="password" id="password" placeholder="password" required>
-                <button type="submit" id="signUp">Submit Review</button>
-            </form>
+            <div id="not-logged-in">
+                <h3>Please Log in</h3>
+                <form onsubmit="login(event)">
+                    <input type="email" id="email" placeholder="email" required>
+                    <input type="password" id="password" placeholder="password" required>
+                    <button type="submit" id="submit">Submit</button>
+                </form>
+            </div>
+            <div id="logged-in">
+                <h3>You are logged in now !</h3>
+                <button onclick="logout()">Logout</button>
+            </div>
+            
         </main>
 
-        <script type="module" src="signup.js"></script> 
+        <script src="signup.js"></script> 
     </body>
 
 </html>
