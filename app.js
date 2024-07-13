@@ -15,6 +15,7 @@ measurementId: "G-9E81W0H16Z"
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const btn = document.getElementById('input_button');
 
 function add_task() {
 var input_box = document.getElementById('input_box');
@@ -36,8 +37,6 @@ if(input_box.value.trim() !== "") {
     console.log("Task added successfully!");
     input_box.value = "";
     input_date.value = "";
-  }).catch((error) => {
-    window.alert("Error adding task");
   });
 }
 
@@ -56,3 +55,5 @@ if(input_box.value.trim() !== "") {
 // function task_delete() {
 //   window.alert("task delete");
 // }
+
+btn.addEventListener('click', add_task());
