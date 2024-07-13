@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+  import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,6 +24,20 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/fireba
   const email = document.getElementById('email');
   const password = document.getElementById('password');
   const signUpBtn = document.getElementById('submit');
+  const notLogged = document.getElementById('not-logged-in');
+  const logged = document.getElementById('logged-in');
+  const fill = document.getElementById("fill");
+  onAuthStateChanged(auto, (user) => {
+
+  if (user){
+    notLogged.style.display = "none";
+    logged.style.display = "block";
+    fill.innerHTML = user.email;
+ } else {
+  notLogged.style.display = "block";
+  logged.style.display = "none";
+ }
+  });
 
   const signUpBtnPressed = async (e) => {
     e.preventDefault();
