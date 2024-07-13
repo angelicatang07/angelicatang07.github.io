@@ -1,0 +1,34 @@
+<!DOCTYPE html> <!-- reviews screen -->
+<html lang="en">
+    <head>
+        <meta charset=""utf-8 >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+        <link href="styles.css" rel="stylesheet" >
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' >
+        <title>Ledgit</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="index.html">home</a>
+                <a href="signup.html">signup</a>
+            </nav>
+        </header>
+        <main>
+            <form id="reviewForm">
+                <div class="form-group">
+                    <label for="bookId">Book ID:</label>
+                    <input type="text" id="bookId" required>
+                </div>
+                <div class="form-group">
+                    <label for="reviewText">Review:</label>
+                    <textarea id="reviewText" required></textarea>
+                </div>
+                <button type="submit" id="submitForm">Submit Review</button>
+            </form>
+        </main>
+
+        <script type="module" src="app.js"></script> 
+    </body>
+
+</html>
