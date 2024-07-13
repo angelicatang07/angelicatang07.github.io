@@ -29,15 +29,22 @@ body{
   #task_input_container{
     background-color:#fff;
     margin:10px auto;
-    height:120px;
+    height:500px;
     width:90%;
     margin-bottom: 60px;
     border-bottom-left-radius:10px;
     border-bottom-right-radius:10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  textarea {
+    max-width: 100%;
+    min-height: 400px;
   }
 
   #input_box{
-    width:60%;
+    width:100%;
     float:left;
     height:50px;
     background-color:white;
@@ -49,7 +56,9 @@ body{
     font-size:15px;
     border-right:0.2px solid #4d4646;
     transition: 0.3s;
-  }
+    margin: 0;
+    padding: 0;
+    }
 
   #input_box:focus{
     border-bottom:4px solid #2c786c;

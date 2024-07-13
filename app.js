@@ -26,12 +26,14 @@ const submitButton = document.getElementById("input_button");
 submitButton.addEventListener("click", () => {
     const inputBox = document.getElementById("input_box");
     const inputDate = document.getElementById("input_date");
+    const inputRev = document.getElementById("input_review")
     
     const title = inputBox.value.trim();
     const date = inputDate.value;
+    const rev = inputRev.value.trim();
 
-    if (title.length === 0 || date.length === 0) {
-        alert("Please enter both task title and date.");
+    if (title.length === 0 || date.length === 0 || rev.length === 0) {
+        alert("Please fill in all fields");
         return;
     }
 
@@ -39,6 +41,7 @@ submitButton.addEventListener("click", () => {
     const newTaskRef = push(unfinishedTaskRef);
     update(newTaskRef, {
         title: title,
+        review: rev,
         date: date
     }).then(() => {
         inputBox.value = "";
@@ -61,23 +64,6 @@ function create_unfinished_task() {
                 const task = tasks[key];
                 const taskContainer = createTaskElement(task, key, 'unfinished');
                 unfinishedTaskContainer.appendChild(taskContainer);
-            }
-        }
-    });
-}
-
-// Function to create finished tasks
-function create_finished_task() {
-    const finishedTaskContainer = document.getElementById("finished_tasks_container");
-    finishedTaskContainer.innerHTML = ""; // Clear existing tasks
-
-    onValue(finishedTaskRef, (snapshot) => {
-        const tasks = snapshot.val();
-        for (let key in tasks) {
-            if (tasks.hasOwnProperty(key)) {
-                const task = tasks[key];
-                const taskContainer = createTaskElement(task, key, 'finished');
-                finishedTaskContainer.appendChild(taskContainer);
             }
         }
     });
@@ -129,9 +115,7 @@ function createTaskElement(task, key, type) {
     taskDeleteButton.addEventListener('click', () => {
         if (type === 'unfinished') {
             task_delete(taskContainer);
-        } else {
-            task_finished_delete(taskContainer);
-        }
+        } 
     });
 
     // Append elements
@@ -144,28 +128,6 @@ function createTaskElement(task, key, type) {
     taskContainer.appendChild(taskTool);
 
     return taskContainer;
-}
-
-// Function to mark task as finished
-function task_done(taskContainer) {
-    const key = taskContainer.getAttribute("data-key");
-    const taskRef = ref(database, 'unfinished_task/' + key);
-    
-    // Get task data
-    onValue(taskRef, (snapshot) => {
-        const taskData = snapshot.val();
-        
-        // Add task to finished tasks
-        const newFinishedTaskRef = push(finishedTaskRef);
-        update(newFinishedTaskRef, taskData);
-
-        // Remove task from unfinished tasks
-        remove(taskRef);
-
-        // Refresh task lists
-        create_unfinished_task();
-        create_finished_task();
-    });
 }
 
 // Function to edit task (contenteditable)
@@ -222,19 +184,5 @@ function task_delete(taskContainer) {
         taskContainer.remove();
     }).catch(error => {
         console.error("Error removing task: ", error);
-    });
-}
-
-// Function to delete finished task
-function task_finished_delete(taskContainer) {
-    const key = taskContainer.getAttribute("data-key");
-    const taskRef = ref(database, 'finished_task/' + key);
-
-    // Remove task from database
-    remove(taskRef).then(() => {
-        // Remove task from UI
-        taskContainer.remove();
-    }).catch(error => {
-        console.error("Error removing finished task: ", error);
     });
 }
