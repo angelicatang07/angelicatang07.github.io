@@ -1,52 +1,52 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import {getDatabase} from 'firebase/database';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+ // Import the functions you need from the SDKs you need
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+ import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+ // TODO: Add SDKs for Firebase products that you want to use
+ // https://firebase.google.com/docs/web/setup#available-libraries
+ const firebaseConfig = {
+   apiKey: "AIzaSyCLCTKoWoxtvyZIGqzegq1l2jZL3g9jqWw",
+   authDomain: "ledgit-website-83db1.firebaseapp.com",
+   databaseURL: "https://ledgit-website-83db1-default-rtdb.firebaseio.com",
+   projectId: "ledgit-website-83db1",
+   storageBucket: "ledgit-website-83db1.appspot.com",
+   messagingSenderId: "839227429175",
+   appId: "1:839227429175:web:963536f0b5309d59e8cab2",
+   measurementId: "G-09H5HGCLYL"
+ };
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCLCTKoWoxtvyZIGqzegq1l2jZL3g9jqWw",
-  authDomain: "ledgit-website-83db1.firebaseapp.com",
-  databaseURL: "https://ledgit-website-83db1-default-rtdb.firebaseio.com",
-  projectId: "ledgit-website-83db1",
-  storageBucket: "ledgit-website-83db1.appspot.com",
-  messagingSenderId: "839227429175",
-  appId: "1:839227429175:web:963536f0b5309d59e8cab2",
-  measurementId: "G-09H5HGCLYL"
-};
+ const app = initializeApp(firebaseConfig);
+ const db = getDatabase(app);
+ const auth = getAuth(app);
+ const signUpBtn = document.getElementById('submit');
 
-firebase.initializeApp(firebaseConfig);
+ signUpBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+var email= document.getElementById('email').value;
+var password = document.getElementById('password').value;
+var notLoggedIn = document.getElementById("not-logged-in");
+var loggedIn = document.getElementById("logged-in");
 
-const auth = getAuth();
 
-onAuthStateChanged(auth, (user) => {
-    var notLoggedIn = document.getElementById("not-logged-in");
-    var loggedIn = document.getElementById("logged-in");
-  if (user) {
-    loggedIn.style.display = "block"
-    notLoggedIn.style.display = "none"
-    // https://firebase.google.com/docs/reference/js/auth.user
-    const uid = user.uid;
-    // ...
-  } else {
-    // User is signed out
-    loggedIn.style.display = "none"
-    notLoggedIn.style.display = "block"
-  }
-});
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed up 
+      const user = userCredential.user;
+      set(ref(db), 'users/' + user.uid, {
+        email: email
+      });
+      alert("user created");
+      loggedIn.style.display = 'block';
+      notLoggedIn.style.display = 'none';
+      // ...
+    })
+    .catch((error) => {
+      const errorMessage = error.message;
+        alert(errorMessage);
+      loggedIn.style.display = 'none';
+      notLoggedIn.style.display = 'block';
+      // ..
+    });
+ });
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-function login(event) {
-    event.preventDefault();
-
-}
-
-function logout(event) {
-    event.preventDefault();
-}
+ 
