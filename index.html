@@ -1,34 +1,96 @@
-<!DOCTYPE html> <!-- reviews screen -->
+<!DOCTYPE HTML>
 <html lang="en">
-    <head>
-        <meta charset=""utf-8 >
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-        <link href="styles.css" rel="stylesheet" >
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' >
-        <title>Ledgit</title>
-    </head>
-    <body>
-        <header>
-            <nav>
-                <a href="index.html">home</a>
-                <a href="signup.html">signup</a>
-            </nav>
-        </header>
-        <main>
-            <form id="reviewForm">
-                <div class="form-group">
-                    <label for="bookId">Book ID:</label>
-                    <input type="text" id="bookId" required>
-                </div>
-                <div class="form-group">
-                    <label for="reviewText">Review:</label>
-                    <textarea id="reviewText" required></textarea>
-                </div>
-                <button type="submit" id="submitForm">Submit Review</button>
-            </form>
-        </main>
-
-        <script type="module" src="app.js"></script> 
-    </body>
-
+  <head>
+    <Title>REVIEWS</Title>
+    <link rel='stylesheet' href="styles.css">
+  </head>
+  
+  <body>
+    <div id="content_container">
+      
+      <div id="finish_task_header">
+        <p> Finish Task. </p>
+      </div>
+      
+      <div id="task_input_container">
+        <input id="input_box" type="text" placeholder="review" />
+        <input id="input_date" type="date" placeholder="date" />
+        <button id="input_button" onclick="add_task();"> Enter Task </button>
+        
+      </div>
+      
+        <!-- to do -->
+      <p class="header"> Task </p>
+      <div class="container">
+        
+        <div class="task_container">
+          <div id='task_data'>
+            <p id="task_title"> Task Title 1 </p>
+            <p id="task_date"> Task Date 1 </p>
+          </div>
+          <div id="task_tool">
+            <button id="task_done_button" onclick="task_done();"> Checkmark
+            </button>
+            <button id="task_edit_button" onclick="task_edit();"> Edit
+            </button>
+            <button id="task_delete_button" onclick="task_delete();"> Delete
+            </button>
+          </div>
+          
+        </div>
+        <div class="task_container">
+          <div id='task_data'>
+            <p id="task_title"> Task Title 1 </p>
+            <p id="task_date"> Task Date 1 </p>
+          </div>
+          <div id="task_tool">
+            <button id="task_done_button" onclick="task_done();"> Checkmark
+            </button>
+            <button id="task_edit_button" onclick="task_edit();"> Edit
+            </button>
+            <button id="task_delete_button" onclick="task_delete();"> Delete
+            </button>
+          </div>
+          
+        </div>
+        <div class="task_container">
+          <div id='task_data'>
+            <p id="task_title"> Task Title 1 </p>
+            <p id="task_date"> Task Date 1 </p>
+          </div>
+          <div id="task_tool">
+            <button id="task_done_button" onclick="task_done();"> Checkmark
+            </button>
+            <button id="task_edit_button" onclick="task_edit();"> Edit
+            </button>
+            <button id="task_delete_button" onclick="task_delete();"> Delete
+            </button>
+          </div>
+          
+        </div>
+        
+        
+      </div>
+      
+      
+      
+    
+      <!-- done -->
+    <p class="header"> Finished </p>
+      <div class="container">
+        
+        <div class="task_container">
+          <div id='task_data'>
+            <p id="task_title"> Task Title 1 </p>
+            <p id="task_date"> Task Date 1 </p>
+          </div>
+          
+          
+        </div>
+      </div>
+      
+    </div>
+    <script type="module" src="app.js"> </script>
+  </body>
+  
 </html>
