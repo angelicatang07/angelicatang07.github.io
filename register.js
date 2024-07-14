@@ -48,6 +48,7 @@ registerbtn.addEventListener("click", () => {
       update(database_ref, user_data);
       
       alert(`Welcome, ${user_data.name}`);
+      window.location.href = "index.html";
     })
     .catch(error => {
       const errorMessage = error.message;
