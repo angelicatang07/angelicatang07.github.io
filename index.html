@@ -2,11 +2,23 @@
 <html>
 <head>
     <title>Review Table</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Ensure you have your CSS file linked here -->
+    <link rel="stylesheet" href="styles.css">
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
 </head>
 <body onload="create_unfinished_task(); create_finished_task();">
+
+<header>
+    <nav class="nav-bar">
+      <ul>
+        <li class="main-nav"><a href="index.html"> Main </a></li>
+        <li class="about-nav"><a href="about.html"> About </a></li>
+        <li class="team-nav"><a href="team.html"> Team </a></li>
+      </ul>
+    </nav>
+    <a class="login-btn" href="login.html"> Login </a>
+</header>
+
     <div id="content_container">
         <div id="finish_task_header">
             <p>Write Review</p>

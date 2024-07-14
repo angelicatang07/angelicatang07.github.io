@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Ledgit Login</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"></script>
+</head>
+
+<body>
+  <div id='content_container'>
+    <div id="form_container">
+      
+      <div id="form_header_container">
+        <h2 id="form_header"> Login </h2>
+      </div>
+    
+      <div id="form_content_container">
+        <div id="form_content_inner_container">
+          <input type="email" id="email" placeholder="Email">
+          <input type="password" id="password" placeholder="Password">
+          
+          <div id="button_container">
+            <button id="login-btn"> Login </button>
+          </div>
+        </div>
+      </div>
+    <p id="no-acc">Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+  </div>
+  
+  <script type="module" src="login.js"></script>
+</body>
+
+</html>
