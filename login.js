@@ -24,7 +24,6 @@ loginbtn.addEventListener("click", () => {
   const password = document.getElementById("password").value;
   
   if (!validate_email(email) || !validate_password(password)) {
-    window.alert("Password must be at least 6 characters and email must be valid.");
     return;
   }
   
@@ -51,9 +50,9 @@ loginbtn.addEventListener("click", () => {
           }
         })
         .catch((error) => {
-          console.error("Error fetching user data:", error);
-          const userName = user.displayName || 'User'; 
-          alert(`Welcome back, ${userName}`);
+          var error_message = error.message;
+          alert("Error fetching user data:", error.message);
+          return;
         });
     })
     .catch((error) => {
