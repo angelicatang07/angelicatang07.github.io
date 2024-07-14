@@ -19,9 +19,8 @@ const database = getDatabase(app);
 
 // Reference to task collections
 const unfinishedTaskRef = ref(database, 'unfinished_task');
-const finishedTaskRef = ref(database, 'finished_task');
 
-// Submit button click event listener
+
 const submitButton = document.getElementById("input_button");
 submitButton.addEventListener("click", () => {
     const inputBox = document.getElementById("input_box");
