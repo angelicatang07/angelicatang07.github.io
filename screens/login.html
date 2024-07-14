@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Ledgit Register</title>
-    <link rel="stylesheet" href="register.css">
+    <title>Ledgit Login</title>
+    <link rel="stylesheet" href="../stylesheets/login.css">
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"></script>
@@ -13,27 +13,24 @@
     <div id="form_container">
       
       <div id="form_header_container">
-        <h2 id="form_header"> Register </h2>
+        <h2 id="form_header"> Login </h2>
       </div>
     
       <div id="form_content_container">
         <div id="form_content_inner_container">
-          <input type="text" id="full_name" placeholder="Name">
           <input type="email" id="email" placeholder="Email">
           <input type="password" id="password" placeholder="Password">
           
           <div id="button_container">
-            <button id="register-btn"> Register </button>
+            <button id="login-btn"> Login </button>
           </div>
-          <p id="have-acc"> Already have an account?&nbsp;<a href="login.html">Login here</a>.</p>
-
         </div>
       </div>
-    
+      <p id="no-acc">Don't have an account?&nbsp;<a href="register.html">Register here</a>.</p>
     </div>
   </div>
   
-  <script type="module" src="register.js"></script>
+  <script type="module" src="../scripts/login.js"></script>
 </body>
 
 </html>

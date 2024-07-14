@@ -379,20 +379,18 @@ body{
   
   .login-btn {
     position: absolute;
-    display: flex;
-    right: 90%;
+    top: 15px; 
+    right: 15px;
+    border-radius: 20px;
+    text-align: center;
     text-decoration: none;
     color: black;
     font-size: 15px;
-    padding: 0 15px;
-    margin: 0;
+    padding: 0 27px; 
   }
+  
   .login-btn:hover {
-    border: 2px solid grey;
     cursor: pointer;
-    border-radius: 10px;
-    margin: 0;
-    padding: 0 15px;
   }
   
   
