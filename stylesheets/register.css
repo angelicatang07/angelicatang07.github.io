@@ -48,7 +48,7 @@ body {
   justify-content: center;
 }
 
-#full_name, #email, #password {
+#email, #full_name, #password {
   margin: 20px 0;
   padding: 15px;
   display: flex;
@@ -73,5 +73,5 @@ body {
 #have-acc {
   font-size: 13px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }

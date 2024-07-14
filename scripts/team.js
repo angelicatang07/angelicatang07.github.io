@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
 
-    const offset = 330; // num pixels to scroll past before sticking
+    const offset = 455; // num pixels to scroll past before sticking
     const stickyStart = image.offsetTop + offset;
 
     window.addEventListener('scroll', function() {
@@ -23,16 +23,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
         
-        if (currentScroll >= stickyStart + 1700) {
+        if (currentScroll >= stickyStart + 1480) {
             image.src = '../images/thor.jpg'; // 5
             console.log('Image changed to thor.jpg');
-        } else if (currentScroll >= stickyStart + 1250) {
+        } else if (currentScroll >= stickyStart + 1030) {
             image.src = '../images/spiderman.jpeg'; // 4
             console.log('Image changed to spiderman.jpeg');
-        } else if (currentScroll >= stickyStart + 800) {
+        } else if (currentScroll >= stickyStart + 560) {
             image.src = '../images/ironman.png'; // 3
             console.log('Image changed to ironman.png');
-        } else if (currentScroll >= stickyStart + 350) {
+        } else if (currentScroll >= stickyStart + 230) {
             image.src = '../images/blackpanther.jpg'; // 2
             console.log('Image changed to blackpanther.jpg');
         } else {
