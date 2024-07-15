@@ -1,10 +1,12 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9196511154128809"
-     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Review Table</title>
     <link rel="stylesheet" href="stylesheets/index.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9196511154128809"
+     crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -12,21 +14,31 @@
 <body onload="create_unfinished_task(); create_finished_task();">
 
 <header>
+    <div class="logo">
+        <a href="index.html">Review Table</a>
+    </div>
     <nav class="nav-bar">
         <ul>
-            <li class="main-nav"><a href="index.html">Main</a></li>
-            <li class="about-nav"><a href="screens/about.html">About</a></li>
-            <li class="team-nav"><a href="screens/team.html">Team</a></li>
-            <li class="team-nav"><a href="screens/pricing.html">Pricing</a></li>
-            
+            <li><a href="index.html">Main</a></li>
+            <li><a href="screens/about.html">About</a></li>
+            <li><a href="screens/team.html">Team</a></li>
+            <li><a href="screens/pricing.html">Pricing</a></li>
         </ul>
         <a class="login-btn" href="screens/login.html">Login</a>
     </nav>
 </header>
 
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to Review Table</h1>
+        <p>Your go-to platform for book reviews.</p>
+        <a class="cta-button" href="#content_container">Get Started</a>
+    </div>
+</section>
+
 <div id="content_container">
     <div id="finish_task_header">
-        <p>Write Review</p>
+        <h2>Write Review</h2>
     </div>
 
     <div id="task_input_container">
@@ -35,11 +47,15 @@
         <button id="input_button">Submit</button>
     </div>
 
-    <p class="header">Reviews</p>
+    <h2 class="header">Reviews</h2>
     <div class="container" id="unfinished_tasks_container">
         <!-- Reviews dynamically added here -->
     </div>
 </div>
+
+<footer>
+    <p>&copy; 2024 Review Table. All rights reserved.</p>
+</footer>
 
 <script type="module" src="app.js"></script>
 </body>
