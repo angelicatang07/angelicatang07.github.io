@@ -10,7 +10,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
-    background-color: #E0FFFF; /* Light Cyan background */
+    background-color: #fcfcfc; /* Light Cyan background */
     color: #333;
 }
 
@@ -70,7 +70,7 @@ header .login-btn:hover {
 .hero {
     text-align: center;
     padding: 6rem 2rem;
-    background: linear-gradient(to right, #76b852, #8DC26F); /* Cyan gradient */
+    background: linear-gradient(to right, #c1f5eb, #7ff5de); /* Cyan gradient */
     color: #001f3f; /* Dark navy text */
 }
 
