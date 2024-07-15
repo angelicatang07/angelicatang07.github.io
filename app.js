@@ -104,6 +104,10 @@ function createTaskElement(task, key, type) {
     title.setAttribute('class', 'task_title');
     title.textContent = task.title;
 
+    const review = document.createElement('p');
+    review.setAttribute('class', 'task_review');
+    review.textContent = task.review;
+
     const date = document.createElement('p');
     date.setAttribute('class', 'task_date');
     date.textContent = task.date;
@@ -124,9 +128,10 @@ function createTaskElement(task, key, type) {
 
 
     // Append elements
-    taskTool.appendChild(taskDeleteButton);
+    // taskTool.appendChild(taskDeleteButton);
     taskData.appendChild(title);
     taskData.appendChild(date);
+    taskData.appendChild(review);
     taskContainer.appendChild(taskData);
     taskContainer.appendChild(taskTool);
 
