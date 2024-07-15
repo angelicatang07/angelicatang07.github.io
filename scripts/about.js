@@ -19,15 +19,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+const database = getDatabase(app);
 
 function checkUserLoggedIn() {
-    const loginbtn = document.querySelector(".login-btn"); // corrected selector
-    
+    const loginbtn = document.querySelector(".login-btn");
+
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            loginbtn.style.display = "none"; 
+            loginbtn.style.display = "none"; // Hide login button if user is logged in
         } else {
-            loginbtn.style.display = "block"; 
+            loginbtn.style.display = "block"; // Show login button if user is not logged in
         }
     });
 }
