@@ -151,7 +151,8 @@ main {
 }
 
 .names img.linkedin,
-.names img.gmail {
+.names img.gmail,
+.names img.insta {
     width: 30px;
     height: 30px;
     margin-top: 10px;
@@ -160,6 +161,7 @@ main {
 }
 
 .names img.linkedin:hover,
-.names img.gmail:hover {
+.names img.gmail:hover,
+.names img.insta:hover {
     transform: scale(1.2);
 }
