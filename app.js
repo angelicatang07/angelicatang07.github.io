@@ -1,6 +1,6 @@
 // Firebase initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getDatabase, ref, push, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+import { getDatabase, ref, push, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 const firebaseConfig = {
@@ -18,13 +18,25 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
+let username = 'Anonymous';
 
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            loginbtn.style.display = "none"; // Hide login button if user is logged in
+            const userRef = ref(database, 'users/' + user.uid);
+            get(userRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    username = userData.name || 'User';
+                } else {
+                    console.log("No user data found");
+                }
+                loginbtn.style.display = "none"; // Hide login button if user is logged in
+            }).catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
         } else {
             loginbtn.style.display = "block"; // Show login button if user is not logged in
         }
@@ -40,7 +52,7 @@ const submitButton = document.getElementById("input_button");
 submitButton.addEventListener("click", () => {
     const inputBox = document.getElementById("input_box");
     const inputRev = document.getElementById("input_review");
-    
+
     const title = inputBox.value.trim();
     const rev = inputRev.value.trim();
     const date = formatDate(new Date()); // Get current date in readable format
@@ -54,6 +66,7 @@ submitButton.addEventListener("click", () => {
     const newTaskRef = push(unfinishedTaskRef);
     update(newTaskRef, {
         title: title,
+        creator: username, // Ensure creator name is added
         review: rev,
         date: date
     }).then(() => {
@@ -104,6 +117,10 @@ function createTaskElement(task, key, type) {
     title.setAttribute('class', 'task_title');
     title.textContent = task.title;
 
+    const creator = document.createElement('p');
+    creator.setAttribute('class', 'task_creator');
+    creator.textContent = `Creator: ${task.creator}`;
+
     const review = document.createElement('p');
     review.setAttribute('class', 'task_review');
     review.textContent = task.review;
@@ -123,14 +140,14 @@ function createTaskElement(task, key, type) {
     taskDeleteButton.addEventListener('click', () => {
         if (type === 'unfinished') {
             task_delete(key); // Pass the key to the delete function
-        } 
+        }
     });
 
-
     // Append elements
-    // taskTool.appendChild(taskDeleteButton);
+    taskTool.appendChild(taskDeleteButton);
     taskData.appendChild(title);
     taskData.appendChild(date);
+    taskData.appendChild(creator);
     taskData.appendChild(review);
     taskContainer.appendChild(taskData);
     taskContainer.appendChild(taskTool);
