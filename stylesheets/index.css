@@ -18,8 +18,13 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #4CAF50;
+    background-color: #2c3e50;
     color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
 header .logo {
@@ -40,12 +45,24 @@ header .nav-bar ul li a {
     color: white;
     text-decoration: none;
     font-weight: 600;
+    transition: color 0.3s ease-in-out;
 }
 
-header .login-btn {
+header .nav-bar ul li a:hover {
+    color: #1abc9c;
+}
+
+header .cta-button {
+    background-color: #1abc9c;
     color: white;
+    padding: 0.5rem 1rem;
     text-decoration: none;
-    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+header .cta-button:hover {
+    background-color: #16a085;
 }
 
 /* Hero Section */
@@ -73,7 +90,7 @@ header .login-btn {
 }
 
 .cta-button {
-    background-color: #4CAF50;
+    background-color: #1abc9c;
     color: white;
     padding: 1rem 2rem;
     text-decoration: none;
@@ -83,12 +100,12 @@ header .login-btn {
 }
 
 .cta-button:hover {
-    background-color: #45a049;
+    background-color: #16a085;
 }
 
 /* Content Container */
 #content_container {
-    margin: 100px auto;
+    margin: 120px auto;
     width: 80%;
     max-width: 1200px;
     background-color: #fff;
