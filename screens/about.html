@@ -1,1 +1,38 @@
-<h2>to be made</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9196511154128809"
+  crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ledgit Mailing</title>
+  <link href="../stylesheets/about.css" rel="stylesheet"/>
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="nav-bar">
+      <ul>
+        <li class="main-nav"><a href="../index.html"> Main </a></li>
+        <li class="about-nav"><a href="about.html"> About </a></li>
+        <li class="team-nav"><a href="team.html"> Team </a></li>
+      </ul>
+    </nav>
+    <a class="login-btn" href="login.html"> Login </a>
+</header>
+<main>
+  <h2>Join to Our Mailing List!</h2>
+  <p>Get notified on major website updates and exciting events.</p>
+  <form id="subscriptionForm">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <button type="submit">Join</button>
+  </form>
+
+  <ul id="subscriptionList"></ul>
+
+  <script type="module" src="../scripts/about.js"></script>
+</main>
+</body>
+</html>
