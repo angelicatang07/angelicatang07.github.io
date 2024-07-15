@@ -6,9 +6,9 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     color: #333;
 }
 
@@ -18,15 +18,13 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #4CAF50;
+    background-color: #2C3E50;
     color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 header .logo {
-    font-size: 2rem;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
 header .nav-bar ul {
@@ -42,60 +40,31 @@ header .nav-bar ul li a {
     color: white;
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease-in-out;
-}
-
-header .nav-bar ul li a:hover {
-    color: #ffeb3b;
 }
 
 header .login-btn {
     color: white;
     text-decoration: none;
     font-weight: 600;
-    background-color: #2c3e50;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-header .login-btn:hover {
-    background-color: #1abc9c;
 }
 
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: 8rem 2rem;
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    padding: 6rem 2rem;
+    background: linear-gradient(to right, #76b852, #8DC26F);
     color: white;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.3);
 }
 
 .hero .hero-content {
     max-width: 800px;
     margin: 0 auto;
-    position: relative;
-    z-index: 1;
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
 }
 
 .hero p {
@@ -104,25 +73,24 @@ header .login-btn:hover {
 }
 
 .cta-button {
-    background-color: #4CAF50;
+    background-color: #1abc9c;
     color: white;
     padding: 1rem 2rem;
     text-decoration: none;
     border-radius: 5px;
-    font-size: 1.2rem;
-    transition: background-color 0.3s, transform 0.3s;
+    font-size: 1rem;
+    transition: background-color 0.3s;
 }
 
 .cta-button:hover {
-    background-color: #45a049;
-    transform: translateY(-3px);
+    background-color: #16a085;
 }
 
 /* Content Container */
 #content_container {
     margin: 100px auto;
     width: 80%;
-    max-width: 1200px;
+    max-width: 800px;
     background-color: #fff;
     padding: 40px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -135,13 +103,12 @@ header .login-btn:hover {
 }
 
 #finish_task_header h2 {
-    font-size: 2.5rem;
+    font-size: 2em;
     margin-bottom: 30px;
-    color: #2c3e50;
+    color: #34495e;
     border-bottom: 2px solid #f4f4f4;
     padding-bottom: 10px;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
 }
 
 #task_input_container {
@@ -165,8 +132,6 @@ header .login-btn:hover {
 #task_input_container input:focus,
 #task_input_container textarea:focus {
     border-color: #1abc9c;
-    outline: none;
-    box-shadow: 0 0 10px rgba(26, 188, 156, 0.3);
 }
 
 #task_input_container button {
@@ -177,20 +142,18 @@ header .login-btn:hover {
     font-size: 1.2em;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.3s;
+    transition: background-color 0.3s ease-in-out;
 }
 
 #task_input_container button:hover {
     background-color: #16a085;
-    transform: translateY(-3px);
 }
 
 .header {
-    font-size: 2em;
+    font-size: 1.5em;
     margin: 30px 0 20px;
-    color: #2c3e50;
+    color: #34495e;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .container {
@@ -205,12 +168,11 @@ header .login-btn:hover {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s;
+    transition: box-shadow 0.3s ease-in-out;
 }
 
 .review-item:hover {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    transform: translateY(-3px);
 }
 
 .review-item p {
@@ -225,16 +187,8 @@ header .login-btn:hover {
 
 /* Footer */
 footer {
-    background-color: #333;
+    background-color: #2C3E50;
     color: white;
-    padding: 2rem 2rem;
+    padding: 1rem 2rem;
     text-align: center;
-    font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
-    position: relative;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-}
-
-footer p {
-    margin: 0;
 }
