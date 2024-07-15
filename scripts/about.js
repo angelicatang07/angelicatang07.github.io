@@ -1,6 +1,8 @@
 // Import necessary Firebase modules using ES module syntax
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
 import { getFirestore, collection, addDoc, serverTimestamp, getDocs } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
+import { getDatabase, ref, push, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 // Firebase configuration object with your project's credentials
 const firebaseConfig = {
@@ -16,6 +18,21 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
+
+function checkUserLoggedIn() {
+    const loginbtn = document.querySelector(".login-btn"); // corrected selector
+    
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            loginbtn.style.display = "none"; 
+        } else {
+            loginbtn.style.display = "block"; 
+        }
+    });
+}
+
+checkUserLoggedIn();
 
 // Get reference to the subscription form
 const form = document.getElementById('subscriptionForm');

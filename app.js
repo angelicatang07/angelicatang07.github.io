@@ -1,6 +1,7 @@
 // Firebase initialization
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getDatabase, ref, push, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBQ1TcCHByOmGBpPNaO9jfOg7T9pVfSFFU",
@@ -11,11 +12,26 @@ const firebaseConfig = {
     messagingSenderId: "250867055712",
     appId: "1:250867055712:web:745853ebb86ae8e3801705",
     measurementId: "G-9E81W0H16Z"
-  };
-  
+};
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const database = getDatabase(app);
+
+function checkUserLoggedIn() {
+    const loginbtn = document.querySelector(".login-btn");
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            loginbtn.style.display = "none"; // Hide login button if user is logged in
+        } else {
+            loginbtn.style.display = "block"; // Show login button if user is not logged in
+        }
+    });
+}
+
+checkUserLoggedIn();
 
 // Reference to task collections
 const unfinishedTaskRef = ref(database, 'unfinished_task');
@@ -67,6 +83,7 @@ function create_unfinished_task() {
             });
         } else {
             // Handle case where there are no tasks
+            console.log("No tasks found");
         }
     }, {
         onlyOnce: true // Fetch data only once

@@ -57,6 +57,7 @@ header .login-btn {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    display: block;
     transition: color 0.3s ease-in-out;
 }
 
@@ -151,15 +152,14 @@ main {
 }
 
 .names img.linkedin,
-.names img.gmail,
-.names img.insta {
+.names img.insta,
+.names img.gmail{
     width: 30px;
     height: 30px;
     margin-top: 10px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
 }
-
 .names img.linkedin:hover,
 .names img.gmail:hover,
 .names img.insta:hover {

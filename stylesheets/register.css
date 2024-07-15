@@ -64,19 +64,19 @@ header .login-btn:hover {
     color: #1abc9c;
 }
 
-/* Content Container */
 #content_container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
     width: 100%;
     max-width: 500px;
     background-color: #fff;
     padding: 40px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin-top: 100px; /* Adjust margin to prevent overlap with nav bar */
+    margin: 100px auto 0; /* Adjusted margin to center vertically */
 }
+
 
 #form_container {
     width: 100%;

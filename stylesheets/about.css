@@ -55,6 +55,7 @@ header .nav-bar ul li a:hover {
 
 header .login-btn {
     color: #fff;
+    display: block;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease-in-out;
