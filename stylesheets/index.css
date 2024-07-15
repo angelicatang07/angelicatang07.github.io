@@ -68,8 +68,8 @@ header .login-btn:hover {
 .hero {
     text-align: center;
     padding: 6rem 2rem;
-    background: linear-gradient(to right, #76b852, #8DC26F); /* Adjust as needed */
-    color: white;
+    background: linear-gradient(to right, #76b852, #8DC26F); /* Cyan gradient */
+    color: #001f3f; /* Dark navy text */
 }
 
 .hero .hero-content {
