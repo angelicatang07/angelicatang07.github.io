@@ -8,10 +8,11 @@
 body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
-    background-color: #fcfcfc; /* Light Cyan background */
+    background: linear-gradient(to right, #f0f2f5, #d1e0ff); /* Light gradient */
     color: #333;
     animation: fadeInSlide 1s ease-in-out;
 }
+
 
 /* Keyframes for animations */
 @keyframes fadeInSlide {
