@@ -91,7 +91,7 @@ header .login-btn:hover {
 }
 
 .cta-button {
-    background-color: #00bfff; /* Deep Sky Blue */
+    background-color: #06090d; /* Deep Sky Blue */
     color: white;
     padding: 1rem 2rem;
     text-decoration: none;
@@ -149,13 +149,13 @@ header .login-btn:hover {
 
 #task_input_container input:focus,
 #task_input_container textarea:focus {
-    border-color: #00bfff; /* Deep Sky Blue */
+    border-color: #06090d; /* Deep Sky Blue */
 }
 
 #task_input_container button {
     padding: 15px;
     border: none;
-    background-color: #00bfff; /* Deep Sky Blue */
+    background-color: #06090d; /* Deep Sky Blue */
     color: #fff;
     font-size: 1.2em;
     border-radius: 5px;
