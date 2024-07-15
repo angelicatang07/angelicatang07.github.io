@@ -19,7 +19,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
-const database = getDatabase(app);
 
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");

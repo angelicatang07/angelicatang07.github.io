@@ -19,20 +19,6 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
 
-function checkUserLoggedIn() {
-    const loginbtn = document.querySelector(".login-btn");
-
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            loginbtn.style.display = "none"; // Hide login button if user is logged in
-        } else {
-            loginbtn.style.display = "block"; // Show login button if user is not logged in
-        }
-    });
-}
-
-checkUserLoggedIn();
-
 const registerbtn = document.getElementById("register-btn");
 
 registerbtn.addEventListener("click", () => {
