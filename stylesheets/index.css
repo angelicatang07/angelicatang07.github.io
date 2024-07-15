@@ -18,13 +18,14 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #2C3E50;
+    background-color: #001f3f;
     color: white;
 }
 
 header .logo {
     font-size: 1.8rem;
     font-weight: 600;
+    color: white;
 }
 
 header .nav-bar ul {
@@ -52,7 +53,7 @@ header .login-btn {
 .hero {
     text-align: center;
     padding: 6rem 2rem;
-    background: linear-gradient(to right, #76b852, #8DC26F);
+    background: linear-gradient(to right, #E0FFFF, #bbfcfc);
     color: white;
 }
 
@@ -73,7 +74,7 @@ header .login-btn {
 }
 
 .cta-button {
-    background-color: #1abc9c;
+    background-color: #00bfff;
     color: white;
     padding: 1rem 2rem;
     text-decoration: none;
@@ -83,7 +84,7 @@ header .login-btn {
 }
 
 .cta-button:hover {
-    background-color: #16a085;
+    background-color: #1e90ff;
 }
 
 /* Content Container */
