@@ -3,16 +3,16 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/fireba
 import { getDatabase, ref, push, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBQ1TcCHByOmGBpPNaO9jfOg7T9pVfSFFU",
-  authDomain: "the-website-c2fc0.firebaseapp.com",
-  databaseURL: "https://the-website-c2fc0-default-rtdb.firebaseio.com",
-  projectId: "the-website-c2fc0",
-  storageBucket: "the-website-c2fc0.appspot.com",
-  messagingSenderId: "250867055712",
-  appId: "1:250867055712:web:745853ebb86ae8e3801705",
-  measurementId: "G-9E81W0H16Z"
-};
-
+    apiKey: "AIzaSyBQ1TcCHByOmGBpPNaO9jfOg7T9pVfSFFU",
+    authDomain: "the-website-c2fc0.firebaseapp.com",
+    databaseURL: "https://the-website-c2fc0-default-rtdb.firebaseio.com",
+    projectId: "the-website-c2fc0",
+    storageBucket: "the-website-c2fc0.appspot.com",
+    messagingSenderId: "250867055712",
+    appId: "1:250867055712:web:745853ebb86ae8e3801705",
+    measurementId: "G-9E81W0H16Z"
+  };
+  
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
@@ -52,17 +52,24 @@ submitButton.addEventListener("click", () => {
 // Function to create unfinished tasks
 function create_unfinished_task() {
     const unfinishedTaskContainer = document.getElementById("unfinished_tasks_container");
-    unfinishedTaskContainer.innerHTML = ""; // Clear existing tasks
 
+    // Clear existing task containers
+    unfinishedTaskContainer.innerHTML = "";
+
+    // Fetch tasks once from Firebase
     onValue(unfinishedTaskRef, (snapshot) => {
         const tasks = snapshot.val();
-        for (let key in tasks) {
-            if (tasks.hasOwnProperty(key)) {
+        if (tasks) {
+            Object.keys(tasks).forEach(key => {
                 const task = tasks[key];
                 const taskContainer = createTaskElement(task, key, 'unfinished');
                 unfinishedTaskContainer.appendChild(taskContainer);
-            }
+            });
+        } else {
+            // Handle case where there are no tasks
         }
+    }, {
+        onlyOnce: true // Fetch data only once
     });
 }
 
@@ -93,7 +100,7 @@ function createTaskElement(task, key, type) {
     taskDeleteButton.innerHTML = '<i class="bx bx-trash"></i>';
     taskDeleteButton.addEventListener('click', () => {
         if (type === 'unfinished') {
-            task_delete(taskContainer);
+            task_delete(key); // Pass the key to the delete function
         } 
     });
 
@@ -108,14 +115,18 @@ function createTaskElement(task, key, type) {
 }
 
 // Function to delete task
-function task_delete(taskContainer) {
-    const key = taskContainer.getAttribute("data-key");
+function task_delete(key) {
     const taskRef = ref(database, 'unfinished_task/' + key);
 
     // Remove task from database
     remove(taskRef).then(() => {
+        // Task successfully deleted
+        console.log("Task deleted successfully");
         // Remove task from UI
-        taskContainer.remove();
+        const taskElement = document.querySelector(`.task_container[data-key="${key}"]`);
+        if (taskElement) {
+            taskElement.remove();
+        }
     }).catch(error => {
         console.error("Error removing task: ", error);
     });
@@ -126,3 +137,6 @@ function formatDate(date) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return date.toLocaleDateString(undefined, options);
 }
+
+// Initial load of tasks
+create_unfinished_task();
