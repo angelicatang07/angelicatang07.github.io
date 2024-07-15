@@ -10,7 +10,7 @@ body {
 
 /* Header and Navigation Bar */
 header {
-    background-color: #2c3e50;
+    background-color: #4CAF50;
     color: #fff;
     padding: 10px 0;
     position: fixed;
@@ -64,4 +64,105 @@ header .login-btn {
 header .login-btn:hover {
     text-decoration: underline;
     color: #1abc9c;
+}
+
+/* Main Content */
+main {
+    margin-top: 80px;
+    padding: 20px;
+    transition: padding 0.3s ease-in-out;
+}
+
+.front {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 2em;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.mtt {
+    font-size: 2.5em;
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    transition: color 0.3s ease-in-out;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.box img.Pri {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.box img.Pri:hover {
+    transform: scale(1.1);
+}
+
+.names {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.names div {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.names div:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.names h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    transition: color 0.3s ease-in-out;
+}
+
+.names h2:hover {
+    color: #1abc9c;
+}
+
+.names p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #666;
+}
+
+.names img.linkedin,
+.names img.insta,
+.names img.gmail {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.names img.linkedin:hover,
+.names img.gmail:hover,
+.names img.insta:hover {
+    transform: scale(1.2);
 }
