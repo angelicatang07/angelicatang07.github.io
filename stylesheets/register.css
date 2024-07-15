@@ -117,7 +117,7 @@ body {
     align-items: center;
 }
 
-#login-btn {
+#register-btn {
     width: 100%;
     padding: 15px;
     border: none;
@@ -129,22 +129,22 @@ body {
     transition: background-color 0.3s;
 }
 
-#login-btn:hover {
+#register-btn:hover {
     background-color: #16a085;
 }
 
-#no-acc {
+#have-acc {
     margin-top: 20px;
     text-align: center;
     font-size: 0.9em;
 }
 
-#no-acc a {
+#have-acc a {
     color: #1abc9c;
     text-decoration: none;
     transition: color 0.3s;
 }
 
-#no-acc a:hover {
+#have-acc a:hover {
     color: #16a085;
 }
