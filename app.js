@@ -114,12 +114,14 @@ function createTaskElement(task, key, type) {
 
     const taskDeleteButton = document.createElement('button');
     taskDeleteButton.setAttribute('class', 'task_delete_button');
-    taskDeleteButton.innerHTML = '<i class="bx bx-trash"></i>';
+    taskDeleteButton.innerHTML = '<i class="bx bx-trash" style="cursor:pointer"></i>';
+    taskDeleteButton.classList.add('cursor-pointer');
     taskDeleteButton.addEventListener('click', () => {
         if (type === 'unfinished') {
             task_delete(key); // Pass the key to the delete function
         } 
     });
+
 
     // Append elements
     taskTool.appendChild(taskDeleteButton);

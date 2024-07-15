@@ -130,6 +130,7 @@ header .login-btn:hover {
 
 #task_input_container button:hover {
     background-color: #16a085;
+    cursor: pointer;
 }
 
 p.header {
@@ -166,4 +167,8 @@ p.header {
 .review-item .review-date {
     font-size: 0.9em;
     color: #888;
+}
+
+.button {
+    cursor: pointer;
 }
