@@ -248,7 +248,7 @@ header .login-btn:hover {
 
 .review-item:hover {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    animation: zoomIn 0.3s forwards;
+    transform: scale(1.02); /* Optional zoom-in effect on hover */
 }
 
 .review-item p {
