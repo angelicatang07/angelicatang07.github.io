@@ -1,8 +1,13 @@
-/* General Styles */
-body {
-    font-family: 'Roboto', sans-serif;
+/* Basic Reset */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
     background-color: #f9f9f9;
     color: #333;
     transition: background-color 0.3s ease-in-out;
@@ -10,9 +15,12 @@ body {
 
 /* Header and Navigation Bar */
 header {
-    background-color: #2c3e50;
-    color: #fff;
-    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #4CAF50;
+    color: white;
     position: fixed;
     width: 100%;
     top: 0;
@@ -25,42 +33,30 @@ header .nav-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
-    padding: 0 20px;
+    width: 100%;
     max-width: 1200px;
 }
 
 header .nav-bar ul {
-    list-style-type: none;
+    list-style: none;
+    display: flex;
     margin: 0;
     padding: 0;
-    display: flex;
 }
 
 header .nav-bar ul li {
-    margin: 0 15px;
+    margin: 0 1rem;
 }
 
-header .nav-bar ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
-}
-
-header .nav-bar ul li a:hover {
-    text-decoration: underline;
-    color: #1abc9c;
-}
-
+header .nav-bar ul li a,
 header .login-btn {
-    color: #fff;
-    display: block;
+    color: white;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     transition: color 0.3s ease-in-out;
 }
 
+header .nav-bar ul li a:hover,
 header .login-btn:hover {
     text-decoration: underline;
     color: #1abc9c;
@@ -114,14 +110,15 @@ header .login-btn:hover {
 #task_input_container input:focus,
 #task_input_container textarea:focus,
 #task_input_container input[type="date"]:focus {
-    border-color: #1abc9c;
+    border-color: #4CAF50;
+    outline: none;
 }
 
 #task_input_container button {
     padding: 15px;
     border: none;
-    background-color: #1abc9c;
-    color: #fff;
+    background-color: #4CAF50;
+    color: white;
     font-size: 1.2em;
     border-radius: 5px;
     cursor: pointer;
@@ -129,7 +126,7 @@ header .login-btn:hover {
 }
 
 #task_input_container button:hover {
-    background-color: #16a085;
+    background-color: #45a049;
     cursor: pointer;
 }
 
