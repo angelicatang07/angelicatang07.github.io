@@ -97,21 +97,6 @@ main {
     transform: scale(1.1);
 }
 
-.pic-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-#sticky-pic {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid #2c3e50;
-    transition: transform 0.3s;
-}
-
 .names {
     display: flex;
     flex-direction: column;
