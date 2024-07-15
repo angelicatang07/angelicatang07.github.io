@@ -70,7 +70,7 @@ header .login-btn:hover {
 .hero {
     text-align: center;
     padding: 6rem 2rem;
-    background: linear-gradient(to right, #c1f5eb, #0307ff); /* Cyan gradient */
+    background: linear-gradient(to right, #c1f5eb, #6e70f5); /* Cyan gradient */
     color: #001f3f; /* Dark navy text */
 }
 
