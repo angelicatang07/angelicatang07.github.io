@@ -3,10 +3,11 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: #f0f2f5;
     color: #333;
 }
 
+/* Header and Navigation Bar */
 header {
     background-color: #333;
     color: #fff;
@@ -15,6 +16,8 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
 }
 
 header .nav-bar {
@@ -41,31 +44,40 @@ header .nav-bar ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease-in-out;
 }
 
 header .nav-bar ul li a:hover {
     text-decoration: underline;
+    color: #1abc9c;
 }
 
 header .login-btn {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease-in-out;
 }
 
 header .login-btn:hover {
     text-decoration: underline;
+    color: #1abc9c;
 }
 
 /* Content Container */
 #content_container {
-    margin: 80px auto;
+    margin: 100px auto; /* Adjusted to ensure space from fixed header */
     width: 80%;
     max-width: 1200px;
     background-color: #fff;
     padding: 40px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#content_container:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Review Section */
@@ -76,6 +88,11 @@ header .login-btn:hover {
     border-bottom: 2px solid #f4f4f4;
     padding-bottom: 10px;
     text-align: center;
+    transition: color 0.3s ease-in-out;
+}
+
+#finish_task_header p:hover {
+    color: #1abc9c;
 }
 
 #task_input_container {
@@ -94,13 +111,14 @@ header .login-btn:hover {
     border-radius: 5px;
     font-size: 1em;
     background-color: #fafafa;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 #task_input_container input:focus,
 #task_input_container textarea:focus,
 #task_input_container input[type="date"]:focus {
     border-color: #1abc9c;
+    box-shadow: 0 0 10px rgba(26, 188, 156, 0.1);
 }
 
 #task_input_container button {
@@ -111,11 +129,12 @@ header .login-btn:hover {
     font-size: 1.2em;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 #task_input_container button:hover {
     background-color: #16a085;
+    transform: translateY(-2px);
 }
 
 p.header {
@@ -136,7 +155,12 @@ p.header {
     background-color: #fafafa;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.review-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .review-item p {
