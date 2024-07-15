@@ -1,63 +1,48 @@
-
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ledgit</title>
-    <link rel="stylesheet" href="stylesheets/index.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9196511154128809"
-     crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9196511154128809" crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website</title>
+    <link href="../stylesheets/team.css" rel="stylesheet"/>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body onload="create_unfinished_task(); create_finished_task();">
+<body>
 
 <header>
     <div class="logo">
-        <a href="index.html">Ledgit</a>
+        <a href="../index.html">Ledgit</a>
     </div>
     <nav class="nav-bar">
         <ul>
-            <li><a href="index.html">Main</a></li>
-            <li><a href="screens/about.html">About</a></li>
-            <li><a href="screens/team.html">Team</a></li>
-            <li><a href="screens/pricing.html">Pricing</a></li>
+            <li class="main-nav"><a href="../index.html">Main</a></li>
+            <li class="about-nav"><a href="about.html">About</a></li>
+            <li class="team-nav"><a href="team.html">Team</a></li>
         </ul>
-        <a class="login-btn" href="screens/login.html">Login</a>
+        <a class="login-btn" href="login.html">Login</a>
     </nav>
 </header>
 
-<section class="hero">
-    <div class="hero-content">
-        <h1>Welcome to Ledgit</h1>
-        <p>Your go-to platform for book reviews.</p>
-        <a class="cta-button" href="#content_container">Get Started</a>
-    </div>
-</section>
-
-<div id="content_container">
-    <div id="finish_task_header">
-        <h2>Write Review</h2>
+<main>
+    <div class="hero">
+        <h1 class="hero-title">Meet the Team</h1>
     </div>
 
-    <div id="task_input_container">
-        <input type="text" id="input_box" placeholder="Book Title">
-        <textarea id="input_review" placeholder="Review..."></textarea>
-        <button id="input_button">Submit</button>
+    <div class="box">
+        <img class="batman Pri" src="../images/ellie.webp" alt="Ellie Leung" />
+        <img class="blackpanther Pri" src="../images/blackpanther.jpg" alt="Black Panther" />
+        <img class="ironman Pri" src="../images/ironman.png" alt="Iron Man" />
+        <img class="spiderman Pri" src="../images/yash.webp" alt="Yash Tomar" />
+        <img class="thor Pri" src="../images/vivian.webp" alt="Vivian Zhang" />
     </div>
 
-    <h2 class="header">Reviews</h2>
-    <div class="container" id="unfinished_tasks_container">
-        <!-- Reviews dynamically added here -->
+    <div class="names">
+        <!-- Team members' details here -->
     </div>
-</div>
+</main>
 
-<footer>
-    <p>&copy; 2024 Review Table. All rights reserved.</p>
-</footer>
+<script src="../scripts/team.js"></script>
 
-<script type="module" src="app.js"></script>
 </body>
 </html>
