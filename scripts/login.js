@@ -16,7 +16,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
 const loginbtn = document.getElementById("login-btn");
@@ -25,7 +24,7 @@ loginbtn.addEventListener("click", () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   
-  if (!validate_email(email) || !validate_password(password)) {
+  if (validate_email(email) === false || !validate_password(password)) {
     return;
   }
   
