@@ -135,18 +135,18 @@ function createTaskElement(task, key, type) {
     const taskTool = document.createElement('div');
     taskTool.setAttribute('class', 'task_tool');
 
-    const taskDeleteButton = document.createElement('button');
-    taskDeleteButton.setAttribute('class', 'task_delete_button');
-    taskDeleteButton.innerHTML = '<i class="bx bx-trash" style="cursor:pointer"></i>';
-    taskDeleteButton.classList.add('cursor-pointer');
-    taskDeleteButton.addEventListener('click', () => {
-        if (type === 'unfinished') {
-            task_delete(key); // Pass the key to the delete function
-        }
-    });
+    // const taskDeleteButton = document.createElement('button');
+    // taskDeleteButton.setAttribute('class', 'task_delete_button');
+    // taskDeleteButton.innerHTML = '<i class="bx bx-trash" style="cursor:pointer"></i>';
+    // taskDeleteButton.classList.add('cursor-pointer');
+    // taskDeleteButton.addEventListener('click', () => {
+    //     if (type === 'unfinished') {
+    //         task_delete(key); // Pass the key to the delete function
+    //     }
+    // });
 
-    // Append elements
-    taskTool.appendChild(taskDeleteButton);
+    // // Append elements
+    // taskTool.appendChild(taskDeleteButton);
     taskData.appendChild(title);
     taskData.appendChild(date);
     taskData.appendChild(creator);
@@ -158,22 +158,22 @@ function createTaskElement(task, key, type) {
 }
 
 // Function to delete task
-function task_delete(key) {
-    const taskRef = ref(database, 'unfinished_task/' + key);
+// function task_delete(key) {
+//     const taskRef = ref(database, 'unfinished_task/' + key);
 
-    // Remove task from database
-    remove(taskRef).then(() => {
-        // Task successfully deleted
-        console.log("Task deleted successfully");
-        // Remove task from UI
-        const taskElement = document.querySelector(`.task_container[data-key="${key}"]`);
-        if (taskElement) {
-            taskElement.remove();
-        }
-    }).catch(error => {
-        console.error("Error removing task: ", error);
-    });
-}
+//     // Remove task from database
+//     remove(taskRef).then(() => {
+//         // Task successfully deleted
+//         console.log("Task deleted successfully");
+//         // Remove task from UI
+//         const taskElement = document.querySelector(`.task_container[data-key="${key}"]`);
+//         if (taskElement) {
+//             taskElement.remove();
+//         }
+//     }).catch(error => {
+//         console.error("Error removing task: ", error);
+//     });
+// }
 
 // Function to format date as "Month Day, Year"
 function formatDate(date) {
