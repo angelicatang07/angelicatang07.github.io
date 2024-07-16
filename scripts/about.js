@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBQ1TcCHByOmGBpPNaO9jfOg7T9pVfSFFU",
@@ -9,12 +10,13 @@ const firebaseConfig = {
   storageBucket: "the-website-c2fc0.appspot.com",
   messagingSenderId: "250867055712",
   appId: "1:250867055712:web:745853ebb86ae8e3801705",
-  measurementId: "G-9E81W0H16Z"
+   measurementId: "G-9E81W0H16Z"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const analytics = getAnalytics(app);
 
 const form = document.getElementById('subscriptionForm');
 
