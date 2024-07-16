@@ -10,7 +10,7 @@ body {
     line-height: 1.6;
     background: linear-gradient(to right, #f0f2f5, #d1e0ff); /* Light gradient */
     color: #333;
-    animation: fadeInSlide 1s ease-in-out;
+    animation: fadeInSlide 1s ease-in-out forwards;
 }
 
 /* Keyframes for animations */
@@ -66,7 +66,7 @@ header {
     padding: 1rem 2rem;
     background-color: #001f3f; /* Navy nav bar */
     color: white;
-    animation: fadeInSlide 1s ease-in-out;
+    animation: fadeInSlide 1s ease-in-out forwards;
 }
 
 header .logo a {
@@ -123,7 +123,7 @@ header .login-btn:hover {
     padding: 6rem 2rem;
     background: linear-gradient(to right, #c1f5eb, #6e70f5); /* Cyan gradient */
     color: #001f3f; /* Dark navy text */
-    animation: fadeInSlide 1s ease-in-out;
+    animation: fadeInSlide 1s ease-in-out forwards;
 }
 
 .hero .hero-content {
@@ -162,19 +162,17 @@ header .login-btn:hover {
     margin: 100px auto;
     width: 80%;
     max-width: 800px;
-    background-color: #fff;
+    background: linear-gradient(to right, #ffffff, #e6e9f0); /* Light gradient */
     padding: 40px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-    animation: fadeInSlide 1s ease-in-out;
-    animation-fill-mode: forwards; /* Ensure animation only runs once */
+    animation: fadeInSlide 1s ease-in-out forwards;
 }
 
 #content_container:hover {
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
     transform: scale(1.02); /* Use transform for hover effect */
-    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
 }
 
 #finish_task_header h2 {
@@ -201,12 +199,13 @@ header .login-btn:hover {
     border-radius: 5px;
     font-size: 1em;
     background-color: #fafafa;
-    transition: border-color 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 #task_input_container input:focus,
 #task_input_container textarea:focus {
     border-color: #06090d; /* Deep Sky Blue */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #task_input_container button {
@@ -245,24 +244,12 @@ header .login-btn:hover {
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-    animation: fadeInSlide 1s ease-in-out;
-    animation-fill-mode: forwards; /* Ensure animation only runs once */
+    animation: fadeInSlide 1s ease-in-out forwards;
 }
 
 .review-item:hover {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     transform: scale(1.02); /* Optional zoom-in effect on hover */
-    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
-}
-
-.review-item p {
-    margin: 0;
-    padding: 10px 0;
-}
-
-.review-item .review-date {
-    font-size: 0.9em;
-    color: #888;
 }
 
 /* Footer */
