@@ -21,6 +21,7 @@ const auth = getAuth(app);
 const analytics = getAnalytics(app);
 const database = getDatabase(app);
 let username = 'Anonymous';
+let prof = 'images/pfp.png';
 
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
@@ -31,15 +32,20 @@ function checkUserLoggedIn() {
             get(userRef).then((snapshot) => {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
-                    username = userData.name || 'User';
+                    username = userData.name || 'Anonymous';
+                    prof = userData.profile || '../images/pfp.png';
                 } else {
                     console.log("No user data found");
                 }
+                const profDiv = document.getElementById("profile-pic");
+                profDiv.src = prof;
+                profDiv.style.display = "block";
                 loginbtn.style.display = "none"; // Hide login button if user is logged in
             }).catch((error) => {
                 console.error("Error fetching user data:", error);
             });
         } else {
+            prof.style.display = "none";
             loginbtn.style.display = "block"; // Show login button if user is not logged in
         }
     });
