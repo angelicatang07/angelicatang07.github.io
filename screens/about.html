@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ledgit Mailing</title>
   <link href="../stylesheets/about.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
 </head>
@@ -31,11 +31,12 @@
       <form id="subscriptionForm">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
-        <button type="submit">Join</button>
+        <label for="join-button" class="visually-hidden">Join Mailing List</label>
+        <button type="submit" id="join-button">Join</button>
       </form>
       <ul id="subscriptionList"></ul>
     </div>
-    <script type="module" src="../scripts/about.js"></script>
   </main>
+  <script type="module" src="../scripts/about.js"></script>
 </body>
 </html>
