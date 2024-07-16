@@ -5,7 +5,9 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
+    margin: 0; /* Ensure no margin on html or body */
+    padding: 0;
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     background: linear-gradient(to right, #f0f2f5, #d1e0ff); /* Light gradient */
@@ -103,7 +105,7 @@ header .login-btn:hover {
 
 /* Main Content */
 main {
-    margin-top: 100px;
+    margin-top: 100px; /* Ensure content is below the fixed header */
     padding: 20px;
 }
 
