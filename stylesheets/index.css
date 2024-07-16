@@ -8,8 +8,8 @@
 body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
-    background: linear-gradient(to right, #1c1c1c, #050505); /* Light gradient */
-    color: #333;
+    background: linear-gradient(to right, #121212, #0d0d0d); /* Dark gradient */
+    color: #e0e0e0; /* Light text color */
     animation: fadeInSlide 1s ease-in-out forwards;
 }
 
@@ -64,15 +64,15 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #001f3f; /* Navy nav bar */
-    color: white;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text color */
     animation: fadeInSlide 1s ease-in-out forwards;
 }
 
 header .logo a {
     font-size: 1.8rem;
     font-weight: 600;
-    color: white;
+    color: #e0e0e0; /* Light text color */
     text-decoration: none;
 }
 
@@ -92,7 +92,7 @@ header .nav-bar ul li {
 }
 
 header .nav-bar ul li a {
-    color: white;
+    color: #e0e0e0; /* Light text color */
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
@@ -104,25 +104,25 @@ header .nav-bar ul li a:hover {
 }
 
 header .login-btn {
-    color: white;
+    color: #e0e0e0; /* Light text color */
     text-decoration: none;
     font-weight: 600;
     padding: 0.5rem 1rem;
-    border: 1px solid white;
+    border: 1px solid #e0e0e0; /* Light border */
     border-radius: 5px;
     transition: background-color 0.3s;
 }
 
 header .login-btn:hover {
-    background-color: #00509e;
+    background-color: #333333;
 }
 
 /* Hero Section */
 .hero {
     text-align: center;
     padding: 6rem 2rem;
-    background: linear-gradient(to right, #c1f5eb, #6e70f5); /* Cyan gradient */
-    color: #001f3f; /* Dark navy text */
+    background: linear-gradient(to right, #333333, #1a1a1a); /* Dark gradient */
+    color: #e0e0e0; /* Light text color */
     animation: fadeInSlide 1s ease-in-out forwards;
 }
 
@@ -143,8 +143,8 @@ header .login-btn:hover {
 }
 
 .cta-button {
-    background-color: #06090d; /* Deep Sky Blue */
-    color: white;
+    background-color: #444444; /* Dark button background */
+    color: #e0e0e0; /* Light text color */
     padding: 1rem 2rem;
     text-decoration: none;
     border-radius: 5px;
@@ -153,7 +153,7 @@ header .login-btn:hover {
 }
 
 .cta-button:hover {
-    background-color: #1e90ff; /* Dodger Blue */
+    background-color: #1e90ff; /* Light button background */
     animation: pulse 1s infinite;
 }
 
@@ -162,7 +162,7 @@ header .login-btn:hover {
     margin: 100px auto;
     width: 80%;
     max-width: 800px;
-    background-color: #363535;
+    background-color: #1e1e1e; /* Dark background */
     padding: 40px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -178,8 +178,8 @@ header .login-btn:hover {
 #finish_task_header h2 {
     font-size: 2em;
     margin-bottom: 30px;
-    color: #34495e;
-    border-bottom: 2px solid #f4f4f4;
+    color: #e0e0e0; /* Light text color */
+    border-bottom: 2px solid #333333; /* Dark border */
     padding-bottom: 10px;
     text-align: center;
 }
@@ -190,32 +190,33 @@ header .login-btn:hover {
     gap: 20px;
     margin-bottom: 30px;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #444444; /* Dark border */
     border-radius: 10px;
-    background-color: #4a4a4a;
+    background-color: #2a2a2a; /* Dark background */
 }
 
 #task_input_container input[type="text"],
 #task_input_container textarea {
     width: 100%;
     padding: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #444444; /* Dark border */
     border-radius: 5px;
     font-size: 1em;
-    background-color: #4a4a4a;
+    background-color: #2a2a2a; /* Dark background */
+    color: #e0e0e0; /* Light text color */
     transition: border-color 0.3s ease-in-out;
 }
 
 #task_input_container input:focus,
 #task_input_container textarea:focus {
-    border-color: #06090d; /* Deep Sky Blue */
+    border-color: #1e90ff; /* Light border on focus */
 }
 
 #task_input_container button {
     padding: 15px;
     border: none;
-    background-color: #050654; /* Deep Sky Blue */
-    color: #fff;
+    background-color: #333333; /* Dark button background */
+    color: #e0e0e0; /* Light text color */
     font-size: 1.2em;
     border-radius: 5px;
     cursor: pointer;
@@ -223,14 +224,14 @@ header .login-btn:hover {
 }
 
 #task_input_container button:hover {
-    background-color: #1e90ff; /* Dodger Blue */
+    background-color: #1e90ff; /* Light button background */
     animation: pulse 1s infinite;
 }
 
 .header {
     font-size: 1.5em;
     margin: 30px 0 20px;
-    color: #34495e;
+    color: #e0e0e0; /* Light text color */
     text-align: center;
 }
 
@@ -242,7 +243,7 @@ header .login-btn:hover {
 
 /* Review Items */
 .review-item {
-    background-color: #fafafa;
+    background-color: #2a2a2a; /* Dark background */
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -257,8 +258,8 @@ header .login-btn:hover {
 
 /* Footer */
 footer {
-    background-color: #001f3f; /* Navy */
-    color: white;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text color */
     padding: 1rem 2rem;
     text-align: center;
 }
