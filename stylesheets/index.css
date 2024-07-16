@@ -157,91 +157,6 @@ header .login-btn:hover {
     animation: pulse 1s infinite;
 }
 
-/* Content Container */
-#content_container {
-    margin: 100px auto;
-    width: 80%;
-    max-width: 800px;
-    background-color: #fff;
-    padding: 40px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    animation: fadeInSlide 1s ease-in-out forwards;
-}
-
-/* Review Header */
-#finish_task_header h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Review Form */
-#task_input_container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#input_box, #input_review {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-#input_button {
-    padding: 10px;
-    background-color: #001f3f; /* Navy Button */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#input_button:hover {
-    background-color: #1e90ff;
-    animation: pulse 1s infinite;
-}
-
-/* Reviews Section */
-.header {
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    font-size: 2rem;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.task-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.task-container h3 {
-    margin-bottom: 10px;
-}
-
-.task-container p {
-    margin-bottom: 10px;
-}
-
-.task-container .delete-button {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 /* Features Section */
 .features {
     background-color: #f0f2f5; /* Light gray background */
@@ -330,6 +245,79 @@ header .login-btn:hover {
 .plan-box .learn-more:hover {
     background-color: #1e90ff; /* Dodger Blue */
     animation: pulse 1s infinite;
+}
+
+/* Review Header */
+#finish_task_header h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Review Form */
+#task_input_container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#input_box, #input_review {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#input_button {
+    padding: 10px;
+    background-color: #001f3f; /* Navy Button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#input_button:hover {
+    background-color: #1e90ff;
+    animation: pulse 1s infinite;
+}
+
+/* Reviews Section */
+.header {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.task-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-container h3 {
+    margin-bottom: 10px;
+}
+
+.task-container p {
+    margin-bottom: 10px;
+}
+
+.task-container .delete-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /* Footer */
