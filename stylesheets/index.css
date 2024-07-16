@@ -253,6 +253,15 @@ header .login-btn:hover {
     margin-bottom: 20px;
 }
 
+/* Write Review Container */
+#write_review_container {
+    background-color: #ffffff; /* White background */
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
 /* Review Form */
 #task_input_container {
     display: flex;
