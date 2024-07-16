@@ -128,7 +128,7 @@ header .login-btn:hover {
     color: #001f3f; /* Dark navy text */
     text-align: center;
     padding: 100px 20px; /* Adjusted padding for better spacing */
-    margin-top: 60px; /* Adjust to connect with the fixed nav bar */
+    margin-top: 0; /* Remove any top margin */
     animation: fadeInSlide 1s ease-in-out; /* Apply fadeInSlide to hero */
 }
 
@@ -139,7 +139,7 @@ header .login-btn:hover {
 
 /* Main Content */
 main {
-    margin-top: 20px;
+    margin-top: 0; /* Ensure no top margin */
     padding: 20px;
     transition: padding 0.3s ease-in-out;
     animation: fadeInSlide 1s ease-in-out; /* Apply fadeInSlide to main */
