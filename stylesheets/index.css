@@ -310,10 +310,11 @@ header .login-btn:hover {
 .review-box {
     background-color: white;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px; /* Soft corners */
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
+    border: 1px solid #e0e0e0; /* Soft border */
 }
 
 .review-box h3 {
