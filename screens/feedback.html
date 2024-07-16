@@ -37,20 +37,21 @@
   </header>
   <main>
     <section class="hero">
-      <h1>See Previews!</h1>
+      <h1>Feedback</h1>
     </section>
     <div class="content-box">
-      <h2>Join to Our Mailing List!</h2>
-      <p>Get notified on major website updates and exciting events.</p>
-      <form id="subscriptionForm">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="join-button" class="visually-hidden">Join Mailing List</label>
-        <button type="submit" id="join-button">Join</button>
+      <h2>Feedback is greaty appreciated.</h2>
+      <form id="feedbackForm">
+        <label for="email">Contact Info:</label>
+        <input type="text" id="email" name="email" required placeholder="email, phone number, etc...">
+        <textarea id="feedback" placeholder="Feedback..." style="display:block;"></textarea>
+       
+        <button type="submit" id="join-button">Submit</button>
       </form>
-      <ul id="subscriptionList"></ul>
+
+      <ul id="feedbackList"></ul>
     </div>
   </main>
-  <script type="module" src="../scripts/about.js"></script>
+  <script type="module" src="../scripts/feedback.js"></script>
 </body>
 </html>
