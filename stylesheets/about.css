@@ -12,7 +12,6 @@ body {
     color: #333;
     line-height: 1.6;
     transition: background-color 0.3s ease-in-out;
-    animation: fadeInSlide 1s ease-in-out;
 }
 
 /* Keyframes for animations */
@@ -129,7 +128,8 @@ header .login-btn:hover {
     color: #001f3f; /* Dark navy text */
     text-align: center;
     padding: 100px 20px; /* Adjusted padding for better spacing */
-    margin-top: 50px; /* Adjust to connect with the nav bar */
+    margin-top: 60px; /* Adjust to connect with the fixed nav bar */
+    animation: fadeInSlide 1s ease-in-out; /* Apply fadeInSlide to hero */
 }
 
 .hero h1 {
@@ -139,9 +139,10 @@ header .login-btn:hover {
 
 /* Main Content */
 main {
-    margin-top: 180px;
+    margin-top: 20px;
     padding: 20px;
     transition: padding 0.3s ease-in-out;
+    animation: fadeInSlide 1s ease-in-out; /* Apply fadeInSlide to main */
 }
 
 .content-box {
