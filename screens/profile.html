@@ -1,4 +1,51 @@
-<!-- <p>profile screen</p>
 
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledgit</title>
+    <link rel="stylesheet" href="../stylesheets/profile.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9196511154128809" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-<script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script> -->
+  gtag('config', 'G-KBZ3ZQRVHB');
+</script>
+<body onload="create_unfinished_task(); create_finished_task();">
+
+<header>
+    <div class="logo">
+        <a href="index.html">Ledgit Profile</a>
+    </div>
+    <nav class="nav-bar">
+        <ul>
+            <li><a href="../index.html">Main</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+        <a class="login-btn" href="login.html">Login</a>
+        <div class="user-profile"> 
+            <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" /> </a>
+        </div>
+    </nav>
+</header>
+
+<div id="content_container">
+    
+</div>
+
+<script type="module" src="../scripts/profile.js"></script>
+</body>
+</html>

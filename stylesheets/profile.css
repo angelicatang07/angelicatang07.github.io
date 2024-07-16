@@ -5,14 +5,12 @@
     box-sizing: border-box;
 }
 
-/* General Styles */
 body {
     font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
     background: linear-gradient(to right, #f0f2f5, #d1e0ff); /* Light gradient */
     color: #333;
-    line-height: 1.6;
-    transition: background-color 0.3s ease-in-out;
-    animation: fadeInSlide 1s ease-in-out;
+    animation: fadeInSlide 1s ease-in-out forwards;
 }
 
 /* Keyframes for animations */
@@ -60,7 +58,7 @@ body {
     }
 }
 
-/* Header and Navigation Bar */
+/* Header */
 header {
     display: flex;
     justify-content: space-between;
@@ -76,11 +74,6 @@ header .logo a {
     font-weight: 600;
     color: white;
     text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-header .logo a:hover {
-    color: #1e90ff;
 }
 
 header .nav-bar {
@@ -122,7 +115,6 @@ header .login-btn {
 
 header .login-btn:hover {
     background-color: #00509e;
-    color: #1abc9c;
 }
 
 /* Hero Section */
@@ -132,6 +124,11 @@ header .login-btn:hover {
     background: linear-gradient(to right, #c1f5eb, #6e70f5); /* Cyan gradient */
     color: #001f3f; /* Dark navy text */
     animation: fadeInSlide 1s ease-in-out forwards;
+}
+
+.hero .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .hero h1 {
@@ -160,133 +157,181 @@ header .login-btn:hover {
     animation: pulse 1s infinite;
 }
 
-/* Main Content */
-main {
-    margin-top: 0; /* Ensure no top margin */
-    padding: 20px;
-    transition: padding 0.3s ease-in-out;
-    animation: fadeInSlide 1s ease-in-out; /* Apply fadeInSlide to main */
+/* Features Section */
+.features {
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 40px 20px;
 }
 
-.content-box {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 40px auto 0 auto; /* Add top margin to create space from the hero section */
-    text-align: center; /* Center the text inside the box */
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-    animation: fadeInSlide 1s ease-in-out;
-    animation-fill-mode: forwards; /* Ensure animation only runs once */
-}
-
-.content-box:hover {
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
-    transform: scale(1.02); /* Use transform for hover effect */
-    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
-}
-
-.front {
-    width: 100%;
-    height: 300px;
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
-    margin-bottom: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 2em;
-    font-weight: bold;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.mtt {
-    font-size: 2.5em;
+.features h2 {
     text-align: center;
-    color: #2c3e50;
-    margin-bottom: 40px;
-    transition: color 0.3s ease-in-out;
+    margin-bottom: 20px;
 }
 
-.box {
+.features-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.feature-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.feature-box h3 {
+    margin-bottom: 10px;
+}
+
+.feature-box p {
+    margin-bottom: 0;
+}
+
+/* Subscription Plans Section */
+.subscription-plans {
+    background-color: #e0e7ff; /* Light blue background */
+    padding: 40px 20px;
+}
+
+.subscription-plans h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.plans-container {
+    display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-.box img.Pri {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-}
-
-.box img.Pri:hover {
-    transform: scale(1.1);
-}
-
-.names {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    margin-top: 40px;
-}
-
-.names div {
-    background-color: #fff;
+.plan-box {
+    background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.names div:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.plan-box:hover {
+    transform: scale(1.05);
+    animation: zoomIn 0.3s forwards;
 }
 
-.names h2 {
-    font-size: 1.5em;
+.plan-box h3 {
     margin-bottom: 10px;
-    color: #2c3e50;
-    transition: color 0.3s ease-in-out;
 }
 
-.names h2:hover {
-    color: #1abc9c;
+.plan-box p {
+    margin-bottom: 10px;
 }
 
-.names p {
-    font-size: 1em;
-    line-height: 1.6;
-    color: #666;
+.plan-box .learn-more {
+    background-color: #06090d; /* Deep Sky Blue */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-.names img.linkedin,
-.names img.insta,
-.names img.gmail {
-    width: 30px;
-    height: 30px;
-    margin-top: 10px;
+.plan-box .learn-more:hover {
+    background-color: #1e90ff; /* Dodger Blue */
+    animation: pulse 1s infinite;
+}
+
+/* Review Header */
+#finish_task_header h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Write Review Container */
+#write_review_container {
+    background-color: #ffffff; /* White background */
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+/* Review Form */
+#task_input_container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#input_box, #input_review {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#input_button {
+    padding: 10px;
+    background-color: #001f3f; /* Navy Button */
+    color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: transform 0.3s ease-in-out;
+    transition: background-color 0.3s;
 }
 
-.names img.linkedin:hover,
-.names img.gmail:hover,
-.names img.insta:hover {
-    transform: scale(1.2);
+#input_button:hover {
+    background-color: #1e90ff;
+    animation: pulse 1s infinite;
+}
+
+/* Reviews Section */
+.header {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+}
+
+.review-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px; /* Soft corners */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    border: 1px solid #e0e0e0; /* Soft border */
+}
+
+.review-box h3 {
+    margin-bottom: 10px;
+}
+
+.review-box p {
+    margin-bottom: 0;
 }
 
 /* Footer */
 footer {
-    background-color: #001f3f; /* Navy */
-    color: white;
-    padding: 1rem 2rem;
     text-align: center;
+    padding: 20px;
+    background-color: #001f3f; /* Navy Footer */
+    color: white;
+    margin-top: 50px;
 }
 
 .user-profile img {

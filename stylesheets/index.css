@@ -339,6 +339,7 @@ footer {
     height: 40px;
     border-radius: 50%;
     object-fit: cover; /* Ensure the image covers the area */
+    display: none;
 }
 
 .user-profile {
@@ -349,4 +350,8 @@ footer {
     top: 50%; /* Position at the vertical center of header */
     transform: translateY(-50%);
     right: 20px; /* Adjust as needed */
+}
+
+.user-profile img:hover {
+    cursor:pointer;
 }

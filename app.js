@@ -2,8 +2,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getDatabase, ref, push, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-
 const firebaseConfig = {
     apiKey: "AIzaSyBQ1TcCHByOmGBpPNaO9jfOg7T9pVfSFFU",
     authDomain: "the-website-c2fc0.firebaseapp.com",
@@ -18,14 +16,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const analytics = getAnalytics(app);
 const database = getDatabase(app);
 let username = 'Anonymous';
 let prof = 'images/pfp.png';
 
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
-
+    const profDiv = document.getElementById("profile-pic");;
+    
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const userRef = ref(database, 'users/' + user.uid);
@@ -37,7 +35,6 @@ function checkUserLoggedIn() {
                 } else {
                     console.log("No user data found");
                 }
-                const profDiv = document.getElementById("profile-pic");
                 profDiv.src = prof;
                 profDiv.style.display = "block";
                 loginbtn.style.display = "none"; // Hide login button if user is logged in
@@ -45,7 +42,7 @@ function checkUserLoggedIn() {
                 console.error("Error fetching user data:", error);
             });
         } else {
-            prof.style.display = "none";
+            profDiv.style.display = "none";
             loginbtn.style.display = "block"; // Show login button if user is not logged in
         }
     });

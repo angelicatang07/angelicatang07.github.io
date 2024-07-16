@@ -177,3 +177,25 @@ footer .bmc-widget-container {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Example box shadow */
 }
 
+
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover; /* Ensure the image covers the area */
+    display: none;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 50%; /* Position at the vertical center of header */
+    transform: translateY(-50%);
+    right: 20px; /* Adjust as needed */
+}
+
+.user-profile img:hover {
+    cursor:pointer;
+}
