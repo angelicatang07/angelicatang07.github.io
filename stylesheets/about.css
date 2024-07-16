@@ -71,15 +71,30 @@ header {
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+header .logo a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+header .logo a:hover {
+    color: #1e90ff;
 }
 
 header .nav-bar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
 }
 
 header .nav-bar ul {
@@ -115,6 +130,7 @@ header .login-btn {
     border: 1px solid white;
     border-radius: 5px;
     transition: background-color 0.3s;
+    margin-right: 20px;
 }
 
 header .login-btn:hover {
@@ -122,6 +138,7 @@ header .login-btn:hover {
     color: #1abc9c;
     text-decoration: underline;
 }
+
 
 /* Hero Section */
 .hero {
