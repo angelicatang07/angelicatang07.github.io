@@ -8,7 +8,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
-    background: linear-gradient(to right, #f0f2f5, #d1e0ff); /* Light gradient */
+    background: linear-gradient(to right, #1c1c1c, #050505); /* Light gradient */
     color: #333;
     animation: fadeInSlide 1s ease-in-out forwards;
 }
