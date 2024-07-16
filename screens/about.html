@@ -11,28 +11,26 @@
 </head>
 <body>
   <header>
-    <div class="nav-container">
-      <nav class="nav-bar">
-          <ul>
-              <li class="main-nav"><a href="../index.html">Main</a></li>
-              <li class="about-nav"><a href="about.html">About</a></li>
-              <li class="team-nav"><a href="team.html">Team</a></li>
-          </ul>
-          <a class="login-btn" href="login.html">Login</a>
-      </nav>
-    </div>
+    <nav class="nav-bar">
+        <ul>
+            <li class="main-nav"><a href="../index.html">Main</a></li>
+            <li class="about-nav"><a href="about.html">About</a></li>
+            <li class="team-nav"><a href="team.html">Team</a></li>
+        </ul>
+        <a class="login-btn" href="login.html">Login</a>
+    </nav>
   </header>
   <main>
-    <h2>Join to Our Mailing List!</h2>
-    <p>Get notified on major website updates and exciting events.</p>
-    <form id="subscriptionForm">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-      <button type="submit">Join</button>
-    </form>
-
-    <ul id="subscriptionList"></ul>
-
+    <div class="content-box">
+      <h2>Join to Our Mailing List!</h2>
+      <p>Get notified on major website updates and exciting events.</p>
+      <form id="subscriptionForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Join</button>
+      </form>
+      <ul id="subscriptionList"></ul>
+    </div>
     <script type="module" src="../scripts/about.js"></script>
   </main>
 </body>
