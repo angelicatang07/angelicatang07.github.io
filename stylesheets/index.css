@@ -162,7 +162,7 @@ header .login-btn:hover {
     margin: 100px auto;
     width: 80%;
     max-width: 800px;
-    background-color: #fff;
+    background-color: #363535;
     padding: 40px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -192,7 +192,7 @@ header .login-btn:hover {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: #4a4a4a;
 }
 
 #task_input_container input[type="text"],
@@ -202,7 +202,7 @@ header .login-btn:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
-    background-color: #fafafa;
+    background-color: #4a4a4a;
     transition: border-color 0.3s ease-in-out;
 }
 
