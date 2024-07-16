@@ -129,6 +129,9 @@ header .login-btn:hover {
     color: #001f3f; /* Dark navy text */
     text-align: center;
     padding: 100px 20px; /* Adjusted padding for better spacing */
+    margin-top: 50px; /* Adjust to connect with the nav bar */
+    margin-left: -20px;
+    margin-right: -20px;
 }
 
 .hero h1 {
