@@ -356,6 +356,6 @@ footer {
     cursor:pointer;
 }
 
-.task-container:hover {
+#unfinished_tasks_container:hover {
     cursor: pointer;
 }
