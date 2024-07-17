@@ -27,6 +27,7 @@ const instagramForm = document.getElementById("instagram");
 
 const DTag= document.getElementById('d-tag');
 const ITag= document.getElementById('i-tag');
+const instaTag = document.getElementById("insta-tag");
 
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
@@ -95,7 +96,6 @@ discordForm.addEventListener("submit", (e) => {
 
 instagramForm.addEventListener("submit", (e) => {
     e.preventDefault();
-const instaTag = document.getElementById("insta-tag");
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const userRef = ref(database, 'users/' + user.uid);
