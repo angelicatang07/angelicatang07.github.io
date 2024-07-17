@@ -366,3 +366,13 @@ footer {
 #instagram, #discord {
     padding: 10px 50px;
 }
+
+#show {
+    padding-left: 50px;
+    padding-top: 80px;
+}
+
+.tg {
+    display: flex;
+
+}
