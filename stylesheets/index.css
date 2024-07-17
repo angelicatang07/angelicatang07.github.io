@@ -356,6 +356,18 @@ footer {
     cursor:pointer;
 }
 
-#unfinished_tasks_container:hover {
+.task_data:hover {
     cursor: pointer;
+    background-color:rgb(231, 111, 131);
+}
+
+.task_data {
+    background-color: rgb(217, 143, 155);
+    border: blue;
+    padding: 25px;
+    margin: 10px;
+    width: 50vh;
+    overflow: hidden;
+    height: 30vh;
+    border-radius: 5px;
 }
