@@ -25,7 +25,8 @@ const storage = getStorage(app);
 const discordForm = document.getElementById("discord");
 const instagramForm = document.getElementById("instagram");
 
-
+const dTag= document.getElementById('d-tag');
+const ITag= document.getElementById('i-tag');
 
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
@@ -39,12 +40,18 @@ function checkUserLoggedIn() {
                     const userData = snapshot.val();
                     const username = userData.name;
                     const mail = userData.email;
+                    const gram = userData.instagram_handle;
+                    const cord = userData.discord_user;
                     const prof = userData.profile_picture; // Default profile picture path
                     profDiv.src = prof; // Update the src attribute of the image tag
                     profDiv.style.display = "block";
                     loginbtn.style.display = "none"; // Hide login button if user is logged in
                     const dump = document.getElementById('data');
                     dump.innerHTML= `<p>${username} <br /> ${mail} <br /> <img src="${prof}" /></p>`;
+                    dTag.innerHTMl =  `${cord}`;
+                    ITag.innerHTML=  `@${gram}`;
+                          instaTag.href = `https://www.instagram.com/${gram}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
+                          instaTag.target = "_blank";
                 } else {
                     console.log("No user data found");
                 }
@@ -60,7 +67,6 @@ function checkUserLoggedIn() {
 
 discordForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const dTag= document.getElementById('d-tag');
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -89,7 +95,6 @@ discordForm.addEventListener("submit", (e) => {
 
 instagramForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const ITag= document.getElementById('i-tag');
 const instaTag = document.getElementById("insta-tag");
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -103,8 +108,7 @@ const instaTag = document.getElementById("insta-tag");
                           };
                           update(userRef, user_data);
                           ITag.innerHTML=  `@${insta.value}`;
-                          instaTag.href = `linkedin: https://t.ly/2uZ9X
-instagram: https://www.instagram.com/${insta.value}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
+                          instaTag.href = `https://www.instagram.com/${insta.value}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
                           instaTag.target = "_blank";
                     } else {
                         console.log("No user data found");
