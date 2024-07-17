@@ -48,7 +48,7 @@ function checkUserLoggedIn() {
                     profDiv.style.display = "block";
                     loginbtn.style.display = "none"; // Hide login button if user is logged in
                     const dump = document.getElementById('data');
-                    dump.innerHTML= `<p>${username} <br /> ${mail} <br /> <img src="${prof}" /></p>`;
+                    dump.innerHTML= `<p>${username} <br /> <p style="inline">(private) ${mail}</p> <br /> <img src="${prof}" /></p>`;
                     DTag.innerHTML =  `${kord}`;
                     ITag.innerHTML=  `@${gram}`;
                           instaTag.href = `https://www.instagram.com/${gram}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
