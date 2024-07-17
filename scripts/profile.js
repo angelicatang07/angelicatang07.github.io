@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getDatabase, ref, update, get } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js"; // Import Firebase Storage components
 
 const firebaseConfig = {
     apiKey: "AIzaSyBQ1TcCHByOmGBpPNaO9jfOg7T9pVfSFFU",
@@ -17,8 +18,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
+const storage = getStorage(app);
 
-// Function to handle profile picture submission
 const submitpfp = document.getElementById("submitpfp");
 submitpfp.addEventListener('click', () => {
     const pfp = document.getElementById("fileToUpload").files[0]; // Get the file object
@@ -30,9 +31,9 @@ submitpfp.addEventListener('click', () => {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
 
-                    const storageRef = storage.ref('profile_picture/' + user.uid + '/' + pfp.name);
-                    storageRef.put(pfp).then(() => {
-                        storageRef.getDownloadURL().then((url) => {
+                    const storageRef = storageRef(storage, 'profile_picture/' + user.uid + '/' + pfp.name); // Specify the path where the file will be stored in Firebase Storage
+                    uploadBytes(storageRef, pfp).then(() => {
+                        getDownloadURL(storageRef).then((url) => {
                             const user_data = {
                                 profile_picture: url
                             };
@@ -61,7 +62,7 @@ submitpfp.addEventListener('click', () => {
     });
 });
 
-// Function to check user login status and update profile picture display
+
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
     const profDiv = document.getElementById("profile-pic");
@@ -72,7 +73,7 @@ function checkUserLoggedIn() {
             get(userRef).then((snapshot) => {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
-                    const prof = userData.profile_picture || 'images/pfp.png'; // Default profile picture path
+                    const prof = userData.profile_picture || '../images/pfp.png'; // Default profile picture path
                     profDiv.src = prof; // Update the src attribute of the image tag
                     profDiv.style.display = "block";
                     loginbtn.style.display = "none"; // Hide login button if user is logged in
@@ -89,5 +90,5 @@ function checkUserLoggedIn() {
     });
 }
 
-// Initial call to check user login status
+
 checkUserLoggedIn();
