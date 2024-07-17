@@ -134,31 +134,23 @@ function createTaskElement(task, key, type) {
     date.setAttribute('class', 'task_date');
     date.textContent = task.date;
 
-    // Task tools
-    const taskTool = document.createElement('div');
-    taskTool.setAttribute('class', 'task_tool');
+    // Add click event listener for redirection
+    taskContainer.addEventListener('click', () => {
+        // Redirect to indivReview.html with query parameters
+        const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}`;
+        window.location.href = `screens/indivReview.html${queryParams}`;
+    });
 
-    // const taskDeleteButton = document.createElement('button');
-    // taskDeleteButton.setAttribute('class', 'task_delete_button');
-    // taskDeleteButton.innerHTML = '<i class="bx bx-trash" style="cursor:pointer"></i>';
-    // taskDeleteButton.classList.add('cursor-pointer');
-    // taskDeleteButton.addEventListener('click', () => {
-    //     if (type === 'unfinished') {
-    //         task_delete(key); // Pass the key to the delete function
-    //     }
-    // });
-
-    // // Append elements
-    // taskTool.appendChild(taskDeleteButton);
+    // Append elements
     taskData.appendChild(title);
     taskData.appendChild(date);
     taskData.appendChild(creator);
     taskData.appendChild(review);
     taskContainer.appendChild(taskData);
-    taskContainer.appendChild(taskTool);
 
     return taskContainer;
 }
+
 
 // Function to delete task
 // function task_delete(key) {
