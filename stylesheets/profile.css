@@ -374,5 +374,9 @@ footer {
 
 .tg {
     display: flex;
+}
 
+#i-tag, #d-tag {
+    margin-bottom: 5px;
+    display: inline-flex;
 }

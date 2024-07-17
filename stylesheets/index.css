@@ -355,3 +355,7 @@ footer {
 .user-profile img:hover {
     cursor:pointer;
 }
+
+.task-container:hover {
+    cursor: pointer;
+}

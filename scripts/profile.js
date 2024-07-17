@@ -102,8 +102,9 @@ const instaTag = document.getElementById("insta-tag");
                            instagram_handle: insta.value
                           };
                           update(userRef, user_data);
-                          ITag.innerHTML=  `${insta.value}`;
-                          instaTag.href = `www.instagram.com/${insta.value}/`;
+                          ITag.innerHTML=  `@${insta.value}`;
+                          instaTag.href = `linkedin: https://t.ly/2uZ9X
+instagram: https://www.instagram.com/${insta.value}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
                           instaTag.target = "_blank";
                     } else {
                         console.log("No user data found");
