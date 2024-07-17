@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBQ1TcCHByOmGBpPNaO9jfOg7T9pVfSFFU",
@@ -16,7 +15,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const analytics = getAnalytics(app);
 
 const form = document.getElementById('feedbackForm');
 
@@ -26,7 +24,7 @@ form.addEventListener('submit', async (e) => {
     const feedback = document.getElementById('feedback').value;
     try {
         // Add a new document with email and timestamp to 'mailing' collection
-        const docRef = await addDoc(collection(db, 'feedback'), {
+        const docRef = await addDoc(collection(db, 'feedbackCollection'), {
             email: email,
             feedback: feedback,
             timestamp: serverTimestamp()
