@@ -50,6 +50,7 @@ registerbtn.addEventListener("click", () => {
       const user_data = {
         email: email,
         name: name,
+        replies: "",
         profile_picture: '../images/pfp.png',
         discord_user: "",
         instagram_handle: "",

@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="../stylesheets/indivReview.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Individual Review</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-database.js"></script>
 </head>
 <body>
     <header>
@@ -22,10 +24,22 @@
           <a class="login-btn" href="login.html">Login</a>
           <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" /> </a>
         </nav>
-      </header>
-    <h1>Review Details</h1>
+    </header>
+    <h3>Replies</h3>
     <div id="reviewDetails"></div>
-
+    <div id="content_container">
+        <div id="write_reply_container">
+            <div id="finish_reply_header">
+            </div>
+            <div id="reply_input_container">
+                <textarea id="input_reply" placeholder="Reply..."></textarea>
+                <button id="input_button">Submit</button>
+            </div>
+        </div>
+        <div class="unfinished_tasks_container" id="unfinished_tasks_container">
+            <!-- Replies dynamically added here -->
+        </div>
+    </div>
     <script>
         // Extract query parameters
         const params = new URLSearchParams(window.location.search);
@@ -44,5 +58,6 @@
             <p><strong>Date:</strong> ${date}</p>
         `;
     </script>
+    <script type="module" src="../scripts/indivReview.js"></script>
 </body>
 </html>
