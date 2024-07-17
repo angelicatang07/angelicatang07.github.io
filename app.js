@@ -31,7 +31,7 @@ function checkUserLoggedIn() {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
                     username = userData.name || 'Anonymous';
-                    prof = userData.profile || '../images/pfp.png';
+                    prof = userData.profile_picture || '../images/pfp.png';
                 } else {
                     console.log("No user data found");
                 }

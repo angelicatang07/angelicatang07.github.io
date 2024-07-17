@@ -17,7 +17,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
-let username = 'Anonymous';
 let prof = 'images/pfp.png';
 
 function checkUserLoggedIn() {
@@ -31,7 +30,7 @@ function checkUserLoggedIn() {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
                     username = userData.name || 'Anonymous';
-                    prof = userData.profile || '../images/pfp.png';
+                    prof = userData.profile_picture || '../images/pfp.png';
                 } else {
                     console.log("No user data found");
                 }

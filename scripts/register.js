@@ -18,7 +18,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const database = getDatabase(app);
 const auth = getAuth(app);
 
@@ -51,6 +50,7 @@ registerbtn.addEventListener("click", () => {
       const user_data = {
         email: email,
         name: name,
+        profile_picture: '../images/pfp.png',
         last_login: getCurrentTimestamp() // Use the timestamp function here
       };
       
