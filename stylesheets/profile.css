@@ -352,6 +352,17 @@ footer {
     right: 20px; /* Adjust as needed */
 }
 
-.user-profile img:hover {
-    cursor:pointer;
+
+#insta-pic, #discord-pic{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#discord-pic {
+    border-radius: 5px;
+}
+
+#instagram, #discord {
+    padding: 10px 50px;
 }

@@ -22,6 +22,11 @@ const storage = getStorage(app);
 
 
 
+const discordForm = document.getElementById("discord");
+const instagramForm = document.getElementById("instagram");
+
+
+
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
     const profDiv = document.getElementById("profile-pic");
@@ -53,5 +58,64 @@ function checkUserLoggedIn() {
     });
 }
 
+discordForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const dTag= document.getElementById('d-tag');
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const userRef = ref(database, 'users/' + user.uid);
+                get(userRef).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        const dc = document.getElementById('dc');
+                        const user_data = {
+                           discord_user: dc.value
+                          };
+                          update(userRef, user_data);
+                          dTag.innerHTML=  `${dc.value}`;
+                    } else {
+                        console.log("No user data found");
+                    }
+                }).catch((error) => {
+                    console.error("Error fetching user data:", error);
+                });
+            } else {
+                alert('error');
+            }
+        });
+    }
+);
+
+instagramForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const ITag= document.getElementById('i-tag');
+const instaTag = document.getElementById("insta-tag");
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const userRef = ref(database, 'users/' + user.uid);
+                get(userRef).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        const insta = document.getElementById('insta');
+                        const user_data = {
+                           instagram_handle: insta.value
+                          };
+                          update(userRef, user_data);
+                          ITag.innerHTML=  `${insta.value}`;
+                          instaTag.href = `www.instagram.com/${insta.value}/`;
+                          instaTag.target = "_blank";
+                    } else {
+                        console.log("No user data found");
+                    }
+                }).catch((error) => {
+                    console.error("Error fetching user data:", error);
+                });
+            } else {
+                alert('error');
+            }
+        });
+    }
+);
 
 checkUserLoggedIn();
