@@ -51,7 +51,7 @@ loginbtn.addEventListener("click", () => {
         })
         .catch((error) => {
           var error_message = error.message;
-          alert("Error fetching user data:", error.message);
+          alert("Error fetching user data:", error_message);
           return;
         });
     })
