@@ -25,7 +25,7 @@ const storage = getStorage(app);
 const discordForm = document.getElementById("discord");
 const instagramForm = document.getElementById("instagram");
 
-const dTag= document.getElementById('d-tag');
+const DTag= document.getElementById('d-tag');
 const ITag= document.getElementById('i-tag');
 
 function checkUserLoggedIn() {
@@ -41,14 +41,14 @@ function checkUserLoggedIn() {
                     const username = userData.name;
                     const mail = userData.email;
                     const gram = userData.instagram_handle;
-                    const cord = userData.discord_user;
+                    const kord = userData.discord_user;
                     const prof = userData.profile_picture; // Default profile picture path
                     profDiv.src = prof; // Update the src attribute of the image tag
                     profDiv.style.display = "block";
                     loginbtn.style.display = "none"; // Hide login button if user is logged in
                     const dump = document.getElementById('data');
                     dump.innerHTML= `<p>${username} <br /> ${mail} <br /> <img src="${prof}" /></p>`;
-                    dTag.innerHTMl =  `${cord}`;
+                    DTag.innerHTML =  `${kord}`;
                     ITag.innerHTML=  `@${gram}`;
                           instaTag.href = `https://www.instagram.com/${gram}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
                           instaTag.target = "_blank";
@@ -78,8 +78,8 @@ discordForm.addEventListener("submit", (e) => {
                         const user_data = {
                            discord_user: dc.value
                           };
-                          update(userRef, user_data);
                           dTag.innerHTML=  `${dc.value}`;
+                          update(userRef, user_data);
                     } else {
                         console.log("No user data found");
                     }
