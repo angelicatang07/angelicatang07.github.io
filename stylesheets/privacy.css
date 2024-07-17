@@ -1,0 +1,226 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0; /* Ensure no margin on html or body */
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(to right, #f0f2f5, #d1e0ff); /* Light gradient */
+    color: #333;
+    animation: fadeInSlide 1s ease-in-out forwards;
+}
+
+/* Keyframes for animations */
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header and Navigation Bar */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #001f3f; /* Navy nav bar */
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    animation: fadeInDown 1s ease-in-out forwards;
+}
+
+header .logo a {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+}
+
+header .nav-bar {
+    display: flex;
+    align-items: center;
+}
+
+header .nav-bar ul {
+    list-style: none;
+    display: flex;
+    margin-right: 2rem;
+}
+
+header .nav-bar ul li {
+    margin: 0 1rem;
+}
+
+header .nav-bar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+header .nav-bar ul li a:hover {
+    color: #1abc9c; /* Sea Green */
+    animation: bounce 0.5s;
+}
+
+header .login-btn {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+header .login-btn:hover {
+    background-color: #00509e;
+    transform: scale(1.05);
+}
+
+/* Main Content */
+main {
+    margin-top: 100px; /* Ensure content is below the fixed header */
+    padding: 20px;
+}
+
+.hero {
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(to right, #9edaf7, #2a05fa); /* Cyan gradient */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #001f3f; /* Dark navy text */
+    font-size: 2.5em;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+    margin-bottom: 40px;
+    animation: fadeInSlide 1s ease-in-out forwards;
+}
+
+.hero-title {
+    font-size: 3em;
+    text-align: center;
+    color: #fff;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.box img.Pri {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.box img.Pri:hover {
+    transform: scale(1.1);
+}
+
+.names {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.names div {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    animation: fadeInSlide 1s ease-in-out forwards;
+}
+
+.names div:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.names h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    transition: color 0.3s ease-in-out;
+}
+
+.names h2:hover {
+    color: #1abc9c;
+}
+
+.names p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #666;
+}
+
+.names img.linkedin,
+.names img.insta,
+.names img.gmail {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.names img.linkedin:hover,
+.names img.gmail:hover,
+.names img.insta:hover {
+    transform: scale(1.2);
+}
+
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover; /* Ensure the image covers the area */
+    display: none;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 50%; /* Position at the vertical center of header */
+    transform: translateY(-50%);
+    right: 20px; /* Adjust as needed */
+}
+
+.user-profile img:hover {
+    cursor:pointer;
+}
