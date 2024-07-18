@@ -334,13 +334,6 @@ footer {
     margin-top: 50px;
 }
 
- .user-profile img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover; /* Ensure the image covers the area */
-    display: none;
-}
 
 .profile_picture {
     width: 40px;

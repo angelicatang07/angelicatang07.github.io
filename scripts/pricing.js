@@ -17,11 +17,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
-let prof = 'images/pfp.png';
+let prof = '../images/pfp.png';
 
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
-    const profDiv = document.getElementById("profile-pic");
+    const profDiv = document.getElementById("profile-pic");;
     
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -29,8 +29,7 @@ function checkUserLoggedIn() {
             get(userRef).then((snapshot) => {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
-                    username = userData.name || 'Anonymous';
-                    prof = userData.profile_picture || '../images/pfp.png';
+                    prof = userData.profile_picture;
                 } else {
                     console.log("No user data found");
                 }
@@ -46,6 +45,5 @@ function checkUserLoggedIn() {
         }
     });
 }
-
 
 checkUserLoggedIn();

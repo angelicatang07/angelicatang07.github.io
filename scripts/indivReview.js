@@ -16,7 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
-
+let prof = '../images/pfp.png';
 let username = "Anonymous";
 
 function getCurrentTimestamp() {
@@ -30,28 +30,27 @@ function getCurrentTimestamp() {
 
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
-    const profDiv = document.getElementById("profile-pic");
-
+    const profDiv = document.getElementById("profile-pic");;
+    
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const userRef = ref(database, 'users/' + user.uid);
             get(userRef).then((snapshot) => {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
-                    username = DOMPurify.sanitize(userData.name) || "Anonymous";
-                    profDiv.src = prof;
-                    profDiv.style.display = "block";
-                    loginbtn.style.display = "none";
+                    prof = userData.profile_picture;
                 } else {
                     console.log("No user data found");
                 }
+                profDiv.src = prof;
+                profDiv.style.display = "block";
+                loginbtn.style.display = "none"; // Hide login button if user is logged in
             }).catch((error) => {
                 console.error("Error fetching user data:", error);
             });
         } else {
-            username = "Anonymous";
             profDiv.style.display = "none";
-            loginbtn.style.display = "block";
+            loginbtn.style.display = "block"; // Show login button if user is not logged in
         }
     });
 }

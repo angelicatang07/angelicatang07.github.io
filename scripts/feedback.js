@@ -19,10 +19,36 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const database = getDatabase();
+let prof = '../images/pfp.png';
 
 // Reference to the form element
 const form = document.getElementById('feedbackForm');
-
+function checkUserLoggedIn() {
+    const loginbtn = document.querySelector(".login-btn");
+    const profDiv = document.getElementById("profile-pic");;
+    
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const userRef = ref(database, 'users/' + user.uid);
+            get(userRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    prof = userData.profile_picture;
+                } else {
+                    console.log("No user data found");
+                }
+                profDiv.src = prof;
+                profDiv.style.display = "block";
+                loginbtn.style.display = "none"; // Hide login button if user is logged in
+            }).catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+        } else {
+            profDiv.style.display = "none";
+            loginbtn.style.display = "block"; // Show login button if user is not logged in
+        }
+    });
+}
 // Event listener for form submission
 form.addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent default form submission
@@ -50,3 +76,7 @@ form.addEventListener('submit', async (e) => {
         alert('Submission failed. Please try again later.');
     }
 });
+
+
+
+checkUserLoggedIn();

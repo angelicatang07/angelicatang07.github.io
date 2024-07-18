@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const database = getDatabase(app);
-let prof = 'images/pfp.png';
+let prof = '../images/pfp.png';
 
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
@@ -47,6 +47,7 @@ function checkUserLoggedIn() {
         }
     });
 }
+
 
 const form = document.getElementById('subscriptionForm');
 
