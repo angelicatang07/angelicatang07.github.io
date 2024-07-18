@@ -9,7 +9,7 @@ html, body {
     margin: 0px; /* Ensure no margin on html or body */
     padding: 0px;
     font-family: 'Montserrat', sans-serif;
-    line-height: 0.2;
+    line-height: 1.6;
     background: linear-gradient(to right, #f0f2f5, #d1e0ff); /* Light gradient */
     color: #333;
     animation: fadeInSlide 1s ease-in-out forwards;
