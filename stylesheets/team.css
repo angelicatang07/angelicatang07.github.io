@@ -1,13 +1,13 @@
 /* Basic Reset */
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 html, body {
-    margin: 0px; /* Ensure no margin on html or body */
-    padding: 0px;
+    margin: 0; /* Ensure no margin on html or body */
+    padding: 0;
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     background: linear-gradient(to right, #f0f2f5, #d1e0ff); /* Light gradient */
@@ -116,7 +116,7 @@ header .dark-mode-toggle {
 
 /* Main Content */
 main {
-    margin-top: 0px; /* Ensure content is below the fixed header */
+    margin-top: 100px; /* Ensure content is below the fixed header */
     padding: 20px;
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(5px);
@@ -260,4 +260,3 @@ header.dark-mode {
     background-color: #333;
     color: #f0f0f0;
 }
-
