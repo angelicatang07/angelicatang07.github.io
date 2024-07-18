@@ -103,10 +103,23 @@ header .login-btn:hover {
     transform: scale(1.05);
 }
 
+header .dark-mode-toggle {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
 /* Main Content */
 main {
     margin-top: 100px; /* Ensure content is below the fixed header */
     padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
 }
 
 .hero {
@@ -130,6 +143,14 @@ main {
     color: #fff;
 }
 
+.mtt {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #001f3f;
+    animation: fadeInDown 1s ease-in-out forwards;
+}
+
 .box {
     display: flex;
     flex-wrap: wrap;
@@ -141,19 +162,22 @@ main {
     width: 120px;
     height: 120px;
     border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     object-fit: cover;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
 }
 
 .box img.Pri:hover {
-    transform: scale(1.1);
+    transform: rotate(10deg) scale(1.1);
 }
 
 .names {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
     margin-top: 40px;
 }
 
@@ -171,9 +195,8 @@ main {
 }
 
 .names h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: #2c3e50;
+    font-size: 2rem;
+    color: #001f3f;
     transition: color 0.3s ease-in-out;
 }
 
@@ -187,20 +210,17 @@ main {
     color: #666;
 }
 
-.names img.linkedin,
-.names img.insta,
 .names img.gmail {
     width: 30px;
     height: 30px;
     margin-top: 10px;
     cursor: pointer;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 
-.names img.linkedin:hover,
-.names img.gmail:hover,
-.names img.insta:hover {
+.names img.gmail:hover {
     transform: scale(1.2);
+    filter: brightness(1.2);
 }
 
 .user-profile img {
@@ -222,5 +242,22 @@ main {
 }
 
 .user-profile img:hover {
-    cursor:pointer;
+    cursor: pointer;
 }
+
+/* Dark Mode */
+body.dark-mode {
+    background: #181818;
+    color: #f0f0f0;
+}
+
+header.dark-mode {
+    background-color: #000;
+    color: #f0f0f0;
+}
+
+.names.dark-mode div {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
