@@ -116,7 +116,6 @@ header .dark-mode-toggle {
 
 /* Main Content */
 main {
-    margin-top: 100px; /* Ensure content is below the fixed header */
     padding: 20px;
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(5px);
