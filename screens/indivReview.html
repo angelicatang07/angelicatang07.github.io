@@ -46,6 +46,9 @@
             </div>
         </div>
     </main>
+    <footer>
+        <p>&copy; 2024 Ledgit. All rights reserved.</p>
+    </footer>
     <script>
         // Extract query parameters
         const params = new URLSearchParams(window.location.search);
@@ -58,10 +61,22 @@
         // Display review details
         const reviewDetailsDiv = document.getElementById('reviewDetails');
         reviewDetailsDiv.innerHTML = `
-            <p><strong>Title:</strong> ${title}</p>
-            <p id='creator-redirect'><strong>Creator:</strong> ${creator}</p>
-            <p><strong>Review:</strong> ${review}</p>
-            <p><strong>Date:</strong> ${date}</p>
+            <h4>${title}</h4>
+            <p><strong>Creator:</strong> <span id='creator-redirect'>${creator}</span></p>
+            <p>${review}</p>
+            <p><small><strong>Date:</strong> ${date}</small></p>
+        `;
+
+        // Add dynamic content to creator-socials
+        const creatorSocialsDiv = document.getElementById('creator-socials');
+        creatorSocialsDiv.innerHTML = `
+            <h4>Creator's Socials</h4>
+            <p>Find more from <strong>${creator}</strong> on:</p>
+            <div class="social-icons">
+                <a href="#"><img class="linkedin" src="linkedin-icon.png" alt="LinkedIn"></a>
+                <a href="#"><img class="insta" src="instagram-icon.png" alt="Instagram"></a>
+                <a href="#"><img class="gmail" src="gmail-icon.png" alt="Gmail"></a>
+            </div>
         `;
     </script>
     <script type="module" src="../scripts/indivReview.js"></script>
