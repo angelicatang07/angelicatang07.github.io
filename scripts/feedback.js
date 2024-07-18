@@ -56,7 +56,10 @@ form.addEventListener('submit', async (e) => {
     // Get input values from the form
     const email = document.getElementById('email').value;
     const feedback = document.getElementById('feedback').value;
-
+    if(!validate_email(email)) {
+        alert('Invalid Email.');
+        return;
+    }
     try {
         // Add a new document with email, feedback, and timestamp to 'feedbackCollection'
         const docRef = await addDoc(collection(db, 'feedbackCollection'), {
@@ -78,5 +81,9 @@ form.addEventListener('submit', async (e) => {
 });
 
 
+function validate_email(email) {
+    const rgx = /^[^@]+@\w+(\.\w+)+\w$/;
+    return rgx.test(email);
+  }
 
 checkUserLoggedIn();
