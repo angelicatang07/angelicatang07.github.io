@@ -79,7 +79,7 @@ discordForm.addEventListener("submit", (e) => {
                         const user_data = {
                            discord_user: dc.value
                           };
-                          dTag.innerHTML=  `${dc.value}`;
+                          DTag.innerHTML=  `${dc.value}`;
                           update(userRef, user_data);
                     } else {
                         console.log("No user data found");
