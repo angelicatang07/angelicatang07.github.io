@@ -59,8 +59,7 @@ body {
         transform: scale(1.02);
     }
 }
-
-/* Header and Navigation Bar */
+/* Header */
 header {
     display: flex;
     justify-content: space-between;
@@ -76,11 +75,6 @@ header .logo a {
     font-weight: 600;
     color: white;
     text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-header .logo a:hover {
-    color: #1e90ff;
 }
 
 header .nav-bar {
@@ -122,7 +116,6 @@ header .login-btn {
 
 header .login-btn:hover {
     background-color: #00509e;
-    color: #1abc9c;
 }
 
 /* Main Content */

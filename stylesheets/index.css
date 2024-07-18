@@ -57,7 +57,6 @@ body {
         transform: scale(1.02);
     }
 }
-
 /* Header */
 header {
     display: flex;
@@ -116,7 +115,6 @@ header .login-btn {
 header .login-btn:hover {
     background-color: #00509e;
 }
-
 /* Hero Section */
 .hero {
     text-align: center;

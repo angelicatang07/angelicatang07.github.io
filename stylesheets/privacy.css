@@ -38,7 +38,7 @@ html, body {
     }
 }
 
-/* Header and Navigation Bar */
+/* Header */
 header {
     display: flex;
     justify-content: space-between;
@@ -46,12 +46,7 @@ header {
     padding: 1rem 2rem;
     background-color: #001f3f; /* Navy nav bar */
     color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    animation: fadeInDown 1s ease-in-out forwards;
+    animation: fadeInSlide 1s ease-in-out forwards;
 }
 
 header .logo a {
@@ -84,7 +79,7 @@ header .nav-bar ul li a {
 }
 
 header .nav-bar ul li a:hover {
-    color: #1abc9c; /* Sea Green */
+    color: #1e90ff;
     animation: bounce 0.5s;
 }
 
@@ -95,18 +90,11 @@ header .login-btn {
     padding: 0.5rem 1rem;
     border: 1px solid white;
     border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 header .login-btn:hover {
     background-color: #00509e;
-    transform: scale(1.05);
-}
-
-/* Main Content */
-main {
-    margin-top: 100px; /* Ensure content is below the fixed header */
-    padding: 20px;
 }
 
 .hero {
