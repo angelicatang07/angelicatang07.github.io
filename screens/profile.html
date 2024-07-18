@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -39,44 +38,40 @@
           <a class="login-btn" href="login.html">Login</a>
           <div class="user-profile"> 
             <a href="screens/profile.html"><img class="profile-pic" id="profile-pic" src="" /> </a>
-        </div>
+          </div>
         </nav>
       </header>
 
 <div id="content_container">
-<div class="tg">
-    <div id="data"></div>
-    <div id="show">
-        <img id = "discord-pic" src="../images/discord.png" />
-       <div id="d-tag"></div>
-       <br />
-      <a id="insta-tag"> <img id = "insta-pic" src="../images/instagram.png" /> 
-       <div id="i-tag"></div>
-    </a>
-       <br />
-       <a id="linkedin-tag">
-        <img id = "linkedin-pic" src="../images/linkedin.png" />
-       <div id="l-tag"></div>
-        </a>
-     </div>
-</div>
-<h2>Edit Profile:</h2>
-    <form id="discord">
+    <div class="profile-card">
+        <div class="profile-header">
+            <img id="profile-pic" src="../images/default-profile.png" alt="Profile Picture" />
+            <h2 id="username">User Name</h2>
+            <p id="bio">This is the user bio. You can edit it in the form below.</p>
+        </div>
+        <div class="social-links">
+            <a id="insta-tag"><img id="insta-pic" src="../images/instagram.png" /></a>
+            <a id="linkedin-tag"><img id="linkedin-pic" src="../images/linkedin.png" /></a>
+            <a id="discord-tag"><img id="discord-pic" src="../images/discord.png" /></a>
+        </div>
+    </div>
+
+    <h2>Edit Profile:</h2>
+    <form id="discord" class="edit-form">
         <label for="dc">Discord Username: </label>
         <input type="text" id="dc" name="dc" >
         <button type="submit" id="dc-button">Done</button>
-      </form>
-      <form id="instagram">
+    </form>
+    <form id="instagram" class="edit-form">
         <label for="insta">Instagram Handle:</label>
         <input type="text" id="insta" name="insta" >
         <button type="submit" id="dc-button">Done</button>
-      </form>
-      <form id="linkedin">
+    </form>
+    <form id="linkedin" class="edit-form">
         <label for="linked">Linkedin Link:</label>
         <input type="text" id="linked" name="linked" >
         <button type="submit" id="dc-button">Done</button>
-      </form>
-
+    </form>
 </div>
 
 <script type="module" src="../scripts/profile.js"></script>
