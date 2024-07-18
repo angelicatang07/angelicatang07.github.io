@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getDatabase, ref, push, update, onValue } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-
+import { getDatabase, ref, push, update, get, onValue } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 const firebaseConfig = {
     apiKey: "AIzaSyBQ1TcCHByOmGBpPNaO9jfOg7T9pVfSFFU",
     authDomain: "the-website-c2fc0.firebaseapp.com",
@@ -17,10 +16,50 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
 
+// Function to get current timestamp in "MM/DD/YYYY" format
 function getCurrentTimestamp() {
     const now = new Date();
-    return now.toLocaleString(); // Adjust format as needed
+    return now.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    });
 }
+
+// Initialize username with a default value
+let username = "Anonymous";
+
+// Function to update username based on authentication state
+function checkUserLoggedIn() {
+    const loginbtn = document.querySelector(".login-btn");
+    const profDiv = document.getElementById("profile-pic");
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const userRef = ref(database, 'users/' + user.uid);
+            get(userRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    username = userData.name || "Anonymous"; // Update username based on user data
+                    profDiv.src = prof; // Update the src attribute of the image tag
+                    profDiv.style.display = "block";
+                    loginbtn.style.display = "none"; // Hide login button if user is logged in
+                } else {
+                    console.log("No user data found");
+                }
+            }).catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+        } else {
+            username = "Anonymous"; // If user is not logged in, set username to "Anonymous"
+            profDiv.style.display = "none";
+            loginbtn.style.display = "block"; // Show login button if user is not logged in
+        }
+    });
+}
+
+// Call checkUserLoggedIn() to initialize username based on auth state
+checkUserLoggedIn();
 
 // Event listener for submit button
 document.getElementById('input_button').addEventListener('click', function() {
@@ -35,6 +74,7 @@ document.getElementById('input_button').addEventListener('click', function() {
 
         const replyData = {
             content: replyContent,
+            user: username, // Use the updated username
             timestamp: getCurrentTimestamp()
         };
 
@@ -68,6 +108,7 @@ function fetchReplies() {
             const replyElement = document.createElement('div');
             replyElement.classList.add('reply');
             replyElement.innerHTML = `
+                <p>User: ${reply.user}</p> <!-- Display the user who replied -->
                 <p>${reply.content}</p>
                 <p>Timestamp: ${reply.timestamp}</p>
             `;
