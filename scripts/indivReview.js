@@ -110,7 +110,7 @@ function fetchReplies() {
             replyElement.innerHTML = `
                 <p>User: ${reply.user}</p> <!-- Display the user who replied -->
                 <p>${reply.content}</p>
-                <p>Timestamp: ${reply.timestamp}</p>
+                <p style="font-style:italic">${reply.timestamp}</p>
             `;
             repliesContainer.appendChild(replyElement);
         });
