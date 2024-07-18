@@ -25,24 +25,27 @@
           <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" /> </a>
         </nav>
     </header>
-    <h3>Review</h3>
-    <section id="flex">
-    <div id="reviewDetails"></div>
-    <div id="creator-socials"></div>
-    </section>
-    <div id="content_container">
-        <div id="write_reply_container">
-            <div id="finish_reply_header">
+    <main>
+        <h3>Review</h3>
+        <section id="flex">
+            <div id="reviewDetails" class="card"></div>
+            <div id="creator-socials" class="card"></div>
+        </section>
+        <div id="content_container">
+            <div id="write_reply_container" class="card">
+                <div id="finish_reply_header">
+                    <h4>Write a Reply</h4>
+                </div>
+                <div id="reply_input_container">
+                    <textarea id="input_reply" placeholder="Reply..."></textarea>
+                    <button id="input_button">Submit</button>
+                </div>
             </div>
-            <div id="reply_input_container">
-                <textarea id="input_reply" placeholder="Reply..."></textarea>
-                <button id="input_button">Submit</button>
+            <div class="unfinished_tasks_container" id="unfinished_tasks_container">
+                <!-- Replies dynamically added here -->
             </div>
         </div>
-        <div class="unfinished_tasks_container" id="unfinished_tasks_container">
-            <!-- Replies dynamically added here -->
-        </div>
-    </div>
+    </main>
     <script>
         // Extract query parameters
         const params = new URLSearchParams(window.location.search);
