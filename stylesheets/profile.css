@@ -126,7 +126,7 @@ header .login-btn:hover {
 
 /* Profile Card */
 .profile-card {
-    background-color: #fff;
+    background: linear-gradient(to right, #ffffff, #e0e7ff); /* Gradient background */
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -145,10 +145,16 @@ header .login-btn:hover {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
+    border: 3px solid #1e90ff;
+    transition: transform 0.3s;
+}
+
+.profile-header img:hover {
+    transform: scale(1.1);
 }
 
 .profile-header h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #333;
 }
 
@@ -157,13 +163,38 @@ header .login-btn:hover {
     color: #666;
 }
 
+.profile-info p {
+    font-size: 1rem;
+    color: #555;
+    margin: 10px 0;
+}
+
 .social-links a {
     margin: 0 10px;
     transition: transform 0.3s ease;
 }
 
 .social-links a:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
+}
+
+.progress-bar {
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.progress {
+    height: 10px;
+    background: #1e90ff;
+    width: 75%;
+    transition: width 0.3s;
+}
+
+.profile-completion {
+    font-size: 0.9rem;
+    color: #555;
 }
 
 /* Edit Profile Form */
@@ -184,6 +215,7 @@ header .login-btn:hover {
     display: block;
     font-weight: 600;
     margin-bottom: 10px;
+    color: #333;
 }
 
 .edit-form input {
@@ -279,7 +311,7 @@ footer img:hover {
     }
 
     .profile-header h2 {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
     }
 
     .profile-header p {
@@ -328,10 +360,14 @@ footer img:hover {
     }
 
     .profile-header h2 {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .profile-header p {
+        font-size: 0.75rem;
+    }
+
+    .profile-info p {
         font-size: 0.75rem;
     }
 
