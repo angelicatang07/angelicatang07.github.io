@@ -353,7 +353,7 @@ footer {
 }
 
 
-#insta-pic, #discord-pic{
+#insta-pic, #discord-pic, #linkedin-pic{
     width: 30px;
     height: 30px;
     cursor: pointer;
@@ -363,7 +363,7 @@ footer {
     border-radius: 5px;
 }
 
-#instagram, #discord {
+#instagram, #discord, #linkedin {
     padding: 10px 50px;
 }
 
@@ -374,9 +374,14 @@ footer {
 
 .tg {
     display: flex;
+    flex-direction: row;
 }
 
-#i-tag, #d-tag {
+#i-tag, #d-tag, #l-tag {
     margin-bottom: 5px;
     display: inline-flex;
+}
+
+a {
+    color: black;
 }

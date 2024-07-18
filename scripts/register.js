@@ -54,6 +54,7 @@ registerbtn.addEventListener("click", () => {
         profile_picture: '../images/pfp.png',
         discord_user: "",
         instagram_handle: "",
+        linkedin_acc: "",
         last_login: getCurrentTimestamp() // Use the timestamp function here
       };
       

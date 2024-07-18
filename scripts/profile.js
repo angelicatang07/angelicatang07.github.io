@@ -24,10 +24,13 @@ const storage = getStorage(app);
 
 const discordForm = document.getElementById("discord");
 const instagramForm = document.getElementById("instagram");
+const linkedinForm = document.getElementById("linkedin");
 
 const DTag= document.getElementById('d-tag');
 const ITag= document.getElementById('i-tag');
 const instaTag = document.getElementById("insta-tag");
+const LTag= document.getElementById('l-tag');
+const linkedinTag = document.getElementById("linkedin-tag");
 
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
@@ -42,6 +45,7 @@ function checkUserLoggedIn() {
                     const username = userData.name;
                     const mail = userData.email;
                     const gram = userData.instagram_handle;
+                    const lnkin = userData.linkedin_acc;
                     const kord = userData.discord_user;
                     const prof = userData.profile_picture; // Default profile picture path
                     profDiv.src = prof; // Update the src attribute of the image tag
@@ -51,6 +55,7 @@ function checkUserLoggedIn() {
                     dump.innerHTML= `<p>${username} <br /> <p style="inline">(private) ${mail}</p> <br /> <img src="${prof}" /></p>`;
                     DTag.innerHTML =  `${kord}`;
                     ITag.innerHTML=  `@${gram}`;
+                    LTag.innerHTML= `${lnkin}`;
                           instaTag.href = `https://www.instagram.com/${gram}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
                           instaTag.target = "_blank";
                 } else {
@@ -123,4 +128,32 @@ instagramForm.addEventListener("submit", (e) => {
     }
 );
 
+linkedinForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const userRef = ref(database, 'users/' + user.uid);
+                get(userRef).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        const linkedin = document.getElementById('linked');
+                        const user_data = {
+                           linkedin_acc: linkedin.value
+                          };
+                          update(userRef, user_data);
+                          LTag.innerHTML=  `linkedin.com`;
+                          linkedinTag.href = `${linkedin.value}`;
+                          linkedinTag.target = "_blank";
+                    } else {
+                        console.log("No user data found");
+                    }
+                }).catch((error) => {
+                    console.error("Error fetching user data:", error);
+                });
+            } else {
+                alert('error');
+            }
+        });
+    }
+);
 checkUserLoggedIn();
