@@ -157,6 +157,7 @@ h3 {
     background: white;
     padding: 20px;
     margin: 10px;
+    overflow: scroll;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
@@ -183,16 +184,19 @@ h3 {
 #write_reply_container h4 {
     margin-bottom: 10px;
     color: #001f3f;
+    overflow: scroll;
 }
 
 #reply_input_container {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    overflow: scroll;
 }
 
 #input_reply {
     padding: 10px;
+    overflow: scroll;
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 100%;
@@ -202,6 +206,7 @@ h3 {
 
 #input_button {
     padding: 10px 20px;
+    overflow: scroll;
     background-color: #001f3f;
     color: white;
     border: none;
@@ -221,15 +226,18 @@ h3 {
     padding: 20px;
     margin: 20px 0;
     border-radius: 8px;
+    overflow: scroll;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .unfinished_tasks_container > div {
     margin-bottom: 10px;
+    overflow: scroll;
 }
 
 .unfinished_tasks_container > div:last-child {
     margin-bottom: 0;
+    overflow: scroll;
 }
 
 /* Social Icons */

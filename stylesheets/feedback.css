@@ -310,14 +310,27 @@ footer {
 .user-profile img:hover {
     cursor:pointer;
 } 
-
+#feedbackForm button {
+    display: flex;
+    bottom: 0;
+    right:20px;
+    position: absolute;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+#feedbackForm button:hover {
+   cursor: pointer;
+}
 #feedbackForm {
     padding-bottom: 25%;
     position: relative;
+    display: block;
 }
 textarea {
     min-width: 100%;
     max-width: 100%;
-    max-height: 100%;
+    max-height: 70%;
+    min-height: 70%;
     position: absolute;
 }
+
