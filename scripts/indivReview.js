@@ -95,17 +95,36 @@ function fetchReplies() {
 
     onValue(repliesRef, function(snapshot) {
         const repliesContainer = document.getElementById('unfinished_tasks_container');
-        repliesContainer.innerText = '';
+        repliesContainer.innerHTML = ''; // Clear previous content safely
 
         snapshot.forEach(function(childSnapshot) {
             const reply = childSnapshot.val();
+
+            // Sanitize each piece of dynamic content
+            const sanitizedUser = DOMPurify.sanitize(reply.user);
+            const sanitizedTimestamp = DOMPurify.sanitize(reply.timestamp);
+            const sanitizedContent = DOMPurify.sanitize(reply.content);
+
+            // Create elements programmatically
             const replyElement = document.createElement('div');
             replyElement.classList.add('reply');
-            replyElement.innerText = `
-                User: ${DOMPurify.sanitize(reply.user)}
-                ${DOMPurify.sanitize(reply.content)}
-                ${DOMPurify.sanitize(reply.timestamp)}
-            `;
+
+            const userElement = document.createElement('div');
+            userElement.classList.add('reply-user');
+            userElement.textContent = sanitizedUser;
+
+            const timestampElement = document.createElement('div');
+            timestampElement.classList.add('reply-timestamp');
+            timestampElement.textContent = sanitizedTimestamp;
+
+            const contentElement = document.createElement('div');
+            contentElement.classList.add('reply-content');
+            contentElement.textContent = sanitizedContent;
+
+            replyElement.appendChild(userElement);
+            replyElement.appendChild(timestampElement);
+            replyElement.appendChild(contentElement);
+
             repliesContainer.appendChild(replyElement);
         });
     }, function(error) {
@@ -113,5 +132,6 @@ function fetchReplies() {
         alert('Failed to fetch replies. Please try again.');
     });
 }
+
 
 fetchReplies();
