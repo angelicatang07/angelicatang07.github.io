@@ -1,6 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getDatabase, ref, push, update, get, onValue } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import DOMPurify from 'https://cdn.skypack.dev/dompurify';
+
 const firebaseConfig = {
     apiKey: "AIzaSyBQ1TcCHByOmGBpPNaO9jfOg7T9pVfSFFU",
     authDomain: "the-website-c2fc0.firebaseapp.com",
@@ -11,12 +13,12 @@ const firebaseConfig = {
     appId: "1:250867055712:web:745853ebb86ae8e3801705",
     measurementId: "G-KBZ3ZQRVHB"
 };
-
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
 
-// Function to get current timestamp in "MM/DD/YYYY" format
+let username = "Anonymous";
+
 function getCurrentTimestamp() {
     const now = new Date();
     return now.toLocaleDateString('en-US', {
@@ -26,10 +28,6 @@ function getCurrentTimestamp() {
     });
 }
 
-// Initialize username with a default value
-let username = "Anonymous";
-
-// Function to update username based on authentication state
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
     const profDiv = document.getElementById("profile-pic");
@@ -40,10 +38,10 @@ function checkUserLoggedIn() {
             get(userRef).then((snapshot) => {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
-                    username = userData.name || "Anonymous"; // Update username based on user data
-                    profDiv.src = prof; // Update the src attribute of the image tag
+                    username = DOMPurify.sanitize(userData.name) || "Anonymous";
+                    profDiv.src = prof;
                     profDiv.style.display = "block";
-                    loginbtn.style.display = "none"; // Hide login button if user is logged in
+                    loginbtn.style.display = "none";
                 } else {
                     console.log("No user data found");
                 }
@@ -51,17 +49,15 @@ function checkUserLoggedIn() {
                 console.error("Error fetching user data:", error);
             });
         } else {
-            username = "Anonymous"; // If user is not logged in, set username to "Anonymous"
+            username = "Anonymous";
             profDiv.style.display = "none";
-            loginbtn.style.display = "block"; // Show login button if user is not logged in
+            loginbtn.style.display = "block";
         }
     });
 }
 
-// Call checkUserLoggedIn() to initialize username based on auth state
 checkUserLoggedIn();
 
-// Event listener for submit button
 document.getElementById('input_button').addEventListener('click', function() {
     const replyContent = document.getElementById('input_reply').value.trim();
 
@@ -70,11 +66,11 @@ document.getElementById('input_button').addEventListener('click', function() {
         const key = params.get('key');
         
         const repliesRef = ref(database, `unfinished_task/${key}/replies`);
-        const newReplyRef = push(repliesRef); // Generate a new unique key for the reply
+        const newReplyRef = push(repliesRef);
 
         const replyData = {
-            content: replyContent,
-            user: username, // Use the updated username
+            content: DOMPurify.sanitize(replyContent),
+            user: username,
             timestamp: getCurrentTimestamp()
         };
 
@@ -92,7 +88,6 @@ document.getElementById('input_button').addEventListener('click', function() {
     }
 });
 
-// Function to fetch and display replies
 function fetchReplies() {
     const params = new URLSearchParams(window.location.search);
     const key = params.get('key');
@@ -101,16 +96,16 @@ function fetchReplies() {
 
     onValue(repliesRef, function(snapshot) {
         const repliesContainer = document.getElementById('unfinished_tasks_container');
-        repliesContainer.innerHTML = ''; // Clear previous content
+        repliesContainer.innerText = '';
 
         snapshot.forEach(function(childSnapshot) {
             const reply = childSnapshot.val();
             const replyElement = document.createElement('div');
             replyElement.classList.add('reply');
-            replyElement.innerHTML = `
-                <p>User: ${reply.user}</p> <!-- Display the user who replied -->
-                <p>${reply.content}</p>
-                <p style="font-style:italic">${reply.timestamp}</p>
+            replyElement.innerText = `
+                User: ${DOMPurify.sanitize(reply.user)}
+                ${DOMPurify.sanitize(reply.content)}
+                ${DOMPurify.sanitize(reply.timestamp)}
             `;
             repliesContainer.appendChild(replyElement);
         });
@@ -120,5 +115,4 @@ function fetchReplies() {
     });
 }
 
-// Call fetchReplies function to load existing replies when the page loads
 fetchReplies();

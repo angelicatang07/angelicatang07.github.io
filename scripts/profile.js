@@ -1,7 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getDatabase, ref, update, get } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js"; // Import Firebase Storage components
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
+import DOMPurify from 'https://cdn.skypack.dev/dompurify';
 
 const firebaseConfig = {
     apiKey: "AIzaSyBQ1TcCHByOmGBpPNaO9jfOg7T9pVfSFFU",
@@ -12,148 +13,131 @@ const firebaseConfig = {
     messagingSenderId: "250867055712",
     appId: "1:250867055712:web:745853ebb86ae8e3801705",
     measurementId: "G-KBZ3ZQRVHB"
-  };
-
+};
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 const storage = getStorage(app);
 
-
-
+// Reference DOM elements
 const discordForm = document.getElementById("discord");
 const instagramForm = document.getElementById("instagram");
 const linkedinForm = document.getElementById("linkedin");
-
-const DTag= document.getElementById('d-tag');
-const ITag= document.getElementById('i-tag');
+const DTag = document.getElementById('d-tag');
+const ITag = document.getElementById('i-tag');
 const instaTag = document.getElementById("insta-tag");
-const LTag= document.getElementById('l-tag');
+const LTag = document.getElementById('l-tag');
 const linkedinTag = document.getElementById("linkedin-tag");
 
-function checkUserLoggedIn() {
-    const loginbtn = document.querySelector(".login-btn");
-    const profDiv = document.getElementById("profile-pic");
+// Function to update user profile based on form submission
+function updateUserProfile(userRef, formData) {
+    update(userRef, formData)
+        .then(() => {
+            console.log('User profile updated successfully');
+        })
+        .catch((error) => {
+            console.error('Error updating user profile:', error);
+            alert('Failed to update profile. Please try again.');
+        });
+}
 
+// Function to fetch and display user profile data
+function fetchUserProfile() {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const userRef = ref(database, 'users/' + user.uid);
-            get(userRef).then((snapshot) => {
-                if (snapshot.exists()) {
-                    const userData = snapshot.val();
-                    const username = userData.name;
-                    const mail = userData.email;
-                    const gram = userData.instagram_handle;
-                    const lnkin = userData.linkedin_acc;
-                    const kord = userData.discord_user;
-                    const prof = userData.profile_picture; // Default profile picture path
-                    profDiv.src = prof; // Update the src attribute of the image tag
-                    profDiv.style.display = "block";
-                    loginbtn.style.display = "none"; // Hide login button if user is logged in
-                    const dump = document.getElementById('data');
-                    dump.innerHTML= `<p>${username} <br /> <p style="inline">(private) ${mail}</p> <br /> <img src="${prof}" /></p>`;
-                    DTag.innerHTML =  `${kord}`;
-                    ITag.innerHTML=  `@${gram}`;
-                    LTag.innerHTML= `${lnkin}`;
-                          instaTag.href = `https://www.instagram.com/${gram}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
-                          instaTag.target = "_blank";
-                } else {
-                    console.log("No user data found");
-                }
-            }).catch((error) => {
-                console.error("Error fetching user data:", error);
-            });
-        } else {
-            profDiv.style.display = "none";
-            loginbtn.style.display = "block"; // Show login button if user is not logged in
+            get(userRef)
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        const { name, email, instagram_handle, linkedin_acc, discord_user, profile_picture } = userData;
+
+                        // Update UI elements with user data
+                        const dump = document.getElementById('data');
+                        dump.innerHTML = `<p>${DOMPurify.sanitize(name)} <br /> <p style="inline">(private) ${DOMPurify.sanitize(email)}</p> <br /> <img src="${DOMPurify.sanitize(profile_picture)}" /></p>`;
+                        DTag.innerHTML =  `${DOMPurify.sanitize(discord_user)}`;
+                        ITag.innerHTML =  `@${DOMPurify.sanitize(instagram_handle)}`;
+                        LTag.innerHTML = `${DOMPurify.sanitize(linkedin_acc)}`;
+                        instaTag.href = `https://www.instagram.com/${DOMPurify.sanitize(instagram_handle)}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
+                        instaTag.target = "_blank";
+                        linkedinTag.href = `${DOMPurify.sanitize(linkedin_acc)}`;
+                        linkedinTag.target = "_blank";
+                    } else {
+                        console.log("No user data found");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching user data:", error);
+                });
         }
     });
 }
 
+// Function to handle form submissions for updating Discord username
 discordForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
+    const dc = document.getElementById('dc').value.trim();
+    if (dc !== '') {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const userRef = ref(database, 'users/' + user.uid);
-                get(userRef).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        const userData = snapshot.val();
-                        const dc = document.getElementById('dc');
-                        const user_data = {
-                           discord_user: dc.value
-                          };
-                          DTag.innerHTML=  `${dc.value}`;
-                          update(userRef, user_data);
-                    } else {
-                        console.log("No user data found");
-                    }
-                }).catch((error) => {
-                    console.error("Error fetching user data:", error);
-                });
+                const user_data = { discord_user: dc };
+                updateUserProfile(userRef, user_data);
+                DTag.innerHTML =  `${DOMPurify.sanitize(dc)}`;
             } else {
-                alert('error');
+                console.error("User not authenticated");
+                alert('User not authenticated. Please log in.');
             }
         });
+    } else {
+        alert('Please enter a Discord username.');
     }
-);
+});
 
+// Function to handle form submissions for updating Instagram handle
 instagramForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    const insta = document.getElementById('insta').value.trim();
+    if (insta !== '') {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const userRef = ref(database, 'users/' + user.uid);
-                get(userRef).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        const userData = snapshot.val();
-                        const insta = document.getElementById('insta');
-                        const user_data = {
-                           instagram_handle: insta.value
-                          };
-                          update(userRef, user_data);
-                          ITag.innerHTML=  `@${insta.value}`;
-                          instaTag.href = `https://www.instagram.com/${insta.value}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
-                          instaTag.target = "_blank";
-                    } else {
-                        console.log("No user data found");
-                    }
-                }).catch((error) => {
-                    console.error("Error fetching user data:", error);
-                });
+                const user_data = { instagram_handle: insta };
+                updateUserProfile(userRef, user_data);
+                ITag.innerHTML =  `@${DOMPurify.sanitize(insta)}`;
+                instaTag.href = `https://www.instagram.com/${DOMPurify.sanitize(insta)}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
             } else {
-                alert('error');
+                console.error("User not authenticated");
+                alert('User not authenticated. Please log in.');
             }
         });
+    } else {
+        alert('Please enter an Instagram handle.');
     }
-);
+});
 
+// Function to handle form submissions for updating LinkedIn account
 linkedinForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    const linkedin = document.getElementById('linked').value.trim();
+    if (linkedin !== '') {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const userRef = ref(database, 'users/' + user.uid);
-                get(userRef).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        const userData = snapshot.val();
-                        const linkedin = document.getElementById('linked');
-                        const user_data = {
-                           linkedin_acc: linkedin.value
-                          };
-                          update(userRef, user_data);
-                          LTag.innerHTML=  `linkedin.com`;
-                          linkedinTag.href = `${linkedin.value}`;
-                          linkedinTag.target = "_blank";
-                    } else {
-                        console.log("No user data found");
-                    }
-                }).catch((error) => {
-                    console.error("Error fetching user data:", error);
-                });
+                const user_data = { linkedin_acc: linkedin };
+                updateUserProfile(userRef, user_data);
+                LTag.innerHTML =  `linkedin.com`;
+                linkedinTag.href = `${DOMPurify.sanitize(linkedin)}`;
             } else {
-                alert('error');
+                console.error("User not authenticated");
+                alert('User not authenticated. Please log in.');
             }
         });
+    } else {
+        alert('Please enter a LinkedIn account URL.');
     }
-);
-checkUserLoggedIn();
+});
+
+// Fetch and display user profile data on page load
+fetchUserProfile();
