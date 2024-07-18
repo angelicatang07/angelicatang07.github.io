@@ -158,6 +158,7 @@ header .login-btn:hover {
 .cta-button:hover {
     background-color: #1e90ff; /* Dodger Blue */
     animation: pulse 1s infinite;
+    cursor: pointer;
 }
 
 /* Main Content */
@@ -185,6 +186,12 @@ main {
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
     transform: scale(1.02); /* Use transform for hover effect */
     transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+#join-button {
+    padding: 0 5px;
+}
+#join-button:hover {
+    cursor: pointer;
 }
 
 .front {
@@ -287,6 +294,12 @@ footer {
     color: white;
     padding: 1rem 2rem;
     text-align: center;
+    height: 30px;
+    width: 100%;
+    display: relative;
+    display: flex;
+    padding-top: 5px;
+    justify-content: center;
 }
 
 .user-profile img {
@@ -309,4 +322,24 @@ footer {
 
 .user-profile img:hover {
     cursor:pointer;
+}
+
+footer img {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+.spread {
+    position: absolute;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+.spread img {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 5px;
 }

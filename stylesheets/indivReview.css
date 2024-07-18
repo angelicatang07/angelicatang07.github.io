@@ -291,3 +291,30 @@ footer {
 .user-profile img:hover {
     cursor:pointer;
 }
+footer {
+    height: 30px;
+    width: 100%;
+    display: relative;
+    display: flex;
+    padding-top: 5px;
+    justify-content: center;
+}
+footer img {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+.spread {
+    position: absolute;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+.spread img {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 5px;
+}

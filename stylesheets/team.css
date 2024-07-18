@@ -12,6 +12,8 @@ html, body {
     line-height: 1.6;
     background: linear-gradient(to right, #f0f2f5, #d1e0ff); /* Light gradient */
     color: #333;
+    width: 100%;
+    height: 100%;
     animation: fadeInSlide 1s ease-in-out forwards;
 }
 
@@ -119,6 +121,7 @@ main {
     padding: 20px;
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(5px);
+    min-height: 100%;
 }
 
 .hero {
@@ -171,7 +174,7 @@ main {
 }
 
 .box img.Pri:hover {
-    transform: rotate(10deg) scale(1.1);
+    transform: rotate(5deg) scale(1.1);
 }
 
 .user-profile img {
@@ -201,6 +204,9 @@ body.dark-mode {
     background: #181818;
     color: #f0f0f0;
 }
+.dark-mode i {
+    color:rgb(92, 92, 92);
+}
 
 header.dark-mode {
     background-color: #000;
@@ -212,3 +218,31 @@ header.dark-mode {
     /* border-bottom: 1px solid #001f3f; */
 }
 
+
+footer {
+    height: 30px;
+    width: 100%;
+    display: relative;
+    display: flex;
+    padding-top: 5px;
+    justify-content: center;
+}
+footer img {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+.spread {
+    position: absolute;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+.spread img {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 5px;
+}
