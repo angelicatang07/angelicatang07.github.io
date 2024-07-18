@@ -1,0 +1,323 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to right, #f0f2f5, #d1e0ff); /* Light gradient */
+    color: #333;
+    line-height: 1.6;
+    transition: background-color 0.3s ease-in-out;
+    animation: fadeInSlide 1s ease-in-out;
+}
+
+/* Keyframes for animations */
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.02);
+    }
+}
+
+/* Header and Navigation Bar */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #001f3f; /* Navy nav bar */
+    color: white;
+    animation: fadeInSlide 1s ease-in-out forwards;
+}
+
+header .logo a {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+header .logo a:hover {
+    color: #1e90ff;
+}
+
+header .nav-bar {
+    display: flex;
+    align-items: center;
+}
+
+header .nav-bar ul {
+    list-style: none;
+    display: flex;
+    margin-right: 2rem;
+}
+
+header .nav-bar ul li {
+    margin: 0 1rem;
+}
+
+header .nav-bar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+header .nav-bar ul li a:hover {
+    color: #1e90ff;
+    animation: bounce 0.5s;
+}
+
+header .login-btn {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+header .login-btn:hover {
+    background-color: #00509e;
+    color: #1abc9c;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 6rem 2rem;
+    background: linear-gradient(to right, #c1f5eb, #6e70f5); /* Cyan gradient */
+    color: #001f3f; /* Dark navy text */
+    animation: fadeInSlide 1s ease-in-out forwards;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background-color: #06090d; /* Deep Sky Blue */
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #1e90ff; /* Dodger Blue */
+    animation: pulse 1s infinite;
+}
+
+/* Main Content */
+main {
+    margin-top: 0; /* Ensure no top margin */
+    padding: 20px;
+    transition: padding 0.3s ease-in-out;
+    animation: fadeInSlide 1s ease-in-out; /* Apply fadeInSlide to main */
+}
+
+.content-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 40px auto 0 auto; /* Add top margin to create space from the hero section */
+    text-align: center; /* Center the text inside the box */
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    animation: fadeInSlide 1s ease-in-out;
+    animation-fill-mode: forwards; /* Ensure animation only runs once */
+}
+
+.content-box:hover {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02); /* Use transform for hover effect */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.front {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 2em;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.mtt {
+    font-size: 2.5em;
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    transition: color 0.3s ease-in-out;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.box img.Pri {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.box img.Pri:hover {
+    transform: scale(1.1);
+}
+
+.names {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.names div {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.names div:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.names h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    transition: color 0.3s ease-in-out;
+}
+
+.names h2:hover {
+    color: #1abc9c;
+}
+
+.names p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #666;
+}
+
+.names img.linkedin,
+.names img.insta,
+.names img.gmail {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.names img.linkedin:hover,
+.names img.gmail:hover,
+.names img.insta:hover {
+    transform: scale(1.2);
+}
+
+/* Footer */
+footer {
+    background-color: #001f3f; /* Navy */
+    color: white;
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover; /* Ensure the image covers the area */
+    display: none;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 50%; /* Position at the vertical center of header */
+    transform: translateY(-50%);
+    right: 20px; /* Adjust as needed */
+}
+
+.user-profile img:hover {
+    cursor:pointer;
+} 
+
+#feedbackForm {
+    padding-bottom: 25%;
+    position: relative;
+}
+textarea {
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+}

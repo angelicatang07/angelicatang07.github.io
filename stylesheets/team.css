@@ -152,15 +152,17 @@ main {
 
 .box {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 20px;
+    position: block;
 }
 
 .box img.Pri {
     width: 120px;
     height: 120px;
-    border-radius: 50%;
+    border-radius: 20px;
     border: 5px solid #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     object-fit: cover;
@@ -170,56 +172,6 @@ main {
 
 .box img.Pri:hover {
     transform: rotate(10deg) scale(1.1);
-}
-
-.names {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    margin-top: 40px;
-}
-
-.names div {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
-    animation: fadeInSlide 1s ease-in-out forwards;
-}
-
-.names div:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.names h2 {
-    font-size: 2rem;
-    color: #001f3f;
-    transition: color 0.3s ease-in-out;
-}
-
-.names h2:hover {
-    color: #1abc9c;
-}
-
-.names p {
-    font-size: 1em;
-    line-height: 1.6;
-    color: #666;
-}
-
-.names img.gmail {
-    width: 30px;
-    height: 30px;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-}
-
-.names img.gmail:hover {
-    transform: scale(1.2);
-    filter: brightness(1.2);
 }
 
 .user-profile img {
@@ -255,7 +207,8 @@ header.dark-mode {
     color: #f0f0f0;
 }
 
-.names.dark-mode div {
-    background-color: #333;
-    color: #f0f0f0;
+.box div {
+    padding: 15px;
+    /* border-bottom: 1px solid #001f3f; */
 }
+
