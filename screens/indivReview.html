@@ -76,16 +76,15 @@
             <p>${review}</p>
             <p><small><strong>Date:</strong> ${date}</small></p>
         `;
-
+        // <a href="#"><img class="linkedin" src="linkedin-icon.png" alt="LinkedIn"></a>
+        //             <a href="#"><img class="insta" src="instagram-icon.png" alt="Instagram"></a>
+        //              <a href="#"><img class="gmail" src="gmail-icon.png" alt="Gmail"></a>
         // Add dynamic content to creator-socials
         const creatorSocialsDiv = document.getElementById('creator-socials');
         creatorSocialsDiv.innerHTML = `
             <h4>Creator's Socials</h4>
             <p>Find more from <strong>${creator}</strong> on:</p>
-            <div class="social-icons">
-                <a href="#"><img class="linkedin" src="linkedin-icon.png" alt="LinkedIn"></a>
-                <a href="#"><img class="insta" src="instagram-icon.png" alt="Instagram"></a>
-                <a href="#"><img class="gmail" src="gmail-icon.png" alt="Gmail"></a>
+            <div class="social-icons"> 
             </div>
         `;
     </script>
