@@ -325,6 +325,15 @@ footer {
     cursor:pointer;
 }
 
+footer {
+    height: 30px;
+    width: 100%;
+    display: relative;
+    display: flex;
+    padding-top: 5px;
+    background-color: #001f3f; /* Navy */
+    justify-content: center;
+}
 footer img {
     width: 18px;
     height: 18px;
