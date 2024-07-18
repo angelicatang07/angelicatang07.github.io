@@ -39,7 +39,10 @@
         <h3>Review</h3>
         <section id="flex">
             <div id="reviewDetails" class="card"></div>
-            <div id="creator-socials" class="card"></div>
+            <div id="creator-socials" class="card">
+                <div id="socials"> 
+                </div>
+            </div>
         </section>
         <div id="content_container">
             <div id="write_reply_container" class="card">
@@ -68,25 +71,34 @@
         const review = params.get('review');
         const date = params.get('date');
 
-        // Display review details
-        const reviewDetailsDiv = document.getElementById('reviewDetails');
-        reviewDetailsDiv.innerHTML = `
-            <h4>${title}</h4>
-            <p><strong>Creator:</strong> <span id='creator-redirect'>${creator}</span></p>
-            <p>${review}</p>
-            <p><small><strong>Date:</strong> ${date}</small></p>
-        `;
-        // <a href="#"><img class="linkedin" src="linkedin-icon.png" alt="LinkedIn"></a>
-        //             <a href="#"><img class="insta" src="instagram-icon.png" alt="Instagram"></a>
-        //              <a href="#"><img class="gmail" src="gmail-icon.png" alt="Gmail"></a>
-        // Add dynamic content to creator-socials
-        const creatorSocialsDiv = document.getElementById('creator-socials');
-        creatorSocialsDiv.innerHTML = `
-            <h4>Creator's Socials</h4>
-            <p>Find more from <strong>${creator}</strong> on:</p>
-            <div class="social-icons"> 
-            </div>
-        `;
+const reviewDetailsDiv = document.getElementById('reviewDetails');
+const creatorSocialsDiv = document.getElementById('creator-socials');
+
+// Sanitize and insert text content into HTML elements
+reviewDetailsDiv.innerHTML = `
+    <h4>${escapeHTML(title)}</h4>
+    <p><strong>Creator:</strong> <span id='creator-redirect'>${escapeHTML(creator)}</span></p>
+    <p>${escapeHTML(review)}</p>
+    <p><small><strong>Date:</strong> ${escapeHTML(date)}</small></p>
+`;
+
+creatorSocialsDiv.innerHTML = `
+    <h4>Creator's Socials</h4>
+    <p>Find more from <strong>${escapeHTML(creator)}</strong> on:</p>
+`;
+
+function escapeHTML(str) {
+    return str.replace(/[&<>"']/g, function(match) {
+        return {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        }[match];
+    });
+}
+
     </script>
     <script type="module" src="../scripts/indivReview.js"></script>
     <footer>
