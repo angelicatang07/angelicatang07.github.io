@@ -186,7 +186,7 @@ header .login-btn:hover {
     cursor:pointer;
 }
 
-.bronze, .silver, .gold {
+.bronze, .silver, .gold, .donate {
     color: white;
     background-color:#00509e;
     flex-direction: column;
@@ -204,12 +204,12 @@ header .login-btn:hover {
 }
 
 iframe {
-    display: flex;
-    margin: 5px;
-    position: absolute;
+    position: sticky;
+    margin: 15px;
     right: 10px;
-    height: 90vh;
+    height: 95vh;
     width: 120vh;
+    border: 2px solid #001f3f;
 }
 
 .prem {
@@ -219,4 +219,8 @@ iframe {
 
 ul {
     padding: 15px;
+}
+
+.scroll {
+    position: relative;
 }
