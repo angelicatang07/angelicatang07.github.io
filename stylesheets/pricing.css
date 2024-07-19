@@ -206,10 +206,8 @@ iframe {
     position: fixed;
     margin: 15px;
     right: 10px;
-    top: 300px;
-    display: flex;
-    height: 90vh;
-    width: 120vh;
+    height: 80%;
+    width: 50%;
     border: 2px solid #001f3f;
 }
 
