@@ -423,14 +423,19 @@ footer {
 }
 
 .rating .star {
-    color: #ccc;
+    color: #ccc; /* Default color for stars in front */
     transition: color 0.3s;
 }
 
 .rating .star:hover,
-.rating .star.active {
-    color: #ffcc00;
+.rating .star:hover ~ .star {
+    color: #ff7043; /* Color for the hovered star */
 }
+
+.rating .star:hover ~ .star::before {
+    color: #ccc; /* Color for stars in front of the hovered star */
+}
+
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
