@@ -48,6 +48,54 @@ function checkUserLoggedIn() {
     });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.star');
+    const message = document.getElementById('message');
+  
+    let rating = 0; // Initialize rating variable
+
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            rating = parseInt(star.getAttribute('data-star'));
+            message.textContent = `You rated this ${rating} stars.`;
+            stars.forEach(s => s.classList.remove('active'));
+            star.classList.add('active');
+        });
+    });
+
+    const submitButton = document.getElementById("input_button");
+    submitButton.addEventListener("click", () => {
+        const inputBox = document.getElementById("input_box");
+        const inputRev = document.getElementById("input_review");
+        const title = inputBox.value.trim();
+        const rev = inputRev.value.trim();
+        const date = formatDate(new Date()); // Get current date in readable format
+    
+        if (title.length === 0 || rev.length === 0 || rating === 0) {
+            alert("Please fill in all fields and rate the task.");
+            return;
+        }
+    
+        // Add task to database
+        const newTaskRef = push(unfinishedTaskRef);
+        update(newTaskRef, {
+            title: title,
+            creator: username, // Ensure creator name is added
+            review: rev,
+            stars: rating,
+            date: date
+        }).then(() => {
+            inputBox.value = "";
+            inputRev.value = "";
+            create_unfinished_task(); // Refresh task list
+            rating = 0; // Reset rating after submission
+            stars.forEach(s => s.classList.remove('active')); // Reset star UI
+        }).catch(error => {
+            console.error("Error adding task: ", error);
+        });
+    });
+});
+
 checkUserLoggedIn();
 
 // Reference to task collections
@@ -57,7 +105,6 @@ const submitButton = document.getElementById("input_button");
 submitButton.addEventListener("click", () => {
     const inputBox = document.getElementById("input_box");
     const inputRev = document.getElementById("input_review");
-
     const title = inputBox.value.trim();
     const rev = inputRev.value.trim();
     const date = formatDate(new Date()); // Get current date in readable format
@@ -73,6 +120,7 @@ submitButton.addEventListener("click", () => {
         title: title,
         creator: username, // Ensure creator name is added
         review: rev,
+        stars: rating,
         date: date
     }).then(() => {
         inputBox.value = "";
@@ -91,7 +139,7 @@ function create_unfinished_task() {
     unfinishedTaskContainer.innerHTML = "";
 
     // Fetch tasks once from Firebase
-    onValue(unfinishedTaskRef, (snapshot) => {
+    onValue(ref(database, 'unfinished_task'), (snapshot) => {
         const tasks = snapshot.val();
         if (tasks) {
             Object.keys(tasks).forEach(key => {
@@ -108,7 +156,7 @@ function create_unfinished_task() {
     });
 }
 
-// Helper function to create task HTML element
+
 function createTaskElement(task, key, type) {
     const taskContainer = document.createElement("div");
     taskContainer.setAttribute("class", "task_container");
@@ -130,6 +178,10 @@ function createTaskElement(task, key, type) {
     review.setAttribute('class', 'task_review');
     review.textContent = task.review;
 
+    // Create stars container
+    const starsContainer = createStarsContainer(task.stars);
+    starsContainer.setAttribute('class', 'task_stars');
+
     const date = document.createElement('p');
     date.setAttribute('class', 'task_date');
     date.textContent = task.date;
@@ -144,12 +196,15 @@ function createTaskElement(task, key, type) {
     // Append elements
     taskData.appendChild(title);
     taskData.appendChild(date);
+    taskData.appendChild(starsContainer); // Append stars container
     taskData.appendChild(creator);
     taskData.appendChild(review);
     taskContainer.appendChild(taskData);
 
     return taskContainer;
 }
+
+
 
 
 // Function to delete task
@@ -178,3 +233,28 @@ function formatDate(date) {
 
 // Initial load of tasks
 create_unfinished_task();
+
+
+function createStarsContainer(rating) {
+    const starsContainer = document.createElement('div');
+    starsContainer.classList.add('stars-container');
+
+    // Create filled stars based on rating
+    for (let i = 0; i < rating; i++) {
+        const star = document.createElement('span');
+        star.innerHTML = '&#9733;'; // Star character
+        star.classList.add('filled'); // Add filled class
+        starsContainer.appendChild(star);
+    }
+
+    // Create empty stars for remaining
+    for (let i = rating; i < 5; i++) {
+        const star = document.createElement('span');
+        star.innerHTML = '&#9733;'; // Star character
+        star.classList.add('empty'); // Add empty class
+        starsContainer.appendChild(star);
+    }
+
+    return starsContainer;
+}
+

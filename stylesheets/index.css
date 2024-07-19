@@ -576,3 +576,33 @@ footer {
         width: 100%;
     }
 }
+
+.rating {
+    font-size: 40px;
+    cursor: pointer;
+  }
+  
+  .star {
+    color: #ccc;
+  }
+  
+  .star:hover,
+  .star.active {
+    color: #ffcc00;
+
+  }
+
+/* Styles for stars container */
+.task_stars {
+    font-size: 24px; /* Adjust as needed */
+}
+
+/* Style for filled star */
+.task_stars .filled {
+    color: #f1c40f; /* Filled star color */
+}
+
+/* Style for empty star */
+.task_stars .empty {
+    color: #ccc; /* Empty star color */
+}
