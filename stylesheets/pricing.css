@@ -213,6 +213,7 @@ iframe {
 
 .prem {
   display: flex;
+  margin-right: 5px;
   flex-direction: column;
 }
 
