@@ -113,19 +113,6 @@
         .user-profile img:hover {
             border-color: #651fff;
         }
-        .dark-mode-toggle {
-            background-color: #7c4dff;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            margin-left: 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .dark-mode-toggle:hover {
-            background-color: #651fff;
-        }
         .features {
             padding: 50px 0;
             text-align: center;
@@ -190,46 +177,7 @@
         }
         .rating .star:hover,
         .rating .star:hover ~ .star {
-            color: #ff7043;
-        }
-        .rating .star:hover ~ .star::before {
-            color: #ccc;
-        }
-        body.dark-mode {
-            background: linear-gradient(to right, #1c1c1c, #0d0d0d);
-            color: #ddd;
-        }
-
-        body.dark-mode header,
-        body.dark-mode footer {
-            background-color: #0d0d0d;
-        }
-
-        body.dark-mode .cta-button,
-        body.dark-mode .plan-box .learn-more {
-            background-color: #444;
-            color: #ddd;
-        }
-
-        body.dark-mode .cta-button:hover,
-        body.dark-mode .plan-box .learn-more:hover {
-            background-color: #555;
-        }
-
-        body.dark-mode .feature-box,
-        body.dark-mode .plan-box,
-        body.dark-mode .review-box {
-            background-color: #2a2a2a;
-            color: #ddd;
-        }
-
-        body.dark-mode .rating .star {
-            color: #555;
-        }
-
-        body.dark-mode .rating .star:hover,
-        body.dark-mode .rating .star.active {
-            color: #ff7043;
+            color: #ffa000;
         }
     </style>
 </head>
@@ -253,7 +201,6 @@
         <div class="user-profile"> 
             <a href="screens/profile.html"><img class="profile-pic" id="profile-pic" src="" alt="Profile Picture" /> </a>
         </div>
-        <button id="dark-mode-toggle" class="dark-mode-toggle">Toggle Dark Mode</button>
     </nav>
 </header>
 
@@ -350,15 +297,5 @@
 </footer>
 
 <script type="module" src="app.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-
-    darkModeToggle.addEventListener('click', function() {
-        body.classList.toggle('dark-mode');
-    });
-});
-</script>
 </body>
 </html>
