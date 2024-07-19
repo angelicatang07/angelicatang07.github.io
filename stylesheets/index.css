@@ -74,6 +74,7 @@ header .logo a {
     font-weight: 600;
     color: white;
     text-decoration: none;
+    animation: bounce 1s ease infinite;
 }
 
 header .nav-bar {
@@ -135,6 +136,7 @@ header .login-btn:hover {
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 600;
+    animation: bounce 1.5s infinite;
 }
 
 .hero p {
@@ -182,6 +184,12 @@ header .login-btn:hover {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-box:hover {
+    transform: scale(1.05);
+    animation: zoomIn 0.3s forwards;
 }
 
 .feature-box h3 {
