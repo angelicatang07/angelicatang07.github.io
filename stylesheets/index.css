@@ -389,7 +389,7 @@ footer {
     padding: 25px;
     margin: 10px;
     width: 50vh;
-    overflow: hidden;
+    overflow: scroll;
     height: 30vh;
     border-radius: 5px;
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
