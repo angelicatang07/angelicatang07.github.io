@@ -119,6 +119,12 @@ header .login-btn:hover {
     background-color: #651fff;
 }
 
+.logo img {
+    height: 50px; /* Adjust the height as needed */
+    width: auto;
+    display: block;
+}
+
 .user-profile {
     display: flex;
     align-items: center;
