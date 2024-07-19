@@ -204,10 +204,11 @@ header .login-btn:hover {
 }
 
 iframe {
-    position: sticky;
+    position: fixed;
     margin: 15px;
     right: 10px;
-    height: 95vh;
+    display: flex;
+    height: 150vh;
     width: 120vh;
     border: 2px solid #001f3f;
 }
@@ -221,6 +222,3 @@ ul {
     padding: 15px;
 }
 
-.scroll {
-    position: relative;
-}
