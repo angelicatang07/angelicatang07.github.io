@@ -628,6 +628,22 @@ footer {
     margin: 0 5px;
 }
 
+/* Dark Mode Button */
+.dark-mode-toggle {
+    background-color: #7c4dff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-left: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dark-mode-toggle:hover {
+    background-color: #651fff;
+}
+
 /* Dark Mode */
 body.dark-mode {
     background: linear-gradient(to right, #1c1c1c, #0d0d0d);
@@ -663,5 +679,5 @@ body.dark-mode .rating .star {
 
 body.dark-mode .rating .star:hover,
 body.dark-mode .rating .star.active {
-    color: #ffcc00;
+    color: #ff7043;
 }
