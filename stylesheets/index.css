@@ -123,8 +123,7 @@ header .login-btn:hover {
 .hero {
     text-align: center;
     padding: 6rem 2rem;
-    background: url('path/to/your/background-video.mp4') no-repeat center center;
-    background-size: cover;
+    background: url('images/reading2.jpg') no-repeat center center/cover;
     color: #001f3f;
     animation: fadeInSlide 1s ease-in-out forwards;
     position: relative;
