@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link href="images/ledgit.webp" rel="icon" type="image/webp">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ledgit-beta</title>
+    <title>Ledgit</title>
     <link rel="stylesheet" href="stylesheets/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -16,7 +16,7 @@
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            background-color: #f4f4f9;
+            background-color: #fafafa;
             color: #333;
         }
         .hero {
@@ -50,7 +50,7 @@
             font-size: 1.5rem;
         }
         .cta-button {
-            background: #ff7f50;
+            background: #7c4dff;
             color: #fff;
             padding: 10px 20px;
             text-decoration: none;
@@ -58,16 +58,17 @@
             transition: background 0.3s;
         }
         .cta-button:hover {
-            background: #ff4500;
+            background: #651fff;
         }
         header {
-            background: #333;
-            color: #fff;
+            background: #fff;
+            color: #333;
             padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .logo a {
             font-family: 'Pacifico', cursive;
-            color: #fff;
+            color: #000;
             font-size: 1.5rem;
             text-decoration: none;
         }
@@ -79,13 +80,38 @@
             justify-content: space-around;
         }
         .nav-bar a {
-            color: #fff;
+            color: #333;
             text-decoration: none;
             padding: 5px 10px;
-            transition: background 0.3s;
+            transition: color 0.3s;
         }
         .nav-bar a:hover {
-            background: #444;
+            color: #7c4dff;
+        }
+        .login-btn {
+            color: #fff;
+            background: #7c4dff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .login-btn:hover {
+            background: #651fff;
+        }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+        .user-profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #7c4dff;
+            transition: border-color 0.3s;
+        }
+        .user-profile img:hover {
+            border-color: #651fff;
         }
         .features {
             padding: 50px 0;
@@ -98,7 +124,7 @@
             justify-content: center;
         }
         .feature-box {
-            background: #f4f4f9;
+            background: #fafafa;
             margin: 20px;
             padding: 20px;
             border-radius: 10px;
@@ -147,11 +173,11 @@
         .rating .star {
             cursor: pointer;
             font-size: 1.5rem;
-            color: #ff7f50;
+            color: #ffcc00;
         }
         .rating .star:hover,
         .rating .star:hover ~ .star {
-            color: #ff4500;
+            color: #ffa000;
         }
     </style>
 </head>
