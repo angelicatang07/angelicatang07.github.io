@@ -2,48 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../stylesheets/indivReview.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ledgit Review</title>
-    <link href="../images/ledgit.webp" rel="icon" type="image/">
+    <link rel="stylesheet" href="../stylesheets/indivReview.css">
+    <link href="../images/ledgit.webp" rel="icon" type="image/webp">
     <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-database.js"></script>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KBZ3ZQRVHB');
-</script>
 <body>
     <header>
         <div class="logo">
-          <a href="../index.html">Ledgit</a>
+            <a href="../index.html">Ledgit</a>
         </div>
         <nav class="nav-bar">
-          <ul>
-            <li><a href="../index.html">Main</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="pricing.html">Funding</a></li>
-            <li><a href="feedback.html">Feedback</a></li>
-          </ul>
-          <a class="login-btn" href="login.html">Login</a>
-          <div class="user-profile"> 
-            <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" /> </a>
-        </div>
+            <ul>
+                <li><a href="../index.html">Main</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="pricing.html">Funding</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+            <a class="login-btn" href="login.html">Login</a>
+            <div class="user-profile"> 
+                <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" alt="Profile Picture" /></a>
+            </div>
         </nav>
-      </header>
+    </header>
     <main>
         <h3>Review</h3>
         <section id="flex">
             <div id="reviewDetails" class="card"></div>
-            <div id="creator-socials" class="card">
-             
-            </div>
+            <div id="creator-socials" class="card"></div>
         </section>
         <div id="content_container">
             <div id="write_reply_container" class="card">
@@ -62,54 +51,68 @@
     </main>
     <footer>
         <p>&copy; 2024 Ledgit. All rights reserved.</p>
+        <div class="spread">
+            <img src="../images/linkedin.png" alt="LinkedIn" href="https://www.linkedin.com/company/theledgit/about/">
+            <img src="../images/instagram.png" alt="Instagram" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA==">
+            <img src="../images/discord.png" alt="Discord" href="https://discord.gg/Gnybre75GK">
+            <img src="../images/tiktok.webp" alt="TikTok" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1">
+        </div>
     </footer>
     <script>
         // Extract query parameters
         const params = new URLSearchParams(window.location.search);
-        const key = params.get('key');
         const title = params.get('title');
         const creator = params.get('creator');
         const review = params.get('review');
         const date = params.get('date');
+        const stars = parseInt(params.get('stars')); // Parse stars as integer
 
-const reviewDetailsDiv = document.getElementById('reviewDetails');
-const creatorSocialsDiv = document.getElementById('creator-socials');
+        const reviewDetailsDiv = document.getElementById('reviewDetails');
+        const creatorSocialsDiv = document.getElementById('creator-socials');
 
-// Sanitize and insert text content into HTML elements
-reviewDetailsDiv.innerHTML = `
-    <h4>${escapeHTML(title)}</h4>
-    <p><strong>Creator:</strong> <span id='creator-redirect'>${escapeHTML(creator)}</span></p>
-    <p>${escapeHTML(review)}</p>
-    <p><small><strong>Date:</strong> ${escapeHTML(date)}</small></p>
-`;
+        // Function to create star elements based on rating
+        function createStarsContainer(rating) {
+            const starsContainer = document.createElement('div');
+            starsContainer.classList.add('stars-container');
 
-creatorSocialsDiv.innerHTML = `
-    <h4>Creator's Socials</h4>
-    <p>Find more from <strong>${escapeHTML(creator)}</strong> on:</p>
+            // Create 5 stars (fixed number) with appropriate classes
+            for (let i = 0; i <rating; i++) {
+                const star = document.createElement('span');
+                star.innerHTML = '&#9733;'; // Star character
+                
+                    star.classList.add('filled');
+               
+                starsContainer.appendChild(star);
+            }
+            return starsContainer;
+        }
+
+        // Sanitize and insert text content into HTML elements
+        reviewDetailsDiv.innerHTML = `
+            <h4>${escapeHTML(title)}</h4>
+            <p><small><strong>Date:</strong> ${escapeHTML(date)}</small></p>
+            <div>${createStarsContainer(stars).outerHTML}</div>
+            <p><strong>Creator:</strong> <span id='creator-redirect'>${escapeHTML(creator)}</span></p>
+            <p>${escapeHTML(review)}</p>
+        `;
+
+        creatorSocialsDiv.innerHTML = `
+            <h4>Creator's Socials</h4>
+            <p>Find more from <strong>${escapeHTML(creator)}</strong> on:</p>
             <p>Available Soon</p>
-`;
+        `;
 
-function escapeHTML(str) {
-    return str.replace(/[&<>"']/g, function(match) {
-        return {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#39;'
-        }[match];
-    });
-}
-
+        function escapeHTML(str) {
+            return str.replace(/[&<>"']/g, function(match) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                }[match];
+            });
+        }
     </script>
-    <script type="module" src="../scripts/indivReview.js"></script>
-    <footer>
-        <div class="spread">
-        <img src="../images/linkedin.png" href="https://www.linkedin.com/company/theledgit/about/"/>
-        <img src="../images/instagram.png" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA=="/>
-        <img src="../images/discord.png" href="https://discord.gg/Gnybre75GK"/>
-        <img src="../images/tiktok.webp" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1" />
-        </div>
-    </footer>
 </body>
 </html>

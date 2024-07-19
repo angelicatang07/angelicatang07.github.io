@@ -396,3 +396,18 @@ footer img {
         padding: 15px;
     }
 }
+.stars-container {
+    font-size: 24px; /* Adjust as needed */
+}
+
+.stars-container span {
+    color: white; /* Default color for all stars */
+}
+
+.stars-container .filled {
+    color: blue; /* Color for filled stars */
+}
+
+.stars-container .empty {
+    color: white; /* Color for empty stars */
+}

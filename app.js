@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const date = formatDate(new Date()); // Get current date in readable format
     
         if (title.length === 0 || rev.length === 0 || rating === 0) {
-            alert("Please fill in all fields and rate the task.");
+            alert("Please fill in all fields and rate the book.");
             return;
         }
     
@@ -189,14 +189,18 @@ function createTaskElement(task, key, type) {
     // Add click event listener for redirection
     taskContainer.addEventListener('click', () => {
         // Redirect to indivReview.html with query parameters
-        const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}`;
-        window.location.href = `screens/indivReview.html${queryParams}`;
+        taskContainer.addEventListener('click', () => {
+            const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}`;
+            window.location.href = `screens/indivReview.html${queryParams}`;
+        });
+          window.location.href = `screens/indivReview.html${queryParams}`;
     });
+    
 
     // Append elements
     taskData.appendChild(title);
     taskData.appendChild(date);
-    taskData.appendChild(starsContainer); // Append stars container
+    taskData.appendChild(starsContainer); 
     taskData.appendChild(creator);
     taskData.appendChild(review);
     taskContainer.appendChild(taskData);
