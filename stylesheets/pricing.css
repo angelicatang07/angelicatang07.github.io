@@ -176,7 +176,7 @@ header .login-btn:hover {
     align-items: center;
     gap: 10px;
     position: absolute;
-    top: 50%; /* Position at the vertical center of header */
+    top: 45%; /* Position at the vertical center of header */
     transform: translateY(-50%);
     right: 20px; /* Adjust as needed */
 }
@@ -213,7 +213,7 @@ iframe {
 
 .prem {
   display: flex;
-  margin-right: 5px;
+  margin-right: 10px;
   flex-direction: column;
 }
 
