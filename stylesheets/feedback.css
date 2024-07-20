@@ -328,31 +328,21 @@ textarea {
     position: absolute;
 }
 
-
-footer {
+.spread img {
+    width: 30px;
     height: 30px;
-    width: 100%;
-    display: relative;
-    display: flex;
-    padding-top: 5px;
-    justify-content: center;
-}
-footer img {
-    width: 18px;
-    height: 18px;
     border-radius: 5px;
     object-fit: cover;
     cursor: pointer;
+    margin: 20px;
     transition: transform 0.3s ease-in-out;
 }
 .spread {
-    position: absolute;
+    position: relative;
     display: flex;
-    margin: 0;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 10px;
     padding: 0;
-}
-.spread img {
-    display: flex;
-    justify-content: space-around;
-    margin: 0 5px;
+    background-color: lightgrey;
 }

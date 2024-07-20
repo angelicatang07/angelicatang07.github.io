@@ -685,3 +685,23 @@ body.dark-mode .rating .star.active {
 .task_date, .task_creator {
     font-size: 14px;
 }
+
+.spread img {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+    margin: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.spread {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 10px;
+    padding: 0;
+    background-color: lightgrey;
+}
