@@ -38,6 +38,7 @@ function checkUserLoggedIn() {
             get(userRef).then((snapshot) => {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
+                    username = userData.name;
                     prof = userData.profile_picture;
                 } else {
                     console.log("No user data found");
