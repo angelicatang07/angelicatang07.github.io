@@ -108,12 +108,7 @@ submitButton.addEventListener("click", () => {
     const title = inputBox.value.trim();
     const rev = inputRev.value.trim();
     const date = formatDate(new Date()); // Get current date in readable format
-
-    if (title.length === 0 || rev.length === 0) {
-        alert("Please fill in all fields");
-        return;
-    }
-
+    
     // Add task to database
     const newTaskRef = push(unfinishedTaskRef);
     update(newTaskRef, {

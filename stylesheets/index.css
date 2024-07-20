@@ -657,40 +657,47 @@ body.dark-mode .review-box {
     color: #ddd;
 }
 
-body.dark-mode .rating .star,
-.task_stars .empty {
+/* body.dark-mode .rating .star {
     color: #555;
 }
 
 body.dark-mode .rating .star:hover,
-body.dark-mode .rating .star.active,
-.task_stars .filled {
-    color: #ffcc00;
+body.dark-mode .rating .star.active {
+    color: gold;
+} */
+
+/* General star styles */
+.star {
+    font-size: 24px;
+    cursor: pointer;
+    color: lightgrey;
+    transition: color 0.2s;
 }
 
+.star.active  ~.star{
+    color: lightgrey; /* plot twist: color for inactive stars */
+}
 
-.star {
-    color: #ccc;
+.rating {
+    font-size: 40px;
+    cursor: pointer;
   }
   
-  .star:hover,
-  .star.active {
+  .star:hover {
     color: #ffcc00;
 
   }
 
 .task_stars {
     font-size: 24px; 
+    display: inline-block;
 }
-
 .task_stars .filled {
     color: #f1c40f; 
 }
-
 .task_stars .empty {
     color: #ccc; 
 }
-
 .task_title {
     font-weight: bold;
     font-size: 18px;
@@ -711,7 +718,6 @@ body.dark-mode .rating .star.active,
     overflow: scroll;
     padding: 10px;
 }
-
 .task_date, .task_creator {
     font-size: 14px;
 }
