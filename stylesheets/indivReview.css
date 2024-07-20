@@ -207,7 +207,7 @@ h3 {
     margin: 5px 0;
 }
 
-#reviewDetails span, #creator-socials strong {
+#creator-socials strong {
     color: #7c4dff;
 }
 
@@ -362,6 +362,10 @@ footer img {
 
 .stars-container .filled {
     color: #f1c40f;
+}
+
+.stars-container .empty {
+    color: lightgrey;
 }
 
 /* Responsive Styles */
