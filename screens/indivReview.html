@@ -6,6 +6,7 @@
     <title>Ledgit Review</title>
     <link rel="stylesheet" href="../stylesheets/indivReview.css">
     <link href="../images/ledgit.webp" rel="icon" type="image/webp">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-database.js"></script>
 </head>
@@ -49,6 +50,15 @@
             </div>
         </div>
     </main>
+    <div class="spread">
+        <a target="blank" href="https://www.linkedin.com/company/theledgit/about/"> <img src="../images/linkedin.png" /> </a>
+        <a target="blank" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA=="> <img src="../images/instagram.png" /> </a>
+        <a target="blank" href="https://discord.gg/Gnybre75GK"> <img src="../images/discord.png" /> </a>
+        <a target="blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"> <img src="../images/tiktok.webp"  /> </a>
+    </div>
+    <footer>
+        <p>&copy; 2024 Ledgit. All rights reserved.</p>
+    </footer>
     <script type="module" src="../scripts/indivReview.js"></script>
     <script>
         // Extract query parameters
@@ -67,13 +77,14 @@
             const starsContainer = document.createElement('div');
             starsContainer.classList.add('stars-container');
 
-            // Create 5 stars (fixed number) with appropriate classes
-            for (let i = 0; i <rating; i++) {
+            for (let i = 0; i < 5; i++) {
                 const star = document.createElement('span');
-                star.innerHTML = '&#9733;'; // Star character
-                
+                star.innerHTML = '&#9733;';
+                if (i < rating) {
                     star.classList.add('filled');
-               
+                } else {
+                    star.classList.add('empty');
+                }
                 starsContainer.appendChild(star);
             }
             return starsContainer;
