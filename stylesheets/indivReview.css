@@ -150,6 +150,7 @@ h3 {
 .card {
     background: white;
     padding: 20px;
+    min-width: 500px;
     margin: 10px;
     word-wrap:break-word;
     overflow: auto;
