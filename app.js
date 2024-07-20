@@ -199,9 +199,9 @@ function createTaskElement(task, key, type) {
 
     // Append elements
     taskData.appendChild(title);
-    taskData.appendChild(date);
-    taskData.appendChild(starsContainer); 
+    taskData.appendChild(date); 
     taskData.appendChild(creator);
+    taskData.appendChild(starsContainer);
     taskData.appendChild(review);
     taskContainer.appendChild(taskData);
 

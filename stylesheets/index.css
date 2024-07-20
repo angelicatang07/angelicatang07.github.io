@@ -690,3 +690,28 @@ body.dark-mode .rating .star.active,
 .task_stars .empty {
     color: #ccc; 
 }
+
+.task_title {
+    font-weight: bold;
+    font-size: 18px;
+}
+.task_review {
+    font-size: 16px;
+}
+.task_container:hover {
+    cursor: pointer;
+    border: 3px solid  rgb(158, 84, 158);
+}
+.task_container {
+    background-color: rgb(203, 154, 203);
+    border-radius: 20px;
+    border: 2px solid  rgb(178, 115, 178);
+    display: flex;
+    width: 30%;
+    overflow: scroll;
+    padding: 10px;
+}
+
+.task_date, .task_creator {
+    font-size: 14px;
+}
