@@ -413,30 +413,6 @@ footer {
     margin-top: 50px;
 }
 
-/* Rating */
-.rating {
-    font-size: 24px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-}
-
-.rating .star {
-    color: #ccc; /* Default color for stars in front */
-    transition: color 0.3s;
-}
-
-.rating .star:hover,
-.rating .star:hover ~ .star {
-    color: #ff7043; /* Color for the hovered star */
-}
-
-.rating .star:hover ~ .star::before {
-    color: #ccc; /* Color for stars in front of the hovered star */
-}
-
-
 /* Responsive Styles */
 @media (max-width: 1024px) {
     header {
@@ -666,22 +642,15 @@ body.dark-mode .rating .star.active {
     color: gold;
 } */
 
-/* General star styles */
 .star {
     font-size: 24px;
     cursor: pointer;
-    color: gold;
+    color: lightgrey;
     transition: color 0.2s;
 }
-
-.star.active  ~.star{
-    color: rgb(241, 241, 241); /* plot twist: color for inactive stars */
+.star.filled {
+    color: gold;
 }
-
-.rating {
-    font-size: 40px;
-    cursor: pointer;
-  }
 
 .task_stars {
     font-size: 24px; 

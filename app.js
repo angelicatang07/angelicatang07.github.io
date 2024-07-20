@@ -54,15 +54,20 @@ document.addEventListener('DOMContentLoaded', function() {
   
     let rating = 0; // Initialize rating variable
 
-    stars.forEach(star => {
-        star.addEventListener('click', function() {
-            rating = parseInt(star.getAttribute('data-star'));
-            message.textContent = `You rated this ${rating} stars.`;
-            stars.forEach(s => s.classList.remove('active'));
-            star.classList.add('active'); 
-
-           })
+stars.forEach((star, index) => {
+    star.addEventListener('click', () => {
+        stars.forEach((s, i) => {
+            if (i <= index) {
+                s.classList.add('filled');
+            } else {
+                s.classList.remove('filled');
+            }
         });
+        const rating = index + 1;
+        console.log(`You rated this ${rating} stars.`);
+    });
+});
+
 
     const submitButton = document.getElementById("input_button");
     submitButton.addEventListener("click", () => {
