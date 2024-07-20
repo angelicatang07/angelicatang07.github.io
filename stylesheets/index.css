@@ -670,22 +670,17 @@ body.dark-mode .rating .star.active {
 .star {
     font-size: 24px;
     cursor: pointer;
-    color: lightgrey;
+    color: gold;
     transition: color 0.2s;
 }
 
 .star.active  ~.star{
-    color: lightgrey; /* plot twist: color for inactive stars */
+    color: rgb(241, 241, 241); /* plot twist: color for inactive stars */
 }
 
 .rating {
     font-size: 40px;
     cursor: pointer;
-  }
-  
-  .star:hover {
-    color: #ffcc00;
-
   }
 
 .task_stars {
@@ -696,7 +691,7 @@ body.dark-mode .rating .star.active {
     color: #f1c40f; 
 }
 .task_stars .empty {
-    color: #ccc; 
+    color: lightgrey; 
 }
 .task_title {
     font-weight: bold;
@@ -714,7 +709,7 @@ body.dark-mode .rating .star.active {
     border-radius: 20px;
     border: 2px solid  rgb(178, 115, 178);
     display: flex;
-    width: 30%;
+    width: 350px;
     overflow: scroll;
     padding: 10px;
 }

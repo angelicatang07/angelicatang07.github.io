@@ -59,9 +59,10 @@ document.addEventListener('DOMContentLoaded', function() {
             rating = parseInt(star.getAttribute('data-star'));
             message.textContent = `You rated this ${rating} stars.`;
             stars.forEach(s => s.classList.remove('active'));
-            star.classList.add('active');
+            star.classList.add('active'); 
+
+           })
         });
-    });
 
     const submitButton = document.getElementById("input_button");
     submitButton.addEventListener("click", () => {
@@ -203,9 +204,6 @@ function createTaskElement(task, key, type) {
     return taskContainer;
 }
 
-
-
-
 // Function to delete task
 // function task_delete(key) {
 //     const taskRef = ref(database, 'unfinished_task/' + key);
@@ -232,7 +230,6 @@ function formatDate(date) {
 
 // Initial load of tasks
 create_unfinished_task();
-
 
 function createStarsContainer(rating) {
     const starsContainer = document.createElement('div');
