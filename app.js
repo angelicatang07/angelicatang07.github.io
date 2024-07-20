@@ -19,6 +19,7 @@ const auth = getAuth(app);
 const database = getDatabase(app);
 let username = 'Anonymous';
 let prof = 'images/pfp.png';
+let rating = 0;
 
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const stars = document.querySelectorAll('.star');
     const message = document.getElementById('message');
   
-    let rating = 0; // Initialize rating variable
+     rating = 0; // Initialize rating variable
 
 stars.forEach((star, index) => {
     star.addEventListener('click', () => {
@@ -63,8 +64,8 @@ stars.forEach((star, index) => {
                 s.classList.remove('filled');
             }
         });
-        const rating = index + 1;
-        console.log(`You rated this ${rating} stars.`);
+        rating = index + 1;
+        document.getElementById('message').innerText = `You rated this ${rating} stars.`;
     });
 });
 
