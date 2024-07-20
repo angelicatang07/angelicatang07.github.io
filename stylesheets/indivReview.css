@@ -299,16 +299,26 @@ footer img {
 
 /* Spread Section */
 .spread {
-    position: absolute;
     display: flex;
-    margin: 0;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 10px;
     padding: 0;
+    background-color: lightgrey;
 }
 
 .spread img {
-    display: flex;
-    justify-content: space-around;
-    margin: 0 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+    margin: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.spread img:hover {
+    transform: scale(1.2);
 }
 
 /* Reply Section */
