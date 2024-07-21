@@ -8,7 +8,7 @@
 /* General Styles */
 body {
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to right, #f0f2f5, #d1e0ff); /* Light gradient */
+    background: #fdf6e3; /* Light background */
     color: #333;
     line-height: 1.6;
     transition: background-color 0.3s ease-in-out;
@@ -101,7 +101,7 @@ header .nav-bar ul li a {
 }
 
 header .nav-bar ul li a:hover {
-    color: #1e90ff;
+    color: #7c4dff; /* Purple */
     animation: bounce 0.5s;
 }
 
@@ -140,7 +140,7 @@ header .login-btn:hover {
 }
 
 .cta-button {
-    background-color: #06090d; /* Deep Sky Blue */
+    background-color: #7c4dff; /* Purple */
     color: white;
     padding: 1rem 2rem;
     text-decoration: none;
@@ -150,7 +150,7 @@ header .login-btn:hover {
 }
 
 .cta-button:hover {
-    background-color: #1e90ff; /* Dodger Blue */
+    background-color: #651fff; /* Darker purple */
     animation: pulse 1s infinite;
 }
 
@@ -304,6 +304,7 @@ footer {
 .user-profile img:hover {
     cursor:pointer;
 } 
+
 #feedbackForm button {
     display: flex;
     bottom: 0;
@@ -312,14 +313,17 @@ footer {
     align-items: flex-end;
     justify-content: flex-start;
 }
+
 #feedbackForm button:hover {
    cursor: pointer;
 }
+
 #feedbackForm {
     padding-bottom: 25%;
     position: relative;
     display: block;
 }
+
 textarea {
     min-width: 100%;
     max-width: 100%;
@@ -337,6 +341,7 @@ textarea {
     margin: 20px;
     transition: transform 0.3s ease-in-out;
 }
+
 .spread {
     position: relative;
     display: flex;
