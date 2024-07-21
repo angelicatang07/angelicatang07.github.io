@@ -141,38 +141,39 @@ header .login-btn:hover {
 
 /* Hero Section */
 .hero {
+    position: relative;
     text-align: center;
-    padding: 6rem 2rem;
-    background: linear-gradient(to right, #c1f5eb, #6e70f5); /* Cyan gradient */
-    color: #001f3f;
+    color: #fff;
+}
+
+.hero img.hero-image {
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    object-fit: cover;
+    opacity: 0.8; /* Slight transparency for the image */
     animation: fadeInSlide 1s ease-in-out forwards;
 }
 
-.hero h1 {
+.hero .hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    animation: fadeInSlide 1s ease-in-out forwards;
+}
+
+.hero .hero-text h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 600;
     animation: bounce 1.5s infinite;
 }
 
-.hero h3 {
+.hero .hero-text h3 {
     font-size: 1.5rem;
     margin-bottom: 2rem;
-}
-
-.cta-button {
-    background-color: #06090d; /* Deep Sky Blue */
-    color: white;
-    padding: 1rem 2rem;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.cta-button:hover {
-    background-color: #1e90ff; /* Dodger Blue */
-    animation: pulse 1s infinite;
 }
 
 /* Main Content */
@@ -368,11 +369,11 @@ main {
         padding: 4rem 1rem;
     }
 
-    .hero h1 {
+    .hero .hero-text h1 {
         font-size: 2.5rem;
     }
 
-    .hero h3 {
+    .hero .hero-text h3 {
         font-size: 1.25rem;
     }
 
@@ -439,11 +440,11 @@ main {
         padding: 3rem 1rem;
     }
 
-    .hero h1 {
+   .hero .hero-text h1 {
         font-size: 2rem;
     }
 
-    .hero h3 {
+    .hero .hero-text h3 {
         font-size: 1rem;
     }
 
@@ -499,11 +500,11 @@ main {
         padding: 2rem 1rem;
     }
 
-    .hero h1 {
+     .hero .hero-text h1 {
         font-size: 1.5rem;
     }
 
-    .hero h3 {
+    .hero .hero-text h3 {
         font-size: 0.875rem;
     }
 
