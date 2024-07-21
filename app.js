@@ -20,8 +20,6 @@ const auth = getAuth(app);
 const database = getDatabase(app);
 let username = 'Anonymous';
 let prof = 'images/pfp.png';
-let rating = 0;
-
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
     const profDiv = document.getElementById("profile-pic");
@@ -49,12 +47,11 @@ function checkUserLoggedIn() {
         }
     });
 }
-
 document.addEventListener('DOMContentLoaded', function() {
     const stars = document.querySelectorAll('.star');
     const message = document.getElementById('message');
 
-    rating = 0; // Initialize rating variable
+    let rating = 0; // Initialize rating variable
 
     stars.forEach((star, index) => {
         star.addEventListener('click', () => {
@@ -88,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
         update(newTaskRef, {
             title: title,
             creator: username,
+            author: authors,
             review: rev,
             stars: rating,
             date: date
@@ -162,13 +160,38 @@ function createTaskElement(task, key, type) {
     date.setAttribute('class', 'task_date');
     date.textContent = task.date;
 
-    // Add click event listener for redirection
-    taskContainer.addEventListener('click', () => {
-        const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}`;
-        window.location.href = `screens/indivReview.html${queryParams}`;
-    });
+    // Fetch book details and update task container
+    fetchBookDetails(task.title)
+        .then((books) => {
+            if (books && books.length > 0) {
+                const book = books[0].volumeInfo;
+                const authors = book.authors ? book.authors.join(", ") : "Unknown author";
+                const imageUrl = book.imageLinks ? book.imageLinks.thumbnail : "images/default-book-cover.jpg";
 
-    // Append elements
+                const bookCover = document.createElement('img');
+                bookCover.setAttribute('class', 'task_book_cover');
+                bookCover.setAttribute('src', imageUrl);
+                bookCover.setAttribute('alt', task.title);
+
+                // Create authors element
+                const authorsElement = document.createElement('p');
+                authorsElement.setAttribute('class', 'task_authors');
+                authorsElement.textContent = `Authors: ${authors}`;
+
+                taskData.appendChild(bookCover);
+                taskData.appendChild(authorsElement); // Append authors element
+
+                // Add click event listener to navigate to indivReview.html
+                taskContainer.addEventListener('click', () => {
+                    const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
+                    window.location.href = `screens/indivReview.html${queryParams}`;
+                });
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching book details:", error);
+        });
+
     taskData.appendChild(title);
     taskData.appendChild(date);
     taskData.appendChild(creator);
@@ -209,7 +232,7 @@ function createStarsContainer(rating) {
 }
 
 async function fetchBookDetails(title) {
-    const apiKey = "AIzaSyDiNji6GQEQkGZz9R735txzNaiHBdrcWQU"; 
+    const apiKey = "AIzaSyDiNji6GQEQkGZz9R735txzNaiHBdrcWQU"; // Replace with your API key
     const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(title)}&key=${apiKey}`;
     try {
         const response = await fetch(url);
@@ -217,10 +240,10 @@ async function fetchBookDetails(title) {
             throw new Error("Network response was not ok.");
         }
         const data = await response.json();
-        return data.items; // Return the items array from API response
+        return data.items || []; // Return the items array from API response
     } catch (error) {
         console.error("Error fetching book details:", error);
-        return null;
+        return [];
     }
 }
 
@@ -251,4 +274,3 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-

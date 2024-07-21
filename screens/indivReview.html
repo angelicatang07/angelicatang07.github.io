@@ -70,6 +70,8 @@
         const creator = params.get('creator');
         const review = params.get('review');
         const date = params.get('date');
+        const cover = params.get('bookCover');
+        const authors = params.get('authors');
         const stars = parseInt(params.get('stars')); // Parse stars as integer
 
         const reviewDetailsDiv = document.getElementById('reviewDetails');
@@ -100,6 +102,8 @@
             <div>${createStarsContainer(stars).outerHTML}</div>
             <p><strong>Creator:</strong> <span id='creator-redirect'>${escapeHTML(creator)}</span></p>
             <p>${escapeHTML(review)}</p>
+            <p>${escapeHTML(authors)}</p>
+            <p>${escapeHTML(cover)}</p>
         `;
 
         creatorSocialsDiv.innerHTML = `
