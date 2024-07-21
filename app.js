@@ -226,21 +226,17 @@ async function fetchBookDetails(title) {
 
 document.addEventListener("DOMContentLoaded", () => {
     const inputBox = document.getElementById("input_box");
-    const inputButton = document.getElementById("input_button");
-    const inputReview = document.getElementById("input_review");
     const message = document.getElementById("message");
     const dataContainer = document.getElementById("data");
 
-    inputButton.addEventListener("click", async () => {
+    inputBox.addEventListener("input", async () => {
         const bookTitle = inputBox.value.trim();
-        const review = inputReview.value.trim();
 
         const books = await fetchBookDetails(bookTitle);
 
         if (books && books.length > 0) {
             const book = books[0].volumeInfo; // Get the first book's volume info
             const title = book.title;
-            const description = book.description || "No description available";
             const authors = book.authors ? book.authors.join(", ") : "Unknown author";
             const imageUrl = book.imageLinks ? book.imageLinks.thumbnail : "images/default-book-cover.jpg";
 
@@ -248,14 +244,10 @@ document.addEventListener("DOMContentLoaded", () => {
             dataContainer.innerHTML = `
                 <h2>${title}</h2>
                 <p><strong>Authors:</strong> ${authors}</p>
-                <p><strong>Description:</strong> ${description}</p>
                 <img src="${imageUrl}" alt="${title}" style="max-width: 100px; max-height: 100px;">
-                <p>Your Review:</p>
-                <p>${review}</p>
             `;
         } else {
             message.textContent = "No books found for the given title.";
-            dataContainer.innerHTML = ""; // Clear previous data if no book found
         }
     });
 });
