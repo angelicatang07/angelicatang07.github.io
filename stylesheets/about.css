@@ -12,7 +12,7 @@ body {
     color: #333;
     line-height: 1.6;
     transition: background-color 0.3s ease-in-out;
-    animation: fadeInSlide 1s ease-in-out;
+    animation: fadeInSlide 1s ease-in-out forwards;
 }
 
 /* Keyframes for animations */
@@ -76,6 +76,7 @@ header .logo a {
     font-weight: 600;
     color: white;
     text-decoration: none;
+    font-family: 'Pacifico', cursive;
 }
 
 header .nav-bar {
@@ -119,6 +120,30 @@ header .login-btn:hover {
     background-color: #00509e;
 }
 
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+}
+
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #7c4dff;
+    transition: border-color 0.3s;
+}
+
+.user-profile img:hover {
+    cursor: pointer;
+    border-color: #651fff;
+}
+
 /* Hero Section */
 .hero {
     text-align: center;
@@ -132,6 +157,7 @@ header .login-btn:hover {
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 600;
+    font-family: 'Pacifico', cursive;
 }
 
 .hero p {
@@ -282,29 +308,54 @@ main {
     transform: scale(1.2);
 }
 
-.user-profile img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover; /* Ensure the image covers the area */
-    display: none;
-}
-
-.user-profile {
+/* Social Icons */
+.social-icons {
     display: flex;
-    align-items: center;
     gap: 10px;
-    position: absolute;
-    top: 50%; /* Position at the vertical center of header */
-    transform: translateY(-50%);
-    right: 20px; /* Adjust as needed */
+    margin-top: 10px;
 }
 
-.user-profile img:hover {
+.social-icons a {
+    display: inline-block;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 1rem 2rem;
+    text-align: center;
+    margin-top: 50px;
+}
+
+footer img {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    object-fit: cover;
     cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 }
 
-
+/* Spread Section */
+.spread {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 10px;
+    padding: 0;
+    background-color: lightgrey;
+}
 
 .spread img {
     width: 30px;
@@ -316,14 +367,8 @@ main {
     transition: transform 0.3s ease-in-out;
 }
 
-.spread {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 40px 10px;
-    padding: 0;
-    background-color: lightgrey;
+.spread img:hover {
+    transform: scale(1.2);
 }
 
 /* Responsive Styles */
