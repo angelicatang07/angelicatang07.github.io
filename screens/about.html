@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ledgit About</title>
-  <link href="../images/ledgit.webp" rel="icon" type="image/">
+  <link href="../images/ledgit.webp" rel="icon" type="image/webp">
   <link href="../stylesheets/about.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
 </head>
@@ -36,14 +36,14 @@
       </ul>
       <a class="login-btn" href="login.html">Login</a>
       <div class="user-profile"> 
-        <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" /> </a>
+        <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" alt="Profile Picture" /></a>
     </div>
     </nav>
   </header>
   <main>
     <section class="hero">
       <h1>See Previews!</h1>
-      <h3>Reinventing book discovery platforms for new generations by offering personalized recommendations, entertaining book reviews, and lively niche communities that make reading fun.</h3>
+      <p>Reinventing book discovery platforms for new generations by offering personalized recommendations, entertaining book reviews, and lively niche communities that make reading fun.</p>
     </section>
     <div class="content-box">
       <h2>Join Our Mailing List!</h2>
@@ -51,7 +51,6 @@
       <form id="subscriptionForm">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
-        <!-- <label for="join-button" class="visually-hidden">Join Mailing List</label> -->
         <button type="submit" id="join-button">Join</button>
       </form>
       <ul id="subscriptionList"></ul>
@@ -61,10 +60,12 @@
       <a target="blank" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA=="> <img src="../images/instagram.png" /> </a>
       <a target="blank" href="https://discord.gg/Gnybre75GK"> <img src="../images/discord.png" /> </a>
       <a target="blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"> <img src="../images/tiktok.webp"  /> </a>
-       </div>
+    </div>
   </main>
+  <footer>
+    <p>&copy; 2024 Ledgit. All rights reserved.</p>
+  </footer>
 
 <script type="module" src="../scripts/about.js"></script>
-  
 </body>
 </html>
