@@ -68,68 +68,64 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const submitButton = document.getElementById("input_button");
+
     submitButton.addEventListener("click", () => {
         const inputBox = document.getElementById("input_box");
         const inputRev = document.getElementById("input_review");
         const title = inputBox.value.trim();
         const rev = inputRev.value.trim();
-        const date = formatDate(new Date()); // Get current date in readable format
-
+        const date = formatDate(new Date());
+    
         if (title.length === 0 || rev.length === 0 || rating === 0) {
             alert("Please fill in all fields and rate the book.");
             return;
         }
-
-        // Add task to database
+    
+        const unfinishedTaskRef = ref(database, 'unfinished_task'); // Define Firebase reference
         const newTaskRef = push(unfinishedTaskRef);
+    
         update(newTaskRef, {
             title: title,
             creator: username,
-            author: authors,
             review: rev,
             stars: rating,
             date: date
         }).then(() => {
             inputBox.value = "";
             inputRev.value = "";
-            create_unfinished_task(); // Refresh task list
-            rating = 0; // Reset rating after submission
-            stars.forEach(s => s.classList.remove('active')); // Reset star UI
+            rating = 0;
+            stars.forEach(s => s.classList.remove('filled'));
         }).catch(error => {
             console.error("Error adding task: ", error);
         });
     });
+    
+
 
     checkUserLoggedIn();
-    create_unfinished_task(); // Initial load of tasks
+    create_unfinished_task(); 
 });
-
-// Reference to task collections
-const unfinishedTaskRef = ref(database, 'unfinished_task');
 
 function create_unfinished_task() {
     const unfinishedTaskContainer = document.getElementById("unfinished_tasks_container");
+    const unfinishedTaskRef = ref(database, 'unfinished_task');
 
-    // Clear existing task containers
-    unfinishedTaskContainer.innerHTML = "";
-
-    // Fetch tasks once from Firebase
     onValue(unfinishedTaskRef, (snapshot) => {
         const tasks = snapshot.val();
         if (tasks) {
+            unfinishedTaskContainer.innerHTML = "";
+
             Object.keys(tasks).forEach(key => {
                 const task = tasks[key];
                 const taskContainer = createTaskElement(task, key, 'unfinished');
                 unfinishedTaskContainer.appendChild(taskContainer);
             });
         } else {
-            // Handle case where there are no tasks
             console.log("No tasks found");
         }
-    }, {
-        onlyOnce: true // Fetch data only once
     });
 }
+
 
 function createTaskElement(task, key, type) {
     const taskContainer = document.createElement("div");
@@ -202,7 +198,6 @@ function createTaskElement(task, key, type) {
     return taskContainer;
 }
 
-// Function to format date as "Month Day, Year"
 function formatDate(date) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return date.toLocaleDateString(undefined, options);
@@ -269,8 +264,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p><strong>Author(s):</strong> ${authors}</p>
                 <img src="${imageUrl}" alt="${title}" style="max-width: 100px; max-height: 100px;">
             `;
-        } else {
-            message.textContent = "No books found for the given title.";
         }
     });
 });
