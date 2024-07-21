@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Display book details in #data element
             dataContainer.innerHTML = `
                 <h2>${title}</h2>
-                <p><strong>Authors:</strong> ${authors}</p>
+                <p><strong>Author(s):</strong> ${authors}</p>
                 <img src="${imageUrl}" alt="${title}" style="max-width: 100px; max-height: 100px;">
             `;
         } else {
