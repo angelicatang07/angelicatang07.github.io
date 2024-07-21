@@ -1,3 +1,5 @@
+
+
 /* Basic Reset */
 * {
     margin: 0;
@@ -66,7 +68,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #001f3f; /* Navy nav bar */
+    background-color: #333; /* Dark background */
     color: white;
     animation: fadeInSlide 1s ease-in-out forwards;
 }
@@ -74,13 +76,20 @@ header {
 header .logo a {
     font-size: 1.8rem;
     font-weight: 600;
-    color: white;
+    color: #fdf6e3; /* Light text */
     text-decoration: none;
+    font-family: 'Pacifico', cursive;
 }
 
 header .nav-bar {
     display: flex;
     align-items: center;
+}
+
+.logo img {
+    height: 40px; /* Adjust the height as needed */
+    width: auto;
+    display: block;
 }
 
 header .nav-bar ul {
@@ -94,21 +103,15 @@ header .nav-bar ul li {
 }
 
 header .nav-bar ul li a {
-    color: white;
+    color: #fdf6e3; /* Light text */
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
 header .nav-bar ul li a:hover {
-    color: #7c4dff; /* Purple */
+    color: #ffb400; /* Gold */
     animation: bounce 0.5s;
-}
-
-.logo img {
-    height: 40px; /* Adjust the height as needed */
-    width: auto;
-    display: block;
 }
 
 header .login-btn {
@@ -116,21 +119,22 @@ header .login-btn {
     text-decoration: none;
     font-weight: 600;
     padding: 0.5rem 1rem;
-    border: 1px solid white;
+    background: #ffb400; /* Gold */
+    border: none;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
 
 header .login-btn:hover {
-    background-color: #00509e;
+    background-color: #cc8b00; /* Darker gold */
 }
 
 /* Hero Section */
 .hero {
     text-align: center;
     padding: 6rem 2rem;
-    background: linear-gradient(to right, #c1f5eb, #6e70f5); /* Cyan gradient */
-    color: #001f3f; /* Dark navy text */
+    background: linear-gradient(to right, #ffb400, #f7921e); /* Gold gradient */
+    color: #333; /* Dark text */
     animation: fadeInSlide 1s ease-in-out forwards;
 }
 
@@ -146,7 +150,7 @@ header .login-btn:hover {
 }
 
 .cta-button {
-    background-color: #7c4dff; /* Purple */
+    background-color: #ffb400; /* Gold */
     color: white;
     padding: 1rem 2rem;
     text-decoration: none;
@@ -156,7 +160,7 @@ header .login-btn:hover {
 }
 
 .cta-button:hover {
-    background-color: #651fff; /* Darker purple */
+    background-color: #cc8b00; /* Darker gold */
     animation: pulse 1s infinite;
 }
 
@@ -190,7 +194,7 @@ main {
 .front {
     width: 100%;
     height: 300px;
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    background: linear-gradient(to right, #ffb400, #f7921e); /* Gold gradient */
     margin-bottom: 40px;
     display: flex;
     justify-content: center;
@@ -204,7 +208,7 @@ main {
 .mtt {
     font-size: 2.5em;
     text-align: center;
-    color: #2c3e50;
+    color: #333; /* Dark text */
     margin-bottom: 40px;
     transition: color 0.3s ease-in-out;
 }
@@ -251,12 +255,12 @@ main {
 .names h2 {
     font-size: 1.5em;
     margin-bottom: 10px;
-    color: #2c3e50;
+    color: #333; /* Dark text */
     transition: color 0.3s ease-in-out;
 }
 
 .names h2:hover {
-    color: #1abc9c;
+    color: #ffb400; /* Gold */
 }
 
 .names p {
@@ -283,7 +287,7 @@ main {
 
 /* Footer */
 footer {
-    background-color: #001f3f; /* Navy */
+    background-color: #333; /* Dark background */
     color: white;
     padding: 1rem 2rem;
     text-align: center;
@@ -308,20 +312,20 @@ footer {
 }
 
 .user-profile img:hover {
-    cursor:pointer;
-} 
+    cursor: pointer;
+}
 
 #feedbackForm button {
     display: flex;
     bottom: 0;
-    right:20px;
+    right: 20px;
     position: absolute;
     align-items: flex-end;
     justify-content: flex-start;
 }
 
 #feedbackForm button:hover {
-   cursor: pointer;
+    cursor: pointer;
 }
 
 #feedbackForm {
@@ -356,4 +360,204 @@ textarea {
     margin: 40px 10px;
     padding: 0;
     background-color: lightgrey;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    header {
+        padding: 1rem;
+    }
+
+    header .nav-bar ul {
+        margin-right: 1rem;
+    }
+
+    header .nav-bar ul li {
+        margin: 0 0.5rem;
+    }
+
+    header .logo a {
+        font-size: 1.5rem;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .hero {
+        padding: 4rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+    }
+
+    .cta-button {
+        font-size: 0.875rem;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .content-box {
+        padding: 20px;
+    }
+
+    .mtt {
+        font-size: 2rem;
+    }
+
+    .box img.Pri {
+        width: 100px;
+        height: 100px;
+    }
+
+    .names {
+        gap: 20px;
+    }
+
+    .names div {
+        padding: 15px;
+    }
+
+    .names h2 {
+        font-size: 1.25em;
+    }
+
+    .names p {
+        font-size: 0.875em;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    header .nav-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .nav-bar ul {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    header .nav-bar ul li {
+        margin: 0.5rem 0;
+    }
+
+    header .logo a {
+        font-size: 1.3rem;
+    }
+
+    .hero {
+        padding: 3rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .content-box {
+        padding: 15px;
+    }
+
+    .mtt {
+        font-size: 1.75rem;
+    }
+
+    .box img.Pri {
+        width: 80px;
+        height: 80px;
+    }
+
+    .names {
+        gap: 15px;
+    }
+
+    .names div {
+        padding: 10px;
+    }
+
+    .names h2 {
+        font-size: 1.1em;
+    }
+
+    .names p {
+        font-size: 0.75em;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 0.5rem;
+    }
+
+    header .nav-bar ul {
+        margin-right: 0;
+    }
+
+    header .logo a {
+        font-size: 1.2rem;
+    }
+
+    .hero {
+        padding: 2rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 0.875rem;
+    }
+
+    .cta-button {
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .content-box {
+        padding: 10px;
+    }
+
+    .mtt {
+        font-size: 1.5rem;
+    }
+
+    .box img.Pri {
+        width: 60px;
+        height: 60px;
+    }
+
+    .names {
+        gap: 10px;
+    }
+
+    .names div {
+        padding: 5px;
+    }
+
+    .names h2 {
+        font-size: 1em;
+    }
+
+    .names p {
+        font-size: 0.65em;
+    }
 }
