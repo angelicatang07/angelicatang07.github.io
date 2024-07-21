@@ -98,12 +98,12 @@
         // Sanitize and insert text content into HTML elements
         reviewDetailsDiv.innerHTML = `
             <h4>${escapeHTML(title)}</h4>
-            <p><small><strong>Date:</strong> ${escapeHTML(date)}</small></p>
+            <p style="color:#7c4dff">Author(s): ${escapeHTML(authors)}</p>
+            <p><img src="${escapeHTML(cover)}" alt="Book Cover"></p>
             <div>${createStarsContainer(stars).outerHTML}</div>
+            <p><small><strong>Date:</strong> ${escapeHTML(date)}</small></p>
             <p><strong>Creator:</strong> <span id='creator-redirect'>${escapeHTML(creator)}</span></p>
             <p>${escapeHTML(review)}</p>
-            <p>Author(s): ${escapeHTML(authors)}</p>
-            <p><img src="${escapeHTML(cover)}" alt="Book Cover"></p>
         `;
 
         creatorSocialsDiv.innerHTML = `
