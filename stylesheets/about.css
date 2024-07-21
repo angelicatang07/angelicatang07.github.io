@@ -106,6 +106,12 @@ header .nav-bar ul li a:hover {
     color: #7c4dff;
 }
 
+.logo img {
+    height: 40px; /* Adjust the height as needed */
+    width: auto;
+    display: block;
+}
+
 header .login-btn {
     color: white;
     text-decoration: none;
