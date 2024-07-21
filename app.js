@@ -75,7 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const title = inputBox.value.trim();
         const rev = inputRev.value.trim();
         const date = formatDate(new Date());
-    
+        const dataCon = document.getElementById('data');
+        
         if (title.length === 0 || rev.length === 0 || rating === 0) {
             alert("Please fill in all fields and rate the book.");
             return;
@@ -93,6 +94,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }).then(() => {
             inputBox.value = "";
             inputRev.value = "";
+            message.innerText = ""; 
+            dataCon.innerText = "";
             rating = 0;
             stars.forEach(s => s.classList.remove('filled'));
         }).catch(error => {
