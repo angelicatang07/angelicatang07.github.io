@@ -207,3 +207,56 @@ function createStarsContainer(rating) {
 
     return starsContainer;
 }
+
+async function fetchBookDetails(title) {
+    const apiKey = "AIzaSyDiNji6GQEQkGZz9R735txzNaiHBdrcWQU"; 
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(title)}&key=${apiKey}`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error("Network response was not ok.");
+        }
+        const data = await response.json();
+        return data.items; // Return the items array from API response
+    } catch (error) {
+        console.error("Error fetching book details:", error);
+        return null;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const inputBox = document.getElementById("input_box");
+    const inputButton = document.getElementById("input_button");
+    const inputReview = document.getElementById("input_review");
+    const message = document.getElementById("message");
+    const dataContainer = document.getElementById("data");
+
+    inputButton.addEventListener("click", async () => {
+        const bookTitle = inputBox.value.trim();
+        const review = inputReview.value.trim();
+
+        const books = await fetchBookDetails(bookTitle);
+
+        if (books && books.length > 0) {
+            const book = books[0].volumeInfo; // Get the first book's volume info
+            const title = book.title;
+            const description = book.description || "No description available";
+            const authors = book.authors ? book.authors.join(", ") : "Unknown author";
+            const imageUrl = book.imageLinks ? book.imageLinks.thumbnail : "images/default-book-cover.jpg";
+
+            // Display book details in #data element
+            dataContainer.innerHTML = `
+                <h2>${title}</h2>
+                <p><strong>Authors:</strong> ${authors}</p>
+                <p><strong>Description:</strong> ${description}</p>
+                <img src="${imageUrl}" alt="${title}" style="max-width: 100px; max-height: 100px;">
+                <p>Your Review:</p>
+                <p>${review}</p>
+            `;
+        } else {
+            message.textContent = "No books found for the given title.";
+            dataContainer.innerHTML = ""; // Clear previous data if no book found
+        }
+    });
+});
+
