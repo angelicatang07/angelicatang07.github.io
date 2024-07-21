@@ -102,6 +102,12 @@ header .nav-bar ul li {
     margin: 0 1rem;
 }
 
+.logo img {
+    height: 40px; /* Adjust the height as needed */
+    width: auto;
+    display: block;
+}
+
 header .nav-bar ul li a {
     color: #333;
     text-decoration: none;
