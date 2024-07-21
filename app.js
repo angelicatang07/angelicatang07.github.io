@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const rev = inputRev.value.trim();
         const date = formatDate(new Date());
         const dataCon = document.getElementById('data');
-        
+
         if (title.length === 0 || rev.length === 0 || rating === 0) {
             alert("Please fill in all fields and rate the book.");
             return;
@@ -172,14 +172,11 @@ function createTaskElement(task, key, type) {
                 bookCover.setAttribute('src', imageUrl);
                 bookCover.setAttribute('alt', task.title);
 
-                // Create authors element
-                const authorsElement = document.createElement('p');
-                authorsElement.setAttribute('class', 'task_authors');
-                authorsElement.textContent = `Authors: ${authors}`;
+                // const authorsElement = document.createElement('p');
+                // authorsElement.setAttribute('class', 'task_authors');
+                // authorsElement.textContent = `Authors: ${authors}`;
 
                 taskData.appendChild(bookCover);
-                taskData.appendChild(authorsElement); // Append authors element
-
                 // Add click event listener to navigate to indivReview.html
                 taskContainer.addEventListener('click', () => {
                     const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
