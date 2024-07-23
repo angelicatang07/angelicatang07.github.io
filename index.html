@@ -293,6 +293,51 @@
     <p>&copy; 2024 Ledgit. All rights reserved.</p>
 </footer>
 
-<script type="module" src="app.js"></script>
+<script type="module">
+    async function getPrediction(reviewText) {
+        const response = await fetch('http://localhost:5000/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: reviewText })
+        });
+        const result = await response.json();
+        return result.score;
+    }
+
+    document.getElementById('input_button').addEventListener('click', async () => {
+        const reviewText = document.getElementById('input_review').value;
+        const title = document.getElementById('input_box').value;
+
+        if (!title || !reviewText) {
+            document.getElementById('message').innerText = "Please fill in both the title and review.";
+            return;
+        }
+
+        const score = await getPrediction(reviewText);
+
+        if (score >= 200) {
+            // Allow the review to be posted
+            const reviewContainer = document.createElement('div');
+            reviewContainer.classList.add('review-box');
+            const reviewTitle = document.createElement('h3');
+            reviewTitle.innerText = title;
+            const reviewContent = document.createElement('p');
+            reviewContent.innerText = reviewText;
+            reviewContainer.appendChild(reviewTitle);
+            reviewContainer.appendChild(reviewContent);
+            document.getElementById('unfinished_tasks_container').appendChild(reviewContainer);
+
+            // Clear input fields
+            document.getElementById('input_box').value = '';
+            document.getElementById('input_review').value = '';
+            document.getElementById('message').innerText = "Review posted successfully!";
+        } else {
+            document.getElementById('message').innerText = "Your review's funniness score is too low to be posted.";
+        }
+    });
+</script>
+
 </body>
 </html>
