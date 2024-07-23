@@ -266,9 +266,9 @@
                 <span class="star" data-star="3">&#9733;</span>
                 <span class="star" data-star="4">&#9733;</span>
                 <span class="star" data-star="5">&#9733;</span>
-              </div>
-              <div class="data" id='data'></div>
-              <p id="message"></p>
+            </div>
+            <div class="data" id="data"></div>
+            <p id="message"></p>
             <button id="input_button">Submit</button>
         </div>
     </div>
@@ -288,12 +288,12 @@
     <a target="blank" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA=="> <img src="../images/instagram.png" /> </a>
     <a target="blank" href="https://discord.gg/Gnybre75GK"> <img src="../images/discord.png" /> </a>
     <a target="blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"> <img src="../images/tiktok.webp"  /> </a>
-     </div>
+</div>
 <footer>
     <p>&copy; 2024 Ledgit. All rights reserved.</p>
 </footer>
 
-<script type="module">
+<script>
     async function getPrediction(reviewText) {
         const response = await fetch('http://localhost:5000/predict', {
             method: 'POST',
