@@ -86,7 +86,6 @@ header .logo a {
     display: block;
 }
 
-
 header .nav-bar {
     display: flex;
     align-items: center;
@@ -201,12 +200,23 @@ header .login-btn:hover {
     margin: 0 10px;
     transition: transform 0.3s ease;
 }
+#insta-tag, #linkedin-tag, #discord-tag {
+    max-height: 50px;
+    max-width: 50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    margin: 10px;
+}
+#discord-pic {
+    border-radius: 10px;
+}
 
 .social-links a:hover {
     transform: scale(1.2);
 }
 
-.progress-bar {
+/* .progress-bar {
     background: #e0e0e0;
     border-radius: 5px;
     overflow: hidden;
@@ -218,7 +228,7 @@ header .login-btn:hover {
     background: #1e90ff;
     width: 75%;
     transition: width 0.3s;
-}
+} */
 
 .profile-completion {
     font-size: 0.9rem;
