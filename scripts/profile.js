@@ -29,18 +29,20 @@ const ITag = document.getElementById('i-tag');
 const instaTag = document.getElementById("insta-tag");
 const LTag = document.getElementById('l-tag');
 const linkedinTag = document.getElementById("linkedin-tag");
-
+let username = document.getElementById('username');
+let profile = document.getElementById("profile-pic");
+let profile2 = document.getElementById("profile-pic2");
 // Function to update user profile based on form submission
-function updateUserProfile(userRef, formData) {
-    update(userRef, formData)
-        .then(() => {
-            console.log('User profile updated successfully');
-        })
-        .catch((error) => {
-            console.error('Error updating user profile:', error);
-            alert('Failed to update profile. Please try again.');
-        });
-}
+// function updateUserProfile(userRef, formData) {
+//     update(userRef, formData)
+//         .then(() => {
+//             console.log('User profile updated successfully');
+//         })
+//         .catch((error) => {
+//             console.error('Error updating user profile:', error);
+//             alert('Failed to update profile. Please try again.');
+//         });
+// }
 
 // Function to fetch and display user profile data
 function fetchUserProfile() {
@@ -53,9 +55,9 @@ function fetchUserProfile() {
                         const userData = snapshot.val();
                         const { name, email, instagram_handle, linkedin_acc, discord_user, profile_picture } = userData;
 
-                        // Update UI elements with user data
-                        const dump = document.getElementById('data');
-                        dump.innerHTML = `<p>${DOMPurify.sanitize(name)} <br /> <p style="inline">(private) ${DOMPurify.sanitize(email)}</p> <br /> <img src="${DOMPurify.sanitize(profile_picture)}" /></p>`;
+                        profile.src = `${DOMPurify.sanitize(profile_picture)}`;
+                        profile2.src = `${DOMPurify.sanitize(profile_picture)}`;
+                        username.innerHTML =  `${DOMPurify.sanitize(name)}`;
                         DTag.innerHTML =  `${DOMPurify.sanitize(discord_user)}`;
                         ITag.innerHTML =  `@${DOMPurify.sanitize(instagram_handle)}`;
                         LTag.innerHTML = `${DOMPurify.sanitize(linkedin_acc)}`;
@@ -63,6 +65,7 @@ function fetchUserProfile() {
                         instaTag.target = "_blank";
                         linkedinTag.href = `${DOMPurify.sanitize(linkedin_acc)}`;
                         linkedinTag.target = "_blank";
+
                     } else {
                         console.log("No user data found");
                     }

@@ -8,7 +8,6 @@
 body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
-    background: #fdf6e3;
     color: #333;
     animation: fadeInSlide 1s ease-in-out forwards;
 }
