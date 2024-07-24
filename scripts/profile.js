@@ -116,7 +116,7 @@ linkedinForm.addEventListener("submit", (e) => {
                 const userRef = ref(database, 'users/' + user.uid);
                 const user_data = { linkedin_acc: linkedin };
                 updateUserProfile(userRef, user_data);
-                LTag.innerHTML =  `linkedin.com`;
+                LTag.innerHTML =  `${DOMPurify.sanitize(linkedin)}`;
               } else {
                 console.error("User not authenticated");
                 alert('User not authenticated. Please log in.');
