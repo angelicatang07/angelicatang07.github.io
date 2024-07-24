@@ -12,6 +12,20 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script>
+      function showComment(){
+        const text = document.getElementById("about");
+        const left = document.getElementById("numleft");
+    
+        let rem = text.value.length;
+        if(rem >= 1000) {
+          left.innerHTML = `${rem}`;
+      }
+        else {
+          text.disabled= true;
+      }
+  }
+    </script>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
@@ -84,8 +98,9 @@
         <button type="submit" id="dc-button">Done</button>
     </form>
     <form id="aboutme" class="edit-form">
-      <label for="about">Edit About Me:</label>
-      <input type="text" id="about" name="about" >
+      <label for="about">About Me (1000 character limit):</label>
+      <p><span id="numleft">0</span>/1000</p>
+      <input type="text" maxlength=1000  oninput="showComment();" id="about" name="about" />
       <button type="submit" id="dc-button">Done</button>
   </form>
 </div>

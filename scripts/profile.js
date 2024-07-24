@@ -169,5 +169,4 @@ aboutForm.addEventListener("submit", (e) => {
         alert('Please fill in your about me before submitting');
     }
 });
-
 fetchUserProfile();
