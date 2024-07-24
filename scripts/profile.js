@@ -23,6 +23,8 @@ const database = getDatabase(app);
 const discordForm = document.getElementById("discord");
 const instagramForm = document.getElementById("instagram");
 const linkedinForm = document.getElementById("linkedin");
+const aboutForm = document.getElementById("aboutme");
+const ATag = document.getElementById('a-tag');
 const DTag = document.getElementById('d-tag');
 const ITag = document.getElementById('i-tag');
 const instaTag = document.getElementById("insta-tag");
@@ -147,5 +149,24 @@ linkedinForm.addEventListener("submit", (e) => {
     }
 });
 
-// Fetch and display user profile data on page load
+aboutForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const about = document.getElementById('about').value.trim();
+    if (about !== '') {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const userRef = ref(database, 'users/' + user.uid);
+                const user_data = { about_me: about };
+                updateUserProfile(userRef, user_data);
+                ATag.innerHTML =  `${DOMPurify.sanitize(about)}`;
+            } else {
+                console.error("User not authenticated");
+                alert('User not authenticated. Please log in.');
+            }
+        });
+    } else {
+        alert('Please fill in your about me before submitting');
+    }
+});
+
 fetchUserProfile();

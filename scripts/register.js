@@ -55,6 +55,7 @@ registerbtn.addEventListener("click", () => {
         discord_user: "",
         instagram_handle: "",
         linkedin_acc: "",
+        about_me: "",
         last_login: getCurrentTimestamp() // Use the timestamp function here
       };
       
