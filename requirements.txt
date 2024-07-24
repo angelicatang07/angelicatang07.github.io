@@ -1,5 +1,5 @@
 Flask==2.0.1
-tensorflow==2.13.0
+tensorflow==2.15.0
 pickle-mixin==1.0.2
 gunicorn==20.1.0
 Werkzeug==2.0.1
