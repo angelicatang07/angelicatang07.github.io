@@ -211,6 +211,9 @@ header .login-btn:hover {
 #discord-pic {
     border-radius: 5px;
 }
+#discord-pic, #insta-pic, #linkedin-pic {
+    margin-right: 4px;
+}
 
 .social-links a:hover {
     transform: scale(1.2);
