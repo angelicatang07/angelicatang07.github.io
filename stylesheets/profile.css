@@ -208,6 +208,10 @@ header .login-btn:hover {
     display: flex;
     margin: 10px;
 }
+#i-tag, #l-tag{
+    text-decoration: none;
+    color: black;
+}
 #discord-pic {
     border-radius: 5px;
 }
