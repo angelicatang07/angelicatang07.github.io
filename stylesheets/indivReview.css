@@ -191,9 +191,14 @@ h3 {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
 }
-.icon {
+.icons {
    width: 25px;
-   height: 25px; 
+   height: 25px;
+   max-width: 25px;
+   max-height: 25px; 
+}
+.disc {
+    border-radius: 5px;
 }
 .card:hover {
     transform: translateY(-10px);
