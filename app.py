@@ -1,6 +1,14 @@
+import os
+import logging
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Suppress TensorFlow logging warnings
+
+# Import TensorFlow after setting the environment variable
+import tensorflow as tf
+
+logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
 from flask import Flask, request, jsonify
-import tensorflow as tf
 import pickle
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
