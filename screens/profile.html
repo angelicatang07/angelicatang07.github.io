@@ -18,7 +18,7 @@
         const left = document.getElementById("numleft");
     
         let rem = text.value.length;
-        if(rem <= 1500) {
+        if(rem <= 500) {
           left.innerHTML = `${rem}`;
       }
         else {
@@ -98,9 +98,9 @@
         <button type="submit" id="dc-button">Done</button>
     </form>
     <form id="aboutme" class="edit-form">
-      <label for="about">About Me (1500 character limit):</label>
-      <p><span id="numleft">0</span>/1500</p>
-      <input type="text" maxlength=1500  oninput="showComment();" id="about" name="about" />
+      <label for="about">About Me (500 character limit):</label>
+      <p><span id="numleft">0</span>/500</p>
+      <input type="text" maxlength=500  oninput="showComment();" id="about" name="about" />
       <button type="submit" id="dc-button">Done</button>
   </form>
 </div>
