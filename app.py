@@ -12,7 +12,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS
+CORS(app)
 
 # GitHub raw file URLs
 github_base_url = 'https://raw.githubusercontent.com/angelicatang07/angelicatang07.github.io/main/'
@@ -53,13 +53,6 @@ except Exception as e:
     logging.error(f"Error loading model: {e}")
     raise
 
-# Check model layers and weights
-try:
-    for layer in model.layers:
-        logging.info(f"Layer {layer.name}: {layer.get_weights()}")
-except Exception as e:
-    logging.error(f"Error inspecting model layers: {e}")
-
 # Load the tokenizer
 try:
     with open(tokenizer_path, 'rb') as handle:
@@ -85,25 +78,28 @@ trunc_type = 'post'
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data = request.get_json()
-    text = data.get('text', '')
-
-    if not text:
-        return jsonify({'error': 'No text provided'}), 400
-
     try:
+        data = request.get_json()
+        logging.info(f"Received data: {data}")
+        text = data.get('text', '')
+
+        if not text:
+            return jsonify({'error': 'No text provided'}), 400
+
         # Preprocess the text
         sequences = tokenizer.texts_to_sequences([text])
         padded = pad_sequences(sequences, maxlen=max_length, padding=padding_type, truncating=trunc_type)
 
         # Predict
         prediction = model.predict(padded)
+        logging.info(f"Model prediction: {prediction}")
         prediction = scaler.inverse_transform(prediction)  # Inverse transform the scaled score
+        logging.info(f"Inverse transformed prediction: {prediction}")
 
         return jsonify({'score': float(prediction[0][0])})
     except Exception as e:
         logging.error(f"Error in prediction: {e}")
-        return jsonify({'error': 'Prediction failed'}), 500
+        return jsonify({'error': 'Prediction failed', 'message': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
