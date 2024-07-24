@@ -51,6 +51,13 @@ except Exception as e:
     logging.error(f"Error loading model: {e}")
     raise
 
+# Check model layers and weights
+try:
+    for layer in model.layers:
+        logging.info(f"Layer {layer.name}: {layer.get_weights()}")
+except Exception as e:
+    logging.error(f"Error inspecting model layers: {e}")
+
 # Load the tokenizer
 try:
     with open(tokenizer_path, 'rb') as handle:
