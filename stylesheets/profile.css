@@ -241,9 +241,6 @@ header .login-btn:hover {
     margin-right: 4px;
 }
 
-.social-links a:hover {
-    transform: scale(1.2);
-}
 
 /* .progress-bar {
     background: #e0e0e0;

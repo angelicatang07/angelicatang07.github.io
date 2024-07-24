@@ -27,16 +27,11 @@ const aboutForm = document.getElementById("aboutme");
 const ATag = document.getElementById('a-tag');
 const DTag = document.getElementById('d-tag');
 const ITag = document.getElementById('i-tag');
-const instaTag = document.getElementById("insta-tag");
 const LTag = document.getElementById('l-tag');
-const linkedinTag = document.getElementById("linkedin-tag");
 let username = document.getElementById('username');
 let profile = document.getElementById("profile-pic");
 let profile2 = document.getElementById("profile-pic2");
 let emailinfo = document.getElementById("email");
-let dcc = document.getElementById('dc');
-let instaa = document.getElementById('insta');
-let linkedd = document.getElementById('linked');
 // Function to update user profile based on form submission
 function updateUserProfile(userRef, formData) {
     update(userRef, formData)
@@ -69,10 +64,6 @@ function fetchUserProfile() {
                         ITag.innerHTML =  `@${DOMPurify.sanitize(instagram_handle)}`;
                         LTag.innerHTML = `${DOMPurify.sanitize(linkedin_acc)}`;
                         ATag.innerHTML = `${DOMPurify.sanitize(about_me)}`;
-                        instaTag.href = `https://www.instagram.com/${DOMPurify.sanitize(instagram_handle)}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
-                        instaTag.target = "_blank";
-                        linkedinTag.href = `${DOMPurify.sanitize(linkedin_acc)}`;
-                        linkedinTag.target = "_blank";
 
                     } else {
                         console.log("No user data found");
@@ -85,11 +76,9 @@ function fetchUserProfile() {
     });
 }
 
-// Function to handle form submissions for updating Discord username
 discordForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const dc = document.getElementById('dc').value.trim();
-    if (dc !== '') {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const userRef = ref(database, 'users/' + user.uid);
@@ -101,59 +90,43 @@ discordForm.addEventListener("submit", (e) => {
                 alert('User not authenticated. Please log in.');
             }
         });
-    } else {
-        alert('Please enter a Discord username.');
-    }
 });
 
-// Function to handle form submissions for updating Instagram handle
 instagramForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const insta = document.getElementById('insta').value.trim();
-    if (insta !== '') {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const userRef = ref(database, 'users/' + user.uid);
                 const user_data = { instagram_handle: insta };
                 updateUserProfile(userRef, user_data);
                 ITag.innerHTML =  `@${DOMPurify.sanitize(insta)}`;
-                instaTag.href = `https://www.instagram.com/${DOMPurify.sanitize(insta)}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
-            } else {
+                } else {
                 console.error("User not authenticated");
                 alert('User not authenticated. Please log in.');
             }
         });
-    } else {
-        alert('Please enter an Instagram handle.');
-    }
 });
 
-// Function to handle form submissions for updating LinkedIn account
 linkedinForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const linkedin = document.getElementById('linked').value.trim();
-    if (linkedin !== '') {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const userRef = ref(database, 'users/' + user.uid);
                 const user_data = { linkedin_acc: linkedin };
                 updateUserProfile(userRef, user_data);
                 LTag.innerHTML =  `linkedin.com`;
-                linkedinTag.href = `${DOMPurify.sanitize(linkedin)}`;
-            } else {
+              } else {
                 console.error("User not authenticated");
                 alert('User not authenticated. Please log in.');
             }
         });
-    } else {
-        alert('Please enter a LinkedIn account URL.');
-    }
 });
 
 aboutForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const about = document.getElementById('about').value.trim();
-    if (about !== '') {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const userRef = ref(database, 'users/' + user.uid);
@@ -165,8 +138,6 @@ aboutForm.addEventListener("submit", (e) => {
                 alert('User not authenticated. Please log in.');
             }
         });
-    } else {
-        alert('Please fill in your about me before submitting');
-    }
 });
+
 fetchUserProfile();
