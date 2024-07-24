@@ -112,10 +112,10 @@
         creatorSocialsDiv.innerHTML = `
             <h4>Creator's Socials</h4>
             <p>Find more from <strong>${escapeHTML(creator)}</strong> on:</p>
-            <p>${escapeHTML(about)}</p>
-             <p>${escapeHTML(insta)}</p>
-              <p>${escapeHTML(linkedin)}</p>
-               <p>${escapeHTML(discord)}</p>
+            <p><strong>About:</strong> ${escapeHTML(about)}</p>
+             <p><img class="icons" src="../images/instagram.png"/> ${escapeHTML(insta)}</p>
+              <p><img class="icons" src="../images/linkedin.png"/> ${escapeHTML(linkedin)}</p>
+               <p><img class="icons" src="../images/discord.png"/> ${escapeHTML(discord)}</p>
         `;
 
         function escapeHTML(str) {
