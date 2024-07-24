@@ -207,8 +207,6 @@ header .login-btn:hover {
     height: 25px;
     display: flex;
     margin: 10px;
-}
-#i-tag, #l-tag{
     text-decoration: none;
     color: black;
 }
