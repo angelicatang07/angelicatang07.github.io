@@ -63,7 +63,7 @@ registerbtn.addEventListener("click", () => {
     })
     .then(() => {
       alert(`Welcome, ${name}`);
-      window.location.href = "../index.html";
+      window.location.href = "../profile.html";
     })
     .catch((error) => {
       const errorMessage = error.message;
