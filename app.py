@@ -13,8 +13,8 @@ logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
 app = Flask(__name__)
 
-# Enable CORS for all domains (Modify if needed)
-CORS(app, resources={r"/predict": {"origins": "https://theledgit.com"}})
+# Enable CORS for all routes and from specific origin
+cors = CORS(app, resources={r"/predict": {"origins": "https://theledgit.com"}})
 
 # GitHub raw file URLs
 github_base_url = 'https://raw.githubusercontent.com/angelicatang07/angelicatang07.github.io/main/'
@@ -77,13 +77,6 @@ except Exception as e:
 max_length = 200
 padding_type = 'post'
 trunc_type = 'post'
-
-@app.after_request
-def add_cors_headers(response):
-    response.headers.add('Access-Control-Allow-Origin', 'https://theledgit.com')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
-    return response
 
 @app.route('/predict', methods=['POST'])
 def predict():
