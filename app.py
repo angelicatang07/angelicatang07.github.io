@@ -9,8 +9,7 @@ from flask_cors import CORS
 
 # Suppress TensorFlow logging warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger('app')
+logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
 app = Flask(__name__)
 CORS(app)
@@ -21,85 +20,79 @@ model_url = github_base_url + 'joke_model.keras'
 tokenizer_url = github_base_url + 'tokenizer.pkl'
 scaler_url = github_base_url + 'scaler.pkl'
 
+model = None
+tokenizer = None
+scaler = None
+
+# Load model, tokenizer, and scaler lazily
+def load_model():
+    global model
+    if model is None:
+        model_path = os.path.join(os.getcwd(), 'joke_model.keras')
+        download_file(model_url, model_path)
+        model = tf.keras.models.load_model(model_path)
+        logging.info(f"Model loaded successfully from {model_path}")
+    return model
+
+def load_tokenizer():
+    global tokenizer
+    if tokenizer is None:
+        tokenizer_path = os.path.join(os.getcwd(), 'tokenizer.pkl')
+        download_file(tokenizer_url, tokenizer_path)
+        with open(tokenizer_path, 'rb') as handle:
+            tokenizer = pickle.load(handle)
+        logging.info(f"Tokenizer loaded successfully from {tokenizer_path}")
+    return tokenizer
+
+def load_scaler():
+    global scaler
+    if scaler is None:
+        scaler_path = os.path.join(os.getcwd(), 'scaler.pkl')
+        download_file(scaler_url, scaler_path)
+        with open(scaler_path, 'rb') as handle:
+            scaler = pickle.load(handle)
+        logging.info(f"Scaler loaded successfully from {scaler_path}")
+    return scaler
+
 # Helper function to download files from GitHub
 def download_file(url, local_path):
     response = requests.get(url)
     if response.status_code == 200:
         with open(local_path, 'wb') as file:
             file.write(response.content)
-        logger.info(f"File downloaded successfully from {url}")
+        logging.info(f"File downloaded successfully from {url}")
     else:
-        logger.error(f"Failed to download file from {url}")
+        logging.error(f"Failed to download file from {url}")
         raise Exception(f"Failed to download file from {url}")
-
-# Get absolute paths
-model_path = os.path.join(os.getcwd(), 'joke_model.keras')
-tokenizer_path = os.path.join(os.getcwd(), 'tokenizer.pkl')
-scaler_path = os.path.join(os.getcwd(), 'scaler.pkl')
-
-# Download files
-try:
-    download_file(model_url, model_path)
-    download_file(tokenizer_url, tokenizer_path)
-    download_file(scaler_url, scaler_path)
-except Exception as e:
-    logger.error(f"Error downloading files: {e}")
-    raise
-
-# Load the model with logging
-try:
-    model = tf.keras.models.load_model(model_path)
-    logger.info(f"Model loaded successfully from {model_path}")
-except Exception as e:
-    logger.error(f"Error loading model: {e}")
-    raise
-
-# Load the tokenizer
-try:
-    with open(tokenizer_path, 'rb') as handle:
-        tokenizer = pickle.load(handle)
-    logger.info(f"Tokenizer loaded successfully from {tokenizer_path}")
-except Exception as e:
-    logger.error(f"Error loading tokenizer: {e}")
-    raise
-
-# Load the scaler
-try:
-    with open(scaler_path, 'rb') as handle:
-        scaler = pickle.load(handle)
-    logger.info(f"Scaler loaded successfully from {scaler_path}")
-except Exception as e:
-    logger.error(f"Error loading scaler: {e}")
-    raise
-
-# Parameters
-max_length = 200
-padding_type = 'post'
-trunc_type = 'post'
 
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
         data = request.get_json()
-        logger.info(f"Received data: {data}")
+        logging.info(f"Received data: {data}")
         text = data.get('text', '')
 
         if not text:
             return jsonify({'error': 'No text provided'}), 400
 
+        # Load model, tokenizer, and scaler if not already loaded
+        model = load_model()
+        tokenizer = load_tokenizer()
+        scaler = load_scaler()
+
         # Preprocess the text
         sequences = tokenizer.texts_to_sequences([text])
-        padded = pad_sequences(sequences, maxlen=max_length, padding=padding_type, truncating=trunc_type)
+        padded = pad_sequences(sequences, maxlen=200, padding='post', truncating='post')
 
         # Predict
         prediction = model.predict(padded)
-        logger.info(f"Model prediction: {prediction}")
+        logging.info(f"Model prediction: {prediction}")
         prediction = scaler.inverse_transform(prediction)  # Inverse transform the scaled score
-        logger.info(f"Inverse transformed prediction: {prediction}")
+        logging.info(f"Inverse transformed prediction: {prediction}")
 
         return jsonify({'score': float(prediction[0][0])})
     except Exception as e:
-        logger.error(f"Error in prediction: {e}")
+        logging.error(f"Error in prediction: {e}")
         return jsonify({'error': 'Prediction failed', 'message': str(e)}), 500
 
 if __name__ == '__main__':
