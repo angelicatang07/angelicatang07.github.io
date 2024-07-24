@@ -5,12 +5,14 @@ import pickle
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import tensorflow as tf
 import requests
+from flask_cors import CORS
 
 # Suppress TensorFlow logging warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS
 
 # GitHub raw file URLs
 github_base_url = 'https://raw.githubusercontent.com/angelicatang07/angelicatang07.github.io/main/'
@@ -98,10 +100,10 @@ def predict():
         prediction = model.predict(padded)
         prediction = scaler.inverse_transform(prediction)  # Inverse transform the scaled score
 
-        return jsonify({'score': prediction[0][0]})
+        return jsonify({'score': float(prediction[0][0])})
     except Exception as e:
         logging.error(f"Error in prediction: {e}")
         return jsonify({'error': 'Prediction failed'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
