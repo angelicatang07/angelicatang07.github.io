@@ -68,16 +68,19 @@
         const params = new URLSearchParams(window.location.search);
         const title = params.get('title');
         const creator = params.get('creator');
+        const discord = params.get('discord');
+        const insta = params.get('insta');
+        const linkedin = params.get('linkedin');
+        const about = params.get('about');
         const review = params.get('review');
         const date = params.get('date');
-        const cover = params.get('bookCover');
+        const cover = params.get('bookCover'); 
         const authors = params.get('authors');
-        const stars = parseInt(params.get('stars')); // Parse stars as integer
+        const stars = parseInt(params.get('stars')); 
 
         const reviewDetailsDiv = document.getElementById('reviewDetails');
         const creatorSocialsDiv = document.getElementById('creator-socials');
 
-        // Function to create star elements based on rating
         function createStarsContainer(rating) {
             const starsContainer = document.createElement('div');
             starsContainer.classList.add('stars-container');
@@ -109,7 +112,10 @@
         creatorSocialsDiv.innerHTML = `
             <h4>Creator's Socials</h4>
             <p>Find more from <strong>${escapeHTML(creator)}</strong> on:</p>
-            <p>Available Soon</p>
+            <p>${escapeHTML(about)}</p>
+             <p>${escapeHTML(insta)}</p>
+              <p>${escapeHTML(linkedin)}</p>
+               <p>${escapeHTML(discord)}</p>
         `;
 
         function escapeHTML(str) {

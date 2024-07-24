@@ -19,6 +19,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 let username = 'Anonymous';
+let discord = '';
+let insta = '';
+let linkedin = '';
+let about = '';
 let prof = 'images/pfp.png';
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
@@ -31,6 +35,11 @@ function checkUserLoggedIn() {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
                     username = userData.name || 'Anonymous';
+                    discord = userData.discord_user || "unavailable";
+                    insta = userData.instagram_handle || "unavailable";
+                    linkedin = userData.linkedin_acc || "unavailable";
+                    about = userData.about_me || "unavailable";
+                    
                     prof = userData.profile_picture || '../images/pfp.png';
                 } else {
                     console.log("No user data found");
@@ -88,6 +97,10 @@ document.addEventListener('DOMContentLoaded', function() {
         update(newTaskRef, {
             title: title,
             creator: username,
+            about: about,
+            discord: discord,
+            linkedin: linkedin,
+            insta: insta,
             review: rev,
             stars: rating,
             date: date
@@ -179,7 +192,7 @@ function createTaskElement(task, key, type) {
                 taskData.appendChild(bookCover);
                 // Add click event listener to navigate to indivReview.html
                 taskContainer.addEventListener('click', () => {
-                    const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
+                    const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&discord=${encodeURIComponent(task.discord)}&insta=${encodeURIComponent(task.insta)}&linkedin=${encodeURIComponent(task.linkedin)}&about=${encodeURIComponent(task.about)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
                     window.location.href = `screens/indivReview.html${queryParams}`;
                 });
             }
