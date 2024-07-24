@@ -18,7 +18,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
-const storage = getStorage(app);
 
 // Reference DOM elements
 const discordForm = document.getElementById("discord");
@@ -33,17 +32,21 @@ let username = document.getElementById('username');
 let profile = document.getElementById("profile-pic");
 let profile2 = document.getElementById("profile-pic2");
 let emailinfo = document.getElementById("email");
+let dcc = document.getElementById('dc');
+let instaa = document.getElementById('insta');
+let linkedd = document.getElementById('linked');
 // Function to update user profile based on form submission
-// function updateUserProfile(userRef, formData) {
-//     update(userRef, formData)
-//         .then(() => {
-//             console.log('User profile updated successfully');
-//         })
-//         .catch((error) => {
-//             console.error('Error updating user profile:', error);
-//             alert('Failed to update profile. Please try again.');
-//         });
-// }
+function updateUserProfile(userRef, formData) {
+    update(userRef, formData)
+        .then(() => {
+            console.log('User profile updated successfully');
+            
+        })
+        .catch((error) => {
+            console.error('Error updating user profile:', error);
+            console.log('Failed to update profile. Please try again.');
+        });
+}
 
 // Function to fetch and display user profile data
 function fetchUserProfile() {
