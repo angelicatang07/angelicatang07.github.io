@@ -324,16 +324,16 @@ document.getElementById('input_button').addEventListener('click', async function
             const score = data.score;
             if (score >= 200) {
                 message.textContent = 'Review submitted successfully!';
-                // Optionally, you can add code here to actually submit the review to your backend/database
+                
             } else {
-                message.textContent = 'Review score too low. Please write a more detailed review.';
+                message.textContent = 'Review score too low. Please write a more funny review.';
             }
         } else {
             message.textContent = 'Prediction failed: ' + data.error;
             console.error('Server error:', data.error);  // Log server error
         }
     } catch (error) {
-        message.textContent = 'Error predicting review score.';
+        message.textContent = 'Error predicting review score.' + error;
         console.error('Fetch error:', error);  // Log fetch error
     }
 });
