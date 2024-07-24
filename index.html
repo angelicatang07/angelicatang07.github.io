@@ -310,7 +310,7 @@ document.getElementById('input_button').addEventListener('click', async function
     message.textContent = 'Submitting review...';  // Indicate that the review is being submitted
     
     try {
-        const response = await fetch('https://ledgit.onrender.com/predict', { // Change to your server URL if different
+        const response = await fetch('https://ledgit.onrender.com:10000/predict', { // Change to your server URL if different
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
