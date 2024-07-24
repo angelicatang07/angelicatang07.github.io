@@ -12,9 +12,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
 app = Flask(__name__)
-
-# Enable CORS for all routes and from specific origin
-cors = CORS(app, resources={r"/predict": {"origins": "https://theledgit.com"}})
+CORS(app)
 
 # GitHub raw file URLs
 github_base_url = 'https://raw.githubusercontent.com/angelicatang07/angelicatang07.github.io/main/'
