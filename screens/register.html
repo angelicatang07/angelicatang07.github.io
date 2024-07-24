@@ -44,7 +44,30 @@
     
     </div>
   </div>
+  <script>
+    const usernameInput = document.querySelector('#full_name');
+    const usernameMessage = document.querySelector('#usernameMessage');
   
+    usernameInput.addEventListener('submit', async (e) => {
+      e.preventDefault();
+  
+      const username = usernameInput.value.trim();
+      const usernameExists = await checkUsernameExists(username);
+  
+      if (usernameExists) {
+        usernameMessage.textContent = 'Username is already taken, please choose another.';
+      } else {
+        usernameMessage.textContent = 'Username is available!';
+       
+      }
+    });
+  
+    async function checkUsernameExists(username) {
+      const usersRef = firebase.firestore().collection('users');
+      const snapshot = await usersRef.where('username', '==', username).get();
+      return !snapshot.empty;
+    }
+  </script>
   <script type="module" src="../scripts/register.js"></script>
 </body>
 
