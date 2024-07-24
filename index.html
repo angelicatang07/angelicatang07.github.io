@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -268,9 +267,9 @@
                 <span class="star" data-star="3">&#9733;</span>
                 <span class="star" data-star="4">&#9733;</span>
                 <span class="star" data-star="5">&#9733;</span>
-              </div>
-              <div class="data" id='data'></div>
-              <p id="message"></p>
+            </div>
+            <div class="data" id='data'></div>
+            <p id="message"></p>
             <button id="input_button">Submit</button>
         </div>
     </div>
@@ -285,12 +284,14 @@
         <!-- Add more review boxes as needed -->
     </div>
 </div>
+
 <div class="spread">
-    <a target="blank" href="https://www.linkedin.com/company/theledgit/about/"> <img src="../images/linkedin.png" /> </a>
-    <a target="blank" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA=="> <img src="../images/instagram.png" /> </a>
-    <a target="blank" href="https://discord.gg/Gnybre75GK"> <img src="../images/discord.png" /> </a>
-    <a target="blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"> <img src="../images/tiktok.webp"  /> </a>
-     </div>
+    <a target="blank" href="https://www.linkedin.com/company/theledgit/about/"><img src="../images/linkedin.png"></a>
+    <a target="blank" href="https://www.instagram.com/theledgit?igshid=MzRlODBiNWFlZA=="><img src="../images/instagram.png"></a>
+    <a target="blank" href="https://discord.gg/Gnybre75GK"><img src="../images/discord.png"></a>
+    <a target="blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"><img src="../images/tiktok.webp"></a>
+</div>
+
 <footer>
     <p>&copy; 2024 Ledgit. All rights reserved.</p>
 </footer>
@@ -309,7 +310,7 @@ document.getElementById('input_button').addEventListener('click', async function
     message.textContent = 'Submitting review...';  // Indicate that the review is being submitted
     
     try {
-        const response = await fetch('https://ledgit.onrender.com', { // Change to your server URL if different
+        const response = await fetch('https://ledgit.onrender.com/predict', { // Change to your server URL if different
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -324,7 +325,6 @@ document.getElementById('input_button').addEventListener('click', async function
             const score = data.score;
             if (score >= 200) {
                 message.textContent = 'Review submitted successfully!';
-                
             } else {
                 message.textContent = 'Review score too low. Please write a more funny review.';
             }
