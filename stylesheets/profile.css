@@ -200,6 +200,20 @@ header .login-btn:hover {
     margin: 0 10px;
     transition: transform 0.3s ease;
 }
+.bio{
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+}
+#a-tag, .about-me {
+    right:0;
+    display: flex;
+    max-width: 100px;
+    flex-direction: column;
+    max-height: 50px;
+    overflow: scroll;
+    justify-content: flex-end;
+}
 #insta-tag, #linkedin-tag, #discord-tag {
     max-height: 25px;
     max-width: 25px;

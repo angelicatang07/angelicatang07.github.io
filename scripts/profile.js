@@ -59,7 +59,7 @@ function fetchUserProfile() {
                 .then((snapshot) => {
                     if (snapshot.exists()) {
                         const userData = snapshot.val();
-                        const { name, email, instagram_handle, linkedin_acc, discord_user, profile_picture } = userData;
+                        const { name, email, instagram_handle, linkedin_acc, discord_user, profile_picture,about_me } = userData;
 
                         emailinfo.innerHTML=`<p class="private"><strong>Private*  </strong>  ${DOMPurify.sanitize(email)}</p>`;
                         profile.src = `${DOMPurify.sanitize(profile_picture)}`;
@@ -68,6 +68,7 @@ function fetchUserProfile() {
                         DTag.innerHTML =  `${DOMPurify.sanitize(discord_user)}`;
                         ITag.innerHTML =  `@${DOMPurify.sanitize(instagram_handle)}`;
                         LTag.innerHTML = `${DOMPurify.sanitize(linkedin_acc)}`;
+                        ATag.innerHTML = `${DOMPurify.sanitize(about_me)}`;
                         instaTag.href = `https://www.instagram.com/${DOMPurify.sanitize(instagram_handle)}?igsh=MTFsdDZoaGpxbjdleg%3D%3D&utm_source=qr`;
                         instaTag.target = "_blank";
                         linkedinTag.href = `${DOMPurify.sanitize(linkedin_acc)}`;
