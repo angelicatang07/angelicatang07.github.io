@@ -9,7 +9,8 @@ from flask_cors import CORS
 
 # Suppress TensorFlow logging warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-logging.getLogger('tensorflow').setLevel(logging.ERROR)
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger('app')
 
 app = Flask(__name__)
 CORS(app)
@@ -26,9 +27,9 @@ def download_file(url, local_path):
     if response.status_code == 200:
         with open(local_path, 'wb') as file:
             file.write(response.content)
-        logging.info(f"File downloaded successfully from {url}")
+        logger.info(f"File downloaded successfully from {url}")
     else:
-        logging.error(f"Failed to download file from {url}")
+        logger.error(f"Failed to download file from {url}")
         raise Exception(f"Failed to download file from {url}")
 
 # Get absolute paths
@@ -42,33 +43,33 @@ try:
     download_file(tokenizer_url, tokenizer_path)
     download_file(scaler_url, scaler_path)
 except Exception as e:
-    logging.error(f"Error downloading files: {e}")
+    logger.error(f"Error downloading files: {e}")
     raise
 
 # Load the model with logging
 try:
     model = tf.keras.models.load_model(model_path)
-    logging.info(f"Model loaded successfully from {model_path}")
+    logger.info(f"Model loaded successfully from {model_path}")
 except Exception as e:
-    logging.error(f"Error loading model: {e}")
+    logger.error(f"Error loading model: {e}")
     raise
 
 # Load the tokenizer
 try:
     with open(tokenizer_path, 'rb') as handle:
         tokenizer = pickle.load(handle)
-    logging.info(f"Tokenizer loaded successfully from {tokenizer_path}")
+    logger.info(f"Tokenizer loaded successfully from {tokenizer_path}")
 except Exception as e:
-    logging.error(f"Error loading tokenizer: {e}")
+    logger.error(f"Error loading tokenizer: {e}")
     raise
 
 # Load the scaler
 try:
     with open(scaler_path, 'rb') as handle:
         scaler = pickle.load(handle)
-    logging.info(f"Scaler loaded successfully from {scaler_path}")
+    logger.info(f"Scaler loaded successfully from {scaler_path}")
 except Exception as e:
-    logging.error(f"Error loading scaler: {e}")
+    logger.error(f"Error loading scaler: {e}")
     raise
 
 # Parameters
@@ -80,7 +81,7 @@ trunc_type = 'post'
 def predict():
     try:
         data = request.get_json()
-        logging.info(f"Received data: {data}")
+        logger.info(f"Received data: {data}")
         text = data.get('text', '')
 
         if not text:
@@ -92,13 +93,13 @@ def predict():
 
         # Predict
         prediction = model.predict(padded)
-        logging.info(f"Model prediction: {prediction}")
+        logger.info(f"Model prediction: {prediction}")
         prediction = scaler.inverse_transform(prediction)  # Inverse transform the scaled score
-        logging.info(f"Inverse transformed prediction: {prediction}")
+        logger.info(f"Inverse transformed prediction: {prediction}")
 
         return jsonify({'score': float(prediction[0][0])})
     except Exception as e:
-        logging.error(f"Error in prediction: {e}")
+        logger.error(f"Error in prediction: {e}")
         return jsonify({'error': 'Prediction failed', 'message': str(e)}), 500
 
 if __name__ == '__main__':
