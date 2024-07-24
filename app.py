@@ -15,14 +15,14 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 app = Flask(__name__)
 
 # Load the model
-model = tf.keras.models.load_model('models/joke_model.keras')
+model = tf.keras.models.load_model('joke_model.keras')
 
 # Load the tokenizer
-with open('models/tokenizer.pkl', 'rb') as handle:
+with open('tokenizer.pkl', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
 # Load the scaler
-with open('models/scaler.pkl', 'rb') as handle:
+with open('scaler.pkl', 'rb') as handle:
     scaler = pickle.load(handle)
 
 # Parameters
