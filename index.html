@@ -307,7 +307,7 @@ document.getElementById('input_button').addEventListener('click', async function
     }
     
     try {
-        const response = await fetch('http://localhost:5000/predict', { // Change to your server URL if different
+        const response = await fetch('https://ledgit.onrender.com', { // Change to your server URL if different
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
