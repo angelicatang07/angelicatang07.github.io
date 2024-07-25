@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getDatabase, ref, update, get } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { getAuth,signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
 import DOMPurify from 'https://cdn.skypack.dev/dompurify';
 
@@ -139,5 +139,17 @@ aboutForm.addEventListener("submit", (e) => {
             }
         });
 });
+
+const sign_out = document.getElementById('sign-out');
+sign_out.addEventListener('click', () => {
+  
+    signOut(auth).then(() => {
+        window.location.href = "../index.html";
+
+    }).catch((error) => {
+       console.log('error');
+    });
+    
+})
 
 fetchUserProfile();
