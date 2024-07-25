@@ -35,13 +35,19 @@ def load_model():
         logging.info(f"Model loaded successfully from {model_path}")
     return model
 
+class CustomUnpickler(pickle.Unpickler):
+    def find_class(self, module, name):
+        if module == 'keras.src.preprocessing':
+            module = 'keras.preprocessing'
+        return super().find_class(module, name)
+
 def load_tokenizer():
     global tokenizer
     if tokenizer is None:
         tokenizer_path = os.path.join(os.getcwd(), 'tokenizer.pkl')
         download_file(tokenizer_url, tokenizer_path)
         with open(tokenizer_path, 'rb') as handle:
-            tokenizer = pickle.load(handle)
+            tokenizer = CustomUnpickler(handle).load()
         logging.info(f"Tokenizer loaded successfully from {tokenizer_path}")
     return tokenizer
 
