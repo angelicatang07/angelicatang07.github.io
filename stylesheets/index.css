@@ -11,6 +11,17 @@ body {
     color: #333;
     animation: fadeInSlide 1s ease-in-out forwards;
 }
+.task_tool {
+    right: 0;
+    z-index: 1000;
+    position: relative;
+}
+.task_delete_button {
+    position: relative;
+    right: 5px;
+    font-size: 20px;
+    z-index: 50;
+}
 
 /* Keyframes for animations */
 @keyframes fadeInSlide {
@@ -673,6 +684,7 @@ body.dark-mode .rating .star.active {
     border: 3px solid  rgb(158, 84, 158);
 }
 .task_container {
+    z-index: 2;
     background-color: rgb(203, 154, 203);
     border-radius: 20px;
     border: 2px solid  rgb(178, 115, 178);

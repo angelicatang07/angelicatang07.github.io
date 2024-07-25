@@ -70,6 +70,7 @@
         const creator = params.get('creator');
         const discord = params.get('discord');
         const insta = params.get('insta');
+        const profile = params.get('profile');
         const linkedin = params.get('linkedin');
         const about = params.get('about');
         const review = params.get('review');
@@ -111,6 +112,7 @@
 
         creatorSocialsDiv.innerHTML = `
             <p><strong>About ${escapeHTML(creator)}: </strong> ${escapeHTML(about)}</p>
+            <img class="icons" src=${escapeHTML(profile)} />
             <p><img class="icons" src="../images/instagram.png"/> ${escapeHTML(insta)}</p>
             <p><img class="icons" src="../images/linkedin.png"/> ${escapeHTML(linkedin)}</p> </a>
             <p><img class="icons disc" src="../images/discord.png"/> ${escapeHTML(discord)}</p>

@@ -97,10 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
         update(newTaskRef, {
             title: title,
             creator: username,
-            about: about,
-            discord: discord,
-            linkedin: linkedin,
-            insta: insta,
             review: rev,
             stars: rating,
             date: date
@@ -168,9 +164,24 @@ function createTaskElement(task, key, type) {
     const starsContainer = createStarsContainer(task.stars);
     starsContainer.setAttribute('class', 'task_stars');
 
+    const taskTool = document.createElement('div');
+    taskTool.setAttribute('class', 'task_tool');
+
     const date = document.createElement('p');
     date.setAttribute('class', 'task_date');
     date.textContent = task.date;
+
+    const taskDeleteButton = document.createElement('button');
+    taskDeleteButton.setAttribute('class', 'task_delete_button');
+    taskDeleteButton.innerHTML = '<i class="bx bx-trash" style="cursor:pointer"></i>';
+    taskDeleteButton.classList.add('cursor-pointer');
+    taskDeleteButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (type === 'unfinished') {
+            event.stopPropagation();
+            task_delete(key); // Pass the key to the delete function
+        } 
+    });
 
     // Fetch book details and update task container
     fetchBookDetails(task.title)
@@ -192,7 +203,7 @@ function createTaskElement(task, key, type) {
                 taskData.appendChild(bookCover);
                 // Add click event listener to navigate to indivReview.html
                 taskContainer.addEventListener('click', () => {
-                    const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&discord=${encodeURIComponent(task.discord)}&insta=${encodeURIComponent(task.insta)}&linkedin=${encodeURIComponent(task.linkedin)}&about=${encodeURIComponent(task.about)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
+                    const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&discord=${encodeURIComponent(task.discord)}&insta=${encodeURIComponent(insta)}&linkedin=${encodeURIComponent(linkedin)}&about=${encodeURIComponent(about)}&profile=${encodeURIComponent(prof)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
                     window.location.href = `screens/indivReview.html${queryParams}`;
                 });
             }
@@ -208,7 +219,27 @@ function createTaskElement(task, key, type) {
     taskData.appendChild(review);
     taskContainer.appendChild(taskData);
 
+    taskTool.appendChild(taskDeleteButton);
+    taskContainer.appendChild(taskTool);
+
     return taskContainer;
+}
+
+function task_delete(key) {
+    const taskRef = ref(database, 'unfinished_task/' + key);
+
+    // Remove task from database
+    remove(taskRef).then(() => {
+        // Task successfully deleted
+        console.log("Task deleted successfully");
+        // Remove task from UI
+        const taskElement = document.querySelector(`.task_container[data-key="${key}"]`);
+        if (taskElement) {
+            taskElement.remove();
+        }
+    }).catch(error => {
+        console.error("Error removing task: ", error);
+    });
 }
 
 function formatDate(date) {
