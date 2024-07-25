@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledgit Profile</title>
+    <link href="../images/ledgit.webp" rel="icon" type="image/webp">
+    <link rel="stylesheet" href="../stylesheets/profile.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9196511154128809" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KBZ3ZQRVHB');
+</script>
+<body onload="create_unfinished_task(); create_finished_task();">
+
+    <header>
+        <div class="logo">
+          <a href="../index.html"><img src="../images/dw.png" alt="Ledgit Logo" class="logo-img"></a>
+        </div>
+        <nav class="nav-bar">
+          <ul>
+            <li><a href="../index.html">Main</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+          </ul>
+          <a class="login-btn" href="login.html">Login</a>
+          <div class="user-profile"> 
+            <a id='prof-link' href="profile.html"><img class="profile-pic" src="" id="profile-pic" alt="Profile Picture" /> </a>
+          </div>
+        </nav>
+    </header>
+
+    <div id="content_container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img id="profile-pic2" src="" alt="Profile Picture" />
+                <h2 id="username">Username</h2>
+            </div>
+            <div class="profile-info">
+                <p id='email'>Email</p>
+                <div class="bioandlinks">
+                    <div class="bio">
+                        <p><strong>About Me:</strong></p>
+                        <p id="a-tag">Edit below</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <div id="insta-tag"><img id="insta-pic" src="../images/instagram.png" alt="Instagram" /><p id="i-tag">Instagram</p></div>
+                    <div id="linkedin-tag"><img id="linkedin-pic" src="../images/linkedin.png" alt="LinkedIn" /><p id="l-tag">LinkedIn</p></div>
+                    <div id="discord-tag"><img id="discord-pic" src="../images/discord.png" alt="Discord" /><p id="d-tag">Discord</p></div>
+                </div> 
+            </div>
+        </div>
+        <nav>
+            <a id="edit-profile" href="profile.html">Edit Profile</a>
+            <a id='wishlist' href="wishlist.html">My Wishlist</a>
+        </nav>
+        <form id="book-form">
+            <div id="finish_task_header">
+                <label for="input_box">Enter Book:</label>
+            </div>
+            <div id="task_input_container">
+                <input type="text" id="input_box" name="input_box">
+                <div class="data" id='data'></div>
+                <button type='button' id="input_button">Submit</button>
+            </div>
+        </form>
+        <h2>My Favorites:</h2>
+        <div class="book_container" id="book_container">
+            <!-- favorites dynamically added here -->
+            <p>Your favorites list is empty.</p>
+        </div>
+    </div>
+
+    <script type="module" src="../scripts/wishlist.js"></script>
+</body>
+</html>
