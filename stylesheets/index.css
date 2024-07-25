@@ -11,17 +11,6 @@ body {
     color: #333;
     animation: fadeInSlide 1s ease-in-out forwards;
 }
-.task_tool {
-    right: 0;
-    z-index: 1000;
-    position: relative;
-}
-.task_delete_button {
-    position: relative;
-    right: 5px;
-    font-size: 20px;
-    z-index: 50;
-}
 
 /* Keyframes for animations */
 @keyframes fadeInSlide {
@@ -683,7 +672,29 @@ body.dark-mode .rating .star.active {
     cursor: pointer;
     border: 3px solid  rgb(158, 84, 158);
 }
+
+.task_delete_button {
+    font-size: 20px;
+    z-index: 50;
+    cursor: pointer; 
+    padding: 5px;
+    margin: 5px;
+    color: white; 
+    background-color: #ff3b3b; 
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.task_delete_button:hover {
+    background-color: #e60000; 
+}
+
 .task_container {
+    position: relative; 
+    justify-content: space-between; 
+    align-items: flex-start;
+    margin-bottom: 20px; 
     z-index: 2;
     background-color: rgb(203, 154, 203);
     border-radius: 20px;

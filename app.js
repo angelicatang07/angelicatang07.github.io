@@ -258,7 +258,7 @@ function createStarsContainer(rating) {
         const star = document.createElement('span');
         star.innerHTML = '&#9733;'; // Star character
         star.classList.add('filled'); // Add filled class
-        starsContainer.prepend(star);
+        starsContainer.appendChild(star);
     }
 
     // Create empty stars for remaining
@@ -266,7 +266,7 @@ function createStarsContainer(rating) {
         const star = document.createElement('span');
         star.innerHTML = '&#9733;'; // Star character
         star.classList.add('empty'); // Add empty class
-        starsContainer.prepend(star);
+        starsContainer.appendChild(star);
     }
 
     return starsContainer;
