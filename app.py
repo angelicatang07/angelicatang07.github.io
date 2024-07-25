@@ -16,7 +16,7 @@ CORS(app)
 
 # GitHub raw file URLs
 github_base_url = 'https://raw.githubusercontent.com/angelicatang07/angelicatang07.github.io/main/'
-model_url = github_base_url + 'joke_model.keras'
+model_url = github_base_url + 'joke_model_saved.zip'
 tokenizer_url = github_base_url + 'tokenizer.pkl'
 scaler_url = github_base_url + 'scaler.pkl'
 
@@ -28,8 +28,9 @@ scaler = None
 def load_model():
     global model
     if model is None:
-        model_path = os.path.join(os.getcwd(), 'joke_model.keras')
-        download_file(model_url, model_path)
+        model_path = os.path.join(os.getcwd(), 'joke_model_saved')
+        if not os.path.exists(model_path):
+            download_and_extract_zip(model_url, model_path)
         model = tf.keras.models.load_model(model_path)
         logging.info(f"Model loaded successfully from {model_path}")
     return model
@@ -64,6 +65,23 @@ def download_file(url, local_path):
     else:
         logging.error(f"Failed to download file from {url}")
         raise Exception(f"Failed to download file from {url}")
+
+# Helper function to download and extract zip files
+def download_and_extract_zip(url, extract_to):
+    response = requests.get(url)
+    if response.status_code == 200:
+        zip_path = os.path.join(extract_to, 'model.zip')
+        with open(zip_path, 'wb') as file:
+            file.write(response.content)
+        logging.info(f"Zip file downloaded successfully from {url}")
+        import zipfile
+        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+            zip_ref.extractall(extract_to)
+        logging.info(f"Zip file extracted successfully to {extract_to}")
+        os.remove(zip_path)
+    else:
+        logging.error(f"Failed to download zip file from {url}")
+        raise Exception(f"Failed to download zip file from {url}")
 
 @app.route('/predict', methods=['POST'])
 def predict():
