@@ -19,9 +19,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 let username = 'Anonymous';
-let discord = 'unavailable';
-let insta = 'unavailable';
-let linkedin = 'unavailable';
 let about = 'unavailable';
 let prof = 'images/pfp.png';
 function checkUserLoggedIn() {
@@ -35,11 +32,7 @@ function checkUserLoggedIn() {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
                     username = userData.name || 'Anonymous';
-                    discord = userData.discord_user || "unavailable";
-                    insta = userData.instagram_handle || "unavailable";
-                    linkedin = userData.linkedin_acc || "unavailable";
                     about = userData.about_me || "unavailable";
-                    
                     prof = userData.profile_picture || '../images/pfp.png';
                 } else {
                     console.log("No user data found");
@@ -203,7 +196,7 @@ function createTaskElement(task, key, type) {
                 taskData.prepend(bookCover);
                 // Add click event listener to navigate to indivReview.html
                 taskContainer.addEventListener('click', () => {
-                    const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&discord=${encodeURIComponent(task.discord)}&insta=${encodeURIComponent(insta)}&linkedin=${encodeURIComponent(linkedin)}&about=${encodeURIComponent(about)}&profile=${encodeURIComponent(prof)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
+                    const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&about=${encodeURIComponent(about)}&profile=${encodeURIComponent(prof)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
                     window.location.href = `screens/indivReview.html${queryParams}`;
                 });
             }
@@ -290,7 +283,6 @@ async function fetchBookDetails(title) {
 
 document.addEventListener("DOMContentLoaded", () => {
     const inputBox = document.getElementById("input_box");
-    const message = document.getElementById("message");
     const dataContainer = document.getElementById("data");
 
     inputBox.addEventListener("input", async () => {
