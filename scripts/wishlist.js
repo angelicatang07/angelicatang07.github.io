@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 title: title
             }).then(() => {
                 inputBox.value = "";
+                document.getElementById("data").innerHTML= "";
                 create_wishlist(); // Refresh wishlist
             }).catch(error => {
                 console.error("Error adding book to wishlist: ", error);
