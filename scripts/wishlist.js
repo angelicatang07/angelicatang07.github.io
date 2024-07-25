@@ -131,10 +131,6 @@ function createBookElement(book, key) {
     bookContainer.setAttribute("class", "book_container");
     bookContainer.setAttribute("data-key", key);
 
-    const bookTitle = document.createElement('p');
-    bookTitle.setAttribute('class', 'book_title');
-    bookTitle.textContent = book.title;
-
     const bookTool = document.createElement('div');
     bookTool.setAttribute('class', 'book_tool');
 
@@ -169,8 +165,6 @@ function createBookElement(book, key) {
 
     bookTool.prepend(bookDeleteButton);
     bookContainer.prepend(bookTool);
-
-    bookContainer.prepend(bookTitle);
 
     return bookContainer;
 }
