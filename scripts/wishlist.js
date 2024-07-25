@@ -196,8 +196,9 @@ function book_delete(key) {
     }
 }
 
+
 async function fetchBookDetails(title) {
-    const apiKey = "AIzaSyA98Jj3WzrB4I3sxTUcxEE5jvHeMGh7RJA";
+    const apiKey = "AIzaSyA98Jj3WzrB4I3sxTUcxEE5jvHeMGh7RJA"; 
     const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(title)}&key=${apiKey}`;
     try {
         const response = await fetch(url);
@@ -205,9 +206,34 @@ async function fetchBookDetails(title) {
             throw new Error("Network response was not ok.");
         }
         const data = await response.json();
-        return data.items || [];
+        return data.items || []; // Return the items array from API response
     } catch (error) {
         console.error("Error fetching book details:", error);
         return [];
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const inputBox = document.getElementById("input_box");
+    const dataContainer = document.getElementById("data");
+
+    inputBox.addEventListener("input", async () => {
+        const bookTitle = inputBox.value.trim();
+
+        const books = await fetchBookDetails(bookTitle);
+
+        if (books && books.length > 0) {
+            const book = books[0].volumeInfo; // Get the first book's volume info
+            const title = book.title;
+            const authors = book.authors ? book.authors.join(", ") : "Unknown author";
+            const imageUrl = book.imageLinks ? book.imageLinks.thumbnail : "images/default-book-cover.jpg";
+
+            // Display book details in #data element
+            dataContainer.innerHTML = `
+                <h2>${title}</h2>
+                <p><strong>Author(s):</strong> ${authors}</p>
+                <img src="${imageUrl}" alt="${title}" style="max-width: 100px; max-height: 100px;">
+            `;
+        }
+    });
+});
