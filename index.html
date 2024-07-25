@@ -316,7 +316,7 @@ document.getElementById('input_button').addEventListener('click', async function
 
     try {
         console.log('Sending POST request to server...');
-        const response = await fetch('http://3.95.174.190/predict', {
+        const response = await fetch('http://3.95.174.190:8001/predict', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
