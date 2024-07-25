@@ -212,15 +212,17 @@ function createTaskElement(task, key, type) {
             console.error("Error fetching book details:", error);
         });
 
-    taskData.prepend(title);
-    taskData.prepend(date);
-    taskData.prepend(creator);
-    taskData.prepend(starsContainer);
-    taskData.prepend(review);
-    taskContainer.prepend(taskData);
+        taskTool.prepend(taskDeleteButton);
+        taskContainer.prepend(taskTool);
+        
+        taskData.prepend(review); 
+        taskData.prepend(starsContainer);
+        taskData.prepend(date); 
+        taskData.prepend(creator);
+         taskData.prepend(title);
+        taskContainer.prepend(taskData);
+    
 
-    taskTool.prepend(taskDeleteButton);
-    taskContainer.prepend(taskTool);
 
     return taskContainer;
 }
