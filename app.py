@@ -31,7 +31,7 @@ def load_model():
         model_path = os.path.join(os.getcwd(), 'joke_model_saved')
         if not os.path.exists(model_path):
             download_and_extract_zip(model_url, model_path)
-        model = tf.keras.models.load_model(model_path)
+        model = tf.keras.layers.TFSMLayer(model_path, call_endpoint='serving_default')
         logging.info(f"Model loaded successfully from {model_path}")
     return model
 
@@ -104,7 +104,7 @@ def predict():
         padded = pad_sequences(sequences, maxlen=200, padding='post', truncating='post')
 
         # Predict
-        prediction = model.predict(padded)
+        prediction = model(padded)
         logging.info(f"Model prediction: {prediction}")
         prediction = scaler.inverse_transform(prediction)  # Inverse transform the scaled score
         logging.info(f"Inverse transformed prediction: {prediction}")
