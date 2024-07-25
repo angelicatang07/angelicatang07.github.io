@@ -90,6 +90,8 @@ document.addEventListener('DOMContentLoaded', function() {
         update(newTaskRef, {
             title: title,
             creator: username,
+            profile: prof,
+            about: about,
             review: rev,
             stars: rating,
             date: date
@@ -196,7 +198,7 @@ function createTaskElement(task, key, type) {
                 taskData.prepend(bookCover);
                 // Add click event listener to navigate to indivReview.html
                 taskContainer.addEventListener('click', () => {
-                    const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&about=${encodeURIComponent(about)}&profile=${encodeURIComponent(prof)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
+                    const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&about=${encodeURIComponent(task.about)}&profile=${encodeURIComponent(task.profile)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
                     window.location.href = `screens/indivReview.html${queryParams}`;
                 });
             }
