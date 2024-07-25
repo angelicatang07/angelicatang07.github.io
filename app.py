@@ -2,6 +2,7 @@ import os
 import logging
 from flask import Flask, request, jsonify
 import pickle
+import importlib
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import tensorflow as tf
 import requests
@@ -42,10 +43,9 @@ class CustomUnpickler(pickle.Unpickler):
         try:
             return super().find_class(module, name)
         except ModuleNotFoundError:
-            if module == 'keras.preprocessing':
-                import keras.preprocessing
-                return getattr(keras.preprocessing, name)
-            raise
+            module_parts = module.split('.')
+            new_module = importlib.import_module('.'.join(module_parts[:-1]))
+            return getattr(new_module, module_parts[-1])
 
 def load_tokenizer():
     global tokenizer
