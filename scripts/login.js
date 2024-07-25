@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getDatabase, ref, update, get } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBQ1TcCHByOmGBpPNaO9jfOg7T9pVfSFFU",
@@ -69,3 +69,17 @@ function validate_email(email) {
 function validate_password(pass) {
   return pass.length >= 6;
 }
+
+const reset = document.getElementById('reset');
+reset.addEventListener('click', function(e) {
+  e.preventDefault();
+  const email = document.getElementById("email").value;
+  sendPasswordResetEmail(auth, email) 
+    .then(() => {
+      alert("email sent");
+    })
+    .catch((error) => {
+      alert('please enter email');
+    })
+  }
+)
