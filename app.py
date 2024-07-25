@@ -9,7 +9,7 @@ from flask_cors import CORS
 
 # Suppress TensorFlow logging warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-logging.getLogger('tensorflow').setLevel(logging.ERROR)
+logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 CORS(app)
@@ -63,7 +63,7 @@ def download_file(url, local_path):
             file.write(response.content)
         logging.info(f"File downloaded successfully from {url}")
     else:
-        logging.error(f"Failed to download file from {url}")
+        logging.error(f"Failed to download file from {url}, status code: {response.status_code}")
         raise Exception(f"Failed to download file from {url}")
 
 # Helper function to download and extract zip files
@@ -71,6 +71,7 @@ def download_and_extract_zip(url, extract_to):
     response = requests.get(url)
     if response.status_code == 200:
         zip_path = os.path.join(extract_to, 'model.zip')
+        os.makedirs(extract_to, exist_ok=True)
         with open(zip_path, 'wb') as file:
             file.write(response.content)
         logging.info(f"Zip file downloaded successfully from {url}")
@@ -80,7 +81,7 @@ def download_and_extract_zip(url, extract_to):
         logging.info(f"Zip file extracted successfully to {extract_to}")
         os.remove(zip_path)
     else:
-        logging.error(f"Failed to download zip file from {url}")
+        logging.error(f"Failed to download zip file from {url}, status code: {response.status_code}")
         raise Exception(f"Failed to download zip file from {url}")
 
 @app.route('/predict', methods=['POST'])
@@ -110,7 +111,7 @@ def predict():
 
         return jsonify({'score': float(prediction[0][0])})
     except Exception as e:
-        logging.error(f"Error in prediction: {e}")
+        logging.error(f"Error in prediction: {e}", exc_info=True)
         return jsonify({'error': 'Prediction failed', 'message': str(e)}), 500
 
 if __name__ == '__main__':
