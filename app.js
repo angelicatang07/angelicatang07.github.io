@@ -19,10 +19,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 let username = 'Anonymous';
-let discord = 'unknown';
-let insta = 'unknown';
-let linkedin = 'unknown';
-let about = 'empty';
+let discord = 'unavailable';
+let insta = 'unavailable';
+let linkedin = 'unavailable';
+let about = 'unavailable';
 let prof = 'images/pfp.png';
 function checkUserLoggedIn() {
     const loginbtn = document.querySelector(".login-btn");
