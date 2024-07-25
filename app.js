@@ -130,7 +130,7 @@ function create_unfinished_task() {
             Object.keys(tasks).forEach(key => {
                 const task = tasks[key];
                 const taskContainer = createTaskElement(task, key, 'unfinished');
-                unfinishedTaskContainer.appendChild(taskContainer);
+                unfinishedTaskContainer.prepend(taskContainer);
             });
         } else {
             console.log("No tasks found");
@@ -200,7 +200,7 @@ function createTaskElement(task, key, type) {
                 // authorsElement.setAttribute('class', 'task_authors');
                 // authorsElement.textContent = `Authors: ${authors}`;
 
-                taskData.appendChild(bookCover);
+                taskData.prepend(bookCover);
                 // Add click event listener to navigate to indivReview.html
                 taskContainer.addEventListener('click', () => {
                     const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&discord=${encodeURIComponent(task.discord)}&insta=${encodeURIComponent(insta)}&linkedin=${encodeURIComponent(linkedin)}&about=${encodeURIComponent(about)}&profile=${encodeURIComponent(prof)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
@@ -212,15 +212,15 @@ function createTaskElement(task, key, type) {
             console.error("Error fetching book details:", error);
         });
 
-    taskData.appendChild(title);
-    taskData.appendChild(date);
-    taskData.appendChild(creator);
-    taskData.appendChild(starsContainer);
-    taskData.appendChild(review);
-    taskContainer.appendChild(taskData);
+    taskData.prepend(title);
+    taskData.prepend(date);
+    taskData.prepend(creator);
+    taskData.prepend(starsContainer);
+    taskData.prepend(review);
+    taskContainer.prepend(taskData);
 
-    taskTool.appendChild(taskDeleteButton);
-    taskContainer.appendChild(taskTool);
+    taskTool.prepend(taskDeleteButton);
+    taskContainer.prepend(taskTool);
 
     return taskContainer;
 }
@@ -256,7 +256,7 @@ function createStarsContainer(rating) {
         const star = document.createElement('span');
         star.innerHTML = '&#9733;'; // Star character
         star.classList.add('filled'); // Add filled class
-        starsContainer.appendChild(star);
+        starsContainer.prepend(star);
     }
 
     // Create empty stars for remaining
@@ -264,7 +264,7 @@ function createStarsContainer(rating) {
         const star = document.createElement('span');
         star.innerHTML = '&#9733;'; // Star character
         star.classList.add('empty'); // Add empty class
-        starsContainer.appendChild(star);
+        starsContainer.prepend(star);
     }
 
     return starsContainer;
