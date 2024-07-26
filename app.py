@@ -39,7 +39,7 @@ def load_model():
 class CustomUnpickler(pickle.Unpickler):
     def find_class(self, module, name):
         if module == 'keras.src.preprocessing':
-            module = 'keras.preprocessing'
+            module = 'tensorflow.keras.preprocessing'
         return super().find_class(module, name)
 
 def load_tokenizer():
