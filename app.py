@@ -42,10 +42,11 @@ class CustomUnpickler(pickle.Unpickler):
             module = 'keras.preprocessing'
         try:
             return super().find_class(module, name)
-        except ModuleNotFoundError:
-            module_parts = module.split('.')
-            new_module = importlib.import_module('.'.join(module_parts[:-1]))
-            return getattr(new_module, module_parts[-1])
+        except ModuleNotFoundError as e:
+            if module == 'keras.src.preprocessing':
+                module = 'keras.preprocessing'
+                return super().find_class(module, name)
+            raise e
 
 def load_tokenizer():
     global tokenizer
