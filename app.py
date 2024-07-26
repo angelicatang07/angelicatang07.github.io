@@ -72,7 +72,7 @@ def download_and_extract_zip(url, extract_to):
     if (response.status_code == 200):
         zip_path = os.path.join(extract_to, 'model.zip')
         os.makedirs(extract_to, exist_ok=True)
-        with open(zip_path, 'wb') as file):
+        with open(zip_path, 'wb') as file:
             file.write(response.content)
         logging.info(f"Zip file downloaded successfully from {url}")
         import zipfile
