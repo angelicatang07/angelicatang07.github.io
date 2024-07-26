@@ -18,8 +18,8 @@ CORS(app)
 # GitHub raw file URLs
 github_base_url = 'https://raw.githubusercontent.com/angelicatang07/angelicatang07.github.io/main/'
 model_url = github_base_url + 'joke_model_saved.zip'
-tokenizer_url = github_base_url + 'tokenizer.pkl'
-scaler_url = github_base_url + 'scaler.pkl'
+tokenizer_url = github_base_url + 'tokenizer_corrected.pkl'
+scaler_url = github_base_url + 'scaler_corrected.pkl'
 
 model = None
 tokenizer = None
