@@ -4,7 +4,7 @@ import { getDatabase, ref, push, update, remove, onValue, get } from "https://ww
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBQ1TcCHByOmGBpPNaO9jfOg7T9pVfSFFU",
+    apiKey: "AIzaSyA8YaENTFjYlJ2KGfSKvUYeV0X0I63BRGs",
     authDomain: "the-website-c2fc0.firebaseapp.com",
     databaseURL: "https://the-website-c2fc0-default-rtdb.firebaseio.com",
     projectId: "the-website-c2fc0",
