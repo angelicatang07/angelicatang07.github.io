@@ -102,7 +102,7 @@ def predict():
             return jsonify({'error': 'No text provided'}), 400
 
         # Load model, tokenizer, and scaler if not already loaded
-        model = load_model()
+        model = tf.keras.models.load_model(model_path)
         tokenizer = load_tokenizer()
         scaler = load_scaler()
 
@@ -111,7 +111,7 @@ def predict():
         padded = pad_sequences(sequences, maxlen=200, padding='post', truncating='post')
 
         # Predict
-        prediction = model(padded)
+        prediction = model.predict(padded)
         logging.info(f"Model prediction: {prediction}")
         prediction = scaler.inverse_transform(prediction)  # Inverse transform the scaled score
         logging.info(f"Inverse transformed prediction: {prediction}")
