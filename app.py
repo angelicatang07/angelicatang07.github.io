@@ -28,11 +28,11 @@ scaler = None
 # Load model, tokenizer, and scaler lazily
 def load_model():
     global model
+    model_path = os.path.join(os.getcwd(), 'joke_model_saved')
     if model is None:
-        model_path = os.path.join(os.getcwd(), 'joke_model_saved')
         if not os.path.exists(model_path):
             download_and_extract_zip(model_url, model_path)
-        model = tf.keras.layers.TFSMLayer(model_path, call_endpoint='serving_default')
+        model = tf.keras.models.load_model(model_path)
         logging.info(f"Model loaded successfully from {model_path}")
     return model
 
@@ -102,7 +102,7 @@ def predict():
             return jsonify({'error': 'No text provided'}), 400
 
         # Load model, tokenizer, and scaler if not already loaded
-        model = tf.keras.models.load_model(model_path)
+        model = load_model()
         tokenizer = load_tokenizer()
         scaler = load_scaler()
 
@@ -123,3 +123,4 @@ def predict():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000, debug=True)
+
