@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getDatabase, ref, push, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { reauthenticateWithCredential } from "firebase/auth/cordova";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA8YaENTFjYlJ2KGfSKvUYeV0X0I63BRGs",
@@ -19,50 +20,41 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 
-let username = 'Anonymous';
-let discord = 'unavailable';
-let insta = 'unavailable';
-let linkedin = 'unavailable';
-let about = 'unavailable';
-let prof = 'images/pfp.png';
+const ATag = document.getElementById('a-tag');
+const DTag = document.getElementById('d-tag');
+const ITag = document.getElementById('i-tag');
+const LTag = document.getElementById('l-tag');
+let username = document.getElementById('username');
+let profile = document.getElementById("profile-pic");
+let profile2 = document.getElementById("profile-pic2");
+let emailinfo = document.getElementById("email");
 
-// Check if the user is logged in and update profile and wishlist
-function checkUserLoggedIn() {
-    const loginbtn = document.querySelector(".login-btn");
-    const profDiv = document.getElementById("profile-pic");
-
+function fetchUserProfile() {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const userRef = ref(database, 'users/' + user.uid);
-            get(userRef).then((snapshot) => {
-                if (snapshot.exists()) {
-                    const userData = snapshot.val();
-                    username = userData.name || 'Anonymous';
-                    discord = userData.discord_user || "unavailable";
-                    insta = userData.instagram_handle || "unavailable";
-                    linkedin = userData.linkedin_acc || "unavailable";
-                    about = userData.about_me || "unavailable";
-                    prof = userData.profile_picture || '../images/pfp.png';
+            get(userRef)
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        const { name, email, instagram_handle, linkedin_acc, discord_user, profile_picture,about_me } = userData;
 
-                    // Update HTML elements with user data
-                    document.getElementById("username").textContent = username;
-                    document.getElementById("i-tag").textContent = insta;
-                    document.getElementById("l-tag").textContent = linkedin;
-                    document.getElementById("d-tag").textContent = discord;
-                    document.getElementById("a-tag").textContent = about;
-                    profDiv.src = prof;
-                    profDiv.style.display = "block";
-                } else {
-                    console.log("No user data found");
-                }
-                loginbtn.style.display = "none"; // Hide login button if user is logged in
-                create_wishlist(); // Load wishlist after login
-            }).catch((error) => {
-                console.error("Error fetching user data:", error);
-            });
-        } else {
-            profDiv.style.display = "none";
-            loginbtn.style.display = "block"; // Show login button if user is not logged in
+                        emailinfo.innerHTML=`<p class="private"><strong>Private*  </strong>  ${DOMPurify.sanitize(email)}</p>`;
+                        profile.src = `${DOMPurify.sanitize(profile_picture)}`;
+                        profile2.src = `${DOMPurify.sanitize(profile_picture)}`;
+                        username.innerHTML =  `${DOMPurify.sanitize(name)}`;
+                        DTag.innerHTML =  `${DOMPurify.sanitize(discord_user)}`;
+                        ITag.innerHTML =  `${DOMPurify.sanitize(instagram_handle)}`;
+                        LTag.innerHTML = `${DOMPurify.sanitize(linkedin_acc)}`;
+                        ATag.innerHTML = `${DOMPurify.sanitize(about_me)}`;
+
+                    } else {
+                        console.log("No user data found");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching user data:", error);
+                });
         }
     });
 }
@@ -90,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const isDuplicate = Object.values(existingBooks).some(book => book.title === title);
 
                 if (isDuplicate) {
-                    alert("This book is already in your wishlist.");
+                    alert("This book is already in your favorites.");
                     return;
                 }
 
@@ -101,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }).then(() => {
                     inputBox.value = "";
                     document.getElementById("data").innerHTML = "";
-                    create_wishlist(); // Refresh wishlist
+                    create_wishlist(); 
                 }).catch(error => {
                     console.error("Error adding book to wishlist: ", error);
                 });
@@ -109,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error("Error fetching wishlist:", error);
             });
         } else {
-            alert("Please log in to add books to your wishlist.");
+            alert("Please log in to add books to your favorites.");
         }
     });
 
@@ -145,7 +137,7 @@ function create_wishlist() {
             }
         });
     } else {
-        wishlistContainer.innerHTML = "<p>Please log in to see your wishlist.</p>";
+        wishlistContainer.innerHTML = "<p>Please log in to see your favorites.</p>";
     }
 }
 
@@ -200,7 +192,7 @@ function book_delete(key) {
         const bookRef = ref(database, 'users/' + user.uid + '/wishlist/' + key); // Reference to specific book
 
         remove(bookRef).then(() => {
-            console.log("Book removed from wishlist successfully");
+            console.log("Book removed from favorites successfully");
             // Remove book from UI
             const bookElement = document.querySelector(`.book_container[data-key="${key}"]`);
             if (bookElement) {
@@ -210,7 +202,7 @@ function book_delete(key) {
             console.error("Error removing book from wishlist: ", error);
         });
     } else {
-        alert("Please log in to remove books from your wishlist.");
+        alert("Please log in to remove books from your favorites.");
     }
 }
 
@@ -259,3 +251,5 @@ document.addEventListener("DOMContentLoaded", (e) => {
         }
     });
 });
+
+fetchUserProfile();
