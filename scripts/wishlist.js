@@ -67,9 +67,7 @@ function checkUserLoggedIn() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function(e) {
-    e.preventDefault();
-
+document.addEventListener('DOMContentLoaded', function() {
     const submitButton = document.getElementById("input_button");
     const inputBox = document.getElementById("input_box");
 
@@ -86,16 +84,29 @@ document.addEventListener('DOMContentLoaded', function(e) {
         const user = auth.currentUser;
         if (user) {
             const wishlistRef = ref(database, 'users/' + user.uid + '/wishlist'); // Reference to user's wishlist
-            const newBookRef = push(wishlistRef);
 
-            update(newBookRef, {
-                title: title
-            }).then(() => {
-                inputBox.value = "";
-                document.getElementById("data").innerHTML= "";
-                create_wishlist(); // Refresh wishlist
+            get(wishlistRef).then((snapshot) => {
+                const existingBooks = snapshot.val() || {};
+                const isDuplicate = Object.values(existingBooks).some(book => book.title === title);
+
+                if (isDuplicate) {
+                    alert("This book is already in your wishlist.");
+                    return;
+                }
+
+                const newBookRef = push(wishlistRef);
+
+                update(newBookRef, {
+                    title: title
+                }).then(() => {
+                    inputBox.value = "";
+                    document.getElementById("data").innerHTML = "";
+                    create_wishlist(); // Refresh wishlist
+                }).catch(error => {
+                    console.error("Error adding book to wishlist: ", error);
+                });
             }).catch(error => {
-                console.error("Error adding book to wishlist: ", error);
+                console.error("Error fetching wishlist:", error);
             });
         } else {
             alert("Please log in to add books to your wishlist.");
