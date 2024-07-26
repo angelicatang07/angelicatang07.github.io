@@ -53,6 +53,8 @@ const form = document.getElementById('subscriptionForm');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    const emailInput = document.getElementById('email');
     const email = document.getElementById('email').value;
 
     try {
@@ -72,6 +74,17 @@ form.addEventListener('submit', async (e) => {
         console.error('Error adding document: ', error);
         alert('Subscription failed. Please try again later.');
     }
+
+    if (!validate_email(email)) {
+        alert('Invalid Email.');
+        emailInput.focus(); // Set focus to the email input field
+        return;
+    }
 });
 
+function validate_email(email) {
+    const rgx = /^[^@]+@\w+(\.\w+)+\w$/;
+    return rgx.test(email);
+  }
+  
 checkUserLoggedIn();

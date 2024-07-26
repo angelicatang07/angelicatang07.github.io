@@ -53,7 +53,7 @@ function checkUserLoggedIn() {
 form.addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent default form submission
 
-    // Get input values from the form
+    const emailInput = document.getElementById('email');
     const email = document.getElementById('email').value;
     const feedback = document.getElementById('feedback').value;
     if(!validate_email(email)) {
@@ -77,6 +77,12 @@ form.addEventListener('submit', async (e) => {
     } catch (error) {
         console.error('Error adding document: ', error);
         alert('Submission failed. Please try again later.');
+    }
+
+    if (!validate_email(email)) {
+        alert('Invalid Email.');
+        emailInput.focus(); // Set focus to the email input field
+        return;
     }
 });
 
