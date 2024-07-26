@@ -39,8 +39,11 @@ def load_model():
 
 class CustomUnpickler(pickle.Unpickler):
     def find_class(self, module, name):
+        # Correcting both 'keras.src.preprocessing' and other similar paths
         if module == 'keras.src.preprocessing':
             module = 'tensorflow.keras.preprocessing'
+        elif module.startswith('keras.'):
+            module = module.replace('keras.', 'tensorflow.keras.')
         return super().find_class(module, name)
 
 def load_tokenizer():
@@ -52,7 +55,7 @@ def load_tokenizer():
             tokenizer = CustomUnpickler(handle).load()
         logging.info(f"Tokenizer loaded successfully from {tokenizer_path}")
     return tokenizer
-    
+
 def load_scaler():
     global scaler
     if scaler is None:
