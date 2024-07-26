@@ -61,7 +61,7 @@ function fetchUserProfile() {
                         profile2.src = `${DOMPurify.sanitize(profile_picture)}`;
                         username.innerHTML =  `${DOMPurify.sanitize(name)}`;
                         DTag.innerHTML =  `${DOMPurify.sanitize(discord_user)}`;
-                        ITag.innerHTML =  `@${DOMPurify.sanitize(instagram_handle)}`;
+                        ITag.innerHTML =  `${DOMPurify.sanitize(instagram_handle)}`;
                         LTag.innerHTML = `${DOMPurify.sanitize(linkedin_acc)}`;
                         ATag.innerHTML = `${DOMPurify.sanitize(about_me)}`;
 
@@ -100,7 +100,7 @@ instagramForm.addEventListener("submit", (e) => {
                 const userRef = ref(database, 'users/' + user.uid);
                 const user_data = { instagram_handle: insta };
                 updateUserProfile(userRef, user_data);
-                ITag.innerHTML =  `@${DOMPurify.sanitize(insta)}`;
+                ITag.innerHTML =  `${DOMPurify.sanitize(insta)}`;
                 } else {
                 console.error("User not authenticated");
                 alert('User not authenticated. Please log in.');
