@@ -67,9 +67,8 @@
         // Extract query parameters
         const params = new URLSearchParams(window.location.search);
         const title = params.get('title');
-        const about = params.get('about');
         const creator = params.get('creator');
-        const profile = params.get('profile');
+        const email = params.get('email');
         const review = params.get('review');
         const date = params.get('date');
         const cover = params.get('bookCover'); 
@@ -108,8 +107,7 @@
         `;
 
         creatorSocialsDiv.innerHTML = `
-            <img src=${escapeHTML(profile)} />
-            <p><strong>About ${escapeHTML(creator)}: </strong> ${escapeHTML(about)}</p>
+            <p><strong>More on ${escapeHTML(creator)}: </strong> coming soon</p>
            
         `; 
 
