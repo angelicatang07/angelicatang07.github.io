@@ -2,7 +2,7 @@ import os
 import logging
 from flask import Flask, request, jsonify
 import dill as pickle  # Use dill instead of pickle
-from tensorflow.keras.preprocessing.sequence import pad_sequences
+from keras.preprocessing.sequence import pad_sequences
 import tensorflow as tf
 import requests
 from flask_cors import CORS
