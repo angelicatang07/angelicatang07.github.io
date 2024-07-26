@@ -69,7 +69,7 @@ def download_file(url, local_path):
 # Helper function to download and extract zip files
 def download_and_extract_zip(url, extract_to):
     response = requests.get(url)
-    if response.status_code == 200):
+    if (response.status_code == 200):
         zip_path = os.path.join(extract_to, 'model.zip')
         os.makedirs(extract_to, exist_ok=True)
         with open(zip_path, 'wb') as file):
