@@ -1,10 +1,10 @@
 import os
 import logging
 from flask import Flask, request, jsonify
-import dill as pickle  # Use dill instead of pickle
+import pickle
+import importlib
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import tensorflow as tf
-import requests
 from flask_cors import CORS
 
 # Suppress TensorFlow logging warnings
@@ -31,9 +31,15 @@ def load_model():
         model_path = os.path.join(os.getcwd(), 'joke_model_saved')
         if not os.path.exists(model_path):
             download_and_extract_zip(model_url, model_path)
-        model = tf.keras.layers.TFSMLayer(model_path, call_endpoint='serving_default')
+        model = tf.keras.models.load_model(model_path)
         logging.info(f"Model loaded successfully from {model_path}")
     return model
+
+class CustomUnpickler(pickle.Unpickler):
+    def find_class(self, module, name):
+        if module == 'keras.src.preprocessing':
+            module = 'keras.preprocessing'
+        return super().find_class(module, name)
 
 def load_tokenizer():
     global tokenizer
@@ -41,7 +47,7 @@ def load_tokenizer():
         tokenizer_path = os.path.join(os.getcwd(), 'tokenizer_corrected.pkl')
         download_file(tokenizer_url, tokenizer_path)
         with open(tokenizer_path, 'rb') as handle:
-            tokenizer = pickle.load(handle)
+            tokenizer = CustomUnpickler(handle).load()
         logging.info(f"Tokenizer loaded successfully from {tokenizer_path}")
     return tokenizer
 
@@ -51,7 +57,7 @@ def load_scaler():
         scaler_path = os.path.join(os.getcwd(), 'scaler_corrected.pkl')
         download_file(scaler_url, scaler_path)
         with open(scaler_path, 'rb') as handle:
-            scaler = pickle.load(handle)
+            scaler = CustomUnpickler(handle).load()
         logging.info(f"Scaler loaded successfully from {scaler_path}")
     return scaler
 
@@ -69,7 +75,7 @@ def download_file(url, local_path):
 # Helper function to download and extract zip files
 def download_and_extract_zip(url, extract_to):
     response = requests.get(url)
-    if response.status_code == 200:
+    if response.status_code == 200):
         zip_path = os.path.join(extract_to, 'model.zip')
         os.makedirs(extract_to, exist_ok=True)
         with open(zip_path, 'wb') as file:
@@ -104,7 +110,7 @@ def predict():
         padded = pad_sequences(sequences, maxlen=200, padding='post', truncating='post')
 
         # Predict
-        prediction = model(padded)
+        prediction = model.predict(padded)
         logging.info(f"Model prediction: {prediction}")
         prediction = scaler.inverse_transform(prediction)  # Inverse transform the scaled score
         logging.info(f"Inverse transformed prediction: {prediction}")
