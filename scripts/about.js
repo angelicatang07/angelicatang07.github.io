@@ -56,7 +56,12 @@ form.addEventListener('submit', async (e) => {
 
     const emailInput = document.getElementById('email');
     const email = document.getElementById('email').value;
-
+   
+    if (!validate_email(email)) {
+        alert('Invalid Email.');
+        emailInput.focus(); // Set focus to the email input field
+        return;
+    }
     try {
         // Add a new document with email and timestamp to 'mailing' collection
         const docRef = await addDoc(collection(db, 'mailing'), {
@@ -75,16 +80,11 @@ form.addEventListener('submit', async (e) => {
         alert('Subscription failed. Please try again later.');
     }
 
-    if (!validate_email(email)) {
-        alert('Invalid Email.');
-        emailInput.focus(); // Set focus to the email input field
-        return;
-    }
 });
 
 function validate_email(email) {
     const rgx = /^[^@]+@\w+(\.\w+)+\w$/;
     return rgx.test(email);
   }
-  
+
 checkUserLoggedIn();

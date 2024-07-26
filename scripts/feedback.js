@@ -49,17 +49,25 @@ function checkUserLoggedIn() {
         }
     });
 }
-// Event listener for form submission
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent default form submission
 
     const emailInput = document.getElementById('email');
     const email = document.getElementById('email').value;
+    const feedbackInput = document.getElementById('feedback');
     const feedback = document.getElementById('feedback').value;
-    if(!validate_email(email)) {
+
+    if (!validate_email(email)) {
         alert('Invalid Email.');
+        emailInput.focus(); // Set focus to the email input field
         return;
     }
+    if(!validate_field(feedback)) {
+        feedbackInput.focus();
+        return;
+    }
+
     try {
         // Add a new document with email, feedback, and timestamp to 'feedbackCollection'
         const docRef = await addDoc(collection(db, 'feedbackCollection'), {
@@ -78,12 +86,7 @@ form.addEventListener('submit', async (e) => {
         console.error('Error adding document: ', error);
         alert('Submission failed. Please try again later.');
     }
-
-    if (!validate_email(email)) {
-        alert('Invalid Email.');
-        emailInput.focus(); // Set focus to the email input field
-        return;
-    }
+    
 });
 
 
@@ -92,4 +95,7 @@ function validate_email(email) {
     return rgx.test(email);
   }
 
+function validate_field(field) {
+    return field && field.trim().length > 0;
+  }
 checkUserLoggedIn();
