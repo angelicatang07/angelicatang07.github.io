@@ -67,11 +67,15 @@ function checkUserLoggedIn() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const submitButton = document.getElementById("input_button");
+document.addEventListener('DOMContentLoaded', function(e) {
+    e.preventDefault();
 
-    submitButton.addEventListener("click", () => {
-        const inputBox = document.getElementById("input_box");
+    const submitButton = document.getElementById("input_button");
+    const inputBox = document.getElementById("input_box");
+
+    submitButton.addEventListener("click", (e) => {
+        e.preventDefault();
+
         const title = inputBox.value.trim();
 
         if (title.length === 0) {
@@ -95,6 +99,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         } else {
             alert("Please log in to add books to your wishlist.");
+        }
+    });
+
+    inputBox.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Prevent the default Enter key behavior
+            submitButton.click(); // Trigger the submit button's click event
         }
     });
 
@@ -140,6 +151,7 @@ function createBookElement(book, key) {
     bookDeleteButton.innerHTML = '<i class="bx bx-trash" style="cursor:pointer"></i>';
     bookDeleteButton.classList.add('cursor-pointer');
     bookDeleteButton.addEventListener('click', (event) => {
+        event.preventDefault();
         event.stopPropagation();
         book_delete(key); // Pass the key to the delete function
     });
@@ -208,11 +220,15 @@ async function fetchBookDetails(title) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", (e) => {
+    e.preventDefault();
+
     const inputBox = document.getElementById("input_box");
     const dataContainer = document.getElementById("data");
 
-    inputBox.addEventListener("input", async () => {
+    inputBox.addEventListener("input", async (e) => {
+        e.preventDefault();
+
         const bookTitle = inputBox.value.trim();
 
         const books = await fetchBookDetails(bookTitle);
