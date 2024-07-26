@@ -8,6 +8,7 @@ import tensorflow as tf
 import requests
 from flask_cors import CORS
 
+
 # Suppress TensorFlow logging warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 logging.basicConfig(level=logging.INFO)
@@ -39,7 +40,7 @@ def load_model():
 class CustomUnpickler(pickle.Unpickler):
     def find_class(self, module, name):
         if module == 'keras.src.preprocessing':
-            module = 'keras.preprocessing'
+            module = 'tensorflow.keras.preprocessing'
         return super().find_class(module, name)
 
 def load_tokenizer():
@@ -51,7 +52,7 @@ def load_tokenizer():
             tokenizer = CustomUnpickler(handle).load()
         logging.info(f"Tokenizer loaded successfully from {tokenizer_path}")
     return tokenizer
-
+    
 def load_scaler():
     global scaler
     if scaler is None:
