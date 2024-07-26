@@ -268,7 +268,7 @@ function createStarsContainer(rating) {
 }
 
 async function fetchBookDetails(title) {
-    const apiKey = "AIzaSyC4ckGjzkdMhIusXmxdJSiqLX3FL_Y9rTA"; 
+    const apiKey = "AIzaSyCu3xGU8I2x9b82CYXb9TdK0TLws0wkx_g"; 
     const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(title)}&key=${apiKey}`;
     try {
         const response = await fetch(url);
