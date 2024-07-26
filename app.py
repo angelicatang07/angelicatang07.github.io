@@ -3,7 +3,6 @@ import logging
 from flask import Flask, request, jsonify
 import dill as pickle  # Use dill instead of pickle
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.preprocessing import image
 import tensorflow as tf
 import requests
 from flask_cors import CORS
@@ -32,7 +31,7 @@ def load_model():
     if model is None:
         if not os.path.exists(model_path):
             download_and_extract_zip(model_url, model_path)
-        model = tf.keras.models.load_model(model_path)
+        model = tf.keras.layers.TFSMLayer(model_path, call_endpoint='serving_default')
         logging.info(f"Model loaded successfully from {model_path}")
     return model
 
@@ -111,7 +110,7 @@ def predict():
         padded = pad_sequences(sequences, maxlen=200, padding='post', truncating='post')
 
         # Predict
-        prediction = model.predict(padded)
+        prediction = model(padded)
         logging.info(f"Model prediction: {prediction}")
         prediction = scaler.inverse_transform(prediction)  # Inverse transform the scaled score
         logging.info(f"Inverse transformed prediction: {prediction}")
@@ -123,4 +122,3 @@ def predict():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000, debug=True)
-
