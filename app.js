@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             rating = index + 1;
-            message.innerText = `You rated this ${rating} stars.`;
         });
     });
 
@@ -80,6 +79,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (title.length === 0 || rev.length === 0 || rating === 0) {
             alert("Please fill in all fields and rate the book.");
             return;
+        }
+        const msage = document.getElementById('message');
+
+        if(msage.textContent.trim() === "Review score too low. Please write a more funny review." || msage.textContent.trim() === "Please write a more funny review before submitting." ) {
+            e.preventDefault();
+            msage.innerText = "Please write a more funny review before submitting.";
+            return; 
         }
     
         const unfinishedTaskRef = ref(database, 'unfinished_task'); // Define Firebase reference

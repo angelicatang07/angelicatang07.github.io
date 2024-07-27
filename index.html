@@ -271,7 +271,7 @@
             </div>
             <div class="data" id='data'></div>
             <p id="message"></p>
-            <button id="input_button">Submit</button>
+            <button id="input_button" type="submit">Submit</button>
         </div>
     </div>
 
@@ -299,7 +299,8 @@
 
 <script type="module" src="app.js"></script>
 <script>
-document.getElementById('input_button').addEventListener('click', async function() {
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('input_review').addEventListener('input', async function() {
     const reviewText = document.getElementById('input_review').value;
     const message = document.getElementById('message');
 
@@ -309,10 +310,6 @@ document.getElementById('input_button').addEventListener('click', async function
         message.textContent = 'Please write a review.';
         return;
     }
-
-    // Inform the user that the review is being submitted
-    console.log('Submitting review:', reviewText);
-    message.textContent = 'Submitting review...';
 
     try {
         console.log('Sending POST request to server...');
@@ -339,7 +336,7 @@ document.getElementById('input_button').addEventListener('click', async function
         console.log('Review score:', score);
         if (score >= 200) {
             console.log('Review score is high enough. Displaying success message.');
-            message.textContent = 'Review submitted successfully!';
+            message.textContent = 'Review is funny. Ready to submit!';
         } else {
             console.warn('Review score too low. Prompting user to write a funnier review.');
             message.textContent = 'Review score too low. Please write a more funny review.';
@@ -349,6 +346,8 @@ document.getElementById('input_button').addEventListener('click', async function
         message.textContent = 'Error predicting review score: ' + error.message;
     }
 });
+
+    })
 </script>
 </body>
 </html>
