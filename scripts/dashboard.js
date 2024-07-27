@@ -22,6 +22,7 @@ const sign_out = document.getElementById('sign-out');
 sign_out.addEventListener('click', () => {
   
     signOut(auth).then(() => {
+        alert("logging out");
         window.location.href = "../index.html";
 
     }).catch((error) => {
