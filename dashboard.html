@@ -254,6 +254,14 @@
         }
     </style>
 </head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KBZ3ZQRVHB');
+</script>
 <body>
     <div class="container">
         <nav class="sidebar">
@@ -269,7 +277,7 @@
                 <li><a href="#">Messages</a></li>
                 <li><a href="screens/profile.html">Profile</a></li>
                 <li><a href="#">Settings</a></li>
-                <li><a href="#">Log Out</a></li>
+                <li><a id="sign-out">Log Out</a></li>
             </ul>
             <div class="help">
                 <a href="#">Help</a>
@@ -323,6 +331,7 @@
             </section>
         </main>
     </div>
+    <script type="module" src="scripts/dashboard.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const spotlightItems = document.querySelectorAll('.spotlight-item');

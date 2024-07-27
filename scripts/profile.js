@@ -140,16 +140,4 @@ aboutForm.addEventListener("submit", (e) => {
         });
 });
 
-const sign_out = document.getElementById('sign-out');
-sign_out.addEventListener('click', () => {
-  
-    signOut(auth).then(() => {
-        window.location.href = "../index.html";
-
-    }).catch((error) => {
-       console.log('error');
-    });
-    
-})
-
 fetchUserProfile();

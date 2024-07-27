@@ -44,7 +44,7 @@ loginbtn.addEventListener("click", () => {
             update(userRef, user_data);
             
             alert(`Welcome back, ${userName}.`);
-            window.location.href = "../index.html";
+            window.location.href = "../dashboard.html";
           } else {
             alert("User data not found.");
           }
