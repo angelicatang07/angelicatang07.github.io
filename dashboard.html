@@ -1,0 +1,353 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="images/ledgit.webp" rel="icon" type="image/webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledgit</title>
+    <link rel="stylesheet" href="stylesheets/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9196511154128809" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
+    <style>
+        /* Styles remain unchanged */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            background-color: #fafafa;
+            color: #333;
+        }
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: url('images/front2.webp') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-content {
+            z-index: 2;
+            color: #fff;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            margin: 0;
+        }
+        p {
+            font-size: 1.5rem;
+        }
+        .cta-button {
+            background: #7c4dff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .cta-button:hover {
+            background: #651fff;
+        }
+        header {
+            background: #fff;
+            color: #333;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo a {
+            font-family: 'Pacifico', cursive;
+            color: #000;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        .nav-bar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+        .nav-bar a {
+            color: #333;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+        .nav-bar a:hover {
+            color: #7c4dff;
+        }
+        .login-btn {
+            color: #fff;
+            background: #7c4dff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .login-btn:hover {
+            background: #651fff;
+        }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+        .user-profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #7c4dff;
+            transition: border-color 0.3s;
+        }
+        .user-profile img:hover {
+            border-color: #651fff;
+        }
+        .features {
+            padding: 50px 0;
+            text-align: center;
+            background: #fff;
+        }
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .feature-box {
+            background: #fafafa;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            transition: transform 0.3s;
+        }
+        .feature-box:hover {
+            transform: translateY(-10px);
+        }
+        .feature-box h3 {
+            font-size: 1.25rem;
+            margin-top: 0;
+        }
+        .feature-box img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        .subscription-plans {
+            padding: 50px 0;
+            background: #f9f9f9;
+            text-align: center;
+        }
+        .plans-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .plan-box {
+            background: #fff;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            transition: transform 0.3s;
+        }
+        .plan-box:hover {
+            transform: translateY(-10px);
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body onload="create_unfinished_task(); create_finished_task();">
+
+<header>
+    <div class="logo">
+        <a href="index.html">
+            <img src="images/dw.png" alt="Ledgit Logo" class="logo-img">
+        </a>
+    </div>
+    <nav class="nav-bar">
+        <ul>
+            <li><a href="index.html">Main</a></li>
+            <li><a href="screens/about.html">About</a></li>
+            <li><a href="screens/team.html">Team</a></li>
+            <li><a href="screens/pricing.html">Pricing</a></li>
+            <li><a href="screens/feedback.html">Feedback</a></li>
+        </ul>
+        <a class="login-btn" href="screens/login.html">Login</a>
+        <div class="user-profile"> 
+            <a href="screens/profile.html"><img class="profile-pic" id="profile-pic" src="" alt="Profile Picture" /> </a>
+        </div>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to Ledgit</h1>
+        <p>Your go-to platform for book reviews.</p>
+        <a class="cta-button" href="#content_container">Get Started</a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <h2>Features (Coming VERY Soon)</h2>
+    <div class="features-container">
+        <div class="feature-box">
+            <img src="images/book-reco.png" alt="Book Recommendations">
+            <h3>Book Recommendations</h3>
+            <p>Discover your next favorite book with personalized recommendations.</p>
+        </div>
+        <div class="feature-box">
+            <img src="images/reviews.png" alt="Engaging Reviews">
+            <h3>Engaging Reviews</h3>
+            <p>Enjoy sentiment-analysis-driven funny reviews and share your own.</p>
+        </div>
+        <div class="feature-box">
+            <img src="images/community.png" alt="Community Groups">
+            <h3>Community Groups</h3>
+            <p>Connect with readers who share your interests and join niche communities.</p>
+        </div>
+        <div class="feature-box">
+            <img src="images/reading-stats.png" alt="Reading Statistics">
+            <h3>Reading Statistics</h3>
+            <p>Track your reading habits with detailed stats on genres, pages, and authors.</p>
+        </div>
+        <div class="feature-box">
+            <img src="images/author-features.png" alt="Author Features">
+            <h3>Author Features</h3>
+            <p>Stay updated with the latest from your favorite authors.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Subscription Plans Section -->
+<section class="subscription-plans">
+    <h2>Subscription Plans</h2>
+    <div class="plans-container">
+        <div class="plan-box">
+            <h3>Free Plan</h3>
+            <p>Enjoy a basic experience alongside a limited selection of rewards.</p>
+        </div>
+        <div class="plan-box premium">
+            <h3>Premium Plans</h3>
+            <p>Unlock premium features like customizable profiles, reading journals, and exclusive rewards.</p>
+            <a class="learn-more" href="screens/pricing.html">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<div id="content_container">
+    <div id="write_review_container">
+        <div id="finish_task_header">
+            <h2>Write a Review</h2>
+        </div>
+
+        <div id="task_input_container">
+            <input type="text" id="input_box" placeholder="Book Title">
+            <textarea id="input_review" placeholder="Review..."></textarea>
+            <div class="rating">
+                <span class="star" data-star="1">&#9733;</span>
+                <span class="star" data-star="2">&#9733;</span>
+                <span class="star" data-star="3">&#9733;</span>
+                <span class="star" data-star="4">&#9733;</span>
+                <span class="star" data-star="5">&#9733;</span>
+            </div>
+            <div class="data" id='data'></div>
+            <p id="message"></p>
+            <button id="input_button" type="submit">Submit</button>
+        </div>
+    </div>
+
+    <h2 class="header">Review Log</h2>
+    <div class="reviews-container" id="unfinished_tasks_container">
+        <!-- Reviews dynamically added here -->
+        <div class="review-box">
+            <h3>Book Title</h3>
+            <p>This is an example review. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis fringilla leo.</p>
+        </div>
+        <!-- Add more review boxes as needed -->
+    </div>
+</div>
+
+<div class="spread">
+    <a target="blank" href="https://www.linkedin.com/company/theledgit/about/"><img src="../images/linkedin.png"></a>
+    <a target="blank" href="https://www.instagram.com/theledgit?igshid=MzRlODBiNWFlZA=="><img src="../images/instagram.png"></a>
+    <a target="blank" href="https://discord.gg/Gnybre75GK"><img src="../images/discord.png"></a>
+    <a target="blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"><img src="../images/tiktok.webp"></a>
+</div>
+
+<footer>
+    <p>&copy; 2024 Ledgit. All rights reserved.</p>
+</footer>
+
+<script type="module" src="app.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('input_review').addEventListener('input', async function() {
+    const reviewText = document.getElementById('input_review').value;
+    const message = document.getElementById('message');
+
+    // Ensure the review text is not empty
+    if (!reviewText.trim()) {
+        console.warn('Review text is empty.');
+        message.textContent = 'Please write a review.';
+        return;
+    }
+
+    try {
+        console.log('Sending POST request to server...');
+        const response = await fetch('https://theledgitsecurity.com/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: reviewText })
+        });
+
+        console.log('Fetch response received:', response);
+
+        if (!response.ok) {
+            console.error('Response not OK. Status:', response.status);
+            throw new Error('Network response was not ok');
+        }
+
+        console.log('Parsing response as JSON...');
+        const data = await response.json();
+        console.log('Response data:', data);
+
+        const score = data.score;
+        console.log('Review score:', score);
+        if (score >= 200) {
+            console.log('Review score is high enough. Displaying success message.');
+            message.textContent = 'Review is funny. Ready to submit!';
+        } else {
+            console.warn('Review score too low. Prompting user to write a funnier review.');
+            message.textContent = 'Review score too low. Please write a more funny review.';
+        }
+    } catch (error) {
+        console.error('Error during fetch operation:', error);
+        message.textContent = 'Error predicting review score: ' + error.message;
+    }
+});
+
+    })
+</script>
+</body>
+</html>
