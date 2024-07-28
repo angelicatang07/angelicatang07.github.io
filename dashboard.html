@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ledgit Beyond Words</title>
+    <title>Ledgit</title>
+
+    <link href="images/ledgit.webp" rel="icon" type="image/webp">
     <style>
         body {
             margin: 0;
@@ -326,8 +328,34 @@
                 </div>
             </section> -->
             <section class="reviews">
-                <h3>Reviews</h3>
-                <!-- Add review content here -->
+                <div id="content_container">
+                    <div id="write_review_container">
+                        <div id="finish_task_header">
+                            <h2>Write a Review</h2>
+                        </div>
+                
+                        <div id="task_input_container">
+                            <input type="text" id="input_box" placeholder="Book Title">
+                            <textarea id="input_review" placeholder="Review..."></textarea>
+                            <div class="rating">
+                                <span class="star" data-star="1">&#9733;</span>
+                                <span class="star" data-star="2">&#9733;</span>
+                                <span class="star" data-star="3">&#9733;</span>
+                                <span class="star" data-star="4">&#9733;</span>
+                                <span class="star" data-star="5">&#9733;</span>
+                            </div>
+                            <div class="data" id='data'></div>
+                            <p id="message"></p>
+                            <button id="input_button" type="submit">Submit</button>
+                        </div>
+                    </div>
+                
+                    <h2 class="header">Review Log</h2>
+                    <div class="reviews-container" id="unfinished_tasks_container">
+                        <!-- Reviews dynamically added here -->
+                       
+                    </div>
+                </div>
             </section>
         </main>
     </div>

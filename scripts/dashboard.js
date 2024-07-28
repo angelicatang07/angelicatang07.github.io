@@ -18,33 +18,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
-let username = 'Anonymous';
-let email = "";
 function checkUserLoggedIn() {
-    const loginbtn = document.querySelector(".login-btn");
-    const profDiv = document.getElementById("profile-pic");
-
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const userRef = ref(database, 'users/' + user.uid);
             get(userRef).then((snapshot) => {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
-                    username = userData.name || 'Anonymous';
-                    email= userData.email;
                 } else {
                     console.log("No user data found");
                 }
                 // profDiv.src = prof;
                 // profDiv.style.display = "block";
                 // loginbtn.style.display = "none";
-                window.location.href = "dashboard.html";
             }).catch((error) => {
                 console.error("Error fetching user data:", error);
             });
         } else {
-            profDiv.style.display = "none";
-            loginbtn.style.display = "block"; // Show login button if user is not logged in
+            window.location.href = "index.html";
         }
     });
 }
@@ -138,7 +129,6 @@ function create_unfinished_task() {
         }
     });
 }
-
 
 function createTaskElement(task, key, type) {
     const taskContainer = document.createElement("div");
