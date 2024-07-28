@@ -74,8 +74,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
         const rev = inputRev.value.trim();
         const date = formatDate(new Date());
         const dataCon = document.getElementById('data');
+        const start = document.getElementById('start-date').value.trim();
+        const end = document.getElementById('end-date').value.trim();
 
-        if (title.length === 0 || rev.length === 0 || rating === 0) {
+        if (title.length === 0 || rev.length === 0 || rating === 0 || !start || !end ) {
             alert("Please fill in all fields and rate the book.");
             return;
         }
