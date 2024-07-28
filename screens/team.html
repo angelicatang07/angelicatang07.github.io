@@ -8,20 +8,16 @@
     <link href="../stylesheets/team.css" rel="stylesheet"/>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script>
-    <link href="../images/ledgit.webp" rel="icon" type="image/">
+    <link href="../images/ledgit.webp" rel="icon" type="image/webp">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-KBZ3ZQRVHB');
     </script>
 </head>
-<!-- Google tag (gtag.js) -->
-
 <body>
-
 <header>
     <div class="logo">
         <a href="../index.html"><img src="../images/dw.png" alt="Ledgit Logo" class="logo-img"></a>
@@ -36,49 +32,62 @@
         </ul>
         <a class="login-btn" href="login.html">Login</a>
         <div class="user-profile"> 
-            <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" /> </a>
+            <a href="profile.html"><img class="profile-pic" id="profile-pic" src="../images/default-profile.png" alt="Profile Picture" /></a>
         </div>
-        <a class="dark-mode-toggle" onclick="toggleDarkMode()"> <i class='bx bx-moon'></i> </a>
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
     </nav>
 </header>
+
+<aside class="sidebar">
+    <ul>
+        <li><a href="../index.html">Main</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+    </ul>
+</aside>
+
+<div class="theme-toggle">
+    <input type="checkbox" id="theme-toggle-checkbox" onclick="toggleDarkMode()">
+    <label for="theme-toggle-checkbox">Toggle Theme</label>
+</div>
 
 <main>
     <div class="front"></div>
     <h1 class="mtt">Meet the Team</h1>
     <div class="box">
-
         <div id="ellie">
             <img class="batman Pri" src="../images/ellie.webp" alt="Ellie Leung" />
             <h2>Ellie Leung</h2>
             <p>Co-founder</p>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=itsellie.leung@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
+            <a href="mailto:itsellie.leung@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
         </div>
 
         <div id="sherry">
             <img class="blackpanther Pri" src="../images/sherry.webp" alt="Sherry Li" />
             <h2>Sherry Li</h2>
             <p>Co-founder</p>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=sherryzexuanli@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
+            <a href="mailto:sherryzexuanli@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
         </div>
         <div id="angelica">
             <img class="ironman Pri" src="../images/angelica.webp" alt="Angelica Tang" />
             <h2>Angelica Tang</h2>
             <p>Co-founder</p>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=angelicatang07@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
-            
+            <a href="mailto:angelicatang07@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
         </div>
         <div id="yash">
             <img class="spiderman Pri" src="../images/yash.webp" alt="Yash Tomar" />
             <h2>Yash Tomar</h2>
             <p>Co-founder</p>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=yashm.tomar@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
+            <a href="mailto:yashm.tomar@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
         </div>
 
         <div id="vivian">
             <img class="thor Pri" src="../images/vivian.webp" alt="Vivian Zhang" />
             <h2>Vivian Zhang</h2>
             <p>Co-founder</p>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=vxun.zhang@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
+            <a href="mailto:vxun.zhang@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
         </div>
     </div>
     <div class="spread">
@@ -86,15 +95,19 @@
         <a target="blank" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA=="> <img src="../images/instagram.png" /> </a>
         <a target="blank" href="https://discord.gg/Gnybre75GK"> <img src="../images/discord.png" /> </a>
         <a target="blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"> <img src="../images/tiktok.webp"  /> </a>
-         </div>
+    </div>
 </main>
 
+<footer>
+    <p>&copy; 2024 Ledgit. All rights reserved.</p>
+</footer>
+
 <script src="../scripts/team.js"></script>
+<script src="../scripts/sidebar.js"></script>
+<script src="../scripts/themeToggle.js"></script>
 <script>
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
-    document.querySelector('header').classList.toggle('dark-mode');
-    document.querySelector('.names').classList.toggle('dark-mode');
 }
 </script>
 </body>
