@@ -14,65 +14,44 @@
       padding: 0;
       background-color: #eae3f2;
       color: #4a148c;
-    }
-
-    header {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #6a2c91;
-      color: white;
-      position: relative;
-    }
-
-    .logo img {
-      height: 50px;
-    }
-
-    .nav-bar ul {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-bar ul li {
-      margin-right: 20px;
-    }
-
-    .nav-bar ul li a, .login-btn {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      padding: 10px 20px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    .nav-bar ul li a:hover, .login-btn:hover {
-      background-color: #532e73;
-    }
-
-    .sidebar-toggle {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 24px;
     }
 
     .sidebar {
-      background-color: #6a2c91;
-      padding: 20px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
+      background-color: #7a3bbd;
+      padding: 30px 20px;
       width: 250px;
+      height: 100vh;
       color: white;
-      display: none;
+      display: flex;
       flex-direction: column;
       align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .sidebar .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar .logo img {
+      height: 50px;
+    }
+
+    .sidebar .logo .branding {
+      margin-top: 10px;
+    }
+
+    .sidebar .logo .branding .name {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .sidebar .logo .branding .tagline {
+      font-size: 14px;
+      color: #e1d5f0;
     }
 
     .sidebar ul {
@@ -83,6 +62,7 @@
 
     .sidebar ul li {
       margin-bottom: 20px;
+      width: 100%;
     }
 
     .sidebar ul li a {
@@ -92,30 +72,18 @@
       padding: 10px 20px;
       border-radius: 5px;
       transition: background-color 0.3s;
-      text-align: left;
+      text-align: center;
+      font-size: 16px;
     }
 
     .sidebar ul li a:hover {
-      background-color: #532e73;
-    }
-
-    .theme-toggle {
-      margin-top: auto;
-    }
-
-    .theme-toggle label {
-      color: white;
-      font-weight: bold;
+      background-color: #5a29a2;
     }
 
     main {
       padding: 20px;
-      margin-left: 250px;
-    }
-
-    .hero {
-      text-align: center;
-      margin-bottom: 20px;
+      margin-left: 270px; /* Adjusted for sidebar width */
+      width: 100%;
     }
 
     .content-box {
@@ -187,38 +155,21 @@
   </style>
 </head>
 <body>
-  <header>
+  <aside class="sidebar">
     <div class="logo">
       <a href="../index.html"><img src="../images/dw.png" alt="Ledgit Logo" class="logo-img"></a>
-    </div>
-    <nav class="nav-bar">
-      <ul>
-        <li><a href="../index.html">Main</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="feedback.html">Feedback</a></li>
-      </ul>
-      <a class="login-btn" href="login.html">Login</a>
-      <div class="user-profile"> 
-        <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" /></a>
+      <div class="branding">
+        <div class="name">Ledgit</div>
+        <div class="tagline">Beyond Words</div>
       </div>
-    </nav>
-    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
-  </header>
-  
-  <aside class="sidebar">
-    <ul>
-      <li><a href="../index.html">Main</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
-      <li><a href="feedback.html">Feedback</a></li>
-    </ul>
-    <div class="theme-toggle">
-      <input type="checkbox" id="theme-toggle-checkbox">
-      <label for="theme-toggle-checkbox">Toggle Theme</label>
     </div>
+    <ul>
+      <li><a href="../index.html">Profile</a></li>
+      <li><a href="messages.html">Messages</a></li>
+      <li><a href="premium.html">Premium</a></li>
+      <li><a href="merch.html">Merch</a></li>
+      <li><a href="logout.html">Log Out</a></li>
+    </ul>
   </aside>
 
   <main>
@@ -247,11 +198,5 @@
 
   <script type="module" src="../scripts/feedback.js"></script>
   <script src="../scripts/themeToggle.js"></script>
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.querySelector('.sidebar');
-      sidebar.style.display = sidebar.style.display === 'block' ? 'none' : 'block';
-    }
-  </script>
 </body>
 </html>
