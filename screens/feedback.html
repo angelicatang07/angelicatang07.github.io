@@ -12,6 +12,8 @@
       font-family: 'Montserrat', sans-serif;
       margin: 0;
       padding: 0;
+      background-color: #eae3f2;
+      color: #4a148c;
     }
 
     header {
@@ -19,12 +21,13 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
-      background-color: #4a148c;
+      background-color: #6a2c91;
       color: white;
+      position: relative;
     }
 
     .logo img {
-      height: 40px;
+      height: 50px;
     }
 
     .nav-bar ul {
@@ -41,6 +44,14 @@
     .nav-bar ul li a, .login-btn {
       color: white;
       text-decoration: none;
+      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .nav-bar ul li a:hover, .login-btn:hover {
+      background-color: #532e73;
     }
 
     .sidebar-toggle {
@@ -51,20 +62,23 @@
     }
 
     .sidebar {
-      display: none;
-      background-color: #4a148c;
+      background-color: #6a2c91;
       padding: 20px;
       position: absolute;
       top: 0;
       left: 0;
       height: 100%;
-      width: 200px;
+      width: 250px;
       color: white;
+      display: none;
+      flex-direction: column;
+      align-items: center;
     }
 
     .sidebar ul {
       list-style: none;
       padding: 0;
+      width: 100%;
     }
 
     .sidebar ul li {
@@ -74,22 +88,29 @@
     .sidebar ul li a {
       color: white;
       text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      text-align: left;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #532e73;
     }
 
     .theme-toggle {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
+      margin-top: auto;
     }
 
     .theme-toggle label {
-      margin-left: 10px;
-      color: #4a148c;
+      color: white;
+      font-weight: bold;
     }
 
     main {
       padding: 20px;
+      margin-left: 250px;
     }
 
     .hero {
@@ -102,6 +123,7 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
     }
 
     .content-box h2 {
@@ -120,7 +142,8 @@
     form input, form textarea {
       padding: 10px;
       border: 1px solid #ddd;
-      border-radius: 5px;
+      border-radius: 10px;
+      font-size: 16px;
     }
 
     .submitbt {
@@ -128,12 +151,18 @@
     }
 
     .submitbt button {
-      background-color: #4a148c;
+      background-color: #6a2c91;
       color: white;
       border: none;
       padding: 10px 20px;
-      border-radius: 5px;
+      border-radius: 20px;
       cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .submitbt button:hover {
+      background-color: #532e73;
     }
 
     .spread {
@@ -148,6 +177,12 @@
 
     .spread img {
       height: 40px;
+      border-radius: 5px;
+      transition: transform 0.3s;
+    }
+
+    .spread img:hover {
+      transform: scale(1.1);
     }
   </style>
 </head>
@@ -180,12 +215,11 @@
       <li><a href="pricing.html">Pricing</a></li>
       <li><a href="feedback.html">Feedback</a></li>
     </ul>
+    <div class="theme-toggle">
+      <input type="checkbox" id="theme-toggle-checkbox">
+      <label for="theme-toggle-checkbox">Toggle Theme</label>
+    </div>
   </aside>
-  
-  <div class="theme-toggle">
-    <input type="checkbox" id="theme-toggle-checkbox">
-    <label for="theme-toggle-checkbox">Toggle Theme</label>
-  </div>
 
   <main>
     <section class="hero">
@@ -210,7 +244,7 @@
       <a target="_blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"><img src="../images/tiktok.webp" /></a>
     </div>
   </main>
-  
+
   <script type="module" src="../scripts/feedback.js"></script>
   <script src="../scripts/themeToggle.js"></script>
   <script>
