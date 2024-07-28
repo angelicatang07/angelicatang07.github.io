@@ -94,7 +94,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
             email: email,
             review: rev,
             stars: rating,
-            date: date
+            date: date,
+            time: time,
         }).then(() => {
             inputBox.value = "";
             inputRev.value = "";
@@ -165,6 +166,15 @@ function createTaskElement(task, key, type) {
     date.setAttribute('class', 'task_date');
     date.textContent = task.date;
 
+    const start_date = document.getElementById('start-date').value.trim();
+    const startDate = formatDate(new Date(start_date));
+
+    const end_date = document.getElementById('end-date').value.trim();
+    const endDate = formatDate(new Date(end_date));
+
+    const time =  document.createElement('p');
+    time.textContent = `Read by ${creator} from ${startDate} - ${endDate}`;
+
     const taskDeleteButton = document.createElement('button');
     taskDeleteButton.setAttribute('class', 'task_delete_button');
     taskDeleteButton.innerHTML = '<i class="bx bx-trash" style="cursor:pointer"></i>';
@@ -213,8 +223,10 @@ function createTaskElement(task, key, type) {
         taskData.prepend(starsContainer);
         taskData.prepend(date); 
         taskData.prepend(creator);
-         taskData.prepend(title);
+        taskData.prepend(title);
+        taskData.prepend(time);
         taskContainer.prepend(taskData);
+
     
 
 
