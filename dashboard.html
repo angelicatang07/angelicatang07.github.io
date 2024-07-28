@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ledgit</title>
+    <link rel="stylesheet" href="stylesheets/dashboard.css">
     <link href="images/ledgit.webp" rel="icon" type="image/webp">
     <style>
         body {
@@ -376,50 +377,19 @@
             color: #4a148c;
             font-weight: bold;
         }
-
-        .funny-reviews {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-
-        .funny-reviews h2 {
-            color: #4a148c;
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .funny-reviews .review-item {
-            margin-bottom: 20px;
-        }
-
-        .funny-reviews .review-item h3 {
-            margin: 0;
-            color: #4a148c;
-            font-size: 20px;
-        }
-
-        .funny-reviews .review-item p {
-            color: #333;
-            font-size: 16px;
-        }
-
-        .funny-reviews .review-item .rating {
-            color: #fbc02d;
-        }
-
-        .funny-reviews .review-item .reviewer {
-            color: #4a148c;
-            font-weight: bold;
-        }
     </style>
 </head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KBZ3ZQRVHB');
+</script>
 <body>
     <div class="container">
-        <div class="sidebar">
+        <nav class="sidebar">
             <div class="logo">
                 <img src="images/dw.png" alt="Ledgit Logo">
                 <h1>Ledgit</h1>
@@ -432,163 +402,53 @@
                 <li><a href="screens/merch.html">Merch</a></li>
                 <li><a id="sign-out">Log Out</a></li>
             </ul>
-        </div>
-        <div class="content">
-            <div class="top-bar">
+        </nav>
+        <main class="content">
+            <header class="top-bar">
                 <div class="top-links">
                     <a href="screens/pricing.html">Donate</a>
                     <a href="screens/about.html">About</a>
                     <a href="screens/feedback.html">Feedback</a>
                     <a href="screens/team.html">Team</a>
                 </div>
-            </div>
-
-            <div class="spotlight">
-                <h2>Book Spotlight</h2>
-                <div class="spotlight-carousel">
-                    <div class="spotlight-item">
-                        <div class="spotlight-book">
-                            <img src="book-cover.jpg" alt="Peer Reviewed by KC Leonard">
-                        </div>
-                        <div class="spotlight-info">
-                            <h3>Peer Reviewed</h3>
-                            <p>KC Leonard</p>
-                            <div class="spotlight-buttons">
-                                <button class="summary-btn">Summary</button>
-                                <button class="reviews-btn">Reviews</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-controls">
-                    <button class="prev-btn">❮</button>
-                    <button class="next-btn">❯</button>
-                </div>
-            </div>
-
-            <div class="genre">
-                <h3>Browse by Genre</h3>
-                <div class="genre-buttons">
-                    <button class="genre-btn">Fantasy</button>
-                    <button class="genre-btn">Romance</button>
-                    <button class="genre-btn">Horror</button>
-                    <button class="genre-btn">Mystery</button>
-                </div>
-            </div>
-
-            <div class="reviews">
+            </header>
+            <section class="reviews">
                 <div id="content_container">
                     <div id="write_review_container">
                         <div id="finish_task_header">
                             <h2>Write a Review</h2>
                         </div>
-
+                
                         <div id="task_input_container">
-                            <label for="book_title">Book Title</label>
-                            <input type="text" id="book_title" name="book_title" placeholder="Enter book title...">
-
-                            <label for="reviewer_name">Your Name</label>
-                            <input type="text" id="reviewer_name" name="reviewer_name" placeholder="Enter your name...">
-
-                            <label for="review_text">Your Review</label>
-                            <textarea id="review_text" name="review_text" rows="5" placeholder="Write your review..."></textarea>
-
+                            <label for="input_box">Book Title</label>
+                            <input type="text" id="input_box" placeholder="Enter book title...">
+                            <label for="input_review">Your Review</label>
+                            <textarea id="input_review" placeholder="Write your review..."></textarea>
                             <label for="rating">Rating</label>
-                            <div class="rating" id="rating">
-                                <span class="star" data-value="1">★</span>
-                                <span class="star" data-value="2">★</span>
-                                <span class="star" data-value="3">★</span>
-                                <span class="star" data-value="4">★</span>
-                                <span class="star" data-value="5">★</span>
+                            <div class="rating">
+                                <span class="star" data-star="1">&#9733;</span>
+                                <span class="star" data-star="2">&#9733;</span>
+                                <span class="star" data-star="3">&#9733;</span>
+                                <span class="star" data-star="4">&#9733;</span>
+                                <span class="star" data-star="5">&#9733;</span>
                             </div>
-
                             <label for="start-date">Start Date:</label>
-                            <input type="date" id="start-date" placeholder="mm/dd/yyyy" />
-
+                            <input type="date" id="start-date" placeholder="mm/dd/yyyy">
                             <label for="end-date">End Date:</label>
-                            <input type="date" id="end-date" placeholder="mm/dd/yyyy" />
-
-                            <button id="input_button" type="submit">Submit</button>
+                            <input type="date" id="end-date" placeholder="mm/dd/yyyy">
                             <p id="message"></p>
+                            <button id="input_button" type="submit">Submit</button>
                         </div>
                     </div>
-
+                
                     <h2 class="header">Review Log</h2>
                     <div class="reviews-container" id="unfinished_tasks_container">
                         <!-- Reviews dynamically added here -->
                     </div>
                 </div>
-            </div>
-
-            <div class="funny-reviews">
-                <h2>Funny Reviews</h2>
-                <div id="funny_reviews_container">
-                    <!-- Funny reviews dynamically added here -->
-                </div>
-            </div>
-        </div>
+            </section>
+        </main>
     </div>
-    <script>
-        document.getElementById('input_button').addEventListener('click', async function() {
-            const reviewText = document.getElementById('input_review').value;
-            const message = document.getElementById('message');
-
-            if (!reviewText.trim()) {
-                console.warn('Review text is empty.');
-                message.textContent = 'Please write a review.';
-                return;
-            }
-
-            console.log('Submitting review:', reviewText);
-            message.textContent = 'Submitting review...';
-
-            try {
-                console.log('Sending POST request to server...');
-                const response = await fetch('https://theledgitsecurity.com/predict', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ text: reviewText })
-                });
-
-                console.log('Fetch response received:', response);
-
-                if (!response.ok) {
-                    console.error('Response not OK. Status:', response.status);
-                    throw new Error('Network response was not ok');
-                }
-
-                console.log('Parsing response as JSON...');
-                const data = await response.json();
-                console.log('Response data:', data);
-
-                const score = data.score;
-                console.log('Review score:', score);
-                if (score >= 200) {
-                    console.log('Review score is high enough. Displaying success message.');
-                    message.textContent = 'Review submitted successfully!';
-
-                    // Adding the funny review to the funny reviews section
-                    const funnyReviewsContainer = document.getElementById('funny_reviews_container');
-                    const reviewItem = document.createElement('div');
-                    reviewItem.classList.add('review-item');
-                    reviewItem.innerHTML = `
-                        <h3>${document.getElementById('book_title').value}</h3>
-                        <p>${reviewText}</p>
-                        <p class="reviewer">- ${document.getElementById('reviewer_name').value}</p>
-                        <div class="rating">${'★'.repeat(score / 100)}${'☆'.repeat(5 - score / 100)}</div>
-                    `;
-                    funnyReviewsContainer.appendChild(reviewItem);
-                } else {
-                    console.warn('Review score too low. Prompting user to write a funnier review.');
-                    message.textContent = 'Review score too low. Please write a funnier review.';
-                }
-            } catch (error) {
-                console.error('Error during fetch operation:', error);
-                message.textContent = 'Error predicting review score: ' + error.message;
-            }
-        });
-    </script>
+    <script type="module" src="scripts/dashboard.js"></script>
 </body>
 </html>
