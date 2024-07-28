@@ -20,6 +20,7 @@ const auth = getAuth(app);
 const database = getDatabase(app);
 let username = 'Anonymous';
 let email = "";
+let time ='';
 
 function checkUserLoggedIn() {
     onAuthStateChanged(auth, (user) => {
@@ -172,8 +173,8 @@ function createTaskElement(task, key, type) {
     const end_date = document.getElementById('end-date').value.trim();
     const endDate = formatDate(new Date(end_date));
 
-    const time =  document.createElement('p');
-    time.textContent = `Read by ${creator} from ${startDate} - ${endDate}`;
+    time =  document.createElement('p');
+    time.textContent = `Read by ${task.creator} from ${startDate} - ${endDate}`;
 
     const taskDeleteButton = document.createElement('button');
     taskDeleteButton.setAttribute('class', 'task_delete_button');
