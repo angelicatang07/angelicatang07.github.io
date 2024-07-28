@@ -20,7 +20,6 @@ const auth = getAuth(app);
 const database = getDatabase(app);
 let username = 'Anonymous';
 let email = "";
-let time ='';
 
 function checkUserLoggedIn() {
     onAuthStateChanged(auth, (user) => {
@@ -74,8 +73,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
         const rev = inputRev.value.trim();
         const date = formatDate(new Date());
         const dataCon = document.getElementById('data');
-        const start = document.getElementById('start-date').value.trim();
-        const end = document.getElementById('end-date').value.trim();
+        const s = document.getElementById('start-date').value.trim();
+        const e = document.getElementById('end-date').value.trim();
+        const start = formatDate(new Date(s));
+        const end = formatDate(new Date(e));
 
         if (title.length === 0 || rev.length === 0 || rating === 0 || !start || !end ) {
             alert("Please fill in all fields and rate the book.");
@@ -99,7 +100,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
             review: rev,
             stars: rating,
             date: date,
-            time: time,
+            start: start,
+            end: end
         }).then(() => {
             inputBox.value = "";
             inputRev.value = "";
@@ -139,6 +141,8 @@ function create_unfinished_task() {
 }
 
 function createTaskElement(task, key, type) {
+    console.log("Creating task element for:", task); // Log task data
+
     const taskContainer = document.createElement("div");
     taskContainer.setAttribute("class", "task_container");
     taskContainer.setAttribute("data-key", key);
@@ -170,26 +174,24 @@ function createTaskElement(task, key, type) {
     date.setAttribute('class', 'task_date');
     date.textContent = task.date;
 
-    const start_date = document.getElementById('start-date').value.trim();
-    const startDate = formatDate(new Date(start_date));
+    const startDate = document.createElement('p');
+    startDate.setAttribute('class', 'start_date');
+    startDate.textContent = task.start;
 
-    const end_date = document.getElementById('end-date').value.trim();
-    const endDate = formatDate(new Date(end_date));
-
-    time =  document.createElement('p');
-    time.textContent = `Read by ${task.creator} from ${startDate} - ${endDate}`;
+    const endDate = document.createElement('p');
+    endDate.setAttribute('class', 'end_date');
+    endDate.textContent = task.end; 
 
     const taskDeleteButton = document.createElement('button');
-    taskDeleteButton.setAttribute('class', 'task_delete_button');
-    taskDeleteButton.innerHTML = '<i class="bx bx-trash" style="cursor:pointer"></i>';
-    taskDeleteButton.classList.add('cursor-pointer');
-    taskDeleteButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        if (type === 'unfinished') {
-            event.stopPropagation();
-            task_delete(key); // Pass the key to the delete function
-        } 
-    });
+    // taskDeleteButton.setAttribute('class', 'task_delete_button');
+    // taskDeleteButton.innerHTML = '<i class="bx bx-trash" style="cursor:pointer"></i>';
+    // taskDeleteButton.classList.add('cursor-pointer');
+    // taskDeleteButton.addEventListener('click', (event) => {
+    //     event.stopPropagation();
+    //     if (type === 'unfinished') {
+    //         task_delete(key);
+    //     } 
+    // });
 
     // Fetch book details and update task container
     fetchBookDetails(task.title)
@@ -204,12 +206,8 @@ function createTaskElement(task, key, type) {
                 bookCover.setAttribute('src', imageUrl);
                 bookCover.setAttribute('alt', task.title);
 
-                // const authorsElement = document.createElement('p');
-                // authorsElement.setAttribute('class', 'task_authors');
-                // authorsElement.textContent = `Authors: ${authors}`;
-
                 taskData.prepend(bookCover);
-                // Add click event listener to navigate to indivReview.html
+
                 taskContainer.addEventListener('click', () => {
                     const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&email=${encodeURIComponent(task.email)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
                     window.location.href = `screens/indivReview.html${queryParams}`;
@@ -220,22 +218,20 @@ function createTaskElement(task, key, type) {
             console.error("Error fetching book details:", error);
         });
 
-        taskTool.prepend(taskDeleteButton);
-        taskContainer.prepend(taskTool);
-        
-        taskData.prepend(review); 
-        taskData.prepend(starsContainer);
-        taskData.prepend(date); 
-        taskData.prepend(creator);
-        taskData.prepend(title);
-        taskData.prepend(time);
-        taskContainer.prepend(taskData);
-
-    
-
+    taskTool.prepend(taskDeleteButton);
+    taskContainer.prepend(taskTool);
+    taskData.prepend(review);
+    taskData.prepend(starsContainer);
+    taskData.prepend(date);
+    taskData.prepend(startDate);
+    taskData.prepend(endDate);
+    taskData.prepend(creator);
+    taskData.prepend(title);
+    taskContainer.prepend(taskData);
 
     return taskContainer;
 }
+
 
 function task_delete(key) {
     const taskRef = ref(database, 'unfinished_task/' + key);
