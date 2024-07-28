@@ -41,7 +41,24 @@
         <a href="profile.html"><img class="profile-pic" id="profile-pic" src="../images/default-profile.png" alt="Profile Picture" /></a>
       </div>
     </nav>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
   </header>
+  
+  <aside class="sidebar">
+    <ul>
+      <li><a href="../index.html">Main</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+    </ul>
+  </aside>
+  
+  <div class="theme-toggle">
+    <input type="checkbox" id="theme-toggle-checkbox">
+    <label for="theme-toggle-checkbox">Toggle Theme</label>
+  </div>
+
   <main>
     <section class="hero">
       <img src="../images/front2.webp" alt="Hero Image" class="hero-image">
@@ -49,7 +66,6 @@
         <h1>See Previews!</h1>
         <h3>Reinventing book discovery platforms for new generations by offering personalized recommendations, entertaining book reviews, and lively niche communities that make reading fun.</h3>
       </div>
-      
     </section>
     <div class="content-box">
       <h2>Join Our Mailing List!</h2>
@@ -71,6 +87,8 @@
   <footer>
     <p>&copy; 2024 Ledgit. All rights reserved.</p>
   </footer>
-<script type="module" src="../scripts/about.js"></script>
+  <script type="module" src="../scripts/about.js"></script>
+  <script src="../scripts/themeToggle.js"></script>
+  <script src="../scripts/sidebar.js"></script>
 </body>
 </html>
