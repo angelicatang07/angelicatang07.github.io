@@ -80,10 +80,38 @@
       background-color: #5a29a2;
     }
 
+    .navbar {
+      width: calc(100% - 250px);
+      background-color: #f4e6ff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 250px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .navbar a {
+      color: #4a148c;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 20px;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #7a3bbd;
+    }
+
     main {
-      padding: 20px;
+      padding: 80px 20px 20px 20px;
       margin-left: 270px; /* Adjusted for sidebar width */
-      width: 100%;
+      width: calc(100% - 270px); /* Adjusted for sidebar and padding */
+      position: relative;
+      top: 60px;
     }
 
     .content-box {
@@ -171,6 +199,13 @@
       <li><a href="logout.html">Log Out</a></li>
     </ul>
   </aside>
+
+  <nav class="navbar">
+    <a href="donate.html">Donate</a>
+    <a href="about.html">About</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="team.html">Team</a>
+  </nav>
 
   <main>
     <section class="hero">
