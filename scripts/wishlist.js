@@ -2,7 +2,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getDatabase, ref, push, update, remove, onValue, get } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-import { reauthenticateWithCredential } from "firebase/auth/cordova";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA8YaENTFjYlJ2KGfSKvUYeV0X0I63BRGs",
@@ -24,99 +23,43 @@ const ATag = document.getElementById('a-tag');
 const DTag = document.getElementById('d-tag');
 const ITag = document.getElementById('i-tag');
 const LTag = document.getElementById('l-tag');
-let username = document.getElementById('username');
-let profile = document.getElementById("profile-pic");
-let profile2 = document.getElementById("profile-pic2");
-let emailinfo = document.getElementById("email");
+const username = document.getElementById('username');
+const profile = document.getElementById("profile-pic");
+const profile2 = document.getElementById("profile-pic2");
+const emailinfo = document.getElementById("email");
+const submitButton = document.getElementById("input_button");
+const inputBox = document.getElementById("input_box");
+const wishlistContainer = document.getElementById("book_container");
+const dataContainer = document.getElementById("data");
 
 function fetchUserProfile() {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const userRef = ref(database, 'users/' + user.uid);
-            get(userRef)
-                .then((snapshot) => {
-                    if (snapshot.exists()) {
-                        const userData = snapshot.val();
-                        const { name, email, instagram_handle, linkedin_acc, discord_user, profile_picture,about_me } = userData;
+            get(userRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    const { name, email, instagram_handle, linkedin_acc, discord_user, profile_picture, about_me } = userData;
 
-                        emailinfo.innerHTML=`<p class="private"><strong>Private*  </strong>  ${DOMPurify.sanitize(email)}</p>`;
-                        profile.src = `${DOMPurify.sanitize(profile_picture)}`;
-                        profile2.src = `${DOMPurify.sanitize(profile_picture)}`;
-                        username.innerHTML =  `${DOMPurify.sanitize(name)}`;
-                        DTag.innerHTML =  `${DOMPurify.sanitize(discord_user)}`;
-                        ITag.innerHTML =  `${DOMPurify.sanitize(instagram_handle)}`;
-                        LTag.innerHTML = `${DOMPurify.sanitize(linkedin_acc)}`;
-                        ATag.innerHTML = `${DOMPurify.sanitize(about_me)}`;
-
-                    } else {
-                        console.log("No user data found");
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching user data:", error);
-                });
+                    emailinfo.innerHTML = `<p class="private"><strong>Private*  </strong>  ${DOMPurify.sanitize(email)}</p>`;
+                    profile.src = `${DOMPurify.sanitize(profile_picture)}`;
+                    profile2.src = `${DOMPurify.sanitize(profile_picture)}`;
+                    username.innerHTML = `${DOMPurify.sanitize(name)}`;
+                    DTag.innerHTML = `${DOMPurify.sanitize(discord_user)}`;
+                    ITag.innerHTML = `${DOMPurify.sanitize(instagram_handle)}`;
+                    LTag.innerHTML = `${DOMPurify.sanitize(linkedin_acc)}`;
+                    ATag.innerHTML = `${DOMPurify.sanitize(about_me)}`;
+                } else {
+                    console.log("No user data found");
+                }
+            }).catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
         }
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const submitButton = document.getElementById("input_button");
-    const inputBox = document.getElementById("input_box");
-
-    submitButton.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        const title = inputBox.value.trim();
-
-        if (title.length === 0) {
-            alert("Please enter a book title.");
-            return;
-        }
-
-        const user = auth.currentUser;
-        if (user) {
-            const wishlistRef = ref(database, 'users/' + user.uid + '/wishlist'); // Reference to user's wishlist
-
-            get(wishlistRef).then((snapshot) => {
-                const existingBooks = snapshot.val() || {};
-                const isDuplicate = Object.values(existingBooks).some(book => book.title === title);
-
-                if (isDuplicate) {
-                    alert("This book is already in your favorites.");
-                    return;
-                }
-
-                const newBookRef = push(wishlistRef);
-
-                update(newBookRef, {
-                    title: title
-                }).then(() => {
-                    inputBox.value = "";
-                    document.getElementById("data").innerHTML = "";
-                    create_wishlist(); 
-                }).catch(error => {
-                    console.error("Error adding book to wishlist: ", error);
-                });
-            }).catch(error => {
-                console.error("Error fetching wishlist:", error);
-            });
-        } else {
-            alert("Please log in to add books to your favorites.");
-        }
-    });
-
-    inputBox.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault(); // Prevent the default Enter key behavior
-            submitButton.click(); // Trigger the submit button's click event
-        }
-    });
-
-    checkUserLoggedIn();
-});
-
 function create_wishlist() {
-    const wishlistContainer = document.getElementById("book_container");
     const user = auth.currentUser;
 
     if (user) {
@@ -124,9 +67,9 @@ function create_wishlist() {
 
         onValue(wishlistRef, (snapshot) => {
             const books = snapshot.val();
-            if (books) {
-                wishlistContainer.innerHTML = "";
+            wishlistContainer.innerHTML = "";
 
+            if (books) {
                 Object.keys(books).forEach(key => {
                     const book = books[key];
                     const bookContainer = createBookElement(book, key);
@@ -142,6 +85,11 @@ function create_wishlist() {
 }
 
 function createBookElement(book, key) {
+    if (!book.title) {
+        console.warn("Book title is undefined or empty:", book);
+        return;
+    }
+
     const bookContainer = document.createElement("div");
     bookContainer.setAttribute("class", "book_container");
     bookContainer.setAttribute("data-key", key);
@@ -156,28 +104,25 @@ function createBookElement(book, key) {
     bookDeleteButton.addEventListener('click', (event) => {
         event.preventDefault();
         event.stopPropagation();
-        book_delete(key); // Pass the key to the delete function
+        book_delete(key);
     });
 
-    // Fetch book details and update book container
-    fetchBookDetails(book.title)
-        .then((books) => {
-            if (books && books.length > 0) {
-                const bookData = books[0].volumeInfo;
-                const authors = bookData.authors ? bookData.authors.join(", ") : "Unknown author";
-                const imageUrl = bookData.imageLinks ? bookData.imageLinks.thumbnail : "images/default-book-cover.jpg";
+    fetchBookDetails(book.title).then((books) => {
+        if (books && books.length > 0) {
+            const bookData = books[0].volumeInfo;
+            const authors = bookData.authors ? bookData.authors.join(", ") : "Unknown author";
+            const imageUrl = bookData.imageLinks ? bookData.imageLinks.thumbnail : "images/default-book-cover.jpg";
 
-                const bookCover = document.createElement('img');
-                bookCover.setAttribute('class', 'book_cover');
-                bookCover.setAttribute('src', imageUrl);
-                bookCover.setAttribute('alt', book.title);
+            const bookCover = document.createElement('img');
+            bookCover.setAttribute('class', 'book_cover');
+            bookCover.setAttribute('src', imageUrl);
+            bookCover.setAttribute('alt', book.title);
 
-                bookContainer.prepend(bookCover);
-            }
-        })
-        .catch((error) => {
-            console.error("Error fetching book details:", error);
-        });
+            bookContainer.prepend(bookCover);
+        }
+    }).catch((error) => {
+        console.error("Error fetching book details:", error);
+    });
 
     bookTool.prepend(bookDeleteButton);
     bookContainer.prepend(bookTool);
@@ -189,23 +134,21 @@ function book_delete(key) {
     const user = auth.currentUser;
 
     if (user) {
-        const bookRef = ref(database, 'users/' + user.uid + '/wishlist/' + key); // Reference to specific book
+        const bookRef = ref(database, 'users/' + user.uid + '/wishlist/' + key);
 
         remove(bookRef).then(() => {
             console.log("Book removed from favorites successfully");
-            // Remove book from UI
             const bookElement = document.querySelector(`.book_container[data-key="${key}"]`);
             if (bookElement) {
                 bookElement.remove();
             }
         }).catch(error => {
-            console.error("Error removing book from wishlist: ", error);
+            console.error("Error removing book from wishlist:", error);
         });
     } else {
         alert("Please log in to remove books from your favorites.");
     }
 }
-
 
 async function fetchBookDetails(title) {
     const apiKey = "AIzaSyCu3xGU8I2x9b82CYXb9TdK0TLws0wkx_g";  
@@ -216,40 +159,83 @@ async function fetchBookDetails(title) {
             throw new Error("Network response was not ok.");
         }
         const data = await response.json();
-        return data.items || []; // Return the items array from API response
+        console.log("API Response Data:", data);
+        return data.items || [];
     } catch (error) {
         console.error("Error fetching book details:", error);
         return [];
     }
 }
 
-document.addEventListener("DOMContentLoaded", (e) => {
-    e.preventDefault();
-
-    const inputBox = document.getElementById("input_box");
-    const dataContainer = document.getElementById("data");
-
-    inputBox.addEventListener("input", async (e) => {
+document.addEventListener('DOMContentLoaded', () => {
+    submitButton.addEventListener("click", (e) => {
         e.preventDefault();
 
-        const bookTitle = inputBox.value.trim();
+        const title = inputBox.value.trim();
 
-        const books = await fetchBookDetails(bookTitle);
+        if (title.length === 0) {
+            alert("Please enter a book title.");
+            return;
+        }
 
-        if (books && books.length > 0) {
-            const book = books[0].volumeInfo; // Get the first book's volume info
-            const title = book.title;
-            const authors = book.authors ? book.authors.join(", ") : "Unknown author";
-            const imageUrl = book.imageLinks ? book.imageLinks.thumbnail : "images/default-book-cover.jpg";
+        const user = auth.currentUser;
+        if (user) {
+            const wishlistRef = ref(database, 'users/' + user.uid + '/wishlist');
 
-            // Display book details in #data element
-            dataContainer.innerHTML = `
-                <h2>${title}</h2>
-                <p><strong>Author(s):</strong> ${authors}</p>
-                <img src="${imageUrl}" alt="${title}" style="max-width: 100px; max-height: 100px;">
-            `;
+            get(wishlistRef).then((snapshot) => {
+                const existingBooks = snapshot.val() || {};
+                const isDuplicate = Object.values(existingBooks).some(book => book.title === title);
+
+                if (isDuplicate) {
+                    alert("This book is already in your favorites.");
+                    return;
+                }
+
+                const newBookRef = push(wishlistRef);
+
+                update(newBookRef, { title: title }).then(() => {
+                    inputBox.value = "";
+                    dataContainer.innerHTML = "";
+                    create_wishlist();
+                }).catch(error => {
+                    console.error("Error adding book to wishlist: ", error);
+                });
+            }).catch(error => {
+                console.error("Error fetching wishlist:", error);
+            });
+        } else {
+            alert("Please log in to add books to your favorites.");
         }
     });
+
+    inputBox.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            submitButton.click();
+        }
+    });
+
+    fetchUserProfile();
+    create_wishlist();
 });
 
-fetchUserProfile();
+inputBox.addEventListener("input", async (e) => {
+    e.preventDefault();
+
+    const bookTitle = inputBox.value.trim();
+
+    const books = await fetchBookDetails(bookTitle);
+
+    if (books && books.length > 0) {
+        const book = books[0].volumeInfo;
+        const title = book.title;
+        const authors = book.authors ? book.authors.join(", ") : "Unknown author";
+        const imageUrl = book.imageLinks ? book.imageLinks.thumbnail : "images/default-book-cover.jpg";
+
+        dataContainer.innerHTML = `
+            <h2>${title}</h2>
+            <p><strong>Author(s):</strong> ${authors}</p>
+            <img src="${imageUrl}" alt="${title}" style="max-width: 100px; max-height: 100px;">
+        `;
+    }
+});
