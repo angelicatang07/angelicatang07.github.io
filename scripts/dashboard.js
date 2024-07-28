@@ -18,6 +18,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
+let username = 'Anonymous';
+let email = "";
+
 function checkUserLoggedIn() {
     onAuthStateChanged(auth, (user) => {
         if (user) {
