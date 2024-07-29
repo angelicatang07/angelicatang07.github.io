@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
             return; 
         }
     
-        const unfinishedTaskRef = ref(database, 'unfinished_task'); // Define Firebase reference
+        const unfinishedTaskRef = ref(database, 'funny_reviews'); // Define Firebase reference
         const newTaskRef = push(unfinishedTaskRef);
     
         update(newTaskRef, {
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
 function create_unfinished_task() {
     const unfinishedTaskContainer = document.getElementById("unfinished_tasks_container");
-    const unfinishedTaskRef = ref(database, 'unfinished_task');
+    const unfinishedTaskRef = ref(database, 'funny_reviews');
 
     onValue(unfinishedTaskRef, (snapshot) => {
         const tasks = snapshot.val();
@@ -229,7 +229,7 @@ function createTaskElement(task, key, type) {
 
 
 function task_delete(key) {
-    const taskRef = ref(database, 'unfinished_task/' + key);
+    const taskRef = ref(database, 'funny_reviews/' + key);
 
     // Remove task from database
     remove(taskRef).then(() => {
