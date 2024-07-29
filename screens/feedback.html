@@ -112,6 +112,28 @@
       position: relative;
     }
 
+    .hero {
+      background-color: #7a3bbd;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
     .content-box {
       background-color: #fff;
       padding: 30px;
@@ -124,6 +146,7 @@
       margin-top: 0;
       font-size: 24px;
       font-weight: 700;
+      color: #4a148c;
     }
 
     form {
@@ -137,7 +160,7 @@
       margin-bottom: 5px;
     }
 
-    form input, form textarea {
+    form input, form textarea, form select {
       padding: 10px;
       border: 1px solid #ddd;
       border-radius: 10px;
@@ -147,7 +170,7 @@
       box-sizing: border-box;
     }
 
-    form input:focus, form textarea:focus {
+    form input:focus, form textarea:focus, form select:focus {
       border-color: #7a3bbd;
       outline: none;
       box-shadow: 0 0 5px rgba(122, 59, 189, 0.5);
@@ -221,15 +244,24 @@
 
   <main>
     <section class="hero">
-      <h1>Feedback</h1>
+      <h1>We Value Your Feedback</h1>
+      <p>Help us improve by sharing your thoughts on our platform.</p>
     </section>
     <div class="content-box">
-      <h2>Write a Review</h2>
+      <h2>Feedback Form</h2>
       <form id="feedbackForm">
-        <label for="book-title">Book Title</label>
-        <input type="text" id="book-title" name="book-title" placeholder="Enter book title">
-        <label for="review">Your Review</label>
-        <textarea id="review" name="review" rows="6" placeholder="Write your review here..."></textarea>
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+        <label for="feedback-type">Feedback Type</label>
+        <select id="feedback-type" name="feedback-type">
+          <option value="general">General</option>
+          <option value="bug">Report a Bug</option>
+          <option value="feature">Feature Request</option>
+        </select>
+        <label for="message">Your Feedback</label>
+        <textarea id="message" name="message" rows="6" placeholder="Write your feedback here..."></textarea>
         <div class="submitbt">
           <button type="submit" id="submit-button">Submit</button>
         </div>
@@ -240,11 +272,51 @@
       <a target="_blank" href="https://www.linkedin.com/company/theledgit/about/"><img src="../images/linkedin.png" /></a>
       <a target="_blank" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA=="><img src="../images/instagram.png" /></a>
       <a target="_blank" href="https://discord.gg/Gnybre75GK"><img src="../images/discord.png" /></a>
-      <a target="_blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"><img src="../images/tiktok.webp" /></a>
     </div>
   </main>
 
-  <script type="module" src="../scripts/feedback.js"></script>
-  <script src="../scripts/themeToggle.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const feedbackForm = document.getElementById('feedbackForm');
+      const feedbackList = document.getElementById('feedbackList');
+      const feedbackArray = [];
+
+      feedbackForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const feedbackType = document.getElementById('feedback-type').value;
+        const message = document.getElementById('message').value;
+
+        if (name && email && message) {
+          const feedback = {
+            name,
+            email,
+            feedbackType,
+            message,
+            timestamp: new Date().toLocaleString()
+          };
+          feedbackArray.push(feedback);
+          displayFeedback();
+          feedbackForm.reset();
+        }
+      });
+
+      function displayFeedback() {
+        feedbackList.innerHTML = '';
+        feedbackArray.forEach((feedback, index) => {
+          const feedbackItem = document.createElement('li');
+          feedbackItem.innerHTML = `
+            <strong>${feedback.name}</strong> (${feedback.email})<br>
+            <em>${feedback.feedbackType}</em><br>
+            <p>${feedback.message}</p>
+            <span>${feedback.timestamp}</span>
+          `;
+          feedbackList.appendChild(feedbackItem);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
