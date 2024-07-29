@@ -49,7 +49,7 @@ form.addEventListener("submit", (e) => {
     
     const globalChatRef = ref(database, 'global_chat'); 
     const newMessageRef = push(globalChatRef);
-     const date = formatDate(new Date());
+    const date = formatDate(new Date());
     const message = document.getElementById("message").value;
     
     update(newMessageRef, {
@@ -59,7 +59,6 @@ form.addEventListener("submit", (e) => {
         date: date,
     }).then(() => {
         document.getElementById("message").value = ""; 
-
     }).catch(error => {
         console.error("Error sending message: ", error);
     });
@@ -75,22 +74,19 @@ onValue(messagesRef, (snapshot) => {
         const sanitizedMessage = DOMPurify.sanitize(data.message); // Sanitize message
 
         const listItem = document.createElement('li');
-        listItem.textContent = `${data.sender} ${data.date} ${sanitizedMessage}`;
+        listItem.classList.add(data.sender_email === email ? 'my-message' : 'other-message');
+        
+        listItem.innerHTML = `
+            <strong>${data.sender}</strong>
+            <span class="message-date">${data.date}</span><br>
+            <span class="message-body">${sanitizedMessage}</span>
+        `;
       
-        if (data.sender_email === email) {
-            listItem.classList.add('my-message'); 
-        } else {
-            listItem.classList.add('other-message');
-        }
         messagesList.appendChild(listItem);
     });
 });
 
 function formatDate(date) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  return date.toLocaleDateString(undefined, options);
-}
-
-function setUp(){
-  
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString(undefined, options);
 }
