@@ -11,14 +11,9 @@ body {
     color: #333;
     animation: fadeInSlide 1s ease-in-out forwards;
 }
-#spotlight {
-    background-color: #F7EE7F;
-    width: 80vw;
-    height: 20vh;
-}
-#spotlight-pic {
-    height: 400vh;
-    width: 200vw;
+
+#info-spotlight {
+    background-color: #F7EE7F; 
 }
 /* Keyframes for animations */
 @keyframes fadeInSlide {
