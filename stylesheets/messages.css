@@ -1,7 +1,12 @@
 #messages {
   list-style-type: none;
   padding: 0;
-  display: block;
+  display: flex block;
+  flex-direction: column;
+  overflow: scroll;
+  width: 70vw;
+  margin: 0;
+
 }
 
 #messages li {
@@ -9,6 +14,7 @@
   margin-bottom: 5px;
   border-radius: 5px;
   display: block;
+  overflow: scroll;
 }
 
 .my-message {
@@ -21,4 +27,30 @@
   background-color: #F7EEF7;
   text-align: left; 
   display: block;
+}
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.message-date {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.message-body {
+  color: #06070E;
+  margin-top: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+}
+
+#submit:hover {
+  cursor: hover;
 }
