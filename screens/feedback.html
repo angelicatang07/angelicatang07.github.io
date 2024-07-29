@@ -6,19 +6,21 @@
   <title>Ledgit Feedback</title>
   <link href="../images/ledgit.webp" rel="icon" type="image/webp">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #eae3f2;
-      color: #4a148c;
+      background-color: #f8f9fa;
+      color: #333;
       display: flex;
+      height: 100vh;
     }
 
     .sidebar {
       width: 250px;
-      background-color: #6a2c91;
+      background-color: #343a40;
       padding: 20px;
       display: flex;
       flex-direction: column;
@@ -28,6 +30,7 @@
       top: 0;
       left: 0;
       box-sizing: border-box;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     }
 
     .logo {
@@ -38,17 +41,19 @@
     .logo img {
       width: 50px;
       height: 50px;
+      border-radius: 50%;
     }
 
     .logo h1 {
       margin: 10px 0 0;
       color: #fff;
       font-size: 24px;
+      font-weight: 700;
     }
 
     .logo p {
       margin: 0;
-      color: #fff;
+      color: #ccc;
       font-size: 14px;
     }
 
@@ -65,18 +70,24 @@
 
     .menu li a {
       text-decoration: none;
-      color: #fff;
-      display: block;
+      color: #ddd;
+      display: flex;
+      align-items: center;
       padding: 10px 20px;
       text-align: left;
       border-radius: 5px;
       font-size: 16px;
-      background-color: #6a2c91;
-      transition: background-color 0.3s;
+      background-color: transparent;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .menu li a:hover {
-      background-color: #532e73;
+      background-color: #495057;
+      color: #fff;
+    }
+
+    .menu li a i {
+      margin-right: 10px;
     }
 
     .help {
@@ -84,24 +95,25 @@
     }
 
     .help a {
-      color: #fff;
+      color: #ddd;
       text-decoration: none;
       padding: 10px 15px;
-      background-color: #532e73;
+      background-color: #495057;
       border-radius: 5px;
       display: block;
       text-align: center;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .help a:hover {
-      background-color: #6a2c91;
+      background-color: #343a40;
+      color: #fff;
     }
 
     .navbar {
       width: calc(100% - 250px);
-      background-color: #f4e6ff;
-      padding: 15px 0;
+      background-color: #ffffff;
+      padding: 15px;
       display: flex;
       justify-content: center;
       position: fixed;
@@ -114,7 +126,7 @@
     }
 
     .navbar a {
-      color: #4a148c;
+      color: #343a40;
       text-decoration: none;
       font-weight: 500;
       margin: 0 25px;
@@ -123,18 +135,18 @@
     }
 
     .navbar a:hover {
-      color: #7a3bbd;
+      color: #6c757d;
     }
 
     main {
       padding: 100px 20px 20px 20px;
-      margin-left: 270px; /* Adjusted for sidebar width */
-      width: calc(100% - 270px); /* Adjusted for sidebar and padding */
+      margin-left: 270px;
+      width: calc(100% - 270px);
       position: relative;
     }
 
     .hero {
-      background-color: #7a3bbd;
+      background-color: #495057;
       color: white;
       padding: 60px 20px;
       text-align: center;
@@ -156,7 +168,7 @@
     }
 
     .content-box {
-      background-color: #fff;
+      background-color: #ffffff;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -167,7 +179,7 @@
       margin-top: 0;
       font-size: 24px;
       font-weight: 700;
-      color: #4a148c;
+      color: #343a40;
     }
 
     form {
@@ -189,12 +201,13 @@
       margin-bottom: 15px;
       width: 100%;
       box-sizing: border-box;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
 
     form input:focus, form textarea:focus, form select:focus {
-      border-color: #7a3bbd;
+      border-color: #495057;
       outline: none;
-      box-shadow: 0 0 5px rgba(122, 59, 189, 0.5);
+      box-shadow: 0 0 5px rgba(73, 80, 87, 0.5);
     }
 
     .submitbt {
@@ -202,7 +215,7 @@
     }
 
     .submitbt button {
-      background-color: #6a2c91;
+      background-color: #495057;
       color: white;
       border: none;
       padding: 15px 30px;
@@ -214,7 +227,7 @@
     }
 
     .submitbt button:hover {
-      background-color: #532e73;
+      background-color: #343a40;
     }
 
     .spread {
@@ -247,22 +260,25 @@
                 <p>Beyond Words</p>
             </div>
             <ul class="menu">
-                <li><a href="dashboard.html">Main</a></li>
-                <li><a href="screens/funny.html">Funny</a></li>
-                <li><a href="screens/profile.html">Profile</a></li>
-                <li><a href="screens/messages.html">Messages</a></li>
-                <li><a href="screens/pricing.html">Premium</a></li>
-                <li><a href="screens/merch.html">Merch</a></li>
-                <li><a id="sign-out">Log Out</a></li>
+                <li><a href="../dashboard.html"><i class="fas fa-home"></i> Main</a></li>
+                <li><a href="funny.html"><i class="fas fa-smile"></i> Funny Reviews</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="messages.html"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="pricing.html"><i class="fas fa-dollar-sign"></i> Premium</a></li>
+                <li><a href="merch.html"><i class="fas fa-store"></i> Merch</a></li>
+                <li><a id="sign-out"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
             </ul>
+            <div class="help">
+                <a href="help.html"><i class="fas fa-question-circle"></i> Need Help?</a>
+            </div>
         </nav>
         <main class="content">
             <header class="top-bar">
                 <div class="top-links">
-                    <a href="screens/pricing.html">Donate</a>
-                    <a href="screens/about.html">About</a>
-                    <a href="screens/feedback.html">Feedback</a>
-                    <a href="screens/team.html">Team</a>
+                    <a href="pricing.html">Donate</a>
+                    <a href="about.html">About</a>
+                    <a href="feedback.html">Feedback</a>
+                    <a href="team.html">Team</a>
                 </div>
             </header>
       
