@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ledgit Dashboard</title>
-    <link rel="stylesheet" href="stylesheets/dashboard.css">
+    <link rel="stylesheet" href="../stylesheets/indivBook.css">
     <link href="images/ledgit.webp" rel="icon" type="image/webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -410,17 +410,18 @@
                 </div>
             </header>
             <div class="spotlight">
-                <h2>Book Spotlight</h2>
+                <h2>Spotlight Reviews</h2>
                 <div class="spotlight-carousel">
                     <div class="spotlight-item">
                         <div class="spotlight-book">
                             <img src="" id='spotlight-img'>
+                            <div id="desc"></div>
                         </div>
                         <div class="spotlight-info">
                             <h3>The Secrets of Wilderfort Castle</h3>
                             <p>Jessica Jayne Webb</p>
                             <div class="spotlight-buttons">
-                                <button class="reviews-btn" id="reviews-btn">Reviews</button>
+                                <button class="reviews-btn" id="reviews-btn">Go Back</button>
                             </div>
                         </div>
                     </div>
@@ -428,9 +429,6 @@
             <section class="reviews">
                 <div id="content_container">
                     <div id="write_review_container">
-                        <div id="finish_task_header">
-                            <h2>Write a Review</h2>
-                        </div>
                 
                         <div id="task_input_container">
                             <label for="input_box">Book Title</label>
@@ -462,6 +460,6 @@
             </section>
         </main>
     </div>
-    <script type="module" src="scripts/dashboard.js"></script>
+    <script type="module" src="../scripts/indivBook.js"></script>
 </body>
 </html>

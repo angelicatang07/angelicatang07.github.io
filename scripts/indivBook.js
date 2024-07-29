@@ -348,5 +348,5 @@ spotlight();
 const revbtn = document.getElementById('reviews-btn');
                 
 revbtn.addEventListener('click', () => {
-  window.location.href = `../screens/indivBook.html`;
+  window.location.href = `../dashboard.html`;
 });
