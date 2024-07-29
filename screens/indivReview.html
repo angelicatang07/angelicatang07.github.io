@@ -1,82 +1,130 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ledgit Review</title>
-  <link rel="stylesheet" href="../stylesheets/indivReview.css">
-  <link href="../images/ledgit.webp" rel="icon" type="image/webp">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledgit Review</title>
+    <link rel="stylesheet" href="../stylesheets/indivReview.css">
+    <link href="../images/ledgit.webp" rel="icon" type="image/webp">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-database.js"></script>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <a href="../index.html">
-        <img src="../images/dw.png" alt="Ledgit Logo" class="logo-img">
-      </a>
+    <header>
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../images/dw.png" alt="Ledgit Logo" class="logo-img">
+            </a>
+        </div>
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="../index.html">Main</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+            <a class="login-btn" href="login.html">Login</a>
+            <div class="user-profile"> 
+                <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" alt="Profile Picture" /></a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h3>Review</h3>
+        <section id="flex">
+            <div id="reviewDetails" class="card"></div>
+            <div id="creator-socials" class="card"></div>
+        </section>
+        <div id="content_container">
+            <div id="write_reply_container" class="card">
+                <div id="finish_reply_header">
+                    <h4>Write a Reply</h4>
+                </div>
+                <div id="reply_input_container">
+                    <textarea id="input_reply" placeholder="Reply..."></textarea>
+                    <button id="input_button">Submit</button>
+                </div>
+            </div>
+            <div class="unfinished_tasks_container" id="unfinished_tasks_container">
+                <!-- Replies dynamically added here -->
+            </div>
+        </div>
+    </main>
+    <div class="spread">
+        <a target="blank" href="https://www.linkedin.com/company/theledgit/about/"> <img src="../images/linkedin.png" /> </a>
+        <a target="blank" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA=="> <img src="../images/instagram.png" /> </a>
+        <a target="blank" href="https://discord.gg/Gnybre75GK"> <img src="../images/discord.png" /> </a>
+        <a target="blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"> <img src="../images/tiktok.webp"  /> </a>
     </div>
-    <nav class="nav-bar">
-      <ul>
-        <li><a href="../index.html">Main</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="feedback.html">Feedback</a></li>
-      </ul>
-      <a class="login-btn" href="login.html">Login</a>
-      <div class="user-profile"> 
-        <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" alt="Profile Picture" /></a>
-      </div>
-    </nav>
-    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
-  </header>
-  
-  <aside class="sidebar">
-    <ul>
-      <li><a href="../index.html">Main</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
-      <li><a href="feedback.html">Feedback</a></li>
-    </ul>
-  </aside>
-  
-  <div class="theme-toggle">
-    <input type="checkbox" id="theme-toggle-checkbox">
-    <label for="theme-toggle-checkbox">Toggle Theme</label>
-  </div>
+    <footer>
+        <p>&copy; 2024 Ledgit. All rights reserved.</p>
+    </footer>
+    <script type="module" src="../scripts/indivReview.js"></script>
+    <script>
+        // Extract query parameters
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get('title');
+        const about = params.get('about');
+        const creator = params.get('creator');
+        const profile = params.get('profile');
+        const review = params.get('review');
+        const date = params.get('date');
+        const cover = params.get('bookCover'); 
+        const authors = params.get('authors');
+        const stars = parseInt(params.get('stars')); 
 
-  <main>
-    <h3>Review</h3>
-    <section id="flex">
-      <div id="reviewDetails" class="card"></div>
-      <div id="creator-socials" class="card"></div>
-    </section>
-    <div id="content_container">
-      <div id="write_reply_container" class="card">
-        <div id="finish_reply_header">
-          <h4>Write a Reply</h4>
-        </div>
-        <div id="reply_input_container">
-          <textarea id="input_reply" placeholder="Reply..."></textarea>
-          <button id="input_button">Submit</button>
-        </div>
-      </div>
-      <div class="unfinished_tasks_container" id="unfinished_tasks_container">
-        <!-- Replies dynamically added here -->
-      </div>
-    </div>
-  </main>
-  <div class="spread">
-    <a target="_blank" href="https://www.linkedin.com/company/theledgit/about/"><img src="../images/linkedin.png" /></a>
-    <a target="_blank" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA=="><img src="../images/instagram.png" /></a>
-    <a target="_blank" href="https://discord.gg/Gnybre75GK"><img src="../images/discord.png" /></a>
-    <a target="_blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"><img src="../images/tiktok.webp" /></a>
-  </div>
-  <footer>
-    <p>&copy; 2024 Ledgit. All rights reserved.</p>
-  </footer>
-  <script type="module" src="../scripts/indivReview.js"></script>
-  <script src="../scripts/themeToggle.js"></script>
+        const reviewDetailsDiv = document.getElementById('reviewDetails');
+        const creatorSocialsDiv = document.getElementById('creator-socials');
+
+        function createStarsContainer(rating) {
+            const starsContainer = document.createElement('div');
+            starsContainer.classList.add('stars-container');
+
+            for (let i = 0; i < 5; i++) {
+                const star = document.createElement('span');
+                star.innerHTML = '&#9733;';
+                if (i < rating) {
+                    star.classList.add('filled');
+                } else {
+                    star.classList.add('empty');
+                }
+                starsContainer.appendChild(star);
+            }
+            return starsContainer;
+        }
+
+        // Sanitize and insert text content into HTML elements
+        reviewDetailsDiv.innerHTML = `
+            <h4>${escapeHTML(title)}</h4>
+            <p style="color:#7c4dff">Author(s): ${escapeHTML(authors)}</p>
+            <p><img src="${escapeHTML(cover)}" alt="Book Cover"></p>
+            <div>${createStarsContainer(stars).outerHTML}</div>
+            <p><small><strong>Date:</strong> ${escapeHTML(date)}</small></p>
+            <p><strong>Creator:</strong> <span id='creator-redirect'>${escapeHTML(creator)}</span></p>
+            <p>${escapeHTML(review)}</p>
+        `;
+
+        creatorSocialsDiv.innerHTML = `
+            <img src=${escapeHTML(profile)} />
+            <p><strong>About ${escapeHTML(creator)}: </strong> ${escapeHTML(about)}</p>
+           
+        `; 
+
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>"']/g, function(match) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                }[match];
+            });
+        }
+    </script>
 </body>
 </html>
