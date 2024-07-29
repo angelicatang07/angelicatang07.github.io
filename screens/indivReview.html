@@ -4,265 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ledgit Review</title>
+  <link rel="stylesheet" href="../stylesheets/indivReview.css">
   <link href="../images/ledgit.webp" rel="icon" type="image/webp">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #eae3f2;
-      color: #4a148c;
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-    }
-
-    header {
-      background-color: #f4e6ff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 10;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo img {
-      width: 50px;
-      height: 50px;
-    }
-
-    .nav-bar {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-bar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-    }
-
-    .nav-bar ul li {
-      margin: 0 15px;
-    }
-
-    .nav-bar ul li a {
-      text-decoration: none;
-      color: #4a148c;
-      font-weight: 500;
-      font-size: 16px;
-      transition: color 0.3s;
-    }
-
-    .nav-bar ul li a:hover {
-      color: #7a3bbd;
-    }
-
-    .login-btn {
-      background-color: #6a2c91;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 16px;
-      transition: background-color 0.3s;
-    }
-
-    .login-btn:hover {
-      background-color: #532e73;
-    }
-
-    .sidebar {
-      width: 250px;
-      background-color: #6a2c91;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      box-sizing: border-box;
-      z-index: 1000;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      width: 100%;
-    }
-
-    .sidebar ul li {
-      margin: 15px 0;
-    }
-
-    .sidebar ul li a {
-      text-decoration: none;
-      color: #fff;
-      display: block;
-      padding: 10px 20px;
-      text-align: left;
-      border-radius: 5px;
-      font-size: 16px;
-      background-color: #6a2c91;
-      transition: background-color 0.3s;
-    }
-
-    .sidebar ul li a:hover {
-      background-color: #532e73;
-    }
-
-    .sidebar-toggle {
-      font-size: 24px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: #4a148c;
-      display: none;
-    }
-
-    .theme-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background-color: #f4e6ff;
-    }
-
-    main {
-      flex: 1;
-      padding: 100px 20px 20px 20px;
-      margin-left: 250px; /* Adjusted for sidebar width */
-      transition: margin-left 0.3s ease;
-      width: calc(100% - 250px); /* Adjusted for sidebar */
-    }
-
-    .content-box {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin-bottom: 30px;
-    }
-
-    .content-box h2 {
-      margin-top: 0;
-      font-size: 24px;
-      font-weight: 700;
-      color: #4a148c;
-    }
-
-    .card {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-
-    #flex {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    #flex .card {
-      flex: 1 1 calc(50% - 20px);
-    }
-
-    #reply_input_container {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    #input_reply {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-    }
-
-    #input_button {
-      background-color: #6a2c91;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    #input_button:hover {
-      background-color: #532e73;
-    }
-
-    .spread {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .spread a {
-      margin: 0 10px;
-    }
-
-    .spread img {
-      height: 40px;
-      border-radius: 5px;
-      transition: transform 0.3s;
-    }
-
-    .spread img:hover {
-      transform: scale(1.1);
-    }
-
-    footer {
-      background-color: #f4e6ff;
-      text-align: center;
-      padding: 10px 0;
-      position: relative;
-      width: 100%;
-    }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        transform: translateX(-100%);
-      }
-
-      .sidebar.active {
-        transform: translateX(0);
-      }
-
-      .sidebar-toggle {
-        display: block;
-      }
-
-      main {
-        margin-left: 0;
-        width: 100%;
-      }
-
-      .nav-bar ul {
-        display: none;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -280,13 +24,13 @@
         <li><a href="feedback.html">Feedback</a></li>
       </ul>
       <a class="login-btn" href="login.html">Login</a>
-      <div class="user-profile">
-        <a href="profile.html"><img class="profile-pic" id="profile-pic" src="../images/default-profile.png" alt="Profile Picture" /></a>
+      <div class="user-profile"> 
+        <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" alt="Profile Picture" /></a>
       </div>
     </nav>
     <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
   </header>
-
+  
   <aside class="sidebar">
     <ul>
       <li><a href="../index.html">Main</a></li>
@@ -296,52 +40,43 @@
       <li><a href="feedback.html">Feedback</a></li>
     </ul>
   </aside>
-
+  
   <div class="theme-toggle">
     <input type="checkbox" id="theme-toggle-checkbox">
     <label for="theme-toggle-checkbox">Toggle Theme</label>
   </div>
 
   <main>
-    <div class="content-box">
-      <h2>Review</h2>
-      <section id="flex">
-        <div id="reviewDetails" class="card"></div>
-        <div id="creator-socials" class="card"></div>
-      </section>
-      <div id="content_container">
-        <div id="write_reply_container" class="card">
-          <div id="finish_reply_header">
-            <h4>Write a Reply</h4>
-          </div>
-          <div id="reply_input_container">
-            <textarea id="input_reply" placeholder="Reply..."></textarea>
-            <button id="input_button">Submit</button>
-          </div>
+    <h3>Review</h3>
+    <section id="flex">
+      <div id="reviewDetails" class="card"></div>
+      <div id="creator-socials" class="card"></div>
+    </section>
+    <div id="content_container">
+      <div id="write_reply_container" class="card">
+        <div id="finish_reply_header">
+          <h4>Write a Reply</h4>
         </div>
-        <div class="unfinished_tasks_container" id="unfinished_tasks_container">
-          <!-- Replies dynamically added here -->
+        <div id="reply_input_container">
+          <textarea id="input_reply" placeholder="Reply..."></textarea>
+          <button id="input_button">Submit</button>
         </div>
+      </div>
+      <div class="unfinished_tasks_container" id="unfinished_tasks_container">
+        <!-- Replies dynamically added here -->
       </div>
     </div>
   </main>
-
   <div class="spread">
     <a target="_blank" href="https://www.linkedin.com/company/theledgit/about/"><img src="../images/linkedin.png" /></a>
-    <a target="_blank" href="https://www.instagram.com/theledgit?igshid=MzRlODBiNWFlZA=="><img src="../images/instagram.png" /></a>
+    <a target="_blank" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA=="><img src="../images/instagram.png" /></a>
     <a target="_blank" href="https://discord.gg/Gnybre75GK"><img src="../images/discord.png" /></a>
     <a target="_blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"><img src="../images/tiktok.webp" /></a>
   </div>
   <footer>
     <p>&copy; 2024 Ledgit. All rights reserved.</p>
   </footer>
-  <script>
-    function toggleSidebar() {
-      document.querySelector('.sidebar').classList.toggle('active');
-    }
-  </script>
   <script type="module" src="../scripts/indivReview.js"></script>
   <script src="../scripts/themeToggle.js"></script>
-  <script src="../scripts/sidebar.js"></script>
 </body>
 </html>
