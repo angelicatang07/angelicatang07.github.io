@@ -50,7 +50,18 @@ form {
   width: 100%;
   max-width: 800px;
 }
-
+#submit {
+  border-radius: 20px;
+  border: none;
+  width: 100px;
+  height: 40px;
+  display: flex;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #9DACFF;
+}
 #submit:hover {
   cursor: pointer;
 }
