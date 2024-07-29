@@ -41,14 +41,13 @@
   overflow:hidden;
 }
 #message {
+  margin-top: 20px;
   list-style-type: none;
-  padding: 0;
-  margin: 0;
+  padding: 10px;
   overflow:hidden;
   display: flex;
   flex-direction: column;
-  width: 70vw;  
-  box-sizing: border-box;
+  width: 60vw;
   overflow: -moz-hidden-unscrollable; 
 }
 form {
@@ -63,7 +62,7 @@ form {
   border-radius: 20px;
   border: none;
   width: 100px;
-  height: 40px;
+  height: 30px;
   overflow:hidden;
   display: flex;
   padding: 0;

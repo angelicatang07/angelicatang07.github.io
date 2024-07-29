@@ -57,7 +57,7 @@ form.addEventListener("submit", (e) => {
         sender: username,
         sender_email: email,
         message: message,
-        date: date,
+        date: Date.now(),
     }).then(() => {
         document.getElementById("message").value = ""; 
     }).catch(error => {
