@@ -49,21 +49,22 @@ form.addEventListener("submit", (e) => {
     
     const globalChatRef = ref(database, 'global_chat'); 
     const newMessageRef = push(globalChatRef);
-
+     const date = formatDate(new Date());
     const message = document.getElementById("message").value;
     
     update(newMessageRef, {
         sender: username,
         sender_email: email,
         message: message,
+        date: date,
     }).then(() => {
         document.getElementById("message").value = ""; 
+
     }).catch(error => {
         console.error("Error sending message: ", error);
     });
 });
 
-// Listening for new messages
 const messagesRef = ref(database, 'global_chat');
 onValue(messagesRef, (snapshot) => {
     const messagesList = document.getElementById("messages");
@@ -74,14 +75,22 @@ onValue(messagesRef, (snapshot) => {
         const sanitizedMessage = DOMPurify.sanitize(data.message); // Sanitize message
 
         const listItem = document.createElement('li');
-        listItem.textContent = `${data.sender}: ${sanitizedMessage}`;
-
-        // Apply CSS classes based on sender email
+        listItem.textContent = `${data.sender} ${data.date} ${sanitizedMessage}`;
+      
         if (data.sender_email === email) {
-            listItem.classList.add('my-message'); // Class for user's own messages
+            listItem.classList.add('my-message'); 
         } else {
-            listItem.classList.add('other-message'); // Class for other messages
+            listItem.classList.add('other-message');
         }
         messagesList.appendChild(listItem);
     });
 });
+
+function formatDate(date) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString(undefined, options);
+}
+
+function setUp(){
+  
+}

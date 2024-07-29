@@ -1,20 +1,24 @@
 #messages {
   list-style-type: none;
   padding: 0;
+  display: block;
 }
 
 #messages li {
   padding: 5px 10px;
   margin-bottom: 5px;
   border-radius: 5px;
+  display: block;
 }
 
 .my-message {
   background-color: #d1ffd1;
-  text-align: right; /* Align user's messages to the right */
+  text-align: right; 
+  display: block;
 }
 
 .other-message {
   background-color: #f1f1f1;
-  text-align: left; /* Align others' messages to the left */
+  text-align: left; 
+  display: block;
 }
