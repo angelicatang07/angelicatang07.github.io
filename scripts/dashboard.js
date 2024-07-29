@@ -281,6 +281,37 @@ async function fetchBookDetails(title) {
     }
 }
 
+async function spotlight(){
+const dataContainer = document.getElementById("spotlight");
+
+const books = await fetchBookDetails('The secrets of wilderfort castle');
+const targetAuthor = "Jessica Jayne Webb"; // Replace with the author you are interested in
+
+if (books && books.length > 0) {
+    const book = books.find(book => {
+        const authors = book.volumeInfo.authors || [];
+        return authors.includes(targetAuthor);
+    });
+
+    if (book) {
+        const volumeInfo = book.volumeInfo;
+        const title = volumeInfo.title;
+        const authors = volumeInfo.authors ? volumeInfo.authors.join(", ") : "Unknown author";
+        const imageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : "images/default-book-cover.jpg";
+
+        dataContainer.innerHTML = `
+            <img src="${imageUrl}" id='spotlight-pic' alt="${title}" style="max-width: 100px; max-height: 100px;">
+            <h3>${title}</h3>
+            <p>By ${authors}</p>
+        `;
+    } else {
+        // If no book by the target author is found
+        dataContainer.innerHTML = `<p>No books found by ${targetAuthor}</p>`;
+    }
+}
+
+}
+
 document.addEventListener("DOMContentLoaded", (e) => {
     e.preventDefault();
     const inputBox = document.getElementById("input_box");
@@ -319,3 +350,5 @@ sign_out.addEventListener('click', () => {
     });
     
 })
+
+spotlight();
