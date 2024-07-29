@@ -13,51 +13,75 @@ const firebaseConfig = {
     appId: "1:250867055712:web:745853ebb86ae8e3801705",
     measurementId: "G-KBZ3ZQRVHB"
 };
+
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
 let username = "Anonymous";
+let email = "";
 
 function checkUserLoggedIn() {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const userRef = ref(database, 'users/' + user.uid);
-      get(userRef).then((snapshot) => {
-        if (snapshot.exists()) {
-          const userData = snapshot.val();
-          username = userData.name;
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const userRef = ref(database, 'users/' + user.uid);
+            get(userRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    username = userData.name;
+                    email = userData.email;
+                } else {
+                    console.log("No user data found");
+                }
+            }).catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
         } else {
-          console.log("No user data found");
+            console.log("No user is logged in");
         }
-      }).catch((error) => {
-        console.error("Error fetching user data:", error);
-      });
-    } else {
-      console.log("No user is logged in");
-    }
-  });
+    });
 }
 
 checkUserLoggedIn();
 
-  const form = document.getElementById("send-message");
-  form.addEventListener("submit", (e) => {
+const form = document.getElementById("send-message");
+form.addEventListener("submit", (e) => {
     e.preventDefault();
-    
     
     const globalChatRef = ref(database, 'global_chat'); 
     const newMessageRef = push(globalChatRef);
 
     const message = document.getElementById("message").value;
-   
+    
     update(newMessageRef, {
-      sender: username,
-      message: message,
+        sender: username,
+        sender_email: email,
+        message: message,
     }).then(() => {
-      
-      document.getElementById("message").value = ""; 
-      alert('Message sent');
+        document.getElementById("message").value = ""; 
     }).catch(error => {
-      console.error("Error sending message: ", error);
+        console.error("Error sending message: ", error);
     });
-  });
+});
+
+// Listening for new messages
+const messagesRef = ref(database, 'global_chat');
+onValue(messagesRef, (snapshot) => {
+    const messagesList = document.getElementById("messages");
+    messagesList.innerHTML = ''; // Clear current messages
+
+    snapshot.forEach((childSnapshot) => {
+        const data = childSnapshot.val();
+        const sanitizedMessage = DOMPurify.sanitize(data.message); // Sanitize message
+
+        const listItem = document.createElement('li');
+        listItem.textContent = `${data.sender}: ${sanitizedMessage}`;
+
+        // Apply CSS classes based on sender email
+        if (data.sender_email === email) {
+            listItem.classList.add('my-message'); // Class for user's own messages
+        } else {
+            listItem.classList.add('other-message'); // Class for other messages
+        }
+        messagesList.appendChild(listItem);
+    });
+});
