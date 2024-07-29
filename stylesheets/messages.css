@@ -1,11 +1,12 @@
 #messages {
   list-style-type: none;
   padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  width: 95%; 
-  margin: 0;
-  box-sizing: border-box; 
+  width: 100%;  
+  box-sizing: border-box;
+  overflow-y: auto; 
 }
 
 #messages li {
@@ -42,7 +43,13 @@ form {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 800px;
+  margin-top: auto; 
+}
+
+
+.container {
+  overflow: auto;
+  position: relative;
 }
 
 #submit {
