@@ -172,15 +172,11 @@ function createTaskElement(task, key, type) {
 
     const date = document.createElement('p');
     date.setAttribute('class', 'task_date');
-    date.textContent = task.date;
+    date.textContent = `posted: ${task.date}`;
 
-    const startDate = document.createElement('p');
-    startDate.setAttribute('class', 'start_date');
-    startDate.textContent = task.start;
-
-    const endDate = document.createElement('p');
-    endDate.setAttribute('class', 'end_date');
-    endDate.textContent = task.end; 
+    const time = document.createElement('p');
+    time.setAttribute('class', 'start_end');
+    time.textContent = `Read from ${task.start}-${task.end}`;
 
     const taskDeleteButton = document.createElement('button');
     // taskDeleteButton.setAttribute('class', 'task_delete_button');
@@ -223,8 +219,7 @@ function createTaskElement(task, key, type) {
     taskData.prepend(review);
     taskData.prepend(starsContainer);
     taskData.prepend(date);
-    taskData.prepend(startDate);
-    taskData.prepend(endDate);
+    taskData.prepend(time);
     taskData.prepend(creator);
     taskData.prepend(title);
     taskContainer.prepend(taskData);
