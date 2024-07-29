@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     const stars = document.querySelectorAll('.star');
     const message = document.getElementById('message');
 
-    let rating = 0; // Initialize rating variable
+    let rating = 0; 
 
     stars.forEach((star, index) => {
         star.addEventListener('click', () => {
@@ -82,6 +82,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
             alert("Please fill in all fields and rate the book.");
             return;
         }
+        const msage = document.getElementById('message');
+
+        if(msage.textContent.trim() === "Review score too low. Please write a more funny review." || msage.textContent.trim() === "Please write a more funny review before submitting." ) {
+            e.preventDefault();
+            msage.innerText = "Please write a more funny review before submitting.";
+            return; 
+        }
+    
         const unfinishedTaskRef = ref(database, 'unfinished_task'); // Define Firebase reference
         const newTaskRef = push(unfinishedTaskRef);
     
