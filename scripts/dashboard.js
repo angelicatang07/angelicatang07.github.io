@@ -282,7 +282,7 @@ async function fetchBookDetails(title) {
 }
 
 async function spotlight(){
-const info = document.getElementById("spotlight");
+const pic = document.getElementById("spotlight-img");
 
 const books = await fetchBookDetails('The secrets of wilderfort castle');
 const targetAuthor = "Jessica Jayne Webb"; // Replace with the author you are interested in
@@ -299,13 +299,7 @@ if (books && books.length > 0) {
         const authors = volumeInfo.authors ? volumeInfo.authors.join(", ") : "Unknown author";
         const imageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : "images/default-book-cover.jpg";
 
-        info.innerHTML = `
-        <div id='info-spotlight'>
-            <img src="${imageUrl}" id='spotlight-pic' alt="${title}" style="max-width: 100px; max-height: 100px;">
-            <h3 id='spotlight-title'>${title}</h3>
-            <p id='author-spotlight'>By ${authors}</p>
-            </div>
-        `;
+        pic.src = imageUrl;
     } else {
         // If no book by the target author is found
         dataContainer.innerHTML = `<p>No books found by ${targetAuthor}</p>`;
