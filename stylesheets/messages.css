@@ -1,9 +1,10 @@
 #messages {
   list-style-type: none;
   padding: 0;
-  display: flex block;
+  display: flex;
   flex-direction: column;
   width: 70vw;
+  position: absolute;
   margin: 0;
 
 }
