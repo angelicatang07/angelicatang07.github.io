@@ -3,7 +3,6 @@
   padding: 0;
   display: flex block;
   flex-direction: column;
-  overflow: scroll;
   width: 70vw;
   margin: 0;
 
@@ -14,7 +13,6 @@
   margin-bottom: 5px;
   border-radius: 5px;
   display: block;
-  overflow: scroll;
 }
 
 .my-message {
