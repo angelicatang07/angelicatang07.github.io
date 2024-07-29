@@ -32,9 +32,6 @@ function checkUserLoggedIn() {
                 } else {
                     console.log("No user data found");
                 }
-                // profDiv.src = prof;
-                // profDiv.style.display = "block";
-                // loginbtn.style.display = "none";
             }).catch((error) => {
                 console.error("Error fetching user data:", error);
             });
@@ -284,6 +281,7 @@ async function fetchBookDetails(title) {
 
 async function spotlight() {
     const pic = document.getElementById("spotlight-img");
+    const desc = document.getElementById('desc');
 
     const books = await fetchBookDetails('The secrets of wilderfort castle');
     const targetAuthor = "Jessica Jayne Webb";
@@ -296,7 +294,10 @@ async function spotlight() {
 
         if (book) {
             const volumeInfo = book.volumeInfo; const imageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : "images/default-book-cover.jpg";
+            const description = book.description ? book.description : "No description available";
+
             pic.src = imageUrl;
+            desc.innerText = `${description}`;
         } else {
         }
     }
