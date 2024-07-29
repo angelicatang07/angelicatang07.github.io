@@ -16,88 +16,245 @@
       gtag('js', new Date());
       gtag('config', 'G-KBZ3ZQRVHB');
     </script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #eae3f2;
+            color: #4a148c;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #6a2c91;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo h1 {
+            margin: 10px 0 0;
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .logo p {
+            margin: 0;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        .menu li {
+            margin: 15px 0;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            padding: 10px 20px;
+            text-align: left;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #6a2c91;
+            transition: background-color 0.3s;
+        }
+
+        .menu li a:hover {
+            background-color: #532e73;
+        }
+
+        .help {
+            margin-top: auto;
+        }
+
+        .help a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #532e73;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .help a:hover {
+            background-color: #6a2c91;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 250px; /* Adjusted for sidebar width */
+        }
+
+        .top-bar {
+            width: calc(100% - 250px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: fixed;
+            top: 0;
+            left: 250px;
+            z-index: 100;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar a {
+            color: #4a148c;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+
+        .top-bar a:hover {
+            color: #7a3bbd;
+        }
+
+        .top-links a {
+            margin-left: 20px;
+            color: #6a2c91;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .top-links a:hover {
+            text-decoration: underline;
+        }
+
+        .mtt {
+            margin-top: 100px; /* Adjusted for top-bar height */
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .theme-toggle input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .spread img {
+            height: 40px;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .spread img:hover {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body>
-<header>
-    <div class="logo">
-        <a href="../index.html"><img src="../images/dw.png" alt="Ledgit Logo" class="logo-img"></a>
-    </div>
-    <nav class="nav-bar">
-        <ul>
-            <li class="main-nav"><a href="../index.html">Main</a></li>
-            <li class="about-nav"><a href="about.html">About</a></li>
-            <li class="team-nav"><a href="team.html">Team</a></li>
-            <li class="pricing-nav"><a href="pricing.html">Pricing</a></li>
-            <li class="feedback-nav"><a href="feedback.html">Feedback</a></li>
+<div class="container">
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html"><img src="../images/dw.png" alt="Ledgit Logo" class="logo-img"></a>
+            <h1>Ledgit</h1>
+            <p>Beyond Words</p>
+        </div>
+        <ul class="menu">
+            <li><a href="../index.html">Main</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a id="sign-out">Log Out</a></li>
         </ul>
-        <a class="login-btn" href="login.html">Login</a>
-        <div class="user-profile"> 
-            <a href="profile.html"><img class="profile-pic" id="profile-pic" src="../images/default-profile.png" alt="Profile Picture" /></a>
-        </div>
-        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
     </nav>
-</header>
+    <main class="content">
+        <header class="top-bar">
+            <div class="top-links">
+                <a href="donate.html">Donate</a>
+                <a href="about.html">About</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="team.html">Team</a>
+            </div>
+        </header>
 
-<aside class="sidebar">
-    <ul>
-        <li><a href="../index.html">Main</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="feedback.html">Feedback</a></li>
-    </ul>
-</aside>
+        <div class="theme-toggle">
+            <input type="checkbox" id="theme-toggle-checkbox" onclick="toggleDarkMode()">
+            <label for="theme-toggle-checkbox">Toggle Theme</label>
+        </div>
 
-<div class="theme-toggle">
-    <input type="checkbox" id="theme-toggle-checkbox" onclick="toggleDarkMode()">
-    <label for="theme-toggle-checkbox">Toggle Theme</label>
+        <div class="front"></div>
+        <h1 class="mtt">Meet the Team</h1>
+        <div class="box">
+            <div id="ellie">
+                <img class="batman Pri" src="../images/ellie.webp" alt="Ellie Leung" />
+                <h2>Ellie Leung</h2>
+                <p>Co-founder</p>
+                <a href="mailto:itsellie.leung@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
+            </div>
+
+            <div id="sherry">
+                <img class="blackpanther Pri" src="../images/sherry.webp" alt="Sherry Li" />
+                <h2>Sherry Li</h2>
+                <p>Co-founder</p>
+                <a href="mailto:sherryzexuanli@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
+            </div>
+            <div id="angelica">
+                <img class="ironman Pri" src="../images/angelica.webp" alt="Angelica Tang" />
+                <h2>Angelica Tang</h2>
+                <p>Co-founder</p>
+                <a href="mailto:angelicatang07@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
+            </div>
+            <div id="yash">
+                <img class="spiderman Pri" src="../images/yash.webp" alt="Yash Tomar" />
+                <h2>Yash Tomar</h2>
+                <p>Co-founder</p>
+                <a href="mailto:yashm.tomar@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
+            </div>
+
+            <div id="vivian">
+                <img class="thor Pri" src="../images/vivian.webp" alt="Vivian Zhang" />
+                <h2>Vivian Zhang</h2>
+                <p>Co-founder</p>
+                <a href="mailto:vxun.zhang@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
+            </div>
+        </div>
+        <div class="spread">
+            <a target="blank" href="https://www.linkedin.com/company/theledgit/about/"> <img src="../images/linkedin.png" /> </a>
+            <a target="blank" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA=="> <img src="../images/instagram.png" /> </a>
+            <a target="blank" href="https://discord.gg/Gnybre75GK"> <img src="../images/discord.png" /> </a>
+            <a target="blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"> <img src="../images/tiktok.webp"  /> </a>
+        </div>
+    </main>
 </div>
-
-<main>
-    <div class="front"></div>
-    <h1 class="mtt">Meet the Team</h1>
-    <div class="box">
-        <div id="ellie">
-            <img class="batman Pri" src="../images/ellie.webp" alt="Ellie Leung" />
-            <h2>Ellie Leung</h2>
-            <p>Co-founder</p>
-            <a href="mailto:itsellie.leung@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
-        </div>
-
-        <div id="sherry">
-            <img class="blackpanther Pri" src="../images/sherry.webp" alt="Sherry Li" />
-            <h2>Sherry Li</h2>
-            <p>Co-founder</p>
-            <a href="mailto:sherryzexuanli@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
-        </div>
-        <div id="angelica">
-            <img class="ironman Pri" src="../images/angelica.webp" alt="Angelica Tang" />
-            <h2>Angelica Tang</h2>
-            <p>Co-founder</p>
-            <a href="mailto:angelicatang07@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
-        </div>
-        <div id="yash">
-            <img class="spiderman Pri" src="../images/yash.webp" alt="Yash Tomar" />
-            <h2>Yash Tomar</h2>
-            <p>Co-founder</p>
-            <a href="mailto:yashm.tomar@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
-        </div>
-
-        <div id="vivian">
-            <img class="thor Pri" src="../images/vivian.webp" alt="Vivian Zhang" />
-            <h2>Vivian Zhang</h2>
-            <p>Co-founder</p>
-            <a href="mailto:vxun.zhang@gmail.com" target="_blank"><img class="gmail" src="../images/gmail.png" alt="Gmail" /></a>
-        </div>
-    </div>
-    <div class="spread">
-        <a target="blank" href="https://www.linkedin.com/company/theledgit/about/"> <img src="../images/linkedin.png" /> </a>
-        <a target="blank" href="https://www.instagram.com/theledgit?igsh=MzRlODBiNWFlZA=="> <img src="../images/instagram.png" /> </a>
-        <a target="blank" href="https://discord.gg/Gnybre75GK"> <img src="../images/discord.png" /> </a>
-        <a target="blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"> <img src="../images/tiktok.webp"  /> </a>
-    </div>
-</main>
-
 <footer>
     <p>&copy; 2024 Ledgit. All rights reserved.</p>
 </footer>
