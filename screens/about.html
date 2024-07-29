@@ -11,6 +11,289 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #eae3f2;
+      color: #4a148c;
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #f4e6ff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-bar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    .nav-bar ul li {
+      margin: 0 15px;
+    }
+
+    .nav-bar ul li a {
+      text-decoration: none;
+      color: #4a148c;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .nav-bar ul li a:hover {
+      color: #7a3bbd;
+    }
+
+    .login-btn {
+      background-color: #6a2c91;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .login-btn:hover {
+      background-color: #532e73;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #6a2c91;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      box-sizing: border-box;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+
+    .sidebar ul li {
+      margin: 15px 0;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #fff;
+      display: block;
+      padding: 10px 20px;
+      text-align: left;
+      border-radius: 5px;
+      font-size: 16px;
+      background-color: #6a2c91;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #532e73;
+    }
+
+    .sidebar-toggle {
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #4a148c;
+      display: none;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background-color: #f4e6ff;
+    }
+
+    main {
+      flex: 1;
+      padding: 100px 20px 20px 20px;
+      margin-left: 250px; /* Adjusted for sidebar width */
+      transition: margin-left 0.3s ease;
+      width: calc(100% - 250px); /* Adjusted for sidebar */
+    }
+
+    .hero {
+      background-color: #7a3bbd;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    .content-box {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .content-box h2 {
+      margin-top: 0;
+      font-size: 24px;
+      font-weight: 700;
+      color: #4a148c;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form label {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    form input, form textarea {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    form input:focus, form textarea:focus {
+      border-color: #7a3bbd;
+      outline: none;
+      box-shadow: 0 0 5px rgba(122, 59, 189, 0.5);
+    }
+
+    .submitbt {
+      text-align: center;
+    }
+
+    .submitbt button {
+      background-color: #6a2c91;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .submitbt button:hover {
+      background-color: #532e73;
+    }
+
+    .spread {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .spread a {
+      margin: 0 10px;
+    }
+
+    .spread img {
+      height: 40px;
+      border-radius: 5px;
+      transition: transform 0.3s;
+    }
+
+    .spread img:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      background-color: #f4e6ff;
+      text-align: center;
+      padding: 10px 0;
+      position: relative;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .sidebar-toggle {
+        display: block;
+      }
+
+      main {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .nav-bar ul {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
@@ -53,7 +336,7 @@
       <li><a href="feedback.html">Feedback</a></li>
     </ul>
   </aside>
-  
+
   <div class="theme-toggle">
     <input type="checkbox" id="theme-toggle-checkbox">
     <label for="theme-toggle-checkbox">Toggle Theme</label>
@@ -87,6 +370,11 @@
   <footer>
     <p>&copy; 2024 Ledgit. All rights reserved.</p>
   </footer>
+  <script>
+    function toggleSidebar() {
+      document.querySelector('.sidebar').classList.toggle('active');
+    }
+  </script>
   <script type="module" src="../scripts/about.js"></script>
   <script src="../scripts/themeToggle.js"></script>
   <script src="../scripts/sidebar.js"></script>
