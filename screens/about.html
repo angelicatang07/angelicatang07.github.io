@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ledgit About</title>
   <link href="../images/ledgit.webp" rel="icon" type="image/webp">
-  <link href="../stylesheets/about.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
@@ -99,8 +98,6 @@
       left: 0;
       height: 100vh;
       box-sizing: border-box;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
       z-index: 1000;
     }
 
@@ -325,12 +322,17 @@
   </header>
   
   <aside class="sidebar">
-    <ul>
-      <li><a href="../index.html">Main</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
-      <li><a href="feedback.html">Feedback</a></li>
+    <div class="logo">
+      <img src="../images/dw.png" alt="Ledgit Logo">
+      <h1>Ledgit</h1>
+      <p>Beyond Words</p>
+    </div>
+    <ul class="menu">
+      <li><a href="../index.html">Profile</a></li>
+      <li><a href="messages.html">Messages</a></li>
+      <li><a href="premium.html">Premium</a></li>
+      <li><a href="merch.html">Merch</a></li>
+      <li><a id="sign-out">Log Out</a></li>
     </ul>
   </aside>
 
@@ -346,7 +348,7 @@
       <p>Get notified on major website updates and exciting events.</p>
       <form id="subscriptionForm">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" >
+        <input type="email" id="email" name="email">
         <button type="submit" id="join-button">Join</button>
       </form>
       <ul id="subscriptionList"></ul>
@@ -355,7 +357,7 @@
       <a target="_blank" href="https://www.linkedin.com/company/theledgit/about/"> <img src="../images/linkedin.png" /> </a>
       <a target="_blank" href="https://www.instagram.com/theledgit?igshid=MzRlODBiNWFlZA=="> <img src="../images/instagram.png" /> </a>
       <a target="_blank" href="https://discord.gg/Gnybre75GK"> <img src="../images/discord.png" /> </a>
-      <a target="_blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"> <img src="../images/tiktok.webp"  /> </a>
+      <a target="_blank" href="https://www.tiktok.com/@theledgit?_t=8o7Mk9Jm5SQ&_r=1"> <img src="../images/tiktok.webp" /> </a>
     </div>
   </main>
   <footer>
