@@ -39,7 +39,7 @@ loginbtn.addEventListener("click", () => {
             const userName = userData.name || 'User';
             
             const user_data = {
-              last_login: Date.now()
+              last_login: formatDate(new Date())
             };
             update(userRef, user_data);
             
@@ -83,3 +83,17 @@ reset.addEventListener('click', function(e) {
     })
   }
 )
+function formatDate(date) {
+  // Options for the date and time format
+  const options = { 
+      year: 'numeric', 
+      month: '2-digit', 
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZoneName: 'short',
+  };
+
+  const formatter = new Intl.DateTimeFormat(undefined, options);
+  return formatter.format(date);
+}
