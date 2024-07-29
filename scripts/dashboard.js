@@ -281,24 +281,24 @@ async function fetchBookDetails(title) {
     }
 }
 
-async function spotlight(){
-const pic = document.getElementById("spotlight-img");
+async function spotlight() {
+    const pic = document.getElementById("spotlight-img");
 
-const books = await fetchBookDetails('The secrets of wilderfort castle');
-const targetAuthor = "Jessica Jayne Webb"; // Replace with the author you are interested in
+    const books = await fetchBookDetails('The secrets of wilderfort castle');
+    const targetAuthor = "Jessica Jayne Webb";
 
-if (books && books.length > 0) {
-    const book = books.find(book => {
-        const authors = book.volumeInfo.authors || [];
-        return authors.includes(targetAuthor);
-    });
+    if (books && books.length > 0) {
+        const book = books.find(book => {
+            const authors = book.volumeInfo.authors || [];
+            return authors.includes(targetAuthor);
+        });
 
-    if (book) {
-        const volumeInfo = book.volumeInfo; const imageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : "images/default-book-cover.jpg";
-        pic.src = imageUrl;
-    } else {
+        if (book) {
+            const volumeInfo = book.volumeInfo; const imageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : "images/default-book-cover.jpg";
+            pic.src = imageUrl;
+        } else {
+        }
     }
-}
 
 }
 
