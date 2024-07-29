@@ -29,6 +29,7 @@ function checkUserLoggedIn() {
                     const userData = snapshot.val();
                     username = userData.name;
                     email = userData.email;
+                    save();
                 } else {
                     console.log("No user data found");
                 }
@@ -64,7 +65,15 @@ form.addEventListener("submit", (e) => {
     });
 });
 
-const messagesRef = ref(database, 'global_chat');
+save();
+
+function formatDate(date) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString(undefined, options);
+}
+
+function save() {
+  const messagesRef = ref(database, 'global_chat');
 onValue(messagesRef, (snapshot) => {
     const messagesList = document.getElementById("messages");
     messagesList.innerHTML = ''; // Clear current messages
@@ -85,8 +94,4 @@ onValue(messagesRef, (snapshot) => {
         messagesList.appendChild(listItem);
     });
 });
-
-function formatDate(date) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString(undefined, options);
 }
