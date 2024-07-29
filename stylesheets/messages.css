@@ -63,3 +63,19 @@ form {
 #submit:hover {
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px; /* Adjust sidebar width for smaller screens */
+  }
+
+  .navbar {
+    width: calc(100% - 200px); /* Adjust navbar width */
+    left: 200px;
+  }
+
+  main {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+  }
+}
