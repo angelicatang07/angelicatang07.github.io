@@ -36,7 +36,7 @@ function checkUserLoggedIn() {
                 console.error("Error fetching user data:", error);
             });
         } else {
-            window.location.href = "index.html";
+            window.location.href = "../index.html";
         }
     });
 }
@@ -185,14 +185,11 @@ function createTaskElement(task, key, type) {
                 const book = books[0].volumeInfo;
                 const authors = book.authors ? book.authors.join(", ") : "Unknown author";
                 const imageUrl = book.imageLinks ? book.imageLinks.thumbnail : "images/default-book-cover.jpg";
-                const description = book.description ? book.description : "No description available";
-
+                
                 const bookCover = document.createElement('img');
                 bookCover.setAttribute('class', 'task_book_cover');
                 bookCover.setAttribute('src', imageUrl);
                 bookCover.setAttribute('alt', task.title);
-
-                taskData.prepend(bookCover);
 
                 taskContainer.addEventListener('click', () => {
                     const queryParams = `?key=${key}&title=${encodeURIComponent(task.title)}&creator=${encodeURIComponent(task.creator)}&email=${encodeURIComponent(task.email)}&review=${encodeURIComponent(task.review)}&date=${encodeURIComponent(task.date)}&stars=${encodeURIComponent(task.stars)}&authors=${encodeURIComponent(authors)}&bookCover=${encodeURIComponent(imageUrl)}`;
@@ -211,7 +208,6 @@ function createTaskElement(task, key, type) {
     taskData.prepend(date);
     taskData.prepend(time);
     taskData.prepend(creator);
-    taskData.prepend(title);
     taskContainer.prepend(taskData);
 
     return taskContainer;
