@@ -294,15 +294,9 @@ if (books && books.length > 0) {
     });
 
     if (book) {
-        const volumeInfo = book.volumeInfo;
-        const title = volumeInfo.title;
-        const authors = volumeInfo.authors ? volumeInfo.authors.join(", ") : "Unknown author";
-        const imageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : "images/default-book-cover.jpg";
-
+        const volumeInfo = book.volumeInfo; const imageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : "images/default-book-cover.jpg";
         pic.src = imageUrl;
     } else {
-        // If no book by the target author is found
-        dataContainer.innerHTML = `<p>No books found by ${targetAuthor}</p>`;
     }
 }
 
