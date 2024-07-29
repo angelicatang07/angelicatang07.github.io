@@ -4,52 +4,59 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  width: 100%;  
+  width: 70vw;  
   box-sizing: border-box;
-  overflow-y: auto; 
+  overflow:hidden;
+  overflow: -moz-hidden-unscrollable; 
 }
-
 #messages li {
   padding: 5px 10px;
   margin-bottom: 5px;
   border-radius: 5px;
-  display: block;
   word-wrap: break-word;
+  overflow:hidden;
 }
 
 .my-message {
   background-color: #9DACFF;
   text-align: right; 
-  display: block;
+  overflow:hidden;
 }
 
 .other-message {
   background-color: #F7EEF7;
-  text-align: left; 
-  display: block;
+  text-align: left;
+  overflow:hidden; 
 }
 
 .message-date {
   font-size: 0.9em;
   color: #666;
+  overflow:hidden;
 }
 
 .message-body {
   color: #06070E;
   margin-top: 5px;
+  overflow:hidden;
 }
-
+#message {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  overflow:hidden;
+  display: flex;
+  flex-direction: column;
+  width: 70vw;  
+  box-sizing: border-box;
+  overflow: -moz-hidden-unscrollable; 
+}
 form {
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow:hidden;
   margin-top: auto; 
-}
-
-
-.container {
-  overflow: auto;
-  position: relative;
 }
 
 #submit {
@@ -57,6 +64,7 @@ form {
   border: none;
   width: 100px;
   height: 40px;
+  overflow:hidden;
   display: flex;
   padding: 0;
   justify-content: center;
@@ -67,12 +75,16 @@ form {
 
 #submit:hover {
   cursor: pointer;
+  
 }
 
 body {
   font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow:hidden;
   background-color: #eae3f2;
   color: #4a148c;
   display: flex;
@@ -83,6 +95,7 @@ body {
   width: 250px;
   background-color: #6a2c91;
   padding: 20px;
+  overflow:hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -230,11 +243,9 @@ form input, form textarea, form select {
   font-size: 16px;
   margin-bottom: 15px;
   width: 100%;
-  box-sizing: border-box;
 }
 
 form input:focus, form textarea:focus, form select:focus {
   border-color: #7a3bbd;
-  outline: none;
   box-shadow: 0 0 5px rgba(122, 59, 189, 0.5);
 }
