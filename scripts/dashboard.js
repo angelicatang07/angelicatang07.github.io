@@ -291,7 +291,8 @@ async function spotlight() {
         });
 
         if (book) {
-            const volumeInfo = book.volumeInfo; const imageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : "images/default-book-cover.jpg";
+            const volumeInfo = book.volumeInfo; 
+            const imageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : "images/default-book-cover.jpg";
             pic.src = imageUrl;
         } else {
         }
@@ -342,7 +343,60 @@ spotlight();
 
 
 const revbtn = document.getElementById('reviews-btn');
-                
 revbtn.addEventListener('click', () => {
-  window.location.href = `../screens/indivBook.html`;
+  window.location.href = `../dashboard.html`;
+});
+async function fetchReviewsByTitle(title) {
+    const reviewsRef = ref(database, 'regular_reviews');
+    return new Promise((resolve, reject) => {
+        onValue(reviewsRef, (snapshot) => {
+            const reviews = snapshot.val();
+            console.log("All reviews from Firebase:", reviews); // Log all reviews
+
+            if (reviews) {
+                // Filter reviews based on the title
+                const filteredReviews = Object.keys(reviews).filter(key => reviews[key].title === title)
+                                                         .reduce((obj, key) => {
+                                                            obj[key] = reviews[key];
+                                                            return obj;
+                                                         }, {});
+                console.log("Filtered reviews:", filteredReviews); // Log filtered reviews
+                resolve(filteredReviews);
+            } else {
+                console.log("No reviews found.");
+                resolve({});
+            }
+        }, (error) => {
+            console.error("Error fetching reviews:", error);
+            reject(error);
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const reviewsContainer = document.getElementById('reviews-container');
+
+        const bookTitle = 'The Secrets of Wilderfort Castle'; // Ensure this matches your database
+        try {
+            const reviews = await fetchReviewsByTitle(bookTitle);
+            console.log("Reviews received:", reviews); // Log received reviews
+            reviewsContainer.innerHTML = '';
+            if (Object.keys(reviews).length > 0) {
+                Object.values(reviews).forEach(review => {
+                    reviewsContainer.innerHTML += `
+                        <div class="review">
+                            <p>${review.creator}  ${review.date}</p>
+                            <p>${review.review}</p>
+                        </div>
+                    `;
+                });
+            } else {
+                reviewsContainer.innerHTML = '<p>No reviews found for this title.</p>';
+            }
+        } catch (error) {
+            console.error("Error fetching reviews:", error);
+            reviewsContainer.innerHTML = '<p>Error fetching reviews.</p>';
+        }
+
+    checkUserLoggedIn();
 });
