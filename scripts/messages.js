@@ -104,3 +104,16 @@ function formatDate(date) {
     const formatter = new Intl.DateTimeFormat(undefined, options);
     return formatter.format(date);
 }
+
+const sign_out = document.getElementById('sign-out');
+sign_out.addEventListener('click', () => {
+  
+    signOut(auth).then(() => {
+        alert("logging out");
+        window.location.href = "../index.html";
+
+    }).catch((error) => {
+       console.log('error');
+    });
+    
+})
