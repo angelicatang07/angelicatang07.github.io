@@ -24,6 +24,7 @@ body {
     padding: 2px 10px;
     background-color: rgb(203, 154, 203);
     border-radius: 20px;
+    margin: 5px 5px 15px 5px;
     border: 2px solid  rgb(178, 115, 178);
 }
 #info-spotlight {
