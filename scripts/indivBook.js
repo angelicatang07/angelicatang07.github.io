@@ -119,7 +119,7 @@ function create_unfinished_task() {
 
             Object.keys(tasks).forEach(key => {
                 const task = tasks[key];
-                const taskContainer = createTaskElement(task, key, 'unfinished');
+                const taskContainer = createTaskElement(task, key, 'regular_reviews/');
                 unfinishedTaskContainer.prepend(taskContainer);
             });
         } else {

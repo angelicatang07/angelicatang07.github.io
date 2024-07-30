@@ -36,7 +36,7 @@ function checkUserLoggedIn() {
                 console.error("Error fetching user data:", error);
             });
         } else {
-            window.location.href = "../index.html";
+            window.location.href = "../screens/login.html";
         }
     });
 }
