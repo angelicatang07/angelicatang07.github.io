@@ -1,104 +1,263 @@
-
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9196511154128809"
-     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9196511154128809" crossorigin="anonymous"></script>
     <title>Ledgit Pricing</title>
     <link href="../images/ledgit.webp" rel="icon" type="image/">
-    <link rel="stylesheet" href="../stylesheets/pricing.css">
-    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script>
+    <style>
+        /* General styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f2e8fa;
+            color: #333;
+        }
+        
+        .container {
+            display: flex;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #6a329f;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .sidebar .logo-img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar .nav-bar {
+            width: 100%;
+        }
+
+        .sidebar .nav-bar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar .nav-bar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar .nav-bar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .sidebar .nav-bar ul li a:hover {
+            background-color: #8141af;
+        }
+
+        .login-btn {
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #5f7fff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .user-profile {
+            margin-top: 20px;
+        }
+
+        .user-profile img.profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        /* Main content styles */
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content h1 {
+            text-align: center;
+            color: #6a329f;
+        }
+
+        .prem {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .prem > div {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: calc(33% - 40px);
+            margin: 20px;
+            text-align: center;
+        }
+
+        .prem h3 {
+            color: #6a329f;
+            font-size: 24px;
+        }
+
+        .price {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .perks ul {
+            list-style: none;
+            padding: 0;
+            color: #bbb8b8;
+        }
+
+        .buy {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #5f7fff;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .buy:hover {
+            background-color: #4a60cc;
+        }
+
+        .donate img {
+            margin-top: 10px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px 0;
+            }
+
+            .sidebar .nav-bar ul li a {
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .content {
+                padding: 10px;
+                margin: 0;
+            }
+
+            .prem > div {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KBZ3ZQRVHB');
+    </script>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="logo">
+                <a href="../index.html"><img src="../images/dw.png" alt="Ledgit Logo" class="logo-img"></a>
+            </div>
+            <nav class="nav-bar">
+                <ul>
+                    <li><a href="../index.html">Main</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+                <a class="login-btn" href="login.html">Login</a>
+                <div class="user-profile">
+                    <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" alt="Profile Picture" /></a>
+                </div>
+            </nav>
+        </div>
 
-  gtag('config', 'G-KBZ3ZQRVHB');
- </script>
- <body>
-    <header>
-        <div class="logo">
-          <a href="../index.html"><img src="../images/dw.png" alt="Ledgit Logo" class="logo-img"></a>
-        </div>
-        <nav class="nav-bar">
-          <ul>
-            <li><a href="../index.html">Main</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="feedback.html">Feedback</a></li>
-          </ul>
-          <a class="login-btn" href="login.html">Login</a>
-          <div class="user-profile"> 
-            <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" /> </a>
-        </div>
-        </nav>
-      </header>
-      <main>
-        <div class="prem">
-        <div class="bronze">
-          <h3>Bronze Tier</h3>
-          <p class="price"><strong>USD <i>$3.00</i> / month </strong></p>
-          <p class="perks">
-            <ul>
-           <li style="color:rgb(187, 184, 184)">Support us on a monthly basis </li> 
-           <li style="color:rgb(187, 184, 184)">Special Discord role </li> 
-           <li style="color:rgb(187, 184, 184)"> Access to private channels with special events </li> 
-          </ul>
-          </p>
-          <a class="buy" href="https://buymeacoffee.com/ledgit/membership" target="screen">BUY</a>
-        </div>
-        <div class="silver">
-          <h3>Silver Tier</h3>
-          <p class="price"><strong><i></i> N/A </strong></p>
-          <p class="perks">
-            <ul>
-           <li style="color:rgb(187, 184, 184)">All Bronze Tier Perks</li> 
-           <li style="color:rgb(187, 184, 184)"> </li> 
-           <li style="color:rgb(187, 184, 184)"> </li> 
-          </ul>
-          </p>
-          <a class="buy">Unavailable</a>
-        </div>
-        <div class="gold">
-        <h3>Gold Tier</h3>
-          <p class="price"><strong><i></i> N/A</strong></p>
-          <p class="perks">
-            <ul>
-           <li style="color:rgb(187, 184, 184)">All Silver Tier Perks</li> 
-           <li style="color:rgb(187, 184, 184)"> </li> 
-           <li style="color:rgb(187, 184, 184)"> </li> 
-          </ul>
-          </p>
-          <a class="buy">Unavailable</a>
-      </div>
-      <div class="donate">
-        <h3>Support Ledgit's Journey</h3>
-        <p class="price"><strong>USD <i>$5+</i> </strong></p>
-        <p class="perks">
-          <ul>
-         <li style="color:rgb(187, 184, 184)">Fund Our Business</li> 
-         <li style="color:rgb(187, 184, 184)">Support Global Youth Literacy</li> 
-         <li style="color:rgb(187, 184, 184)">Allow for Amazing Community Events</li> 
-        </ul>
-        </p>
-
-        <a href="https://www.buymeacoffee.com/ledgit" target="screen"><img src="https://img.buymeacoffee.com/button-api/?text=Buy Ledgit a Book&emoji=📖&slug=ledgit&button_colour=5F7FFF&font_colour=ffffff&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00" /></a>
-        </div>
-          </div>
-          <div>
-        <iframe name="screen">
-          </iframe>
-        </div>
-      </main>
-    <footer>
-   </footer>
-  <script type="module" src="../scripts/pricing.js"></script>
+        <!-- Main Content Area -->
+        <main class="content">
+            <h1>Pricing Plans</h1>
+            <div class="prem">
+                <div class="bronze">
+                    <h3>Bronze Tier</h3>
+                    <p class="price"><strong>USD <i>$3.00</i> / month </strong></p>
+                    <p class="perks">
+                        <ul>
+                            <li>Support us on a monthly basis</li>
+                            <li>Special Discord role</li>
+                            <li>Access to private channels with special events</li>
+                        </ul>
+                    </p>
+                    <a class="buy" href="https://buymeacoffee.com/ledgit/membership" target="screen">BUY</a>
+                </div>
+                <div class="silver">
+                    <h3>Silver Tier</h3>
+                    <p class="price"><strong><i>N/A</i></strong></p>
+                    <p class="perks">
+                        <ul>
+                            <li>All Bronze Tier Perks</li>
+                        </ul>
+                    </p>
+                    <a class="buy" href="#">Unavailable</a>
+                </div>
+                <div class="gold">
+                    <h3>Gold Tier</h3>
+                    <p class="price"><strong><i>N/A</i></strong></p>
+                    <p class="perks">
+                        <ul>
+                            <li>All Silver Tier Perks</li>
+                        </ul>
+                    </p>
+                    <a class="buy" href="#">Unavailable</a>
+                </div>
+                <div class="donate">
+                    <h3>Support Ledgit's Journey</h3>
+                    <p class="price"><strong>USD <i>$5+</i></strong></p>
+                    <p class="perks">
+                        <ul>
+                            <li>Fund Our Business</li>
+                            <li>Support Global Youth Literacy</li>
+                            <li>Allow for Amazing Community Events</li>
+                        </ul>
+                    </p>
+                    <a href="https://www.buymeacoffee.com/ledgit" target="screen">
+                        <img src="https://img.buymeacoffee.com/button-api/?text=Buy Ledgit a Book&emoji=📖&slug=ledgit&button_colour=5F7FFF&font_colour=ffffff&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00" alt="Buy Me a Coffee" />
+                    </a>
+                </div>
+            </div>
+            <div>
+                <iframe name="screen"></iframe>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="../scripts/pricing.js"></script>
 </body>
 </html>
