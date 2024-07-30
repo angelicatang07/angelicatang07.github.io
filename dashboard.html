@@ -369,6 +369,50 @@
             color: #4a148c;
             font-weight: bold;
         }
+        .spotlight-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .spotlight-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-controls button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        
     </style>
 </head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
@@ -378,6 +422,44 @@
   gtag('js', new Date());
 
   gtag('config', 'G-KBZ3ZQRVHB');
+    
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const items = document.querySelectorAll('.spotlight-item');
+        const totalItems = items.length;
+        let currentIndex = Math.floor(Math.random() * totalItems);
+
+        const carouselContainer = document.querySelector('.carousel-container');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+
+        // Function to update the carousel display
+        function updateCarousel() {
+            carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        // Event listeners for buttons
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? totalItems - 1 : currentIndex - 1;
+            updateCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex === totalItems - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        });
+
+        // Initial update to show a random book
+        updateCarousel();
+
+        // Redirect to individual book page on item click
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                window.location.href = item.getAttribute('data-url');
+            });
+        });
+    });
+
 </script>
 <body>
     <div class="container">
@@ -411,19 +493,36 @@
             <div class="spotlight">
                 <h2>Book Spotlight</h2>
                 <div class="spotlight-carousel">
-                    <div class="spotlight-item">
-                        <div class="spotlight-book">
-                            <img src="" id='spotlight-img'>
-                        </div>
-                        <div class="spotlight-info">
-                            <h3>The Secrets of Wilderfort Castle</h3>
-                            <p>Jessica Jayne Webb</p>
-                            <div class="spotlight-buttons">
-                                <button class="reviews-btn" id="reviews-btn">Reviews</button>
+                    <div class="carousel-container">
+                        <div class="spotlight-item" data-url="book1.html">
+                            <div class="spotlight-book">
+                                <img src="images/book1.jpg" alt="Book 1">
+                            </div>
+                            <div class="spotlight-info">
+                                <h3>Book Title 1</h3>
+                                <p>Author Name 1</p>
                             </div>
                         </div>
+                        <div class="spotlight-item" data-url="book2.html">
+                            <div class="spotlight-book">
+                                <img src="images/book2.jpg" alt="Book 2">
+                            </div>
+                            <div class="spotlight-info">
+                                <h3>Book Title 2</h3>
+                                <p>Author Name 2</p>
+                            </div>
+                        </div>
+                        <!-- Add more spotlight items as needed -->
                     </div>
                 </div>
+                <div class="carousel-controls">
+                    <button id="prev">&#10094;</button>
+                    <button id="next">&#10095;</button>
+                </div>
+            </div>
+
+
+                
             <section class="reviews">
                 <div id="content_container">
                     <div id="write_review_container">
