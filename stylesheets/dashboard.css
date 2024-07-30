@@ -304,7 +304,7 @@ body {
     display: block;
 }
 
-button:not(.reviews-btn)  {
+button:not(.reviews-btn):not(#input_button) {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
