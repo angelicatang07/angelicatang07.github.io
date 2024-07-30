@@ -226,16 +226,54 @@
 
         @media (max-width: 768px) {
             .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s;
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
+                width: 100%;
+                position: relative;
+                height: auto;
             }
 
             .content {
                 margin-left: 0;
+                padding-top: 20px;
+            }
+
+            .profile-card {
+                padding: 10px;
+                margin-top: 20px;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .top-links {
+                margin-top: 10px;
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .top-links a {
+                margin: 5px 10px 0 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-header img {
+                width: 60px;
+                height: 60px;
+                margin-right: 10px;
+            }
+
+            .top-bar {
+                padding: 10px;
+            }
+
+            .profile-card {
+                max-width: 100%;
+            }
+
+            .edit-form input {
+                width: calc(100% - 20px);
             }
         }
     </style>
@@ -274,73 +312,53 @@
                 <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
                 <li><a href="team.html"><i class="fas fa-users"></i> Team</a></li>
                 <li><a href="pricing.html"><i class="fas fa-dollar-sign"></i> Pricing</a></li>
-                <li><a href="feedback.html"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-                <li><a id="sign-out"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+                <li><a href="feedback.html"><i class="fas fa-comments"></i> Feedback</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone"></i> Contact Us</a></li>
             </ul>
+            <div class="help">
+                <a href="help.html"><i class="fas fa-question-circle"></i> Help</a>
+            </div>
         </nav>
-
-        <main class="content">
-            <header class="top-bar">
+        <div class="content">
+            <div class="top-bar">
                 <div class="top-links">
-                    <a href="screens/pricing.html">Donate</a>
-                    <a href="screens/about.html">About</a>
-                    <a href="screens/feedback.html">Feedback</a>
-                    <a href="screens/team.html">Team</a>
+                    <a href="#"><i class="fas fa-bell"></i> Notifications</a>
+                    <a href="#"><i class="fas fa-envelope"></i> Messages</a>
+                    <a href="#"><i class="fas fa-cog"></i> Settings</a>
                 </div>
-            </header>
-
-            <div id="content_container">
-                <div class="profile-card">
-                    <div class="profile-header">
-                        <img id="profile-pic" src="../images/profile_placeholder.png" alt="Profile Picture" />
-                        <h2 id="username"></h2>
-                    </div>
+                <a class="login-btn" href="login.html">Login</a>
+            </div>
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="../images/profile.jpg" alt="Profile Picture">
                     <div class="profile-info">
-                        <p id='email'></p>
+                        <h2>John Doe</h2>
+                        <p>@johndoe</p>
                         <div class="bioandlinks">
-                            <div class="bio">
-                                <div><p><strong>About Me:</strong></p></div>
-                                <p id="a-tag">edit below</p>
+                            <p>Bio: Web developer with a passion for creating stunning websites. Coffee enthusiast.</p>
+                            <div class="social-links">
+                                <a href="#"><img src="../images/facebook.png" alt="Facebook"></a>
+                                <a href="#"><img src="../images/twitter.png" alt="Twitter"></a>
+                                <a href="#"><img src="../images/linkedin.png" alt="LinkedIn"></a>
                             </div>
                         </div>
-                        <div class="social-links">
-                            <div id="insta-tag"><img id="insta-pic" src="../images/instagram.png" /><p id="i-tag"></p></div>
-                            <div id="linkedin-tag"><img id="linkedin-pic" src="../images/linkedin.png" /><p id="l-tag"></p></div>
-                            <div id="discord-tag"><img id="discord-pic" src="../images/discord.png" /><p id="d-tag"></p></div>
-                        </div>
                     </div>
                 </div>
-
-                <nav>
-                    <a id="edit-profile" href="profile.html">Edit Profile</a>
-                    <a id='wishlist' href="wishlist.html">My Favorites</a>
-                </nav>
-
-                <h2>Edit Profile:</h2>
-                <form id="discord" class="edit-form">
-                    <label for="dc">Discord Username:</label>
-                    <input type="text" id="dc" name="dc" >
-                    <button type="submit" id="dc-button">Done</button>
-                </form>
-                <form id="instagram" class="edit-form">
-                    <label for="insta">Instagram Handle:</label>
-                    <input type="text" id="insta" name="insta" >
-                    <button type="submit" id="dc-button">Done</button>
-                </form>
-                <form id="linkedin" class="edit-form">
-                    <label for="linked">LinkedIn Link:</label>
-                    <input type="text" id="linked" name="linked" >
-                    <button type="submit" id="dc-button">Done</button>
-                </form>
-                <form id="aboutme" class="edit-form">
-                    <label for="about">About Me (1000 character limit):</label>
-                    <p><span id="numleft">0</span>/1000</p>
-                    <input type="text" maxlength="1000" oninput="showComment();" id="about" name="about" />
-                    <button type="submit" id="dc-button">Done</button>
-                </form>
+                <div class="edit-form">
+                    <form>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" value="John Doe">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="john@example.com">
+                        <label for="about">About Me:</label>
+                        <textarea id="about" name="about" rows="4" maxlength="1000" oninput="showComment()">Web developer with a passion for creating stunning websites. Coffee enthusiast.</textarea>
+                        <p id="numleft">0</p>
+                        <button type="submit">Save Changes</button>
+                    </form>
+                </div>
             </div>
-        </main>
+        </div>
     </div>
-    <script type="module" src="../scripts/profile.js"></script>
+    <script src="../scripts/profile.js"></script>
 </body>
 </html>
