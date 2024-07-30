@@ -160,7 +160,6 @@
             padding: 20px;
             transition: transform 0.5s ease;
             min-width: 100%;
-            box-sizing: border-box;
         }
 
         .spotlight-book img {
@@ -372,6 +371,14 @@
         }
     </style>
 </head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KBZ3ZQRVHB');
+</script>
 <body>
     <div class="container">
         <nav class="sidebar">
@@ -404,13 +411,19 @@
             <div class="spotlight">
                 <h2>Book Spotlight</h2>
                 <div class="spotlight-carousel">
-                    <!-- Carousel items will be dynamically injected here -->
+                    <div class="spotlight-item">
+                        <div class="spotlight-book">
+                            <img src="" id='spotlight-img'>
+                        </div>
+                        <div class="spotlight-info">
+                            <h3>The Secrets of Wilderfort Castle</h3>
+                            <p>Jessica Jayne Webb</p>
+                            <div class="spotlight-buttons">
+                                <button class="reviews-btn" id="reviews-btn">Reviews</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="carousel-controls">
-                    <button onclick="prevSlide()">&#10094;</button>
-                    <button onclick="nextSlide()">&#10095;</button>
-                </div>
-            </div>
             <section class="reviews">
                 <div id="content_container">
                     <div id="write_review_container">
@@ -448,62 +461,6 @@
             </section>
         </main>
     </div>
-    <script type="module">
-        document.addEventListener('DOMContentLoaded', () => {
-            const books = [
-                { title: "The Secrets of Wilderfort Castle", author: "Jessica Jayne Webb", image: "images/book1.jpg", id: 1 },
-                { title: "Mystery of the Ancient Ruins", author: "John Smith", image: "images/book2.jpg", id: 2 },
-                { title: "Adventures in Wonderland", author: "Alice Liddell", image: "images/book3.jpg", id: 3 },
-                // Add more books here...
-            ];
-
-            // Shuffle the books array
-            books.sort(() => Math.random() - 0.5);
-
-            const carousel = document.querySelector('.spotlight-carousel');
-
-            books.forEach(book => {
-                const item = document.createElement('div');
-                item.className = 'spotlight-item';
-                item.innerHTML = `
-                    <div class="spotlight-book">
-                        <img src="${book.image}" alt="${book.title}">
-                    </div>
-                    <div class="spotlight-info">
-                        <h3>${book.title}</h3>
-                        <p>${book.author}</p>
-                        <div class="spotlight-buttons">
-                            <button class="reviews-btn" onclick="redirectToBookPage(${book.id})">Reviews</button>
-                        </div>
-                    </div>
-                `;
-                carousel.appendChild(item);
-            });
-
-            let currentIndex = 0;
-            function showSlide(index) {
-                const items = document.querySelectorAll('.spotlight-item');
-                items.forEach((item, i) => {
-                    item.style.transform = `translateX(${(i - index) * 100}%)`;
-                });
-            }
-
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % books.length;
-                showSlide(currentIndex);
-            }
-
-            function prevSlide() {
-                currentIndex = (currentIndex - 1 + books.length) % books.length;
-                showSlide(currentIndex);
-            }
-
-            window.redirectToBookPage = function(id) {
-                window.location.href = `indivbook.html?id=${id}`;
-            }
-
-            showSlide(currentIndex);
-        });
-    </script>
+    <script type="module" src="scripts/dashboard.js"></script>
 </body>
 </html>
