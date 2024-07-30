@@ -4,26 +4,249 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ledgit Profile</title>
-    <link href="../images/ledgit.webp" rel="icon" type="image/">
+    <link href="../images/ledgit.webp" rel="icon" type="image/webp">
     <link rel="stylesheet" href="../stylesheets/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9196511154128809" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #eae3f2;
+            color: #4a148c;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #6a2c91;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo h1 {
+            margin: 10px 0 0;
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .logo p {
+            margin: 0;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        .menu li {
+            margin: 15px 0;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .menu li a i {
+            margin-right: 10px;
+        }
+
+        .menu li a:hover {
+            background-color: #532e73;
+        }
+
+        .help {
+            margin-top: auto;
+        }
+
+        .help a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #532e73;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .help a:hover {
+            background-color: #6a2c91;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 270px; /* Adjusted for sidebar width */
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .top-links a {
+            margin-left: 20px;
+            color: #6a2c91;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .top-links a:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            background-color: #6a2c91;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #532e73;
+        }
+
+        .profile-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-header img {
+            border-radius: 50%;
+            margin-right: 20px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .profile-info {
+            margin-bottom: 20px;
+        }
+
+        .bioandlinks {
+            margin-top: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .social-links img {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+        }
+
+        .edit-form {
+            margin-bottom: 20px;
+        }
+
+        .edit-form label {
+            font-weight: bold;
+        }
+
+        .edit-form input {
+            width: calc(100% - 30px);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .edit-form button {
+            background-color: #6a2c91;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .edit-form button:hover {
+            background-color: #532e73;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+    </style>
     <script>
-      function showComment(){
-        const text = document.getElementById("about");
-        const left = document.getElementById("numleft");
-    
-        let rem = text.value.length;
-        if(rem <= 1000) {
-          left.innerHTML = '${rem}';
-      }
-        else {
-          text.disabled= true;
-      }
-  }
+        function showComment() {
+            const text = document.getElementById("about");
+            const left = document.getElementById("numleft");
+
+            let rem = text.value.length;
+            if (rem <= 1000) {
+                left.innerHTML = rem;
+            } else {
+                text.disabled = true;
+            }
+        }
     </script>
 </head>
 <!-- Google tag (gtag.js) -->
@@ -32,82 +255,88 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-KBZ3ZQRVHB');
 </script>
 <body onload="create_unfinished_task(); create_finished_task();">
-
-    <header>
-        <div class="logo">
-          <a href="../index.html"><img src="../images/dw.png" alt="Ledgit Logo" class="logo-img"></a>
-        </div>
-        <nav class="nav-bar">
-          <ul>
-            <li><a href="../index.html">Main</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="feedback.html">Feedback</a></li>
-          </ul>
-          <a class="login-btn" href="login.html">Login</a>
-          <div class="user-profile"> 
-            <a id='prof-link' href="profile.html"><img class="profile-pic" src="" id="profile-pic" /> </a>
-          </div>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="../images/dw.png" alt="Ledgit Logo">
+                <h1>Ledgit</h1>
+                <p>Beyond Words</p>
+            </div>
+            <ul class="menu">
+                <li><a href="../index.html"><i class="fas fa-home"></i> Main</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="team.html"><i class="fas fa-users"></i> Team</a></li>
+                <li><a href="pricing.html"><i class="fas fa-dollar-sign"></i> Pricing</a></li>
+                <li><a href="feedback.html"><i class="fas fa-comment-alt"></i> Feedback</a></li>
+                <li><a id="sign-out"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+            </ul>
         </nav>
-      </header>
 
-<div id="content_container">
-    <div class="profile-card">
-        <div class="profile-header">
-            <img id="profile-pic2" src="" alt="Profile Picture" />
-            <h2 id="username"></h2>
-        </div>
-        <div class="profile-info">
-            <!-- <p><strong>Location:</strong> <span id="location">New York, USA</span></p> -->
-            <p id='email'></p>
-          <div class="bioandlinks">
-          <div class="bio"> <div><p><strong> About Me:  </strong></p> </div><p id="a-tag"> edit below </p></div>
-        </div>
-        <div class="social-links">
-            <div id="insta-tag"><img id="insta-pic" src="../images/instagram.png" /><p id="i-tag"></p></div>
-            <div id="linkedin-tag"><img id="linkedin-pic" src="../images/linkedin.png" /><p id="l-tag"></p></div>
-            <div id="discord-tag"><img id="discord-pic" src="../images/discord.png" /><p id="d-tag"></p></div>
-        </div> 
-      </div>
-        <!-- <div class="progress-bar">
-            <div class="progress" style="width: 75%;"></div>
-        </div> -->
-        <!-- <p class="profile-completion">Profile 75% complete</p> -->
+        <main class="content">
+            <header class="top-bar">
+                <div class="top-links">
+                    <a href="screens/pricing.html">Donate</a>
+                    <a href="screens/about.html">About</a>
+                    <a href="screens/feedback.html">Feedback</a>
+                    <a href="screens/team.html">Team</a>
+                </div>
+            </header>
+
+            <div id="content_container">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <img id="profile-pic2" src="" alt="Profile Picture" />
+                        <h2 id="username"></h2>
+                    </div>
+                    <div class="profile-info">
+                        <p id='email'></p>
+                        <div class="bioandlinks">
+                            <div class="bio">
+                                <div><p><strong>About Me:</strong></p></div>
+                                <p id="a-tag">edit below</p>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <div id="insta-tag"><img id="insta-pic" src="../images/instagram.png" /><p id="i-tag"></p></div>
+                            <div id="linkedin-tag"><img id="linkedin-pic" src="../images/linkedin.png" /><p id="l-tag"></p></div>
+                            <div id="discord-tag"><img id="discord-pic" src="../images/discord.png" /><p id="d-tag"></p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav>
+                    <a id="edit-profile" href="profile.html">Edit Profile</a>
+                    <a id='wishlist' href="wishlist.html">My Favorites</a>
+                </nav>
+
+                <h2>Edit Profile:</h2>
+                <form id="discord" class="edit-form">
+                    <label for="dc">Discord Username:</label>
+                    <input type="text" id="dc" name="dc" >
+                    <button type="submit" id="dc-button">Done</button>
+                </form>
+                <form id="instagram" class="edit-form">
+                    <label for="insta">Instagram Handle:</label>
+                    <input type="text" id="insta" name="insta" >
+                    <button type="submit" id="dc-button">Done</button>
+                </form>
+                <form id="linkedin" class="edit-form">
+                    <label for="linked">LinkedIn Link:</label>
+                    <input type="text" id="linked" name="linked" >
+                    <button type="submit" id="dc-button">Done</button>
+                </form>
+                <form id="aboutme" class="edit-form">
+                    <label for="about">About Me (1000 character limit):</label>
+                    <p><span id="numleft">0</span>/1000</p>
+                    <input type="text" maxlength="1000" oninput="showComment();" id="about" name="about" />
+                    <button type="submit" id="dc-button">Done</button>
+                </form>
+            </div>
+        </main>
     </div>
-    <nav>
-      <a id="edit-profile" href="profile.html">Edit Profile</a>
-      <a id='wishlist' href="wishlist.html">My Favorites</a>
-  </nav>
-    <h2>Edit Profile:</h2>
-    <form id="discord" class="edit-form">
-        <label for="dc">Discord Username: </label>
-        <input type="text" id="dc" name="dc" >
-        <button type="submit" id="dc-button">Done</button>
-    </form>
-    <form id="instagram" class="edit-form">
-        <label for="insta">Instagram Handle:</label>
-        <input type="text" id="insta" name="insta" >
-        <button type="submit" id="dc-button">Done</button>
-    </form>
-    <form id="linkedin" class="edit-form">
-        <label for="linked">Linkedin Link:</label>
-        <input type="text" id="linked" name="linked" >
-        <button type="submit" id="dc-button">Done</button>
-    </form>
-    <form id="aboutme" class="edit-form">
-      <label for="about">About Me (1000 character limit):</label>
-      <p><span id="numleft">0</span>/1000</p>
-      <input type="text" maxlength=1000  oninput="showComment();" id="about" name="about" />
-      <button type="submit" id="dc-button">Done</button>
-  </form>
-</div>
-<button id="sign-out">Sign Out</button>
-
-<script type="module" src="../scripts/profile.js"></script>
+    <script type="module" src="../scripts/profile.js"></script>
 </body>
 </html>
