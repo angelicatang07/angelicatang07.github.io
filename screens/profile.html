@@ -18,9 +18,10 @@
             font-family: Arial, sans-serif;
             background-color: #eae3f2;
             color: #4a148c;
+        }
+
+        .container {
             display: flex;
-            height: 100vh;
-            overflow: hidden;
         }
 
         .sidebar {
@@ -30,9 +31,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100%;
-            box-sizing: border-box;
+            height: 100vh;
             position: fixed;
+            box-sizing: border-box;
         }
 
         .logo {
@@ -109,7 +110,7 @@
         .content {
             flex: 1;
             padding: 20px;
-            margin-left: 270px; /* Adjusted for sidebar width */
+            margin-left: 270px;
             overflow-y: auto;
         }
 
@@ -201,12 +202,14 @@
             font-weight: bold;
         }
 
-        .edit-form input {
-            width: calc(100% - 30px);
+        .edit-form input, .edit-form textarea {
+            width: calc(100% - 20px);
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ddd;
             margin-bottom: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
         }
 
         .edit-form button {
@@ -272,7 +275,7 @@
                 max-width: 100%;
             }
 
-            .edit-form input {
+            .edit-form input, .edit-form textarea {
                 width: calc(100% - 20px);
             }
         }
@@ -299,7 +302,7 @@
   gtag('js', new Date());
   gtag('config', 'G-KBZ3ZQRVHB');
 </script>
-<body onload="create_unfinished_task(); create_finished_task();">
+<body>
     <div class="container">
         <nav class="sidebar">
             <div class="logo">
@@ -308,26 +311,28 @@
                 <p>Beyond Words</p>
             </div>
             <ul class="menu">
-                <li><a href="../index.html"><i class="fas fa-home"></i> Main</a></li>
-                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="team.html"><i class="fas fa-users"></i> Team</a></li>
-                <li><a href="pricing.html"><i class="fas fa-dollar-sign"></i> Pricing</a></li>
-                <li><a href="feedback.html"><i class="fas fa-comments"></i> Feedback</a></li>
-                <li><a href="contact.html"><i class="fas fa-phone"></i> Contact Us</a></li>
+                <li><a href="../dashboard.html"><i class="fas fa-home"></i> Main</a></li>
+                <li><a href="../screens/funny.html"><i class="fas fa-smile"></i> Funny</a></li>
+                <li><a href="../screens/profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="../screens/messages.html"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="../screens/pricing.html"><i class="fas fa-dollar-sign"></i> Premium</a></li>
+                <li><a href="../screens/merch.html"><i class="fas fa-store"></i> Merch</a></li>
+                <li><a id="sign-out"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
             </ul>
             <div class="help">
-                <a href="help.html"><i class="fas fa-question-circle"></i> Help</a>
+                <a href="../screens/help.html"><i class="fas fa-question-circle"></i> Need Help?</a>
             </div>
         </nav>
-        <div class="content">
-            <div class="top-bar">
+
+        <main class="content">
+            <header class="top-bar">
                 <div class="top-links">
-                    <a href="#"><i class="fas fa-bell"></i> Notifications</a>
-                    <a href="#"><i class="fas fa-envelope"></i> Messages</a>
-                    <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="../screens/about.html">About</a>
+                    <a href="../screens/feedback.html">Feedback</a>
+                    <a href="../screens/team.html">Team</a>
                 </div>
                 <a class="login-btn" href="login.html">Login</a>
-            </div>
+            </header>
             <div class="profile-card">
                 <div class="profile-header">
                     <img src="../images/profile.jpg" alt="Profile Picture">
@@ -357,7 +362,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
     <script src="../scripts/profile.js"></script>
 </body>
