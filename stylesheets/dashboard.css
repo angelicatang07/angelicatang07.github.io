@@ -12,9 +12,6 @@ body {
     animation: fadeInSlide 1s ease-in-out forwards;
 }
 
-#info-spotlight {
-    background-color: #F7EE7F; 
-}
 /* Keyframes for animations */
 @keyframes fadeInSlide {
     0% {
