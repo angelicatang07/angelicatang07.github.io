@@ -110,6 +110,7 @@ header .login-btn {
     padding: 0.5rem 1rem;
     background: #7c4dff;
     border: none;
+    margin-right: 5px;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
