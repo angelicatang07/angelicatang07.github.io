@@ -36,26 +36,6 @@ function checkUserLoggedIn() {
         }
     });
 }
-
-    const pic = document.getElementById("spotlight-img");
-
-    const books = await fetchBookDetails('The secrets of wilderfort castle');
-    const targetAuthor = "Jessica Jayne Webb";
-
-    if (books && books.length > 0) {
-        const book = books.find(book => {
-            const authors = book.volumeInfo.authors || [];
-            return authors.includes(targetAuthor);
-        });
-
-        if (book) {
-            const volumeInfo = book.volumeInfo; 
-            const imageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : "../images/default-book-cover.jpg";
-            pic.src = imageUrl;
-        } else {
-        }
-    }
-
 async function fetchReviewsByTitle(title) {
     const reviewsRef = ref(database, 'regular_reviews');
     return new Promise((resolve, reject) => {
