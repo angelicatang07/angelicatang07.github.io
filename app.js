@@ -29,16 +29,10 @@ function checkUserLoggedIn() {
             const userRef = ref(database, 'users/' + user.uid);
             get(userRef).then((snapshot) => {
                 if (snapshot.exists()) {
-                    const userData = snapshot.val();
-                    username = userData.name || 'Anonymous';
-                    email= userData.email;
+                   window.location.href='dashboard.html';
                 } else {
                     console.log("No user data found");
                 }
-                // profDiv.src = prof;
-                // profDiv.style.display = "block";
-                // loginbtn.style.display = "none";
-                window.location.href = "dashboard.html";
             }).catch((error) => {
                 console.error("Error fetching user data:", error);
             });
