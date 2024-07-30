@@ -399,3 +399,45 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     checkUserLoggedIn();
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    const carouselImages = document.querySelector('.carousel-images');
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    
+    let currentIndex = 0;
+    let auto = true;
+    
+    function showSlide(index) {
+        const totalItems = carouselItems.length;
+        if (index >= totalItems) {
+            currentIndex = 0;
+        } else if (index < 0) {
+            currentIndex = totalItems - 1;
+        } else {
+            currentIndex = index;
+        }
+        const offset = -currentIndex * 100;
+        carouselImages.style.transform = `translateX(${offset}%)`;
+        auto = false;
+    }
+    
+    prevButton.addEventListener('click', () => {
+        showSlide(currentIndex - 1);
+    });
+    
+    nextButton.addEventListener('click', () => {
+        showSlide(currentIndex + 1);
+    });
+    
+    if (auto === true) {
+        setInterval(() => {
+        showSlide(currentIndex + 1);
+    }, 5000);
+}
+else {
+    return;
+}
+});
