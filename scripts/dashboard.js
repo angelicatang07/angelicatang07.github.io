@@ -401,7 +401,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    let currentIndex = 0; 
+    let currentIndex = 1; 
     let autoScrollInterval;
 
     const prevButton = document.querySelector('.prev');
@@ -411,21 +411,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showSlide(index) {
         const totalItems = carouselItems.length;
+        
         if (index >= totalItems) {
-            currentIndex = 0; 
-          carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`; 
-            setTimeout(() => {
-                carouselImages.style.transition = 'transform 0.5s ease-in-out'; 
-                showSlide(currentIndex); 
-            }, 50); 
-        } else if (index < 0) {
-            currentIndex = carouselItems.length - 1; 
+            currentIndex = 1;
             carouselImages.style.transition = 'none'; 
             carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
             setTimeout(() => {
-                carouselImages.style.transition = 'transform 1s ease-in-out';
-                showSlide(currentIndex); 
+                carouselImages.style.transition = 'transform 0.5s ease-in-out'; 
+                carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
             }, 50); 
+            
+        } else if (index < 0) {
+            currentIndex = carouselItems.length - 2; 
+            carouselImages.style.transition = 'none'; 
+            carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            setTimeout(() => {
+                carouselImages.style.transition = 'transform 0.5s ease-in-out'; 
+                carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }, 50); 
+            
         } else {
             currentIndex = index;
             const offset = -currentIndex * 100;
