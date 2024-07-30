@@ -37,7 +37,7 @@ function checkUserLoggedIn() {
                 console.error("Error fetching user data:", error);
             });
         } else {
-            console.log("No user is logged in");
+            window.location.href="../index.html";
         }
     });
 }

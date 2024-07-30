@@ -43,15 +43,11 @@ function checkUserLoggedIn() {
                 } else {
                     console.log("No user data found");
                 }
-                profDiv.src = prof;
-                profDiv.style.display = "block";
-                loginbtn.style.display = "none"; // Hide login button if user is logged in
-            }).catch((error) => {
+                 }).catch((error) => {
                 console.error("Error fetching user data:", error);
             });
         } else {
-            profDiv.style.display = "none";
-            loginbtn.style.display = "block"; // Show login button if user is not logged in
+            window.location.href = "../index.html";
         }
     });
 }

@@ -31,13 +31,12 @@ function checkUserLoggedIn() {
                     username = userData.name;
                 } else {
                     console.log("No user data found");
-                }
-                window.location.href = "../index.html";
+                };
             }).catch((error) => {
                 console.error("Error fetching user data:", error);
             });
         } else {
-            window.location.href = "../screens/login.html";
+            window.location.href = "../index.html";
         }
     });
 }

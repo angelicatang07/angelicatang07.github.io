@@ -84,3 +84,25 @@ function validate_password(pass) {
 function validate_field(field) {
   return field && field.trim().length > 0;
 }
+
+
+function checkUserLoggedIn() {
+  onAuthStateChanged(auth, (user) => {
+      if (user) {
+          const userRef = ref(database, 'users/' + user.uid);
+          get(userRef).then((snapshot) => {
+              if (snapshot.exists()) {
+                window.location.href = "../dashboard.html";
+              } else {
+                  console.log("No user data found");
+              }
+               }).catch((error) => {
+              console.error("Error fetching user data:", error);
+          });
+      } else {
+          window.location.href = "../index.html";
+      }
+  });
+}
+
+checkUserLoggedIn();

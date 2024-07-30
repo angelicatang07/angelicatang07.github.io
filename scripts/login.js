@@ -26,7 +26,8 @@ loginbtn.addEventListener("click", () => {
   if (validate_email(email) === false || !validate_password(password)) {
     return;
   }
-  
+
+
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -97,3 +98,24 @@ function formatDate(date) {
   const formatter = new Intl.DateTimeFormat(undefined, options);
   return formatter.format(date);
 }
+
+function checkUserLoggedIn() {
+  onAuthStateChanged(auth, (user) => {
+      if (user) {
+          const userRef = ref(database, 'users/' + user.uid);
+          get(userRef).then((snapshot) => {
+              if (snapshot.exists()) {
+                window.location.href = "../dashboard.html";
+              } else {
+                  console.log("No user data found");
+              }
+               }).catch((error) => {
+              console.error("Error fetching user data:", error);
+          });
+      } else {
+          window.location.href = "../index.html";
+      }
+  });
+}
+
+checkUserLoggedIn();

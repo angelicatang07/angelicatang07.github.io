@@ -32,14 +32,11 @@ function checkUserLoggedIn() {
                 } else {
                     console.log("No user data found");
                 }
-                // profDiv.src = prof;
-                // profDiv.style.display = "block";
-                // loginbtn.style.display = "none";
             }).catch((error) => {
                 console.error("Error fetching user data:", error);
             });
         } else {
-            window.location.href = "index.html";
+            window.location.href = "../index.html";
         }
     });
 }

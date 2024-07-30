@@ -73,6 +73,9 @@ function fetchUserProfile() {
                     console.error("Error fetching user data:", error);
                 });
         }
+        else {
+            window.location.href="../index.html";
+        }
     });
 }
 

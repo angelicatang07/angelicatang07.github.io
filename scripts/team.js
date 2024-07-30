@@ -13,35 +13,27 @@ const firebaseConfig = {
     appId: "1:250867055712:web:745853ebb86ae8e3801705",
     measurementId: "G-KBZ3ZQRVHB"
 };
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
-let prof = '../images/pfp.png'; 
-
 function checkUserLoggedIn() {
-    const loginbtn = document.querySelector(".login-btn");
-    const profDiv = document.getElementById("profile-pic");;
-    
+ 
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const userRef = ref(database, 'users/' + user.uid);
             get(userRef).then((snapshot) => {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
-                    prof = userData.profile_picture;
                 } else {
                     console.log("No user data found");
                 }
-                profDiv.src = prof;
-                profDiv.style.display = "block";
-                loginbtn.style.display = "none"; // Hide login button if user is logged in
             }).catch((error) => {
                 console.error("Error fetching user data:", error);
             });
         } else {
-            profDiv.style.display = "none";
-            loginbtn.style.display = "block"; // Show login button if user is not logged in
-        }
+            window.location.href="../index.html"; }
     });
 }
+
+checkUserLoggedIn();
