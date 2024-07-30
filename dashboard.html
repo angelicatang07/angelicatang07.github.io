@@ -147,19 +147,25 @@
 
         .spotlight-carousel {
             position: relative;
-            display: flex;
             overflow: hidden;
             border-radius: 10px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
         }
 
         .spotlight-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            cursor: pointer;
             display: flex;
             align-items: center;
             padding: 20px;
-            transition: transform 0.5s ease;
-            min-width: 100%;
         }
 
         .spotlight-book img {
@@ -181,22 +187,6 @@
         .spotlight-info p {
             color: #00695c;
             font-weight: bold;
-        }
-
-        .spotlight-buttons button {
-            margin: 10px 10px 0 0;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 20px;
-            background-color: #6a2c91;
-            color: #fff;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .spotlight-buttons button:hover {
-            background-color: #532e73;
         }
 
         .carousel-controls {
@@ -369,98 +359,8 @@
             color: #4a148c;
             font-weight: bold;
         }
-        .spotlight-carousel {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 100%;
-        }
-
-        .carousel-container {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .spotlight-item {
-            min-width: 100%;
-            box-sizing: border-box;
-            cursor: pointer;
-        }
-
-        .carousel-controls {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-        }
-
-        .carousel-controls button {
-            background-color: rgba(0, 0, 0, 0.5);
-            border: none;
-            color: #fff;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: background-color 0.3s;
-        }
-
-        .carousel-controls button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        
     </style>
 </head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KBZ3ZQRVHB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KBZ3ZQRVHB');
-    
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const items = document.querySelectorAll('.spotlight-item');
-        const totalItems = items.length;
-        let currentIndex = Math.floor(Math.random() * totalItems);
-
-        const carouselContainer = document.querySelector('.carousel-container');
-        const prevButton = document.getElementById('prev');
-        const nextButton = document.getElementById('next');
-
-        // Function to update the carousel display
-        function updateCarousel() {
-            carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-
-        // Event listeners for buttons
-        prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex === 0) ? totalItems - 1 : currentIndex - 1;
-            updateCarousel();
-        });
-
-        nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex === totalItems - 1) ? 0 : currentIndex + 1;
-            updateCarousel();
-        });
-
-        // Initial update to show a random book
-        updateCarousel();
-
-        // Redirect to individual book page on item click
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                window.location.href = item.getAttribute('data-url');
-            });
-        });
-    });
-
-</script>
 <body>
     <div class="container">
         <nav class="sidebar">
@@ -496,33 +396,30 @@
                     <div class="carousel-container">
                         <div class="spotlight-item" data-url="book1.html">
                             <div class="spotlight-book">
-                                <img src="images/book1.jpg" alt="Book 1">
+                                <img src="images/book1.jpg" alt="The Secrets of Wilderfort Castle">
                             </div>
                             <div class="spotlight-info">
-                                <h3>Book Title 1</h3>
-                                <p>Author Name 1</p>
+                                <h3>The Secrets of Wilderfort Castle</h3>
+                                <p>Jessica Jayne Webb</p>
                             </div>
                         </div>
                         <div class="spotlight-item" data-url="book2.html">
                             <div class="spotlight-book">
-                                <img src="images/book2.jpg" alt="Book 2">
+                                <img src="images/book2.jpg" alt="Mysteries of the Ancient">
                             </div>
                             <div class="spotlight-info">
-                                <h3>Book Title 2</h3>
-                                <p>Author Name 2</p>
+                                <h3>Mysteries of the Ancient</h3>
+                                <p>John Doe</p>
                             </div>
                         </div>
                         <!-- Add more spotlight items as needed -->
                     </div>
                 </div>
                 <div class="carousel-controls">
-                    <button id="prev">&#10094;</button>
-                    <button id="next">&#10095;</button>
+                    <button id="prev" aria-label="Previous">&#10094;</button>
+                    <button id="next" aria-label="Next">&#10095;</button>
                 </div>
             </div>
-
-
-                
             <section class="reviews">
                 <div id="content_container">
                     <div id="write_review_container">
@@ -560,6 +457,42 @@
             </section>
         </main>
     </div>
-    <script type="module" src="scripts/dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const items = document.querySelectorAll('.spotlight-item');
+            const totalItems = items.length;
+            let currentIndex = Math.floor(Math.random() * totalItems);
+
+            const carouselContainer = document.querySelector('.carousel-container');
+            const prevButton = document.getElementById('prev');
+            const nextButton = document.getElementById('next');
+
+            // Function to update the carousel display
+            function updateCarousel() {
+                carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            // Event listeners for buttons
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex === 0) ? totalItems - 1 : currentIndex - 1;
+                updateCarousel();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex === totalItems - 1) ? 0 : currentIndex + 1;
+                updateCarousel();
+            });
+
+            // Initial update to show a random book
+            updateCarousel();
+
+            // Redirect to individual book page on item click
+            items.forEach(item => {
+                item.addEventListener('click', () => {
+                    window.location.href = item.getAttribute('data-url');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
