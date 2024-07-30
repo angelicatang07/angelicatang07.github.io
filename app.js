@@ -26,7 +26,7 @@ function checkUserLoggedIn() {
             const userRef = ref(database, 'users/' + user.uid);
             get(userRef).then((snapshot) => {
                 if (snapshot.exists()) {
-                   window.location.href='dashboard.html';
+                    window.location.href='screens/login.html';
                 } else {
                     console.log("No user data found");
                 }
