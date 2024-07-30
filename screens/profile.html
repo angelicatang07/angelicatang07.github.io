@@ -19,6 +19,8 @@
             background-color: #eae3f2;
             color: #4a148c;
             display: flex;
+            height: 100vh;
+            overflow: hidden;
         }
 
         .sidebar {
@@ -28,11 +30,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
+            height: 100%;
             box-sizing: border-box;
+            position: fixed;
         }
 
         .logo {
@@ -110,6 +110,7 @@
             flex: 1;
             padding: 20px;
             margin-left: 270px; /* Adjusted for sidebar width */
+            overflow-y: auto;
         }
 
         .top-bar {
@@ -120,6 +121,7 @@
             padding: 10px 20px;
             border-radius: 10px;
             margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .top-links a {
@@ -154,6 +156,8 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .profile-header {
@@ -288,7 +292,7 @@
             <div id="content_container">
                 <div class="profile-card">
                     <div class="profile-header">
-                        <img id="profile-pic2" src="" alt="Profile Picture" />
+                        <img id="profile-pic" src="../images/profile_placeholder.png" alt="Profile Picture" />
                         <h2 id="username"></h2>
                     </div>
                     <div class="profile-info">
