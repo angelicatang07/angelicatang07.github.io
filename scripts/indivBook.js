@@ -111,10 +111,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
 function create_unfinished_task() {
     const unfinishedTaskContainer = document.getElementById("unfinished_tasks_container");
-    const unfinishedTaskRef = ref(database, 'regular_reviews');
+    const title = document.getElementById("filter-title").value.trim(); // Get the title from an input field
 
-    onValue(unfinishedTaskRef, (snapshot) => {
-        const tasks = snapshot.val();
+    fetchReviewsByTitle(title).then((tasks) => {
         if (tasks) {
             unfinishedTaskContainer.innerHTML = "";
 
@@ -126,8 +125,11 @@ function create_unfinished_task() {
         } else {
             console.log("No tasks found");
         }
+    }).catch(error => {
+        console.error("Error fetching tasks: ", error);
     });
 }
+
 
 function createTaskElement(task, key, type) {
     console.log("Creating task element for:", task); // Log task data
@@ -346,4 +348,33 @@ const revbtn = document.getElementById('reviews-btn');
                 
 revbtn.addEventListener('click', () => {
   window.location.href = `../dashboard.html`;
+});
+
+function fetchReviewsByTitle(title) {
+    const reviewsRef = ref(database, 'regular_reviews');
+    return new Promise((resolve, reject) => {
+        onValue(reviewsRef, (snapshot) => {
+            const reviews = snapshot.val();
+            if (reviews) {
+                const filteredReviews = Object.keys(reviews).filter(key => reviews[key].title === title)
+                                                         .reduce((obj, key) => {
+                                                            obj[key] = reviews[key];
+                                                            return obj;
+                                                         }, {});
+                resolve(filteredReviews);
+            } else {
+                resolve({});
+            }
+        }, (error) => {
+            reject(error);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const filterInput = document.getElementById("filter-title");
+
+    filterInput.addEventListener('input', () => {
+        create_unfinished_task(); // Refresh tasks based on the new title
+    });
 });
