@@ -400,9 +400,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     checkUserLoggedIn();
 });
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    let currentIndex = 0;
+    let currentIndex = 0; 
     let autoScrollInterval;
 
     const prevButton = document.querySelector('.prev');
@@ -413,15 +412,26 @@ document.addEventListener('DOMContentLoaded', () => {
     function showSlide(index) {
         const totalItems = carouselItems.length;
         if (index >= totalItems) {
-            currentIndex = 0;
+            currentIndex = 0; 
+          carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`; 
+            setTimeout(() => {
+                carouselImages.style.transition = 'transform 0.5s ease-in-out'; 
+                showSlide(currentIndex); 
+            }, 50); 
         } else if (index < 0) {
-            currentIndex = totalItems - 1;
+            currentIndex = carouselItems.length - 1; 
+            carouselImages.style.transition = 'none'; 
+            carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+            setTimeout(() => {
+                carouselImages.style.transition = 'transform 1s ease-in-out';
+                showSlide(currentIndex); 
+            }, 50); 
         } else {
             currentIndex = index;
+            const offset = -currentIndex * 100;
+            carouselImages.style.transform = `translateX(${offset}%)`;
         }
-        const offset = -currentIndex * 100;
-        carouselImages.style.transform = `translateX(${offset}%)`;
-     }
+    }
 
     function startAutoScroll() {
         autoScrollInterval = setInterval(() => {
@@ -448,3 +458,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startAutoScroll();
 });
+
+
