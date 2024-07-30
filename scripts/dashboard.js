@@ -402,14 +402,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    let currentIndex = 0;
+    let autoScrollInterval;
+
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
     const carouselImages = document.querySelector('.carousel-images');
     const carouselItems = document.querySelectorAll('.carousel-item');
-    
-    let currentIndex = 0;
-    let auto = true;
-    
+
     function showSlide(index) {
         const totalItems = carouselItems.length;
         if (index >= totalItems) {
@@ -421,23 +421,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const offset = -currentIndex * 100;
         carouselImages.style.transform = `translateX(${offset}%)`;
-        auto = false;
+     }
+
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, 5000);
     }
-    
+
+    function stopAutoScroll() {
+        if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = null;
+        }
+    }
+
     prevButton.addEventListener('click', () => {
         showSlide(currentIndex - 1);
+        stopAutoScroll();
     });
-    
+
     nextButton.addEventListener('click', () => {
         showSlide(currentIndex + 1);
+        stopAutoScroll();
     });
-    
-    if (auto === true) {
-        setInterval(() => {
-        showSlide(currentIndex + 1);
-    }, 5000);
-}
-else {
-    return;
-}
+
+    startAutoScroll();
 });

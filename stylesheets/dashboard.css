@@ -316,9 +316,9 @@ button:not(.reviews-btn)  {
 }
 
 .prev {
-    left: 5px;
+    left: 7px;
 }
 
 .next {
-    right: 5px;
+    right: 7px;
 }
