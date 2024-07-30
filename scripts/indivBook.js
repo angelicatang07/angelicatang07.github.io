@@ -175,8 +175,28 @@ async function fetchBookDetails(title) {
     }
 }
 
+const revbtn = document.getElementById('reviews-btn');
+revbtn.addEventListener('click', () => {
+  window.location.href = `../dashboard.html`;
+});
+
+
+const sign_out = document.getElementById('sign-out');
+sign_out.addEventListener('click', () => {
+  
+    signOut(auth).then(() => {
+        alert("logging out");
+        window.location.href = "../index.html";
+
+    }).catch((error) => {
+       console.log('error');
+    });
+    
+})
+
 async function spotlight() {
     const pic = document.getElementById("spotlight-img");
+    const desc = document.getElementById('desc');
 
     const books = await fetchBookDetails('The secrets of wilderfort castle');
     const targetAuthor = "Jessica Jayne Webb";
@@ -189,13 +209,16 @@ async function spotlight() {
 
         if (book) {
             const volumeInfo = book.volumeInfo; 
+            const description = book.description ? book.description : "No description available";
             const imageUrl = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : "images/default-book-cover.jpg";
             pic.src = imageUrl;
+            desc.innerText = description;
         } else {
         }
     }
 
 }
+spotlight();
 
 document.addEventListener("DOMContentLoaded", (e) => {
     e.preventDefault();
@@ -212,7 +235,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
             const title = book.title;
             const authors = book.authors ? book.authors.join(", ") : "Unknown author";
             const imageUrl = book.imageLinks ? book.imageLinks.thumbnail : "images/default-book-cover.jpg";
-
+            
             // Display book details in #data element
             dataContainer.innerHTML = `
                 <h2>${title}</h2>
@@ -222,10 +245,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
         }
     });
 });
-
-
-spotlight();
-
 
 document.addEventListener("DOMContentLoaded", async () => {
     const reviewsContainer = document.getElementById('reviews-container');

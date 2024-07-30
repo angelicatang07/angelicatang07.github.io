@@ -341,10 +341,9 @@ sign_out.addEventListener('click', () => {
 
 spotlight();
 
-
 const revbtn = document.getElementById('reviews-btn');
 revbtn.addEventListener('click', () => {
-  window.location.href = `../dashboard.html`;
+  window.location.href = `../screens/indivBook.html`;
 });
 async function fetchReviewsByTitle(title) {
     const reviewsRef = ref(database, 'regular_reviews');
