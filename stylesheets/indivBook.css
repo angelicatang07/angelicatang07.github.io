@@ -20,9 +20,11 @@ body {
     background-color: #F7EE7F; 
 }
 .review {
-    background-color:#9DACFF;
     border-radius: 10px;
     padding: 2px 10px;
+    background-color: rgb(203, 154, 203);
+    border-radius: 20px;
+    border: 2px solid  rgb(178, 115, 178);
 }
 #info-spotlight {
     background-color: #F7EE7F; 
