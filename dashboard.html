@@ -147,25 +147,20 @@
 
         .spotlight-carousel {
             position: relative;
+            display: flex;
             overflow: hidden;
             border-radius: 10px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 100%;
-        }
-
-        .carousel-container {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
         }
 
         .spotlight-item {
-            min-width: 100%;
-            box-sizing: border-box;
-            cursor: pointer;
             display: flex;
             align-items: center;
             padding: 20px;
+            transition: transform 0.5s ease;
+            min-width: 100%;
+            box-sizing: border-box;
         }
 
         .spotlight-book img {
@@ -187,6 +182,22 @@
         .spotlight-info p {
             color: #00695c;
             font-weight: bold;
+        }
+
+        .spotlight-buttons button {
+            margin: 10px 10px 0 0;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 20px;
+            background-color: #6a2c91;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .spotlight-buttons button:hover {
+            background-color: #532e73;
         }
 
         .carousel-controls {
@@ -393,31 +404,11 @@
             <div class="spotlight">
                 <h2>Book Spotlight</h2>
                 <div class="spotlight-carousel">
-                    <div class="carousel-container">
-                        <div class="spotlight-item" data-url="book1.html">
-                            <div class="spotlight-book">
-                                <img src="images/book1.jpg" alt="The Secrets of Wilderfort Castle">
-                            </div>
-                            <div class="spotlight-info">
-                                <h3>The Secrets of Wilderfort Castle</h3>
-                                <p>Jessica Jayne Webb</p>
-                            </div>
-                        </div>
-                        <div class="spotlight-item" data-url="book2.html">
-                            <div class="spotlight-book">
-                                <img src="images/book2.jpg" alt="Mysteries of the Ancient">
-                            </div>
-                            <div class="spotlight-info">
-                                <h3>Mysteries of the Ancient</h3>
-                                <p>John Doe</p>
-                            </div>
-                        </div>
-                        <!-- Add more spotlight items as needed -->
-                    </div>
+                    <!-- Carousel items will be dynamically injected here -->
                 </div>
                 <div class="carousel-controls">
-                    <button id="prev" aria-label="Previous">&#10094;</button>
-                    <button id="next" aria-label="Next">&#10095;</button>
+                    <button onclick="prevSlide()">&#10094;</button>
+                    <button onclick="nextSlide()">&#10095;</button>
                 </div>
             </div>
             <section class="reviews">
@@ -457,41 +448,61 @@
             </section>
         </main>
     </div>
-    <script>
+    <script type="module">
         document.addEventListener('DOMContentLoaded', () => {
-            const items = document.querySelectorAll('.spotlight-item');
-            const totalItems = items.length;
-            let currentIndex = Math.floor(Math.random() * totalItems);
+            const books = [
+                { title: "The Secrets of Wilderfort Castle", author: "Jessica Jayne Webb", image: "images/book1.jpg", id: 1 },
+                { title: "Mystery of the Ancient Ruins", author: "John Smith", image: "images/book2.jpg", id: 2 },
+                { title: "Adventures in Wonderland", author: "Alice Liddell", image: "images/book3.jpg", id: 3 },
+                // Add more books here...
+            ];
 
-            const carouselContainer = document.querySelector('.carousel-container');
-            const prevButton = document.getElementById('prev');
-            const nextButton = document.getElementById('next');
+            // Shuffle the books array
+            books.sort(() => Math.random() - 0.5);
 
-            // Function to update the carousel display
-            function updateCarousel() {
-                carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+            const carousel = document.querySelector('.spotlight-carousel');
+
+            books.forEach(book => {
+                const item = document.createElement('div');
+                item.className = 'spotlight-item';
+                item.innerHTML = `
+                    <div class="spotlight-book">
+                        <img src="${book.image}" alt="${book.title}">
+                    </div>
+                    <div class="spotlight-info">
+                        <h3>${book.title}</h3>
+                        <p>${book.author}</p>
+                        <div class="spotlight-buttons">
+                            <button class="reviews-btn" onclick="redirectToBookPage(${book.id})">Reviews</button>
+                        </div>
+                    </div>
+                `;
+                carousel.appendChild(item);
+            });
+
+            let currentIndex = 0;
+            function showSlide(index) {
+                const items = document.querySelectorAll('.spotlight-item');
+                items.forEach((item, i) => {
+                    item.style.transform = `translateX(${(i - index) * 100}%)`;
+                });
             }
 
-            // Event listeners for buttons
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex === 0) ? totalItems - 1 : currentIndex - 1;
-                updateCarousel();
-            });
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % books.length;
+                showSlide(currentIndex);
+            }
 
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex === totalItems - 1) ? 0 : currentIndex + 1;
-                updateCarousel();
-            });
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + books.length) % books.length;
+                showSlide(currentIndex);
+            }
 
-            // Initial update to show a random book
-            updateCarousel();
+            window.redirectToBookPage = function(id) {
+                window.location.href = `indivbook.html?id=${id}`;
+            }
 
-            // Redirect to individual book page on item click
-            items.forEach(item => {
-                item.addEventListener('click', () => {
-                    window.location.href = item.getAttribute('data-url');
-                });
-            });
+            showSlide(currentIndex);
         });
     </script>
 </body>
