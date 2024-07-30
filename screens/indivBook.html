@@ -427,10 +427,15 @@
                 </div>
             <section class="reviews">
                 <div id="content_container">
-                    <div id="write_review_container">
+                    <!-- <div id="write_review_container">
+                        <div id="finish_task_header">
+                            <h2>Write a Review</h2>
+                        </div>
                 
                         <div id="task_input_container">
-                            <h2 id="input_box">The Secrets of Wilderfort Castle</h2>
+                            <label for="input_box">Book Title</label>
+                            <input type="text" id="input_box" placeholder="Enter book title...">
+                            <label for="input_review">Your Review</label>
                             <textarea id="input_review" placeholder="Write your review..."></textarea>
                             <label for="rating">Rating</label>
                             <div class="rating">
@@ -447,16 +452,12 @@
                             <p id="message"></p>
                             <button id="input_button" type="submit">Submit</button>
                         </div>
-                    </div>
-                
-                    <h2 class="header">Review Log</h2>
-                    <div id="unfinished_tasks_container">
-                            <!-- reviews -->
-                    </div>
+                    </div> -->
+                    <div id="reviews-container"></div>
                 </div>
             </section>
         </main>
     </div>
-    <script type="module" src="../scripts/indivBook.js"></script>
+    <script type="module" src="../scripts/indivBook.js" defer></script>
 </body>
 </html>

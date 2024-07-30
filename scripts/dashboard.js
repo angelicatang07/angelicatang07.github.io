@@ -217,7 +217,6 @@ function createTaskElement(task, key, type) {
     return taskContainer;
 }
 
-
 function task_delete(key) {
     const taskRef = ref(database, 'regular_reviews/' + key);
 

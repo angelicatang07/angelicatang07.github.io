@@ -11,7 +11,11 @@ body {
     color: #333;
     animation: fadeInSlide 1s ease-in-out forwards;
 }
-
+.review {
+    background-color:#9DACFF;
+    border-radius: 10px;
+    padding: 5px;
+}
 #info-spotlight {
     background-color: #F7EE7F; 
 }
