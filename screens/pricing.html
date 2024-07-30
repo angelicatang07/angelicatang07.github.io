@@ -6,6 +6,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9196511154128809" crossorigin="anonymous"></script>
     <title>Ledgit Pricing</title>
     <link href="../images/ledgit.webp" rel="icon" type="image/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* General styles */
         body, html {
@@ -20,81 +21,121 @@
             display: flex;
         }
 
-        /* Sidebar styles */
         .sidebar {
             width: 250px;
-            background-color: #6a329f;
-            color: white;
+            background-color: #6a2c91;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            min-height: 100vh;
+            height: 100vh;
         }
 
-        .sidebar .logo-img {
-            width: 100px;
-            margin-bottom: 20px;
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .sidebar .nav-bar {
+        .logo img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo h1 {
+            margin: 10px 0 0;
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .logo p {
+            margin: 0;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
             width: 100%;
         }
 
-        .sidebar .nav-bar ul {
-            list-style: none;
-            padding: 0;
+        .menu li {
+            margin: 15px 0;
         }
 
-        .sidebar .nav-bar ul li {
-            margin: 10px 0;
-        }
-
-        .sidebar .nav-bar ul li a {
+        .menu li a {
             text-decoration: none;
-            color: white;
-            font-size: 18px;
-            display: block;
-            padding: 10px 0;
-        }
-
-        .sidebar .nav-bar ul li a:hover {
-            background-color: #8141af;
-        }
-
-        .login-btn {
-            margin: 20px 0;
+            color: #fff;
+            display: flex;
+            align-items: center;
             padding: 10px 20px;
-            background-color: #5f7fff;
-            color: white;
-            border: none;
             border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .menu li a:hover {
+            background-color: #532e73;
+        }
+
+        .menu li a i {
+            margin-right: 10px;
+        }
+
+        .help {
+            margin-top: auto;
+        }
+
+        .help a {
+            color: #fff;
             text-decoration: none;
-            cursor: pointer;
+            padding: 10px 15px;
+            background-color: #532e73;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+            transition: background-color 0.3s;
         }
 
-        .user-profile {
-            margin-top: 20px;
+        .help a:hover {
+            background-color: #6a2c91;
         }
 
-        .user-profile img.profile-pic {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-
-        /* Main content styles */
         .content {
-            flex-grow: 1;
+            flex: 1;
             padding: 20px;
             max-width: 900px;
             margin: 0 auto;
         }
 
-        .content h1 {
-            text-align: center;
-            color: #6a329f;
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .top-bar input {
+            width: 300px;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .top-links a {
+            margin-left: 20px;
+            color: #6a2c91;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .top-links a:hover {
+            text-decoration: underline;
         }
 
         .prem {
@@ -114,7 +155,7 @@
         }
 
         .prem h3 {
-            color: #6a329f;
+            color: #6a2c91;
             font-size: 24px;
         }
 
@@ -183,27 +224,35 @@
     </script>
     <div class="container">
         <!-- Sidebar Navigation -->
-        <div class="sidebar">
+        <nav class="sidebar">
             <div class="logo">
-                <a href="../index.html"><img src="../images/dw.png" alt="Ledgit Logo" class="logo-img"></a>
+                <img src="../images/dw.png" alt="Ledgit Logo">
+                <h1>Ledgit</h1>
+                <p>Beyond Words</p>
             </div>
-            <nav class="nav-bar">
-                <ul>
-                    <li><a href="../index.html">Main</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="team.html">Team</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="feedback.html">Feedback</a></li>
-                </ul>
-                <a class="login-btn" href="login.html">Login</a>
-                <div class="user-profile">
-                    <a href="profile.html"><img class="profile-pic" id="profile-pic" src="" alt="Profile Picture" /></a>
-                </div>
-            </nav>
-        </div>
+            <ul class="menu">
+                <li><a href="../dashboard.html"><i class="fas fa-home"></i> Main</a></li>
+                <li><a href="../screens/funny.html"><i class="fas fa-smile"></i> Funny</a></li>
+                <li><a href="../screens/profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="../screens/messages.html"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="../screens/pricing.html"><i class="fas fa-dollar-sign"></i> Premium</a></li>
+                <li><a href="../screens/merch.html"><i class="fas fa-store"></i> Merch</a></li>
+                <li><a id="sign-out"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+            </ul>
+            <div class="help">
+                <a href="../screens/help.html"><i class="fas fa-question-circle"></i> Need Help?</a>
+            </div>
+        </nav>
 
         <!-- Main Content Area -->
         <main class="content">
+            <header class="top-bar">
+                <div class="top-links">
+                    <a href="../screens/about.html">About</a>
+                    <a href="../screens/feedback.html">Feedback</a>
+                    <a href="../screens/team.html">Team</a>
+                </div>
+            </header>
             <h1>Pricing Plans</h1>
             <div class="prem">
                 <div class="bronze">
