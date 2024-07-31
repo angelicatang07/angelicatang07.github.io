@@ -317,8 +317,10 @@ button:not(.reviews-btn):not(#input_button) {
 
 .prev {
     left: 7px;
+    border-radius: 50%;
 }
 
 .next {
     right: 7px;
+    border-radius: 50%;
 }
